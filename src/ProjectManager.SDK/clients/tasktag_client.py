@@ -1,0 +1,100 @@
+#
+# ProjectManager API for Python
+#
+# (c) 2023-2023 ProjectManager.com, Inc.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+#
+# @author     ProjectManager.com <support@projectmanager.com>
+# @copyright  2023-2023 ProjectManager.com, Inc.
+# @link       https://github.com/projectmgr/projectmanager-sdk-python
+#
+
+from ProjectManager.SDK.astro_result import AstroResult
+from ProjectManager.SDK.models.errorresult import ErrorResult
+from ProjectManager.SDK.astroresult import AstroResult
+from ProjectManager.SDK.models.changesetstatusdto import ChangeSetStatusDto
+from ProjectManager.SDK.models.namedto import NameDto
+
+class TaskTagClient:
+    """
+    API methods related to TaskTag
+    """
+    from ProjectManager.SDK.project_manager_client import ProjectManagerClient
+
+    def __init__(self, client: ProjectManagerClient):
+        self.client = client
+
+    def replace_tasktags(self, taskId: str, body: list[object]) -> AstroResult[AstroResult[ChangeSetStatusDto]]:
+        """
+        Replaces the existing TaskTags on a Task with a newly provided
+        list of TaskTags.
+
+        A TaskTag is a connection between a Task and a Tag. Each Task
+        can have zero, one or many TaskTags associated with it. TaskTags
+        can be assigned and removed from the Task to help you classify
+        your Tasks and prioritize work.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task for which we will replace
+            TaskTags
+        body : list[object]
+            The replacement list of TaskTags for this Task
+        """
+        path = f"/api/data/tasks/{taskId}/tags"
+        result = self.client.send_request("POST", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(True, result.status_code, AstroResult.from_json(result.json(), ChangeSetStatusDto), None)
+        else:
+            return AstroResult(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def add_tasktag_to_task(self, taskId: str, body: list[object]) -> AstroResult[AstroResult[ChangeSetStatusDto]]:
+        """
+        Add one or more new TaskTags to a Task.
+
+        A TaskTag is a connection between a Task and a Tag. Each Task
+        can have zero, one or many TaskTags associated with it. TaskTags
+        can be assigned and removed from the Task to help you classify
+        your Tasks and prioritize work.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task for which we will add
+            TaskTags
+        body : list[object]
+            The new TaskTags to add to this Task
+        """
+        path = f"/api/data/tasks/{taskId}/tags"
+        result = self.client.send_request("PUT", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(True, result.status_code, AstroResult.from_json(result.json(), ChangeSetStatusDto), None)
+        else:
+            return AstroResult(False, result.status_code, None, ErrorResult.from_json(result.json()))
+
+    def remove_tasktag_from_task(self, taskId: str, body: list[object]) -> AstroResult[AstroResult[ChangeSetStatusDto]]:
+        """
+        Removes one or more existing TaskTags from a Task.
+
+        A TaskTag is a connection between a Task and a Tag. Each Task
+        can have zero, one or many TaskTags associated with it. TaskTags
+        can be assigned and removed from the Task to help you classify
+        your Tasks and prioritize work.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task for which we will remove
+            existing TaskTags
+        body : list[object]
+            The TaskTags to remove from this Task
+        """
+        path = f"/api/data/tasks/{taskId}/tags"
+        result = self.client.send_request("DELETE", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(True, result.status_code, AstroResult.from_json(result.json(), ChangeSetStatusDto), None)
+        else:
+            return AstroResult(False, result.status_code, None, ErrorResult.from_json(result.json()))
