@@ -23,11 +23,11 @@ class TaskStatusDto:
     determine which status levels are considered done.
     """
 
-    id: object | None = None
-    projectId: object | None = None
-    name: object | None = None
-    order: object | None = None
-    isDone: object | None = None
+    id: str | None = None
+    projectId: str | None = None
+    name: str | None = None
+    order: int | None = None
+    isDone: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

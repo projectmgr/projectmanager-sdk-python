@@ -23,10 +23,10 @@ class AstroResult:
     examine the `Error` value to determine what went wrong.
     """
 
-    error: object | None = None
-    success: object | None = None
-    hasError: object | None = None
-    statusCode: object | None = None
+    error: AstroError | None = None
+    success: bool | None = None
+    hasError: bool | None = None
+    statusCode: HttpStatusCode | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -23,19 +23,19 @@ class ProjectUpdateDto:
     represents the work to be completed for that Project.
     """
 
-    name: object | None = None
-    description: object | None = None
-    targetDate: object | None = None
-    folderId: object | None = None
-    customerId: object | None = None
-    managerId: object | None = None
-    chargeCodeId: object | None = None
-    statusId: object | None = None
-    priorityId: object | None = None
-    hourlyRate: object | None = None
-    budget: object | None = None
-    statusUpdate: object | None = None
-    favorite: object | None = None
+    name: str | None = None
+    description: str | None = None
+    targetDate: str | None = None
+    folderId: str | None = None
+    customerId: str | None = None
+    managerId: str | None = None
+    chargeCodeId: str | None = None
+    statusId: str | None = None
+    priorityId: str | None = None
+    hourlyRate: float | None = None
+    budget: float | None = None
+    statusUpdate: str | None = None
+    favorite: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

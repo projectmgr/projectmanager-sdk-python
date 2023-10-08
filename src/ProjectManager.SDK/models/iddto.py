@@ -22,7 +22,7 @@ class IdDto:
     list.
     """
 
-    id: object | None = None
+    id: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

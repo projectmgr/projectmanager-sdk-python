@@ -24,13 +24,13 @@ class DiscussionDto:
     of cross-site attacks and other embedding challenges.
     """
 
-    text: object | None = None
-    discussionCommentId: object | None = None
-    authorId: object | None = None
-    authorName: object | None = None
-    createDate: object | None = None
-    modifyDate: object | None = None
-    emoji: list[object] | None = None
+    text: str | None = None
+    discussionCommentId: str | None = None
+    authorId: str | None = None
+    authorName: str | None = None
+    createDate: str | None = None
+    modifyDate: str | None = None
+    emoji: list[DiscussionEmoji] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

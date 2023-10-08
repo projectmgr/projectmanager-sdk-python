@@ -20,8 +20,8 @@ class ProjectCreateAccessMemberDto:
     Represents project member that have access to new project
     """
 
-    userId: object | None = None
-    permission: object | None = None
+    userId: str | None = None
+    permission: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

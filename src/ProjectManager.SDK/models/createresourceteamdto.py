@@ -20,7 +20,7 @@ class CreateResourceTeamDto:
     A resource can be allocated a team.
     """
 
-    name: object | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

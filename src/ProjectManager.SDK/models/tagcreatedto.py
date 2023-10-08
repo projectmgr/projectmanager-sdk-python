@@ -22,8 +22,8 @@ class TagCreateDto:
     color.
     """
 
-    name: object | None = None
-    color: object | None = None
+    name: str | None = None
+    color: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

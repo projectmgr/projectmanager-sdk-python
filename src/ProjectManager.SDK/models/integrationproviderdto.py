@@ -22,16 +22,16 @@ class IntegrationProviderDto:
     team to request use of this API.
     """
 
-    id: object | None = None
-    name: object | None = None
-    shortId: object | None = None
-    summary: object | None = None
-    description: object | None = None
-    licenseSkus: list[object] | None = None
-    categoryShortIds: list[object] | None = None
-    activated: object | None = None
-    authenticated: object | None = None
-    integrations: list[object] | None = None
+    id: str | None = None
+    name: str | None = None
+    shortId: str | None = None
+    summary: str | None = None
+    description: str | None = None
+    licenseSkus: list[str] | None = None
+    categoryShortIds: list[str] | None = None
+    activated: bool | None = None
+    authenticated: bool | None = None
+    integrations: list[IntegrationDto] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

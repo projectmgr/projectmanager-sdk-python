@@ -20,8 +20,8 @@ class TimesheetAdminTypeDto:
     Represents admin task to track time
     """
 
-    id: object | None = None
-    name: object | None = None
+    id: str | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

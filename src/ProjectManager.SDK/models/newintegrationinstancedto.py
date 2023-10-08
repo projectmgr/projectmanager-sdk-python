@@ -22,7 +22,7 @@ class NewIntegrationInstanceDto:
     team to request use of this API.
     """
 
-    id: object | None = None
+    id: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -22,7 +22,7 @@ class TagUpdateDto:
     color.
     """
 
-    color: object | None = None
+    color: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -24,18 +24,18 @@ class WorkSpaceDto:
     same time.
     """
 
-    id: object | None = None
-    company: object | None = None
-    customProductDomain: object | None = None
-    customerId: object | None = None
-    isOwner: object | None = None
-    organizationId: object | None = None
-    color: object | None = None
-    roleName: object | None = None
-    registerDate: object | None = None
-    isInviteAccepted: object | None = None
-    businessUserId: object | None = None
-    isPaid: object | None = None
+    id: str | None = None
+    company: str | None = None
+    customProductDomain: str | None = None
+    customerId: str | None = None
+    isOwner: bool | None = None
+    organizationId: str | None = None
+    color: str | None = None
+    roleName: str | None = None
+    registerDate: str | None = None
+    isInviteAccepted: bool | None = None
+    businessUserId: str | None = None
+    isPaid: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

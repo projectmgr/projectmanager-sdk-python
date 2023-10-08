@@ -22,15 +22,15 @@ class ProjectTemplateDto:
     among Projects.
     """
 
-    id: object | None = None
-    name: object | None = None
-    title: object | None = None
-    description: object | None = None
-    icon: object | None = None
-    previewImage: object | None = None
-    order: object | None = None
-    isCustom: object | None = None
-    categories: list[object] | None = None
+    id: str | None = None
+    name: str | None = None
+    title: str | None = None
+    description: str | None = None
+    icon: str | None = None
+    previewImage: str | None = None
+    order: int | None = None
+    isCustom: bool | None = None
+    categories: list[ProjectTemplateCategoryDto] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

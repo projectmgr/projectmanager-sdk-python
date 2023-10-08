@@ -24,9 +24,9 @@ class ProjectStatusDto:
     any time.
     """
 
-    id: object | None = None
-    name: object | None = None
-    isDeleted: object | None = None
+    id: str | None = None
+    name: str | None = None
+    isDeleted: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

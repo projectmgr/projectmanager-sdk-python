@@ -22,16 +22,16 @@ class IntegrationDto:
     team to request use of this API.
     """
 
-    id: object | None = None
-    name: object | None = None
-    description: object | None = None
-    shortId: object | None = None
-    isMultiInstance: object | None = None
+    id: str | None = None
+    name: str | None = None
+    description: str | None = None
+    shortId: str | None = None
+    isMultiInstance: bool | None = None
     config: object | None = None
-    licenseSkus: list[object] | None = None
-    instances: list[object] | None = None
-    enabled: object | None = None
-    authenticated: object | None = None
+    licenseSkus: list[str] | None = None
+    instances: list[IntegrationInstanceDto] | None = None
+    enabled: bool | None = None
+    authenticated: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

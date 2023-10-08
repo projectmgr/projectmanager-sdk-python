@@ -21,7 +21,7 @@ class NameDto:
     represents an individual name within the list.
     """
 
-    name: object | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

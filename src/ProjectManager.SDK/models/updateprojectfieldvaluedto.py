@@ -20,7 +20,7 @@ class UpdateProjectFieldValueDto:
     A model that contains a new value to be set for a ProjectField.
     """
 
-    value: object | None = None
+    value: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

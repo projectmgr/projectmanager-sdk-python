@@ -24,7 +24,7 @@ class WorkSpaceJoinDto:
     same time.
     """
 
-    businessUserId: object | None = None
+    businessUserId: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

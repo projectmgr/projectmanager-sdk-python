@@ -23,9 +23,9 @@ class TaskTagDto:
     and prioritize work.
     """
 
-    id: object | None = None
-    name: object | None = None
-    color: object | None = None
+    id: str | None = None
+    name: str | None = None
+    color: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

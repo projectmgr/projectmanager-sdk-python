@@ -24,8 +24,8 @@ class CreateProjectFieldDto:
     for each Project within your Workspace.
     """
 
-    name: object | None = None
-    type: object | None = None
+    name: str | None = None
+    type: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

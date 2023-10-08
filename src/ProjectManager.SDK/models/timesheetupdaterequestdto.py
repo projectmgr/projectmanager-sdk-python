@@ -20,8 +20,8 @@ class TimesheetUpdateRequestDto:
     Payload to update time entry
     """
 
-    hours: object | None = None
-    notes: object | None = None
+    hours: float | None = None
+    notes: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

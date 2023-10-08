@@ -20,10 +20,10 @@ class ProjectManagerDto:
     A ProjectManager is a person who manages a Project.
     """
 
-    id: object | None = None
-    name: object | None = None
-    initials: object | None = None
-    avatarUrl: object | None = None
+    id: str | None = None
+    name: str | None = None
+    initials: str | None = None
+    avatarUrl: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

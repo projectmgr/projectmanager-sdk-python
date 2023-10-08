@@ -23,27 +23,27 @@ class TaskDetailsDto:
     have a dependency or a connection.
     """
 
-    id: object | None = None
-    project: object | None = None
-    tags: list[object] | None = None
-    assignees: list[object] | None = None
-    todos: list[object] | None = None
-    shortId: object | None = None
-    name: object | None = None
-    description: object | None = None
-    status: object | None = None
-    priorityId: object | None = None
-    plannedStartDate: object | None = None
-    plannedFinishDate: object | None = None
-    actualStartDate: object | None = None
-    actualFinishDate: object | None = None
-    modifyDate: object | None = None
-    createDate: object | None = None
-    percentComplete: object | None = None
-    isSummary: object | None = None
-    wbs: object | None = None
-    actualCost: object | None = None
-    plannedCost: object | None = None
+    id: str | None = None
+    project: TaskProjectDto | None = None
+    tags: list[TaskTagDto] | None = None
+    assignees: list[TaskAssigneeDto] | None = None
+    todos: list[TaskTodoDto] | None = None
+    shortId: str | None = None
+    name: str | None = None
+    description: str | None = None
+    status: TaskStatusDto | None = None
+    priorityId: int | None = None
+    plannedStartDate: str | None = None
+    plannedFinishDate: str | None = None
+    actualStartDate: str | None = None
+    actualFinishDate: str | None = None
+    modifyDate: str | None = None
+    createDate: str | None = None
+    percentComplete: int | None = None
+    isSummary: bool | None = None
+    wbs: str | None = None
+    actualCost: float | None = None
+    plannedCost: float | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

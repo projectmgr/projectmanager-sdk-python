@@ -24,10 +24,10 @@ class TaskFieldsValueResponseDto:
     edited for each Task inside this Project.
     """
 
-    id: object | None = None
-    value: object | None = None
-    name: object | None = None
-    type: object | None = None
+    id: str | None = None
+    value: str | None = None
+    name: str | None = None
+    type: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

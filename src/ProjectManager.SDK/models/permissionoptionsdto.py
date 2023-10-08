@@ -22,11 +22,11 @@ class PermissionOptionsDto:
     role they have.
     """
 
-    none: object | None = None
-    collaborate: object | None = None
-    guest: object | None = None
-    editor: object | None = None
-    manager: object | None = None
+    none: bool | None = None
+    collaborate: bool | None = None
+    guest: bool | None = None
+    editor: bool | None = None
+    manager: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

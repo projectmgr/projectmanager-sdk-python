@@ -20,13 +20,13 @@ class ReactGridLayoutItemDto:
     React grid layout item object
     """
 
-    w: object | None = None
-    h: object | None = None
-    x: object | None = None
-    y: object | None = None
-    i: object | None = None
-    moved: object | None = None
-    static: object | None = None
+    w: int | None = None
+    h: int | None = None
+    x: int | None = None
+    y: int | None = None
+    i: str | None = None
+    moved: bool | None = None
+    static: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -22,8 +22,8 @@ class AssigneeUpsertDto:
     existing effort amount for an existing TaskAssignee.
     """
 
-    id: object | None = None
-    assignedEffort: object | None = None
+    id: str | None = None
+    assignedEffort: int | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

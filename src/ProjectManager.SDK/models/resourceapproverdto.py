@@ -22,8 +22,8 @@ class ResourceApproverDto:
     within the Resource object.
     """
 
-    id: object | None = None
-    name: object | None = None
+    id: str | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

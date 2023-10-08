@@ -20,8 +20,8 @@ class WorkSpaceLinksDto:
     TODO - What is this?
     """
 
-    project: object | None = None
-    workSpaceApi: object | None = None
+    project: str | None = None
+    workSpaceApi: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -20,7 +20,7 @@ class ProjectMemberRoleDto:
     Dto To Describe a ProjectMember Role
     """
 
-    role: object | None = None
+    role: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

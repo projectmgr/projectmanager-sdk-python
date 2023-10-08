@@ -1,0 +1,187 @@
+#
+# ProjectManager API for Python
+#
+# (c) 2023-2023 ProjectManager.com, Inc.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+#
+# @author     ProjectManager.com <support@projectmanager.com>
+# @copyright  2023-2023 ProjectManager.com, Inc.
+# @link       https://github.com/projectmgr/projectmanager-sdk-python
+#
+
+from models.astroresult import AstroResult
+from models.changesetstatusdto import ChangeSetStatusDto
+from models.createtaskfieldrequestdto import CreateTaskFieldRequestDto
+from models.gettaskfieldsresponsedto import GetTaskFieldsResponseDto
+from models.taskfieldsvalueresponsedto import TaskFieldsValueResponseDto
+from models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
+
+class TaskFieldClient:
+    """
+    API methods related to TaskField
+    """
+    from projectmanagerclient import ProjectManagerClient
+
+    def __init__(self, client: ProjectManagerClient):
+        self.client = client
+
+    def retrieve_task_fields(self, projectId: str) -> AstroResult[list[GetTaskFieldsResponseDto]]:
+        """
+        Retrieves all TaskFields defined for a specific Project within
+        your Workspace.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project to retrieve TaskFields
+        """
+        path = f"/api/data/projects/{projectId}/tasks/fields"
+        result = self.client.send_request("GET", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, list[GetTaskFieldsResponseDto](result.json(), list[GetTaskFieldsResponseDto]))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)
+
+    def create_task_field(self, projectId: str, body: CreateTaskFieldRequestDto) -> AstroResult[ChangeSetStatusDto]:
+        """
+        Creates a new TaskFields for a specific Project within your
+        Workspace.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project within which to create
+            this TaskField
+        body : CreateTaskFieldRequestDto
+            Information about the TaskField to create
+        """
+        path = f"/api/data/projects/{projectId}/tasks/fields"
+        result = self.client.send_request("POST", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)
+
+    def delete_task_field(self, projectId: str, fieldId: str) -> AstroResult[object]:
+        """
+        Deletes a TaskField for a specific Project within your
+        Workspace.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project that contains this
+            TaskField
+        fieldId : str
+            The unique identifier of the TaskField to delete
+        """
+        path = f"/api/data/projects/{projectId}/tasks/fields/{fieldId}"
+        result = self.client.send_request("DELETE", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)
+
+    def retrieve_taskfield_value(self, taskId: str, fieldId: str) -> AstroResult[TaskFieldsValueResponseDto]:
+        """
+        Retrieves the current TaskField value for a particular Task and
+        TaskField.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task of the value to retrieve
+        fieldId : str
+            The unique identifier of the TaskField of the value to
+            retrieve
+        """
+        path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
+        result = self.client.send_request("GET", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, TaskFieldsValueResponseDto(result.json(), TaskFieldsValueResponseDto))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)
+
+    def update_taskfield_value(self, taskId: str, fieldId: str, body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
+        """
+        Replaces the current value of a TaskFields for a specific Task
+        within your Workspace.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task whose value you wish to
+            update
+        fieldId : str
+            The unique identifier of the TaskField whose value you wish
+            to update
+        body : UpdateTaskFieldValueDto
+            The new value for this TaskField for this Task
+        """
+        path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
+        result = self.client.send_request("PUT", path, body, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)
+
+    def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldsValueResponseDto]]:
+        """
+        Retrieves all TaskField values for a particular Task.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task for which we want
+            TaskField values
+        """
+        path = f"/api/data/tasks/{taskId}/fields"
+        result = self.client.send_request("GET", path, None, {}, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, list[TaskFieldsValueResponseDto](result.json(), list[TaskFieldsValueResponseDto]))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)

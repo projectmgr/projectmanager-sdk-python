@@ -20,20 +20,20 @@ class FileDto:
     Represents a file in project manager
     """
 
-    id: object | None = None
-    projectId: object | None = None
-    taskId: object | None = None
-    ownerId: object | None = None
-    createdDate: object | None = None
-    folderId: object | None = None
-    fileType: object | None = None
-    fileTypeLabel: object | None = None
-    size: object | None = None
-    downloadPath: object | None = None
-    deleted: object | None = None
-    type: object | None = None
-    name: object | None = None
-    entityOwnerId: object | None = None
+    id: str | None = None
+    projectId: str | None = None
+    taskId: str | None = None
+    ownerId: str | None = None
+    createdDate: str | None = None
+    folderId: str | None = None
+    fileType: str | None = None
+    fileTypeLabel: str | None = None
+    size: int | None = None
+    downloadPath: str | None = None
+    deleted: bool | None = None
+    type: str | None = None
+    name: str | None = None
+    entityOwnerId: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

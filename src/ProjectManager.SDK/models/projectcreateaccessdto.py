@@ -20,8 +20,8 @@ class ProjectCreateAccessDto:
     Specify who has access to a newly created project
     """
 
-    everyone: object | None = None
-    members: list[object] | None = None
+    everyone: bool | None = None
+    members: list[ProjectCreateAccessMemberDto] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -23,8 +23,8 @@ class TaskPriorityDto:
     reorganize the order of the TaskPriority levels at any time.
     """
 
-    id: object | None = None
-    name: object | None = None
+    id: int | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -20,8 +20,8 @@ class ChangeSetStatusDto:
     Returns the id of a specific ChangeSet
     """
 
-    changeSetId: object | None = None
-    id: object | None = None
+    changeSetId: str | None = None
+    id: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

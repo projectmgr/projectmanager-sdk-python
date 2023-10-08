@@ -20,12 +20,12 @@ class TimesheetCreateRequestDto:
     Payload to create time entry
     """
 
-    date: object | None = None
-    hours: object | None = None
-    taskId: object | None = None
-    adminTypeId: object | None = None
-    resourceId: object | None = None
-    notes: object | None = None
+    date: str | None = None
+    hours: float | None = None
+    taskId: str | None = None
+    adminTypeId: str | None = None
+    resourceId: str | None = None
+    notes: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

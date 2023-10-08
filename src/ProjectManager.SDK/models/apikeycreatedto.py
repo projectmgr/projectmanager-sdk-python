@@ -20,7 +20,7 @@ class ApiKeyCreateDto:
     Represents a new api access key entity
     """
 
-    tokenName: object | None = None
+    tokenName: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

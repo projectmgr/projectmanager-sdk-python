@@ -22,12 +22,12 @@ class IntegrationInstanceDto:
     team to request use of this API.
     """
 
-    id: object | None = None
-    integrationShortId: object | None = None
+    id: str | None = None
+    integrationShortId: str | None = None
     config: object | None = None
-    enabledBy: object | None = None
-    createDate: object | None = None
-    modifyDate: object | None = None
+    enabledBy: str | None = None
+    createDate: str | None = None
+    modifyDate: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

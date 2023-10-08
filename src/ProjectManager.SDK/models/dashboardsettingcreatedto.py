@@ -20,10 +20,10 @@ class DashboardSettingCreateDto:
     User dashboard create or update dto
     """
 
-    id: object | None = None
-    userId: object | None = None
-    type: object | None = None
-    reactGridLayout: object | None = None
+    id: str | None = None
+    userId: str | None = None
+    type: str | None = None
+    reactGridLayout: ReactGridLayoutDto | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

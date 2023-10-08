@@ -22,9 +22,9 @@ class RetunJiraProjectsDto:
     request use of this API.
     """
 
-    id: object | None = None
-    name: object | None = None
-    key: object | None = None
+    id: str | None = None
+    name: str | None = None
+    key: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

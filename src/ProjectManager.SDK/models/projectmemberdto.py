@@ -22,14 +22,14 @@ class ProjectMemberDto:
     can interact with the Project using this model.
     """
 
-    id: object | None = None
-    initials: object | None = None
-    name: object | None = None
-    avatarUrl: object | None = None
-    role: object | None = None
-    permission: object | None = None
-    color: object | None = None
-    permissionOptions: object | None = None
+    id: str | None = None
+    initials: str | None = None
+    name: str | None = None
+    avatarUrl: str | None = None
+    role: str | None = None
+    permission: str | None = None
+    color: str | None = None
+    permissionOptions: PermissionOptionsDto | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

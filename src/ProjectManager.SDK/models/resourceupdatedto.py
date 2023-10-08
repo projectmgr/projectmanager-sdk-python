@@ -25,18 +25,18 @@ class ResourceUpdateDto:
     new User to your Workspace, create a new Resource for that user.
     """
 
-    firstName: object | None = None
-    lastName: object | None = None
-    email: object | None = None
-    hourlyRate: object | None = None
-    phone: object | None = None
-    city: object | None = None
-    state: object | None = None
-    countryCode: object | None = None
-    notes: object | None = None
-    roleId: object | None = None
-    teamIds: list[object] | None = None
-    skillIds: list[object] | None = None
+    firstName: str | None = None
+    lastName: str | None = None
+    email: str | None = None
+    hourlyRate: float | None = None
+    phone: str | None = None
+    city: str | None = None
+    state: str | None = None
+    countryCode: str | None = None
+    notes: str | None = None
+    roleId: str | None = None
+    teamIds: list[str] | None = None
+    skillIds: list[str] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

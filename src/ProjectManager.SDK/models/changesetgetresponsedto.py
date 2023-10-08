@@ -24,9 +24,9 @@ class ChangesetGetResponseDto:
     examine a Changeset to determine its conflict resolution status.
     """
 
-    id: object | None = None
-    success: object | None = None
-    state: object | None = None
+    id: str | None = None
+    success: bool | None = None
+    state: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

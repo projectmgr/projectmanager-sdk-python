@@ -24,7 +24,7 @@ class DiscussionCreateResponseDto:
     of cross-site attacks and other embedding challenges.
     """
 
-    discussionCommentId: object | None = None
+    discussionCommentId: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

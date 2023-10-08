@@ -21,10 +21,10 @@ class LicenseDto:
     bundle of products within ProjectManager.
     """
 
-    id: object | None = None
-    licenseSku: object | None = None
-    bundleSku: object | None = None
-    optional: object | None = None
+    id: str | None = None
+    licenseSku: str | None = None
+    bundleSku: str | None = None
+    optional: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

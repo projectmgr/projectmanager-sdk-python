@@ -25,22 +25,22 @@ class ResourceDto:
     new User to your Workspace, create a new Resource for that user.
     """
 
-    id: object | None = None
-    firstName: object | None = None
-    lastName: object | None = None
-    email: object | None = None
-    hourlyRate: object | None = None
-    phone: object | None = None
-    city: object | None = None
-    state: object | None = None
-    country: object | None = None
-    notes: object | None = None
-    approver: object | None = None
-    teams: list[object] | None = None
-    skills: list[object] | None = None
-    onlineDateTime: object | None = None
-    role: object | None = None
-    isActive: object | None = None
+    id: str | None = None
+    firstName: str | None = None
+    lastName: str | None = None
+    email: str | None = None
+    hourlyRate: float | None = None
+    phone: str | None = None
+    city: str | None = None
+    state: str | None = None
+    country: str | None = None
+    notes: str | None = None
+    approver: ResourceApproverDto | None = None
+    teams: list[ResourceTeamDto] | None = None
+    skills: list[ResourceSkillDto] | None = None
+    onlineDateTime: str | None = None
+    role: str | None = None
+    isActive: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

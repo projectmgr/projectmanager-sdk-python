@@ -23,26 +23,26 @@ class TaskDto:
     have a dependency or a connection.
     """
 
-    id: object | None = None
-    project: object | None = None
-    projectId: object | None = None
-    assignees: list[object] | None = None
-    shortId: object | None = None
-    name: object | None = None
-    description: object | None = None
-    plannedStartDate: object | None = None
-    plannedFinishDate: object | None = None
-    actualStartDate: object | None = None
-    actualFinishDate: object | None = None
-    modifyDate: object | None = None
-    createDate: object | None = None
-    percentComplete: object | None = None
-    isSummary: object | None = None
-    priorityId: object | None = None
-    wbs: object | None = None
-    color: object | None = None
-    actualCost: object | None = None
-    plannedCost: object | None = None
+    id: str | None = None
+    project: TaskProjectDto | None = None
+    projectId: str | None = None
+    assignees: list[TaskAssigneeDto] | None = None
+    shortId: str | None = None
+    name: str | None = None
+    description: str | None = None
+    plannedStartDate: str | None = None
+    plannedFinishDate: str | None = None
+    actualStartDate: str | None = None
+    actualFinishDate: str | None = None
+    modifyDate: str | None = None
+    createDate: str | None = None
+    percentComplete: int | None = None
+    isSummary: bool | None = None
+    priorityId: int | None = None
+    wbs: str | None = None
+    color: str | None = None
+    actualCost: float | None = None
+    plannedCost: float | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

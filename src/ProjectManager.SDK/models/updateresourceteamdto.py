@@ -20,7 +20,7 @@ class UpdateResourceTeamDto:
     A resource can update a team.
     """
 
-    name: object | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

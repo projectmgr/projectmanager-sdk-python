@@ -22,11 +22,11 @@ class TaskTodoDto:
     piece of work.
     """
 
-    id: object | None = None
-    text: object | None = None
-    complete: object | None = None
-    createDate: object | None = None
-    modifyDate: object | None = None
+    id: str | None = None
+    text: str | None = None
+    complete: bool | None = None
+    createDate: str | None = None
+    modifyDate: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

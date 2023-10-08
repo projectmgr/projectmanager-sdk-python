@@ -20,11 +20,11 @@ class ApiKeyDto:
     Represents api access key entity
     """
 
-    id: object | None = None
-    createdBy: object | None = None
-    expires: object | None = None
-    apiKey: object | None = None
-    name: object | None = None
+    id: str | None = None
+    createdBy: str | None = None
+    expires: str | None = None
+    apiKey: str | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

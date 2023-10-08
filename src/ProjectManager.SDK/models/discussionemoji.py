@@ -20,8 +20,8 @@ class DiscussionEmoji:
     A reaction to a specific comment within a discussion thread.
     """
 
-    name: object | None = None
-    userIds: list[object] | None = None
+    name: str | None = None
+    userIds: list[str] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

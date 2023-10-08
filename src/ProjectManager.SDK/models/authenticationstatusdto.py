@@ -20,7 +20,7 @@ class AuthenticationStatusDto:
     Set the connection status of an integration
     """
 
-    connected: object | None = None
+    connected: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

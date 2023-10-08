@@ -21,9 +21,9 @@ class AstroError:
     API.
     """
 
-    technicalError: object | None = None
-    additionalErrors: list[object] | None = None
-    message: object | None = None
+    technicalError: str | None = None
+    additionalErrors: list[str] | None = None
+    message: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

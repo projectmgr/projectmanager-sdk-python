@@ -20,9 +20,9 @@ class ProjectTemplateCategoryDto:
     Information about a Category of ProjectTemplates.
     """
 
-    id: object | None = None
-    name: object | None = None
-    order: object | None = None
+    id: str | None = None
+    name: str | None = None
+    order: int | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

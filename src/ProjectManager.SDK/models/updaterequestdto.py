@@ -26,9 +26,9 @@ class UpdateRequestDto:
     process, you may retrieve it using the DownloadFile API.
     """
 
-    name: object | None = None
-    taskId: object | None = None
-    folderId: object | None = None
+    name: str | None = None
+    taskId: str | None = None
+    folderId: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

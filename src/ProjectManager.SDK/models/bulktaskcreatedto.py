@@ -24,14 +24,14 @@ class BulkTaskCreateDto:
     normal Create Task API.
     """
 
-    name: object | None = None
-    description: object | None = None
-    percentComplete: object | None = None
-    statusId: object | None = None
-    priorityId: object | None = None
-    plannedStartDate: object | None = None
-    plannedFinishDate: object | None = None
-    actualStartDate: object | None = None
+    name: str | None = None
+    description: str | None = None
+    percentComplete: int | None = None
+    statusId: str | None = None
+    priorityId: int | None = None
+    plannedStartDate: str | None = None
+    plannedFinishDate: str | None = None
+    actualStartDate: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

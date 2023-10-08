@@ -20,7 +20,7 @@ class UpdateResourceSkillDto:
     This is a skill that can be allocated to a resource.
     """
 
-    name: object | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

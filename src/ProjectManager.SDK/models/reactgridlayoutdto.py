@@ -20,11 +20,11 @@ class ReactGridLayoutDto:
     A setting for react grid layout sizes
     """
 
-    lg: list[object] | None = None
-    md: list[object] | None = None
-    sm: list[object] | None = None
-    xs: list[object] | None = None
-    xxs: list[object] | None = None
+    lg: list[ReactGridLayoutItemDto] | None = None
+    md: list[ReactGridLayoutItemDto] | None = None
+    sm: list[ReactGridLayoutItemDto] | None = None
+    xs: list[ReactGridLayoutItemDto] | None = None
+    xxs: list[ReactGridLayoutItemDto] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

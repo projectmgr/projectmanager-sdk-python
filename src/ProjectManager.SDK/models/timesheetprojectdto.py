@@ -23,20 +23,20 @@ class TimeSheetProjectDto:
     represents the work to be completed for that Project.
     """
 
-    id: object | None = None
-    name: object | None = None
-    description: object | None = None
-    shortCode: object | None = None
-    shortId: object | None = None
-    startDate: object | None = None
-    endDate: object | None = None
-    targetDate: object | None = None
-    budget: object | None = None
-    hourlyRate: object | None = None
-    statusUpdate: object | None = None
-    modifyDate: object | None = None
-    createDate: object | None = None
-    isTemplate: object | None = None
+    id: str | None = None
+    name: str | None = None
+    description: str | None = None
+    shortCode: str | None = None
+    shortId: str | None = None
+    startDate: str | None = None
+    endDate: str | None = None
+    targetDate: str | None = None
+    budget: float | None = None
+    hourlyRate: float | None = None
+    statusUpdate: str | None = None
+    modifyDate: str | None = None
+    createDate: str | None = None
+    isTemplate: bool | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,16 +21,16 @@ class TaskAssigneeDto:
     Task can be assigned to multiple TaskAssignees.
     """
 
-    id: object | None = None
-    initials: object | None = None
-    name: object | None = None
-    description: object | None = None
-    isActive: object | None = None
-    color: object | None = None
-    firstName: object | None = None
-    lastName: object | None = None
-    shortName: object | None = None
-    avatarUrl: object | None = None
+    id: str | None = None
+    initials: str | None = None
+    name: str | None = None
+    description: str | None = None
+    isActive: bool | None = None
+    color: str | None = None
+    firstName: str | None = None
+    lastName: str | None = None
+    shortName: str | None = None
+    avatarUrl: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -20,13 +20,13 @@ class TimesheetGetResponseDto:
     Created Time entry response data
     """
 
-    id: object | None = None
-    date: object | None = None
-    notes: object | None = None
-    approved: object | None = None
-    hours: object | None = None
-    task: object | None = None
-    project: object | None = None
+    id: str | None = None
+    date: str | None = None
+    notes: str | None = None
+    approved: bool | None = None
+    hours: float | None = None
+    task: TimesheetTaskDto | None = None
+    project: TimeSheetProjectDto | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -24,7 +24,7 @@ class DiscussionCreateDto:
     of cross-site attacks and other embedding challenges.
     """
 
-    text: object | None = None
+    text: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

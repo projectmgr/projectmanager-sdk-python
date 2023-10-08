@@ -21,7 +21,7 @@ class DirectLinkDto:
     Integration Provider.
     """
 
-    url: object | None = None
+    url: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

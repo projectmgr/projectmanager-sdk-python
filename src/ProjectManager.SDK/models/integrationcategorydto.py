@@ -21,10 +21,10 @@ class IntegrationCategoryDto:
     Marketplace.
     """
 
-    id: object | None = None
-    name: object | None = None
-    shortId: object | None = None
-    integrationShortIds: list[object] | None = None
+    id: str | None = None
+    name: str | None = None
+    shortId: str | None = None
+    integrationShortIds: list[str] | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

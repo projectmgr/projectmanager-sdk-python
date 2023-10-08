@@ -20,15 +20,15 @@ class TimesheetResponseDto:
     Time entry representation
     """
 
-    id: object | None = None
-    taskId: object | None = None
-    projectId: object | None = None
-    resourceId: object | None = None
-    timesheetAdminTypeId: object | None = None
-    date: object | None = None
-    notes: object | None = None
-    approved: object | None = None
-    hours: object | None = None
+    id: str | None = None
+    taskId: str | None = None
+    projectId: str | None = None
+    resourceId: str | None = None
+    timesheetAdminTypeId: str | None = None
+    date: str | None = None
+    notes: str | None = None
+    approved: bool | None = None
+    hours: float | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

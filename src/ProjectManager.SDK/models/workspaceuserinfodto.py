@@ -20,11 +20,11 @@ class WorkSpaceUserInfoDto:
     TODO - What is this?
     """
 
-    links: object | None = None
-    emailAddress: object | None = None
-    id: object | None = None
-    fullName: object | None = None
-    workSpaceName: object | None = None
+    links: WorkSpaceLinksDto | None = None
+    emailAddress: str | None = None
+    id: str | None = None
+    fullName: str | None = None
+    workSpaceName: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

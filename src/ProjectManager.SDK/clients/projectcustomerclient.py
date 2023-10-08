@@ -1,0 +1,43 @@
+#
+# ProjectManager API for Python
+#
+# (c) 2023-2023 ProjectManager.com, Inc.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+#
+# @author     ProjectManager.com <support@projectmanager.com>
+# @copyright  2023-2023 ProjectManager.com, Inc.
+# @link       https://github.com/projectmgr/projectmanager-sdk-python
+#
+
+from models.astroresult import AstroResult
+from models.projectcustomerdto import ProjectCustomerDto
+
+class ProjectCustomerClient:
+    """
+    API methods related to ProjectCustomer
+    """
+    from projectmanagerclient import ProjectManagerClient
+
+    def __init__(self, client: ProjectManagerClient):
+        self.client = client
+
+    def retrieve_project_customers(self) -> AstroResult[list[ProjectCustomerDto]]:
+        """
+        Retrieves all ProjectCustomers defined within your Workspace.
+
+        A ProjectCustomer is a code used to identify costs within your
+        Projects. Each ProjectCustomer has a name and a unique
+        identifier. ChargeCodes are defined per Workspace and are shared
+        among Projects.
+
+        Parameters
+        ----------
+        """
+        path = "/api/data/projects/customers"
+        result = self.client.send_request("GET", path, None, None, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult(None, True, False, result.status_code, list[ProjectCustomerDto](result.json(), list[ProjectCustomerDto]))
+        else:
+            return AstroResult(result.json(), False, True, result.status_code, None)

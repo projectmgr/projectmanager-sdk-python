@@ -23,21 +23,21 @@ class TaskCreateDto:
     have a dependency or a connection.
     """
 
-    id: object | None = None
-    name: object | None = None
-    description: object | None = None
-    parentTaskId: object | None = None
-    percentComplete: object | None = None
-    statusId: object | None = None
-    priorityId: object | None = None
-    assignees: list[object] | None = None
-    plannedStartDate: object | None = None
-    plannedFinishDate: object | None = None
-    plannedDuration: object | None = None
-    plannedEffort: object | None = None
-    plannedCost: object | None = None
-    actualStartDate: object | None = None
-    actualCost: object | None = None
+    id: str | None = None
+    name: str | None = None
+    description: str | None = None
+    parentTaskId: str | None = None
+    percentComplete: int | None = None
+    statusId: str | None = None
+    priorityId: int | None = None
+    assignees: list[str] | None = None
+    plannedStartDate: str | None = None
+    plannedFinishDate: str | None = None
+    plannedDuration: int | None = None
+    plannedEffort: int | None = None
+    plannedCost: float | None = None
+    actualStartDate: str | None = None
+    actualCost: float | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
