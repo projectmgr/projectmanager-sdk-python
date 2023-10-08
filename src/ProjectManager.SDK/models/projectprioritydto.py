@@ -24,7 +24,15 @@ class ProjectPriorityDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ProjectPriority.
+    """
+
     name: str | None = None
+    """
+    The name of this ProjectPriority.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

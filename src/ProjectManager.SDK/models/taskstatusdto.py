@@ -24,10 +24,32 @@ class TaskStatusDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this TaskStatus.
+    """
+
     projectId: str | None = None
+    """
+    The unique identifier of the Project to which this TaskStatus
+    belongs.
+    """
+
     name: str | None = None
+    """
+    The name of this TaskStatus.
+    """
+
     order: int | None = None
+    """
+    A numerical value that can be used to sort TaskStatus values
+    according to the needs of your business.
+    """
+
     isDone: bool | None = None
+    """
+    True if a Task in this TaskStatus is considered done.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

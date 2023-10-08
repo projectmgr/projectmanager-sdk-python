@@ -25,8 +25,20 @@ class ProjectStatusDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ProjectStatus.
+    """
+
     name: str | None = None
+    """
+    The name of this ProjectStatus.
+    """
+
     isDeleted: bool | None = None
+    """
+    Is this a deleted status
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

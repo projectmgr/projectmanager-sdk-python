@@ -23,8 +23,20 @@ class RetunJiraProjectsDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of the Jira Project
+    """
+
     name: str | None = None
+    """
+    The name of jira project
+    """
+
     key: str | None = None
+    """
+    The key of Jira Project
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,6 +21,10 @@ class UpdateTaskFieldValueDto:
     """
 
     value: str | None = None
+    """
+    The new value to be set for this TaskField.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

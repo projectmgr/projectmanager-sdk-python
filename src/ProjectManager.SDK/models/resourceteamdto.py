@@ -23,7 +23,15 @@ class ResourceTeamDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ResourceTeam
+    """
+
     name: str | None = None
+    """
+    The name of this ResourceTeam
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,7 +21,15 @@ class TimesheetAdminTypeDto:
     """
 
     id: str | None = None
+    """
+    admin task id
+    """
+
     name: str | None = None
+    """
+    admin task name
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

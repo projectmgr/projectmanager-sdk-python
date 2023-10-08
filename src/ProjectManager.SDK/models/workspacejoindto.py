@@ -25,6 +25,11 @@ class WorkSpaceJoinDto:
     """
 
     businessUserId: str | None = None
+    """
+    The unique identifier of the BusinessUser to invite to this
+    Workspace.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

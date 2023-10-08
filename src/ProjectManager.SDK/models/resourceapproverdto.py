@@ -23,7 +23,15 @@ class ResourceApproverDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ResourceApprover
+    """
+
     name: str | None = None
+    """
+    The name of this ResourceApprover
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

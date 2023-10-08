@@ -25,7 +25,15 @@ class CreateProjectFieldResponseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Field
+    """
+
     name: str | None = None
+    """
+    The name of this Field
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

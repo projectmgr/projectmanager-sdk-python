@@ -22,9 +22,26 @@ class LicenseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this License.
+    """
+
     licenseSku: str | None = None
+    """
+    The SKU code of this License, used for billing purposes.
+    """
+
     bundleSku: str | None = None
+    """
+    The SKU code of the bundle of this License, used for billing
+    purposes.
+    """
+
     optional: bool | None = None
+    """
+    True if this license is optional.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

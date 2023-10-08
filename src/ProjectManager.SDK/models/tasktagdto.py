@@ -24,8 +24,24 @@ class TaskTagDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this TaskTag.
+    """
+
     name: str | None = None
+    """
+    The common name of this TaskTag.
+    """
+
     color: str | None = None
+    """
+    The color that will be used to represent this Tag visually. This
+    color is automatically chosen by the application when a user creates
+    a Tag. You can choose specify any color that can be represented
+    using HTML RGB syntax such as `#0088FF`, in the format `RRGGBB`. You
+    may not use names for colors.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

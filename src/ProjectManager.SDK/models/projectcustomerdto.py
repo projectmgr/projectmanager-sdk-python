@@ -23,7 +23,15 @@ class ProjectCustomerDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ProjectCustomer
+    """
+
     name: str | None = None
+    """
+    The name of this ProjectCustomer
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,7 +21,15 @@ class ProjectCreateAccessMemberDto:
     """
 
     userId: str | None = None
+    """
+    Member's id
+    """
+
     permission: str | None = None
+    """
+    Member's role in the project
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,9 +21,25 @@ class ProjectManagerDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ProjectManager
+    """
+
     name: str | None = None
+    """
+    The name of this ProjectManager
+    """
+
     initials: str | None = None
+    """
+    Manager initials
+    """
+
     avatarUrl: str | None = None
+    """
+    Avatar's url
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

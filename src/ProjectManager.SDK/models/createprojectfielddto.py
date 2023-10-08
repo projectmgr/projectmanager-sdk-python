@@ -25,7 +25,20 @@ class CreateProjectFieldDto:
     """
 
     name: str | None = None
+    """
+    The name of this Field
+    """
+
     type: str | None = None
+    """
+    The type of the Field. Valid types are the following: * Text *
+    Number * Date * Currency * Dropdown Attempting to create a field
+    with any Type other than these will return an error. For Dropdown
+    Field, specify the list of choices in the `Options` field. TODO -
+    This object needs to support a list of options, in case dropdown is
+    selected
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

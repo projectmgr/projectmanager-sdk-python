@@ -26,21 +26,98 @@ class ResourceDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Resource.
+    """
+
     firstName: str | None = None
+    """
+    The first name of the person Resource. Applies to personnel
+    Resources only.
+    """
+
     lastName: str | None = None
+    """
+    The last name of the person Resource. Applies to personnel Resources
+    only.
+    """
+
     email: str | None = None
+    """
+    The email address of this Resource.
+    """
+
     hourlyRate: float | None = None
+    """
+    The basic hourly rate for this Resource.
+    """
+
     phone: str | None = None
+    """
+    The phone number associated with this Resource.
+    """
+
     city: str | None = None
+    """
+    The city where this Resource is located.
+    """
+
     state: str | None = None
+    """
+    The state or region where this Resource is located. This value is
+    not constrained to a list of known states or regions.
+    """
+
     country: str | None = None
+    """
+    A text field indicating the country in which this Resource is
+    located. This value is not constrained to the list of known ISO 3166
+    country names or codes.
+    """
+
     notes: str | None = None
+    """
+    Free-form text notes about this Resource. You may use this field to
+    store extra information about the Resource.
+    """
+
     approver: ResourceApproverDto | None = None
+    """
+    When managing users, you can choose who will approve a person's
+    Timesheets. This is a ResourceApprover. You can specify this person
+    within the Resource object.
+    """
+
     teams: list[ResourceTeamDto] | None = None
+    """
+    The list of ResourceTeams to which this Resource belongs.
+    """
+
     skills: list[ResourceSkillDto] | None = None
+    """
+    The list of ResourceSkills possessed by this Resource.
+    """
+
     onlineDateTime: str | None = None
+    """
+    The last time when this Resource was online. Applies to personnel
+    Resources only.
+    """
+
     role: str | None = None
+    """
+    The Role privileges associated with this Resource. Applies to
+    personnel Resources only.
+    """
+
     isActive: bool | None = None
+    """
+    True if this Resource is currently active and valid. If this value
+    is false, this Resource is considered to be deactivated and not
+    available for further use. For personnel Resources, setting this
+    value to False will make this user unable to access this Workspace.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

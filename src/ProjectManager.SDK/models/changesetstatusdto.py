@@ -21,7 +21,17 @@ class ChangeSetStatusDto:
     """
 
     changeSetId: str | None = None
+    """
+    The unique identifier of this Changeset
+    """
+
     id: str | None = None
+    """
+    The unique identifier of the entity affected by this Changeset. For
+    example, if this Changeset was created for a Task, this value will
+    be the unique identifier for the Task.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

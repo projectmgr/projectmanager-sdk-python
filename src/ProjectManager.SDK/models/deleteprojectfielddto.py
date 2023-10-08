@@ -25,7 +25,15 @@ class DeleteProjectFieldDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of the ProjectField being deleted
+    """
+
     name: str | None = None
+    """
+    The name of the ProjectField being deleted
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -25,6 +25,14 @@ class DiscussionCreateDto:
     """
 
     text: str | None = None
+    """
+    The text of the comment to add to the discussion, in Markdown
+    format. Discussion comments are formatted using
+    [Markdown](https://www.markdownguide.org/) and users should be aware
+    that HTML embedding is not permitted due to the risk of cross-site
+    attacks and other embedding challenges.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

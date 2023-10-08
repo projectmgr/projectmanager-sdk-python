@@ -21,12 +21,40 @@ class ReactGridLayoutItemDto:
     """
 
     w: int | None = None
+    """
+    Width
+    """
+
     h: int | None = None
+    """
+    Height
+    """
+
     x: int | None = None
+    """
+    X position
+    """
+
     y: int | None = None
+    """
+    Y position
+    """
+
     i: str | None = None
+    """
+    ID
+    """
+
     moved: bool | None = None
+    """
+    Moved indicator
+    """
+
     static: bool | None = None
+    """
+    If true, equal to `isDraggable: false, isResizable: false`
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

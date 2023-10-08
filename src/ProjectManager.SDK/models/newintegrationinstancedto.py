@@ -23,6 +23,10 @@ class NewIntegrationInstanceDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of the newly created IntegrationInstance.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

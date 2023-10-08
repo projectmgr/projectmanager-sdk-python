@@ -23,13 +23,47 @@ class ProjectMemberDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of the user of this ProjectMember.
+    """
+
     initials: str | None = None
+    """
+    the initials of the user
+    """
+
     name: str | None = None
+    """
+    The display name of the user
+    """
+
     avatarUrl: str | None = None
+    """
+    Avatar URL
+    """
+
     role: str | None = None
+    """
+    The role of the user in the project Obsolete use Permission instead
+    """
+
     permission: str | None = None
+    """
+    The current permission of the user
+    """
+
     color: str | None = None
+    """
+    The color for their avatar
+    """
+
     permissionOptions: PermissionOptionsDto | None = None
+    """
+    Specifies the permissions that you can set against the project
+    member. This changes based on who is logged in and the role they
+    have.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,6 +21,10 @@ class UpdateProjectFieldValueDto:
     """
 
     value: str | None = None
+    """
+    The new value to be set for this ProjectField.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

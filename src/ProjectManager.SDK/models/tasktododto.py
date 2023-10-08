@@ -23,10 +23,30 @@ class TaskTodoDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this TaskTodo.
+    """
+
     text: str | None = None
+    """
+    The full description of this TaskTodo.
+    """
+
     complete: bool | None = None
+    """
+    True if this TaskTodo is complete.
+    """
+
     createDate: str | None = None
+    """
+    The timestamp in UTC when this object was created.
+    """
+
     modifyDate: str | None = None
+    """
+    The timestamp in UTC when this object was last modified.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

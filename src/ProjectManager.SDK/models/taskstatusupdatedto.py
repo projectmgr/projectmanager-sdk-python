@@ -24,8 +24,21 @@ class TaskStatusUpdateDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this TaskStatus.
+    """
+
     name: str | None = None
+    """
+    The name of this TaskStatus.
+    """
+
     order: int | None = None
+    """
+    A numerical value that can be used to sort TaskStatus values
+    according to the needs of your business.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

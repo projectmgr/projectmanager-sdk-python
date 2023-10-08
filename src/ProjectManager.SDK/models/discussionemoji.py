@@ -21,7 +21,15 @@ class DiscussionEmoji:
     """
 
     name: str | None = None
+    """
+    The name of the emoji
+    """
+
     userIds: list[str] | None = None
+    """
+    The list of user IDs of the users who tagged these emoji
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

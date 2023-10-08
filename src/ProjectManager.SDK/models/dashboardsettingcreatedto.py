@@ -21,9 +21,25 @@ class DashboardSettingCreateDto:
     """
 
     id: str | None = None
+    """
+    Unique ID
+    """
+
     userId: str | None = None
+    """
+    User ID
+    """
+
     type: str | None = None
+    """
+    Either custom or one of DashboardType enum
+    """
+
     reactGridLayout: ReactGridLayoutDto | None = None
+    """
+    React grid layout configuration
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -23,6 +23,11 @@ class IdDto:
     """
 
     id: str | None = None
+    """
+    A unique identifier. To determine the meaning of this unique
+    identifier, see the field to which this value is attached.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

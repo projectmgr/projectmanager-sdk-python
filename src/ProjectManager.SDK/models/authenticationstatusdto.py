@@ -21,6 +21,11 @@ class AuthenticationStatusDto:
     """
 
     connected: bool | None = None
+    """
+    Set to true if the connection was successful. False is not supported
+    right now.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

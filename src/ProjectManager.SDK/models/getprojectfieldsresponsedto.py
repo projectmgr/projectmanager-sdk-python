@@ -31,10 +31,36 @@ class GetProjectFieldsResponseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Field
+    """
+
     name: str | None = None
+    """
+    The name of this Field
+    """
+
     type: str | None = None
+    """
+    The type of the Field. Valid types are the following: * Text *
+    Number * Date * Currency * Dropdown Attempting to create a field
+    with any Type other than these will return an error. For Dropdown
+    Field, specify the list of choices in the `Options` field.
+    """
+
     entityType: str | None = None
+    """
+    The entity type of the Field, either `projects` or `tasks`.
+    """
+
     options: list[str] | None = None
+    """
+    A list of options for use of this Field. This is only valid if the
+    `Type` value is set to `Dropdown`. When a custom Field of type
+    `DropDown` is shown to a user in the application, they will be able
+    to choose one of the `Options` in this list.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

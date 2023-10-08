@@ -22,8 +22,23 @@ class AstroError:
     """
 
     technicalError: str | None = None
+    """
+    A technical description of the error that occurred. Not suitable for
+    display to end users.
+    """
+
     additionalErrors: list[str] | None = None
+    """
+    If additional errors beyond the main error in `Message` occurred,
+    they will be listed here as individual messages.
+    """
+
     message: str | None = None
+    """
+    A description of the error that occurred. If your application has a
+    user interface, show this message to explain what went wrong.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

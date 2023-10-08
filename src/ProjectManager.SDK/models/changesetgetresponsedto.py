@@ -25,8 +25,22 @@ class ChangesetGetResponseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Changeset.
+    """
+
     success: bool | None = None
+    """
+    True if this Changeset was successfully applied. If the Changeset
+    has not been applied, this value is null.
+    """
+
     state: str | None = None
+    """
+    A status flag that indicates the progress of the Changeset through
+    resolution.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

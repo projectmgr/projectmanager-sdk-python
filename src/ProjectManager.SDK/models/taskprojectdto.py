@@ -24,8 +24,20 @@ class TaskProjectDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Project.
+    """
+
     shortId: str | None = None
+    """
+    The ShortId of this Project.
+    """
+
     name: str | None = None
+    """
+    The common name of this Project.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

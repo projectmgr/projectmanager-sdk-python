@@ -21,12 +21,40 @@ class TimesheetGetResponseDto:
     """
 
     id: str | None = None
+    """
+    TimesheetId
+    """
+
     date: str | None = None
+    """
+    Date of time entry
+    """
+
     notes: str | None = None
+    """
+    Notes
+    """
+
     approved: bool | None = None
+    """
+    Shows if timesheet approved
+    """
+
     hours: float | None = None
+    """
+    Total Hours
+    """
+
     task: TimesheetTaskDto | None = None
+    """
+    associated tasks with time sheet
+    """
+
     project: TimeSheetProjectDto | None = None
+    """
+    associated projects with timesheet
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

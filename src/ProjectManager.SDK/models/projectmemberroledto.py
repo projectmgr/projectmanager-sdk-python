@@ -21,6 +21,10 @@ class ProjectMemberRoleDto:
     """
 
     role: str | None = None
+    """
+    Role to apply
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

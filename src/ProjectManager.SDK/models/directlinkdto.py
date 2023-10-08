@@ -22,6 +22,10 @@ class DirectLinkDto:
     """
 
     url: str | None = None
+    """
+    The URL to use to authenticate with the Integration Provider.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

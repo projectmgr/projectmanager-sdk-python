@@ -21,6 +21,10 @@ class UpdateResourceTeamDto:
     """
 
     name: str | None = None
+    """
+    The name of this Resource Team.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

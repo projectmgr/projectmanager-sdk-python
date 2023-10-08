@@ -21,7 +21,16 @@ class WorkSpaceLinksDto:
     """
 
     project: str | None = None
+    """
+    TODO - What is this?
+    """
+
     workSpaceApi: str | None = None
+    """
+    This is the link to the api for this business, some legacy endpoints
+    may need this.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -21,6 +21,10 @@ class ApiKeyCreateDto:
     """
 
     tokenName: str | None = None
+    """
+    Name of token
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

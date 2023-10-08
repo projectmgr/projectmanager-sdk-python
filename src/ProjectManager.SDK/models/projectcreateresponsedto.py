@@ -24,7 +24,17 @@ class ProjectCreateResponseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of the project of this project, or null if not
+    assigned.
+    """
+
     shortId: str | None = None
+    """
+    The unique identifier of the shortid of this project, or null if not
+    assigned.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -23,15 +23,55 @@ class IntegrationProviderDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Provider.
+    """
+
     name: str | None = None
+    """
+    The friendly name of this Provider.
+    """
+
     shortId: str | None = None
+    """
+    A short ID that uniquely identifies this Provider.
+    """
+
     summary: str | None = None
+    """
+    A short summary of this Provider and their service.
+    """
+
     description: str | None = None
+    """
+    A longer description of this Provider and their service.
+    """
+
     licenseSkus: list[str] | None = None
+    """
+    A list of available license SKUs for this Provider.
+    """
+
     categoryShortIds: list[str] | None = None
+    """
+    A list of category IDs that this Provider exists within.
+    """
+
     activated: bool | None = None
+    """
+    True if this Provider is available for use.
+    """
+
     authenticated: bool | None = None
+    """
+    True if this Provider requires authentication.
+    """
+
     integrations: list[IntegrationDto] | None = None
+    """
+    The list of available Integrations for this Provider.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

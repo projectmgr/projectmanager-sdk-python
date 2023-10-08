@@ -25,6 +25,10 @@ class DiscussionCreateResponseDto:
     """
 
     discussionCommentId: str | None = None
+    """
+    The unique identifier of the discussion comment created.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -22,6 +22,11 @@ class NameDto:
     """
 
     name: str | None = None
+    """
+    A name. To determine the meaning of this name, see the field to
+    which this value is attached in the parent object.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

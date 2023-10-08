@@ -21,6 +21,10 @@ class UpdateResourceSkillDto:
     """
 
     name: str | None = None
+    """
+    The name of this Skill.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

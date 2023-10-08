@@ -21,10 +21,30 @@ class ReactGridLayoutDto:
     """
 
     lg: list[ReactGridLayoutItemDto] | None = None
+    """
+    Used for large screen size (1200)
+    """
+
     md: list[ReactGridLayoutItemDto] | None = None
+    """
+    Used for medium screen size (996)
+    """
+
     sm: list[ReactGridLayoutItemDto] | None = None
+    """
+    Used for small screen size (768)
+    """
+
     xs: list[ReactGridLayoutItemDto] | None = None
+    """
+    Used for extra small screen size (480)
+    """
+
     xxs: list[ReactGridLayoutItemDto] | None = None
+    """
+    Used for super small screen size (0)
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

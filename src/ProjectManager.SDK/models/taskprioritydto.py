@@ -24,7 +24,15 @@ class TaskPriorityDto:
     """
 
     id: int | None = None
+    """
+    The unique identifier of this TaskPriority.
+    """
+
     name: str | None = None
+    """
+    The name of this TaskPriority.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

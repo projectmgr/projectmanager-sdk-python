@@ -22,7 +22,15 @@ class ProjectFolderDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ProjectFolder.
+    """
+
     name: str | None = None
+    """
+    The name of this ProjectFolder.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

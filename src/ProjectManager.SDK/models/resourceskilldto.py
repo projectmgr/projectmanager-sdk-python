@@ -24,7 +24,15 @@ class ResourceSkillDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ResourceSkill
+    """
+
     name: str | None = None
+    """
+    The name of this ResourceSkill
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

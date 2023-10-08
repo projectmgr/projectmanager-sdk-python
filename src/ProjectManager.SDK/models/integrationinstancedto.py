@@ -23,11 +23,36 @@ class IntegrationInstanceDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this IntegrationInstance
+    """
+
     integrationShortId: str | None = None
+    """
+    A short ID that uniquely identifies this IntegrationInstance
+    """
+
     config: object | None = None
+    """
+    Metadata for this IntegrationInstance
+    """
+
     enabledBy: str | None = None
+    """
+    The unique identifier of the user who enabled this
+    IntegrationInstance
+    """
+
     createDate: str | None = None
+    """
+    Timestamp when this record was created
+    """
+
     modifyDate: str | None = None
+    """
+    Timestamp when this record was most recently modified
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

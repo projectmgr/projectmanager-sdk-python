@@ -24,7 +24,15 @@ class UserRoleDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this UserRole.
+    """
+
     name: str | None = None
+    """
+    The friendly name of this UserRole.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

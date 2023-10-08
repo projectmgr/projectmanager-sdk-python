@@ -26,17 +26,72 @@ class ResourceUpdateDto:
     """
 
     firstName: str | None = None
+    """
+    The first name of the person Resource. Applies to personnel
+    Resources only.
+    """
+
     lastName: str | None = None
+    """
+    The last name of the person Resource. Applies to personnel Resources
+    only.
+    """
+
     email: str | None = None
+    """
+    The email address of this Resource. Note that this email cannot be
+    changed once it has been assigned.
+    """
+
     hourlyRate: float | None = None
+    """
+    The basic hourly rate for this Resource.
+    """
+
     phone: str | None = None
+    """
+    The phone number associated with this Resource.
+    """
+
     city: str | None = None
+    """
+    The city where this Resource is located.
+    """
+
     state: str | None = None
+    """
+    The state or region where this Resource is located. This value is
+    not constrained to a list of known states or regions.
+    """
+
     countryCode: str | None = None
+    """
+    A text field indicating the country in which this Resource is
+    located. This value must be one of the following: US, NZ, AU.
+    """
+
     notes: str | None = None
+    """
+    Free-form text notes about this Resource. You may use this field to
+    store extra information about the Resource.
+    """
+
     roleId: str | None = None
+    """
+    The Role Id associated with this Resource. Applies to personnel
+    Resources only.
+    """
+
     teamIds: list[str] | None = None
+    """
+    The list of ResourceTeams to which this Resource belongs.
+    """
+
     skillIds: list[str] | None = None
+    """
+    The list of ResourceSkills possessed by this Resource.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

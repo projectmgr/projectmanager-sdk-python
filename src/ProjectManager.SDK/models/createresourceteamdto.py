@@ -21,6 +21,10 @@ class CreateResourceTeamDto:
     """
 
     name: str | None = None
+    """
+    The name of this Team.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

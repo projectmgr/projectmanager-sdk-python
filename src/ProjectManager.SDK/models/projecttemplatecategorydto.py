@@ -21,8 +21,20 @@ class ProjectTemplateCategoryDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this ProjectTemplate Category.
+    """
+
     name: str | None = None
+    """
+    A friendly name for this ProjectTemplate Category.
+    """
+
     order: int | None = None
+    """
+    The overall order of this ProjectTemplate Category
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -23,7 +23,16 @@ class AssigneeUpsertDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of the TaskAssignee to which work is being
+    assigned.
+    """
+
     assignedEffort: int | None = None
+    """
+    The new amount of effort to assign for this Resource.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

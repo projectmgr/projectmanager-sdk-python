@@ -25,9 +25,32 @@ class GetTaskFieldsResponseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this TaskField
+    """
+
     name: str | None = None
+    """
+    The name of this TaskField
+    """
+
     type: str | None = None
+    """
+    The type of this TaskField. Valid types are the following: * Text *
+    Number * Date * Checkbox * Currency * Dropdown Attempting to create
+    a field with any Type other than these will return an error. For
+    Dropdown TaskFields, specify the list of choices in the `Options`
+    field.
+    """
+
     options: list[str] | None = None
+    """
+    A list of options for use of this TaskField. This is only valid if
+    the `Type` value is set to `Dropdown`. When a custom TaskField of
+    type `DropDown` is shown to a user in the application, they will be
+    able to choose one of the `Options` in this list.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

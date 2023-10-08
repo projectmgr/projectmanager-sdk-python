@@ -23,6 +23,10 @@ class CreateIntegrationInstanceDto:
     """
 
     config: object | None = None
+    """
+    Extra metadata required by this Integration Instance.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

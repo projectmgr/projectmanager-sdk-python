@@ -24,9 +24,26 @@ class AstroResult:
     """
 
     error: AstroError | None = None
+    """
+    If the API call failed, this will contain information about the
+    error that occurred.
+    """
+
     success: bool | None = None
+    """
+    True if the API call succeeded; false otherwise.
+    """
+
     hasError: bool | None = None
+    """
+    True if the API call failed.
+    """
+
     statusCode: HttpStatusCode | None = None
+    """
+    The HTTP code of the response.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

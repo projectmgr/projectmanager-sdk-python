@@ -21,7 +21,15 @@ class TimesheetUpdateRequestDto:
     """
 
     hours: float | None = None
+    """
+    Reported hours
+    """
+
     notes: str | None = None
+    """
+    Notes
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

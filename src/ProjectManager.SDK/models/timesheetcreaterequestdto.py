@@ -21,11 +21,35 @@ class TimesheetCreateRequestDto:
     """
 
     date: str | None = None
+    """
+    Time entry date
+    """
+
     hours: float | None = None
+    """
+    Reported hours
+    """
+
     taskId: str | None = None
+    """
+    Task id that time reported to
+    """
+
     adminTypeId: str | None = None
+    """
+    Admin task id that time reportsed to
+    """
+
     resourceId: str | None = None
+    """
+    Resource id that time reported to
+    """
+
     notes: str | None = None
+    """
+    Notes
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

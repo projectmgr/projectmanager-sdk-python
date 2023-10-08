@@ -25,7 +25,16 @@ class CreateTaskFieldRequestDto:
     """
 
     name: str | None = None
+    """
+    The name of the TaskField
+    """
+
     type: str | None = None
+    """
+    The type of this TaskField. Valid types are the following: * Text *
+    Number * Date * Checkbox * Currency * Dropdown
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

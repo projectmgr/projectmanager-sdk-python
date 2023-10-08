@@ -22,9 +22,27 @@ class IntegrationCategoryDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this Integration Category.
+    """
+
     name: str | None = None
+    """
+    A friendly name for this Integration Category.
+    """
+
     shortId: str | None = None
+    """
+    A short identifier that uniquely identifies this Integration
+    Category.
+    """
+
     integrationShortIds: list[str] | None = None
+    """
+    A list of short identifiers for Integrations available within this
+    Integration Category.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

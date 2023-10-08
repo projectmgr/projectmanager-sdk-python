@@ -25,9 +25,26 @@ class TaskFieldsValueResponseDto:
     """
 
     id: str | None = None
+    """
+    The unique identifier of this TaskField.
+    """
+
     value: str | None = None
+    """
+    The value currently set for this TaskField for this Task.
+    """
+
     name: str | None = None
+    """
+    The name of this TaskField.
+    """
+
     type: str | None = None
+    """
+    The type of this TaskField. Valid types are the following: * Text *
+    Number * Date * Checkbox * Currency * Dropdown
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

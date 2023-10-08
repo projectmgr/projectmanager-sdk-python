@@ -27,8 +27,21 @@ class UpdateRequestDto:
     """
 
     name: str | None = None
+    """
+    The new name for the File.
+    """
+
     taskId: str | None = None
+    """
+    To assign this File to a Task, specify the TaskId here.
+    """
+
     folderId: str | None = None
+    """
+    To move this File to a new Folder, specify the Folder's unique
+    identifier here.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

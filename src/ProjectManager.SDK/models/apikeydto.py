@@ -21,10 +21,30 @@ class ApiKeyDto:
     """
 
     id: str | None = None
+    """
+    Internal access token id
+    """
+
     createdBy: str | None = None
+    """
+    Created by user id
+    """
+
     expires: str | None = None
+    """
+    Expires date
+    """
+
     apiKey: str | None = None
+    """
+    Bearer Key
+    """
+
     name: str | None = None
+    """
+    Name of token
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
