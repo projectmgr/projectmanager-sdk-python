@@ -26,7 +26,7 @@ class ProjectManagerClient:
     
     Use this object to connect to the API.
     """
-    apiKey: str | None
+    bearerToken: str | None
 
     def __init__(self, env: str, appname: str):
         """Construct a new ProjectManagerClient client object
@@ -163,7 +163,7 @@ class ProjectManagerClient:
                    "SdkVersion": self.sdkVersion,
                    "MachineName": self.machineName,
                    "ApplicationName": self.applicationName}
-        if self.apiKey:
+        if self.bearerToken:
             headers["Authorization"] = "Bearer " + self.bearerToken
     
         return requests.request(method, url, headers=headers, json=body, files=files)
