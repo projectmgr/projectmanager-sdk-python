@@ -38,7 +38,8 @@ class TimesheetClient:
             Payload
         """
         path = "/api/data/timesheets"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, TimesheetResponseDto(**json.loads(result.content)['data']))
         else:
@@ -68,7 +69,20 @@ class TimesheetClient:
             Include related data in the response
         """
         path = "/api/data/timesheets"
-        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TimesheetGetResponseDto](**json.loads(result.content)['data']))
         else:
@@ -84,7 +98,8 @@ class TimesheetClient:
             time entry id
         """
         path = f"/api/data/timesheets/{timesheetId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -102,7 +117,8 @@ class TimesheetClient:
             payload
         """
         path = f"/api/data/timesheets/{timesheetId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, TimesheetResponseDto(**json.loads(result.content)['data']))
         else:
@@ -117,7 +133,8 @@ class TimesheetClient:
         ----------
         """
         path = "/api/data/timesheets/admin-tasks"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TimesheetAdminTypeDto](**json.loads(result.content)['data']))
         else:

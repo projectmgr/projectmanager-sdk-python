@@ -49,7 +49,10 @@ class FileClient:
             text encoding, otherwise binary
         """
         path = f"/api/data/files/{documentId}/download"
-        result = self.client.send_request("GET", path, None, {"type": type}, None)
+        queryParams = {}
+        if type:
+            queryParams['type'] = type
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -78,7 +81,8 @@ class FileClient:
             Information to change about the File and its location
         """
         path = f"/api/data/files/{fileId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

@@ -39,7 +39,8 @@ class JiraClient:
             The unique identifier of this jira project
         """
         path = f"/api/data/integrations/jira/projects/{jiraProjectId}/epics"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, RetunJiraProjectsDto(**json.loads(result.content)['data']))
         else:
@@ -59,7 +60,8 @@ class JiraClient:
             The unique identifier of this jira project
         """
         path = f"/api/data/integrations/jira/projects/{jiraProjectId}/project"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, RetunJiraProjectsDto(**json.loads(result.content)['data']))
         else:
@@ -77,7 +79,8 @@ class JiraClient:
         ----------
         """
         path = "/api/data/integrations/jira"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[RetunJiraProjectsDto](**json.loads(result.content)['data']))
         else:

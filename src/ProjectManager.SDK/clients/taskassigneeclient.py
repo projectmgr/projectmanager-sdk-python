@@ -43,7 +43,8 @@ class TaskAssigneeClient:
             The new list of TaskAssignees for this Task
         """
         path = f"/api/data/tasks/{taskId}/assignees"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -69,7 +70,8 @@ class TaskAssigneeClient:
             List of Assignee data
         """
         path = f"/api/data/tasks/{taskId}/assignees"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -92,7 +94,8 @@ class TaskAssigneeClient:
             List of TaskAssignee records to remove
         """
         path = f"/api/data/tasks/{taskId}/assignees"
-        result = self.client.send_request("DELETE", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:

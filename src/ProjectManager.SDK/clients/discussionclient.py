@@ -36,7 +36,8 @@ class DiscussionClient:
             The unique ID number of the task to retrieve comments
         """
         path = f"/api/data/tasks/{taskId}/discussions"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[DiscussionDto](**json.loads(result.content)['data']))
         else:
@@ -61,7 +62,8 @@ class DiscussionClient:
             The Markdown-formatted text of the comment
         """
         path = f"/api/data/tasks/{taskId}/discussions"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, DiscussionCreateResponseDto(**json.loads(result.content)['data']))
         else:

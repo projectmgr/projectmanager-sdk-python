@@ -53,7 +53,20 @@ class ResourceTeamClient:
             Include related data in the response
         """
         path = "/api/data/resources/teams"
-        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ResourceTeamDto](**json.loads(result.content)['data']))
         else:
@@ -69,7 +82,8 @@ class ResourceTeamClient:
             The name of the team to create.
         """
         path = "/api/data/resources/teams"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
         else:
@@ -86,7 +100,8 @@ class ResourceTeamClient:
             The Id of the team to be removed.
         """
         path = f"/api/data/resources/teams/{resourceTeamId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -104,7 +119,8 @@ class ResourceTeamClient:
             The name of the team to Update.
         """
         path = f"/api/data/resources/teams/{teamresourceId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
         else:

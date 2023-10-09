@@ -38,7 +38,10 @@ class ProjectMembersClient:
             Set to true to include all users in the workspace
         """
         path = f"/api/data/projects/{projectId}/members"
-        result = self.client.send_request("GET", path, None, {"includeAllUsers": includeAllUsers}, None)
+        queryParams = {}
+        if includeAllUsers:
+            queryParams['includeAllUsers'] = includeAllUsers
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ProjectMemberDto](**json.loads(result.content)['data']))
         else:
@@ -56,7 +59,8 @@ class ProjectMembersClient:
             Reference of User
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
@@ -77,7 +81,8 @@ class ProjectMembersClient:
             The permission to set
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
@@ -97,7 +102,8 @@ class ProjectMembersClient:
             The permission to update
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
@@ -115,7 +121,8 @@ class ProjectMembersClient:
             Reference to User
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

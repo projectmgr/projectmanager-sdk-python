@@ -46,7 +46,8 @@ class TaskFieldClient:
             The unique identifier of the Project to retrieve TaskFields
         """
         path = f"/api/data/projects/{projectId}/tasks/fields"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[GetTaskFieldsResponseDto](**json.loads(result.content)['data']))
         else:
@@ -73,7 +74,8 @@ class TaskFieldClient:
             Information about the TaskField to create
         """
         path = f"/api/data/projects/{projectId}/tasks/fields"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -100,7 +102,8 @@ class TaskFieldClient:
             The unique identifier of the TaskField to delete
         """
         path = f"/api/data/projects/{projectId}/tasks/fields/{fieldId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -127,7 +130,8 @@ class TaskFieldClient:
             retrieve
         """
         path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, TaskFieldsValueResponseDto(**json.loads(result.content)['data']))
         else:
@@ -157,7 +161,8 @@ class TaskFieldClient:
             The new value for this TaskField for this Task
         """
         path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -181,7 +186,8 @@ class TaskFieldClient:
             TaskField values
         """
         path = f"/api/data/tasks/{taskId}/fields"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TaskFieldsValueResponseDto](**json.loads(result.content)['data']))
         else:

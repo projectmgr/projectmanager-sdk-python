@@ -40,7 +40,8 @@ class IntegrationClient:
             The unique identifier of this Integration
         """
         path = f"/api/data/integrations/{integrationId}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
         else:
@@ -60,7 +61,8 @@ class IntegrationClient:
             The unique identifier of the Integration to enable
         """
         path = f"/api/data/integrations/{integrationId}"
-        result = self.client.send_request("POST", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
         else:
@@ -80,7 +82,8 @@ class IntegrationClient:
             The unique identifier of the Integration to disable
         """
         path = f"/api/data/integrations/{integrationId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -98,7 +101,8 @@ class IntegrationClient:
         ----------
         """
         path = "/api/data/integrations"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[IntegrationDto](**json.loads(result.content)['data']))
         else:
@@ -121,7 +125,8 @@ class IntegrationClient:
             The information about this Integration to add
         """
         path = f"/api/data/integrations/{integrationId}/instance"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, NewIntegrationInstanceDto(**json.loads(result.content)['data']))
         else:
@@ -142,7 +147,8 @@ class IntegrationClient:
             from this Workspace
         """
         path = f"/api/data/integrations/instances/{integrationInstanceId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

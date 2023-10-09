@@ -44,7 +44,8 @@ class ResourceClient:
             The details for the new Resource to create
         """
         path = "/api/data/resources"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
@@ -80,7 +81,20 @@ class ResourceClient:
             Include related data in the response
         """
         path = "/api/data/resources"
-        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ResourceDto](**json.loads(result.content)['data']))
         else:
@@ -106,7 +120,8 @@ class ResourceClient:
             The information to update the resource
         """
         path = f"/api/data/resources/{resourceId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:

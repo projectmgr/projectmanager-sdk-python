@@ -40,7 +40,8 @@ class IntegrationProviderClient:
         ----------
         """
         path = "/api/data/integrations/providers"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[IntegrationProviderDto](**json.loads(result.content)['data']))
         else:
@@ -64,7 +65,8 @@ class IntegrationProviderClient:
             you are requesting authentication information
         """
         path = f"/api/data/integrations/providers/{providerId}"
-        result = self.client.send_request("POST", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
         else:
@@ -83,7 +85,8 @@ class IntegrationProviderClient:
             Specify the auth status
         """
         path = f"/api/data/integrations/providers/{providerId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -99,7 +102,8 @@ class IntegrationProviderClient:
             The identifier to the provider
         """
         path = f"/api/data/integrations/providers/{providerId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -120,7 +124,8 @@ class IntegrationProviderClient:
             you are requesting authentication information
         """
         path = f"/api/data/integrations/providers/{providerId}/user-connection"
-        result = self.client.send_request("POST", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
         else:
@@ -139,7 +144,8 @@ class IntegrationProviderClient:
             Specify the auth status
         """
         path = f"/api/data/integrations/providers/{providerId}/user-connection"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

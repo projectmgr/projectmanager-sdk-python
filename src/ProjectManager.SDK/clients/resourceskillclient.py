@@ -54,7 +54,20 @@ class ResourceSkillClient:
             Include related data in the response
         """
         path = "/api/data/resources/skills"
-        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ResourceSkillDto](**json.loads(result.content)['data']))
         else:
@@ -70,7 +83,8 @@ class ResourceSkillClient:
             The name of the skill to create.
         """
         path = "/api/data/resources/skills"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
         else:
@@ -88,7 +102,8 @@ class ResourceSkillClient:
             The data of the skill to update.
         """
         path = f"/api/data/resources/skills/{skillId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
         else:
@@ -105,7 +120,8 @@ class ResourceSkillClient:
             The Id of the skill to be removed.
         """
         path = f"/api/data/resources/skills/{resourceSkillId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

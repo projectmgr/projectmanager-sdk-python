@@ -43,7 +43,8 @@ class TaskStatusClient:
             TaskStatuses
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TaskStatusDto](**json.loads(result.content)['data']))
         else:
@@ -68,7 +69,8 @@ class TaskStatusClient:
             this Project
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
         else:
@@ -93,7 +95,8 @@ class TaskStatusClient:
             within this Project
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
         else:
@@ -116,7 +119,8 @@ class TaskStatusClient:
             The Id of the TaskStatus level to be removed.
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

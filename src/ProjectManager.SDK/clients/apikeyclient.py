@@ -52,7 +52,8 @@ class ApiKeyClient:
             Options for the API key to create
         """
         path = "/api/data/api-keys"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ApiKeyDto(**json.loads(result.content)['data']))
         else:
@@ -82,7 +83,8 @@ class ApiKeyClient:
         ----------
         """
         path = "/api/data/api-keys"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ApiKeyDto](**json.loads(result.content)['data']))
         else:
@@ -116,7 +118,8 @@ class ApiKeyClient:
         ----------
         """
         path = "/api/data/api-keys/revoke-all"
-        result = self.client.send_request("DELETE", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
@@ -148,7 +151,8 @@ class ApiKeyClient:
             The unique identifier of the API key to revoke
         """
         path = f"/api/data/api-keys/{id}/revoke"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

@@ -37,7 +37,8 @@ class UserRoleClient:
         ----------
         """
         path = "/api/data/users/roles"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[UserRoleDto](**json.loads(result.content)['data']))
         else:

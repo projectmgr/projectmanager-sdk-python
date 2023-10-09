@@ -35,7 +35,8 @@ class DashboardClient:
             The dashboard type that is not custom
         """
         path = f"/api/data/dashboards/settings/{type}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
         else:
@@ -51,7 +52,8 @@ class DashboardClient:
             User dashboard settings object
         """
         path = "/api/data/dashboards/settings"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
         else:

@@ -57,9 +57,26 @@ class TaskClient:
             Include related data in the response
         """
         path = "/api/data/tasks"
-        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TaskDto](**json.loads(result.content)['data']))
+            # return AstroResult(None, True, False, result.status_code, list[TaskDto](**json.loads(result.content)['data']))
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(TaskDto(**dict))
+            return AstroResult(None, True, False, result.status_code, data)
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -81,7 +98,8 @@ class TaskClient:
             The unique identifier or short ID of the Task to retrieve
         """
         path = f"/api/data/tasks/{taskId}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, TaskDetailsDto(**json.loads(result.content)['data']))
         else:
@@ -116,7 +134,8 @@ class TaskClient:
             data in the Task
         """
         path = f"/api/data/tasks/{taskId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -142,7 +161,8 @@ class TaskClient:
             Unique identifier of the Task to delete
         """
         path = f"/api/data/tasks/{taskId}"
-        result = self.client.send_request("DELETE", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -166,7 +186,8 @@ class TaskClient:
             The new Task to create
         """
         path = f"/api/data/projects/{projectId}/tasks"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -190,7 +211,8 @@ class TaskClient:
         ----------
         """
         path = "/api/data/tasks/priorities"
-        result = self.client.send_request("GET", path, None, None, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TaskPriorityDto](**json.loads(result.content)['data']))
         else:
@@ -215,7 +237,8 @@ class TaskClient:
             The list of new Tasks to create
         """
         path = f"/api/data/projects/{projectId}/tasks/bulk"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ChangeSetStatusDto](**json.loads(result.content)['data']))
         else:

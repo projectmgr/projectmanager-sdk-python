@@ -44,7 +44,8 @@ class TaskTagClient:
             The replacement list of TaskTags for this Task
         """
         path = f"/api/data/tasks/{taskId}/tags"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -68,7 +69,8 @@ class TaskTagClient:
             The new TaskTags to add to this Task
         """
         path = f"/api/data/tasks/{taskId}/tags"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
@@ -92,7 +94,8 @@ class TaskTagClient:
             The TaskTags to remove from this Task
         """
         path = f"/api/data/tasks/{taskId}/tags"
-        result = self.client.send_request("DELETE", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:

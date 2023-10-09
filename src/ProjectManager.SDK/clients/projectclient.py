@@ -54,7 +54,20 @@ class ProjectClient:
             Include related data in the response
         """
         path = "/api/data/projects"
-        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ProjectDto](**json.loads(result.content)['data']))
         else:
@@ -75,7 +88,8 @@ class ProjectClient:
             Information about the Project you wish to create
         """
         path = "/api/data/projects"
-        result = self.client.send_request("POST", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ProjectCreateResponseDto(**json.loads(result.content)['data']))
         else:
@@ -96,7 +110,8 @@ class ProjectClient:
             The unique identifier of the Project to retrieve.
         """
         path = f"/api/data/projects/{projectId}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ProjectDto(**json.loads(result.content)['data']))
         else:
@@ -126,7 +141,8 @@ class ProjectClient:
             data within the Project
         """
         path = f"/api/data/projects/{projectId}"
-        result = self.client.send_request("PUT", path, body, {}, None)
+        queryParams = {}
+        result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

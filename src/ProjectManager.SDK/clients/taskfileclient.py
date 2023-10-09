@@ -47,7 +47,8 @@ class TaskFileClient:
             The full path of a file to upload to the API
         """
         path = f"/api/data/tasks/{taskId}/files"
-        result = self.client.send_request("POST", path, None, {}, filename)
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, filename)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, FileDto(**json.loads(result.content)['data']))
         else:

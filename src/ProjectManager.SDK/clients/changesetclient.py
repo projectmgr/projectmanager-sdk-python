@@ -47,7 +47,8 @@ class ChangesetClient:
             The unique ID number of the Changeset to retrieve
         """
         path = f"/api/data/changesets/{changeSetId}"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
         else:
@@ -84,7 +85,8 @@ class ChangesetClient:
             The unique ID number of the Changeset to retrieve
         """
         path = f"/api/data/changesets/{changeSetId}/poll"
-        result = self.client.send_request("GET", path, None, {}, None)
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
         else:
