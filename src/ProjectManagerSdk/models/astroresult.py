@@ -53,5 +53,12 @@ class AstroResult(Generic[T]):
     If this API call was successful, contains the results.
     """
 
+    def __init__(self, error: AstroError | None, success: bool | None, hasError: bool | None, statusCode: int | None, data: T | None):
+        self.error = error
+        self.success = success
+        self.hasError = hasError
+        self.statusCode = statusCode
+        self.data = data
+
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
