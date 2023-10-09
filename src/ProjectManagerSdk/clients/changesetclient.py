@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.changesetgetresponsedto import ChangesetGetResponseDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
 import json
 
 class ChangesetClient:
     """
     API methods related to Changeset
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

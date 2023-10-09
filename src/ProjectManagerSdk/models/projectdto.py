@@ -12,12 +12,12 @@
 #
 
 
-from models.projectchargecodedto import ProjectChargeCodeDto
-from models.projectcustomerdto import ProjectCustomerDto
-from models.projectfolderdto import ProjectFolderDto
-from models.projectmanagerdto import ProjectManagerDto
-from models.projectprioritydto import ProjectPriorityDto
-from models.projectstatusdto import ProjectStatusDto
+from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
+from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
+from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
+from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
+from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from dataclasses import dataclass
 
 @dataclass

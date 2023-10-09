@@ -11,16 +11,16 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.changesetstatusdto import ChangeSetStatusDto
-from models.namedto import NameDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
+from ProjectManagerSdk.models.namedto import NameDto
 import json
 
 class TaskTagClient:
     """
     API methods related to TaskTag
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

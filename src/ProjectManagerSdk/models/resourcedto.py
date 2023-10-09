@@ -12,9 +12,9 @@
 #
 
 
-from models.resourceapproverdto import ResourceApproverDto
-from models.resourceskilldto import ResourceSkillDto
-from models.resourceteamdto import ResourceTeamDto
+from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
+from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
+from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from dataclasses import dataclass
 
 @dataclass

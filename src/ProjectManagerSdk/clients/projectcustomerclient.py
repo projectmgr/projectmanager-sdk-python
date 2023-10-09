@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectcustomerdto import ProjectCustomerDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 import json
 
 class ProjectCustomerClient:
     """
     API methods related to ProjectCustomer
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

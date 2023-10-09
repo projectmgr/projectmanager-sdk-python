@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 import json
 
 class ProjectPriorityClient:
     """
     API methods related to ProjectPriority
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

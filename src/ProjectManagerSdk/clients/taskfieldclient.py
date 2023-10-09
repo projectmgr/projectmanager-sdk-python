@@ -11,19 +11,19 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.changesetstatusdto import ChangeSetStatusDto
-from models.createtaskfieldrequestdto import CreateTaskFieldRequestDto
-from models.gettaskfieldsresponsedto import GetTaskFieldsResponseDto
-from models.taskfieldsvalueresponsedto import TaskFieldsValueResponseDto
-from models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
+from ProjectManagerSdk.models.createtaskfieldrequestdto import CreateTaskFieldRequestDto
+from ProjectManagerSdk.models.gettaskfieldsresponsedto import GetTaskFieldsResponseDto
+from ProjectManagerSdk.models.taskfieldsvalueresponsedto import TaskFieldsValueResponseDto
+from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
 import json
 
 class TaskFieldClient:
     """
     API methods related to TaskField
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

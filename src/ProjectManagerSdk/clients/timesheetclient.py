@@ -11,19 +11,19 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.timesheetadmintypedto import TimesheetAdminTypeDto
-from models.timesheetcreaterequestdto import TimesheetCreateRequestDto
-from models.timesheetgetresponsedto import TimesheetGetResponseDto
-from models.timesheetresponsedto import TimesheetResponseDto
-from models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
+from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
+from ProjectManagerSdk.models.timesheetgetresponsedto import TimesheetGetResponseDto
+from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
+from ProjectManagerSdk.models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
 import json
 
 class TimesheetClient:
     """
     API methods related to Timesheet
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

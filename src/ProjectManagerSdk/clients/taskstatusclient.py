@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.taskstatuscreatedto import TaskStatusCreateDto
-from models.taskstatusdto import TaskStatusDto
-from models.taskstatusupdatedto import TaskStatusUpdateDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
+from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
+from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
 import json
 
 class TaskStatusClient:
     """
     API methods related to TaskStatus
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

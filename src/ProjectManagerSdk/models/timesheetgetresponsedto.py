@@ -12,8 +12,8 @@
 #
 
 
-from models.timesheetprojectdto import TimeSheetProjectDto
-from models.timesheettaskdto import TimesheetTaskDto
+from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
+from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
 from dataclasses import dataclass
 
 @dataclass

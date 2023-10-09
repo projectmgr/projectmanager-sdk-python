@@ -12,7 +12,7 @@
 #
 
 
-from models.projectcreateaccessdto import ProjectCreateAccessDto
+from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
 from dataclasses import dataclass
 
 @dataclass

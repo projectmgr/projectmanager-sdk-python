@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createintegrationinstancedto import CreateIntegrationInstanceDto
-from models.integrationdto import IntegrationDto
-from models.newintegrationinstancedto import NewIntegrationInstanceDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createintegrationinstancedto import CreateIntegrationInstanceDto
+from ProjectManagerSdk.models.integrationdto import IntegrationDto
+from ProjectManagerSdk.models.newintegrationinstancedto import NewIntegrationInstanceDto
 import json
 
 class IntegrationClient:
     """
     API methods related to Integration
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

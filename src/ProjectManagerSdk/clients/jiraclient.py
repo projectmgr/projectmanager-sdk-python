@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.retunjiraprojectsdto import RetunJiraProjectsDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.retunjiraprojectsdto import RetunJiraProjectsDto
 import json
 
 class JiraClient:
     """
     API methods related to Jira
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

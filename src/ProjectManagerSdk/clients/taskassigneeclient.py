@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.assigneeupsertdto import AssigneeUpsertDto
-from models.astroresult import AstroResult
-from models.changesetstatusdto import ChangeSetStatusDto
-from models.iddto import IdDto
+from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
+from ProjectManagerSdk.models.iddto import IdDto
 import json
 
 class TaskAssigneeClient:
     """
     API methods related to TaskAssignee
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

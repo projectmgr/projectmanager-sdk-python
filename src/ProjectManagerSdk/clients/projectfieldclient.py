@@ -11,19 +11,19 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createprojectfielddto import CreateProjectFieldDto
-from models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
-from models.deleteprojectfielddto import DeleteProjectFieldDto
-from models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
-from models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
+from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
+from ProjectManagerSdk.models.deleteprojectfielddto import DeleteProjectFieldDto
+from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
+from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
 import json
 
 class ProjectFieldClient:
     """
     API methods related to ProjectField
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

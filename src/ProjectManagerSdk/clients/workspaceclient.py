@@ -11,16 +11,16 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.workspacedto import WorkSpaceDto
-from models.workspacejoindto import WorkSpaceJoinDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
+from ProjectManagerSdk.models.workspacejoindto import WorkSpaceJoinDto
 import json
 
 class WorkSpaceClient:
     """
     API methods related to WorkSpace
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

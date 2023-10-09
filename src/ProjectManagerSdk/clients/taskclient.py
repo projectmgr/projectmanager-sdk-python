@@ -11,21 +11,21 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.bulktaskcreatedto import BulkTaskCreateDto
-from models.changesetstatusdto import ChangeSetStatusDto
-from models.taskcreatedto import TaskCreateDto
-from models.taskdetailsdto import TaskDetailsDto
-from models.taskdto import TaskDto
-from models.taskprioritydto import TaskPriorityDto
-from models.taskupdatedto import TaskUpdateDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.bulktaskcreatedto import BulkTaskCreateDto
+from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
+from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
+from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
+from ProjectManagerSdk.models.taskdto import TaskDto
+from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
+from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 import json
 
 class TaskClient:
     """
     API methods related to Task
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

@@ -12,7 +12,7 @@
 #
 
 
-from models.permissionoptionsdto import PermissionOptionsDto
+from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from dataclasses import dataclass
 
 @dataclass

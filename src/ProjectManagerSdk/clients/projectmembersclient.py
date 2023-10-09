@@ -11,16 +11,16 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectmemberdto import ProjectMemberDto
-from models.projectmemberroledto import ProjectMemberRoleDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
+from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 import json
 
 class ProjectMembersClient:
     """
     API methods related to ProjectMembers
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

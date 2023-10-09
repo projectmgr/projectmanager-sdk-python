@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createresourceteamdto import CreateResourceTeamDto
-from models.resourceteamdto import ResourceTeamDto
-from models.updateresourceteamdto import UpdateResourceTeamDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
+from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
+from ProjectManagerSdk.models.updateresourceteamdto import UpdateResourceTeamDto
 import json
 
 class ResourceTeamClient:
     """
     API methods related to ResourceTeam
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

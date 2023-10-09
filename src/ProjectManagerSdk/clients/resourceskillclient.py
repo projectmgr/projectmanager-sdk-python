@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createresourceskilldto import CreateResourceSkillDto
-from models.resourceskilldto import ResourceSkillDto
-from models.updateresourceskilldto import UpdateResourceSkillDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
+from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
+from ProjectManagerSdk.models.updateresourceskilldto import UpdateResourceSkillDto
 import json
 
 class ResourceSkillClient:
     """
     API methods related to ResourceSkill
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

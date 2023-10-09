@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.licensedto import LicenseDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.licensedto import LicenseDto
 import json
 
 class LicenseClient:
     """
     API methods related to License
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

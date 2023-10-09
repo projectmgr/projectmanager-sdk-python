@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.tagcreatedto import TagCreateDto
-from models.tagdto import TagDto
-from models.tagupdatedto import TagUpdateDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
+from ProjectManagerSdk.models.tagdto import TagDto
+from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
 import json
 
 class TagClient:
     """
     API methods related to Tag
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

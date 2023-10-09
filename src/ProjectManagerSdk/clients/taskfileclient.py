@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.filedto import FileDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.filedto import FileDto
 import json
 
 class TaskFileClient:
     """
     API methods related to TaskFile
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

@@ -11,16 +11,16 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.apikeycreatedto import ApiKeyCreateDto
-from models.apikeydto import ApiKeyDto
-from models.astroresult import AstroResult
+from ProjectManagerSdk.models.apikeycreatedto import ApiKeyCreateDto
+from ProjectManagerSdk.models.apikeydto import ApiKeyDto
+from ProjectManagerSdk.models.astroresult import AstroResult
 import json
 
 class ApiKeyClient:
     """
     API methods related to ApiKey
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client

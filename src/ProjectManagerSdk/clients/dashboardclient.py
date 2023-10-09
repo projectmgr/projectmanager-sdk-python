@@ -11,16 +11,16 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.dashboardsettingcreatedto import DashboardSettingCreateDto
-from models.dashboardsettingdto import DashboardSettingDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
+from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
 import json
 
 class DashboardClient:
     """
     API methods related to Dashboard
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
