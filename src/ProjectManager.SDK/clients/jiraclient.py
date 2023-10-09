@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.retunjiraprojectsdto import RetunJiraProjectsDto
+import json
 
 class JiraClient:
     """

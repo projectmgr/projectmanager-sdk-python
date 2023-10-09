@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.integrationcategorydto import IntegrationCategoryDto
+import json
 
 class IntegrationCategoryClient:
     """

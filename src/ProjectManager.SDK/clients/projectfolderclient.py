@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.projectfolderdto import ProjectFolderDto
+import json
 
 class ProjectFolderClient:
     """

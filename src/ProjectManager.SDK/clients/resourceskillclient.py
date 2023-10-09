@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.createresourceskilldto import CreateResourceSkillDto
 from models.resourceskilldto import ResourceSkillDto
 from models.updateresourceskilldto import UpdateResourceSkillDto
+import json
 
 class ResourceSkillClient:
     """

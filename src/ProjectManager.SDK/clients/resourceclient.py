@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.resourcecreatedto import ResourceCreateDto
 from models.resourcedto import ResourceDto
 from models.resourceupdatedto import ResourceUpdateDto
+import json
 
 class ResourceClient:
     """

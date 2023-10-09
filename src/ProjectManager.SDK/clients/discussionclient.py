@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.discussioncreatedto import DiscussionCreateDto
 from models.discussioncreateresponsedto import DiscussionCreateResponseDto
 from models.discussiondto import DiscussionDto
+import json
 
 class DiscussionClient:
     """

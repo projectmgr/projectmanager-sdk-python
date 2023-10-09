@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.userroledto import UserRoleDto
+import json
 
 class UserRoleClient:
     """

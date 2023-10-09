@@ -13,7 +13,6 @@
 
 from models.astroresult import AstroResult
 from models.workspaceuserinfodto import WorkSpaceUserInfoDto
-
 import json
 
 class MeClient:

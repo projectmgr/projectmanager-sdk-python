@@ -14,6 +14,7 @@
 from models.astroresult import AstroResult
 from models.workspacedto import WorkSpaceDto
 from models.workspacejoindto import WorkSpaceJoinDto
+import json
 
 class WorkSpaceClient:
     """

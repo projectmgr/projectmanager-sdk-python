@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.licensedto import LicenseDto
+import json
 
 class LicenseClient:
     """

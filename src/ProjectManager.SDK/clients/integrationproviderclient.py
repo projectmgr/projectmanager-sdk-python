@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.authenticationstatusdto import AuthenticationStatusDto
 from models.directlinkdto import DirectLinkDto
 from models.integrationproviderdto import IntegrationProviderDto
+import json
 
 class IntegrationProviderClient:
     """

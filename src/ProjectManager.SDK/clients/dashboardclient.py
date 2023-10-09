@@ -14,6 +14,7 @@
 from models.astroresult import AstroResult
 from models.dashboardsettingcreatedto import DashboardSettingCreateDto
 from models.dashboardsettingdto import DashboardSettingDto
+import json
 
 class DashboardClient:
     """

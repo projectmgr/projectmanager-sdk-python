@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.createintegrationinstancedto import CreateIntegrationInstanceDto
 from models.integrationdto import IntegrationDto
 from models.newintegrationinstancedto import NewIntegrationInstanceDto
+import json
 
 class IntegrationClient:
     """

@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.updaterequestdto import UpdateRequestDto
+import json
 
 class FileClient:
     """

@@ -13,6 +13,7 @@
 
 from models.astroresult import AstroResult
 from models.projectstatusdto import ProjectStatusDto
+import json
 
 class ProjectStatusClient:
     """

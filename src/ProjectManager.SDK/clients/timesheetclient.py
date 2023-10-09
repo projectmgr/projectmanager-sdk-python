@@ -17,6 +17,7 @@ from models.timesheetcreaterequestdto import TimesheetCreateRequestDto
 from models.timesheetgetresponsedto import TimesheetGetResponseDto
 from models.timesheetresponsedto import TimesheetResponseDto
 from models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
+import json
 
 class TimesheetClient:
     """

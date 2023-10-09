@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.tagcreatedto import TagCreateDto
 from models.tagdto import TagDto
 from models.tagupdatedto import TagUpdateDto
+import json
 
 class TagClient:
     """

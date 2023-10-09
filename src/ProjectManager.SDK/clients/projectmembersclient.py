@@ -14,6 +14,7 @@
 from models.astroresult import AstroResult
 from models.projectmemberdto import ProjectMemberDto
 from models.projectmemberroledto import ProjectMemberRoleDto
+import json
 
 class ProjectMembersClient:
     """

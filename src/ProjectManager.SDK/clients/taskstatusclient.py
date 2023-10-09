@@ -15,6 +15,7 @@ from models.astroresult import AstroResult
 from models.taskstatuscreatedto import TaskStatusCreateDto
 from models.taskstatusdto import TaskStatusDto
 from models.taskstatusupdatedto import TaskStatusUpdateDto
+import json
 
 class TaskStatusClient:
     """
