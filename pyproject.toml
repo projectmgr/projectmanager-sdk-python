@@ -1,0 +1,22 @@
+[project]
+name = "ProjectManager.SDK"
+version = "11.1.2053"
+authors = [
+    { name = "ProjectManager.com", email = "support@projectmanager.com" }
+]
+description = "Software development kit for the ProjectManager.com API for Python"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/projectmgr/projectmanager-sdk-python"
+"Bug Tracker" = "https://github.com/projectmgr/projectmanager-sdk-python/issues"
+
+[build-system]
+requires = ["hatchling", "find", "requests"]
+build-backend = "hatchling.build"
