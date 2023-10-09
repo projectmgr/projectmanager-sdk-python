@@ -41,7 +41,7 @@ class IntegrationProviderClient:
         path = "/api/data/integrations/providers"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[IntegrationProviderDto](result.json(), list[IntegrationProviderDto]))
+            return AstroResult(None, True, False, result.status_code, list[IntegrationProviderDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -65,7 +65,7 @@ class IntegrationProviderClient:
         path = f"/api/data/integrations/providers/{providerId}"
         result = self.client.send_request("POST", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DirectLinkDto(result.json(), DirectLinkDto))
+            return AstroResult(None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -84,7 +84,7 @@ class IntegrationProviderClient:
         path = f"/api/data/integrations/providers/{providerId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -100,7 +100,7 @@ class IntegrationProviderClient:
         path = f"/api/data/integrations/providers/{providerId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -121,7 +121,7 @@ class IntegrationProviderClient:
         path = f"/api/data/integrations/providers/{providerId}/user-connection"
         result = self.client.send_request("POST", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DirectLinkDto(result.json(), DirectLinkDto))
+            return AstroResult(None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -140,6 +140,6 @@ class IntegrationProviderClient:
         path = f"/api/data/integrations/providers/{providerId}/user-connection"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

@@ -39,6 +39,6 @@ class ProjectStatusClient:
         path = "/api/data/projects/statuses"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[ProjectStatusDto](result.json(), list[ProjectStatusDto]))
+            return AstroResult(None, True, False, result.status_code, list[ProjectStatusDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

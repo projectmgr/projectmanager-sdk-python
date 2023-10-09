@@ -39,7 +39,7 @@ class TimesheetClient:
         path = "/api/data/timesheets"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TimesheetResponseDto(result.json(), TimesheetResponseDto))
+            return AstroResult(None, True, False, result.status_code, TimesheetResponseDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -69,7 +69,7 @@ class TimesheetClient:
         path = "/api/data/timesheets"
         result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TimesheetGetResponseDto](result.json(), list[TimesheetGetResponseDto]))
+            return AstroResult(None, True, False, result.status_code, list[TimesheetGetResponseDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -85,7 +85,7 @@ class TimesheetClient:
         path = f"/api/data/timesheets/{timesheetId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -103,7 +103,7 @@ class TimesheetClient:
         path = f"/api/data/timesheets/{timesheetId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TimesheetResponseDto(result.json(), TimesheetResponseDto))
+            return AstroResult(None, True, False, result.status_code, TimesheetResponseDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -118,6 +118,6 @@ class TimesheetClient:
         path = "/api/data/timesheets/admin-tasks"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TimesheetAdminTypeDto](result.json(), list[TimesheetAdminTypeDto]))
+            return AstroResult(None, True, False, result.status_code, list[TimesheetAdminTypeDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

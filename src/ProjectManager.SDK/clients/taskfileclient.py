@@ -48,6 +48,6 @@ class TaskFileClient:
         path = f"/api/data/tasks/{taskId}/files"
         result = self.client.send_request("POST", path, None, {}, filename)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, FileDto(result.json(), FileDto))
+            return AstroResult(None, True, False, result.status_code, FileDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

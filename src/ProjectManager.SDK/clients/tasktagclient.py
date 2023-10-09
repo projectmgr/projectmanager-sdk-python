@@ -45,7 +45,7 @@ class TaskTagClient:
         path = f"/api/data/tasks/{taskId}/tags"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -69,7 +69,7 @@ class TaskTagClient:
         path = f"/api/data/tasks/{taskId}/tags"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -93,6 +93,6 @@ class TaskTagClient:
         path = f"/api/data/tasks/{taskId}/tags"
         result = self.client.send_request("DELETE", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

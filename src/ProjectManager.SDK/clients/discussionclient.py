@@ -37,7 +37,7 @@ class DiscussionClient:
         path = f"/api/data/tasks/{taskId}/discussions"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[DiscussionDto](result.json(), list[DiscussionDto]))
+            return AstroResult(None, True, False, result.status_code, list[DiscussionDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -62,6 +62,6 @@ class DiscussionClient:
         path = f"/api/data/tasks/{taskId}/discussions"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DiscussionCreateResponseDto(result.json(), DiscussionCreateResponseDto))
+            return AstroResult(None, True, False, result.status_code, DiscussionCreateResponseDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

@@ -40,7 +40,7 @@ class LicenseClient:
         path = "/api/data/license"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[LicenseDto](result.json(), list[LicenseDto]))
+            return AstroResult(None, True, False, result.status_code, list[LicenseDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -62,6 +62,6 @@ class LicenseClient:
         path = f"/api/data/license/{bundleSku}/try"
         result = self.client.send_request("POST", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[LicenseDto](result.json(), list[LicenseDto]))
+            return AstroResult(None, True, False, result.status_code, list[LicenseDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

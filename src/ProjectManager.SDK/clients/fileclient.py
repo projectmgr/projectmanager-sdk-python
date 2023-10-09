@@ -50,7 +50,7 @@ class FileClient:
         path = f"/api/data/files/{documentId}/download"
         result = self.client.send_request("GET", path, None, {"type": type}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -79,6 +79,6 @@ class FileClient:
         path = f"/api/data/files/{fileId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

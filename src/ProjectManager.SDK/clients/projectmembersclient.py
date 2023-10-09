@@ -39,7 +39,7 @@ class ProjectMembersClient:
         path = f"/api/data/projects/{projectId}/members"
         result = self.client.send_request("GET", path, None, {"includeAllUsers": includeAllUsers}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[ProjectMemberDto](result.json(), list[ProjectMemberDto]))
+            return AstroResult(None, True, False, result.status_code, list[ProjectMemberDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -57,7 +57,7 @@ class ProjectMembersClient:
         path = f"/api/data/projects/{projectId}/members/{userId}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(result.json(), ProjectMemberDto))
+            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -78,7 +78,7 @@ class ProjectMembersClient:
         path = f"/api/data/projects/{projectId}/members/{userId}"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(result.json(), ProjectMemberDto))
+            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -98,7 +98,7 @@ class ProjectMembersClient:
         path = f"/api/data/projects/{projectId}/members/{userId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(result.json(), ProjectMemberDto))
+            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -116,6 +116,6 @@ class ProjectMembersClient:
         path = f"/api/data/projects/{projectId}/members/{userId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

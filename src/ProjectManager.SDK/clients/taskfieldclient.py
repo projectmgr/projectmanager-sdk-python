@@ -47,7 +47,7 @@ class TaskFieldClient:
         path = f"/api/data/projects/{projectId}/tasks/fields"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[GetTaskFieldsResponseDto](result.json(), list[GetTaskFieldsResponseDto]))
+            return AstroResult(None, True, False, result.status_code, list[GetTaskFieldsResponseDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -74,7 +74,7 @@ class TaskFieldClient:
         path = f"/api/data/projects/{projectId}/tasks/fields"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -101,7 +101,7 @@ class TaskFieldClient:
         path = f"/api/data/projects/{projectId}/tasks/fields/{fieldId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -128,7 +128,7 @@ class TaskFieldClient:
         path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TaskFieldsValueResponseDto(result.json(), TaskFieldsValueResponseDto))
+            return AstroResult(None, True, False, result.status_code, TaskFieldsValueResponseDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -158,7 +158,7 @@ class TaskFieldClient:
         path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -182,6 +182,6 @@ class TaskFieldClient:
         path = f"/api/data/tasks/{taskId}/fields"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TaskFieldsValueResponseDto](result.json(), list[TaskFieldsValueResponseDto]))
+            return AstroResult(None, True, False, result.status_code, list[TaskFieldsValueResponseDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

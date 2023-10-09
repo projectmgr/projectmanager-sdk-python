@@ -45,7 +45,7 @@ class ResourceClient:
         path = "/api/data/resources"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceDto(result.json(), ResourceDto))
+            return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -81,7 +81,7 @@ class ResourceClient:
         path = "/api/data/resources"
         result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[ResourceDto](result.json(), list[ResourceDto]))
+            return AstroResult(None, True, False, result.status_code, list[ResourceDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -107,6 +107,6 @@ class ResourceClient:
         path = f"/api/data/resources/{resourceId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceDto(result.json(), ResourceDto))
+            return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

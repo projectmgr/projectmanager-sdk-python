@@ -55,7 +55,7 @@ class ResourceSkillClient:
         path = "/api/data/resources/skills"
         result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[ResourceSkillDto](result.json(), list[ResourceSkillDto]))
+            return AstroResult(None, True, False, result.status_code, list[ResourceSkillDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -71,7 +71,7 @@ class ResourceSkillClient:
         path = "/api/data/resources/skills"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceSkillDto(result.json(), ResourceSkillDto))
+            return AstroResult(None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -89,7 +89,7 @@ class ResourceSkillClient:
         path = f"/api/data/resources/skills/{skillId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceSkillDto(result.json(), ResourceSkillDto))
+            return AstroResult(None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -106,6 +106,6 @@ class ResourceSkillClient:
         path = f"/api/data/resources/skills/{resourceSkillId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

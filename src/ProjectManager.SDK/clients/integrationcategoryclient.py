@@ -39,6 +39,6 @@ class IntegrationCategoryClient:
         path = "/api/data/integrations/categories"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[IntegrationCategoryDto](result.json(), list[IntegrationCategoryDto]))
+            return AstroResult(None, True, False, result.status_code, list[IntegrationCategoryDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

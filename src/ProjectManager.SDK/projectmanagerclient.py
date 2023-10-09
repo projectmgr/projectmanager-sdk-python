@@ -27,7 +27,6 @@ class ProjectManagerClient:
     Use this object to connect to the API.
     """
     apiKey: str | None
-    bearerToken: str | None
 
     def __init__(self, env: str, appname: str):
         """Construct a new ProjectManagerClient client object
@@ -114,13 +113,12 @@ class ProjectManagerClient:
         self.workSpace = WorkSpaceClient(self)
         self.serverUrl = env
         if env == "production":
-            self.serverUrl = "api.projectmanager.com"
+            self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
         self.sdkVersion = "11.1.2053"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.apiKey = None
-        self.bearerToken = None
     
     def with_api_key(self, apiKey: str):
         """Configure this API client to use API Key authentication
@@ -133,20 +131,6 @@ class ProjectManagerClient:
             The API Key to use for authentication.
         """
         self.apiKey = apiKey
-        self.bearerToken = None
-    
-    def with_bearer_token(self, bearerToken: str):
-        """Configure this API client to use Bearer Token authentication
-        
-        
-
-        Parameters
-        ----------
-        bearerToken : str
-            The Bearer Token to use for authentication.
-        """
-        self.apiKey = None
-        self.bearerToken = bearerToken
     
     def send_request(self, method: str, path: str, body: object, 
         query_params: typing.Dict[str, typing.Any] | None, filename: str | None) -> Response:
@@ -180,9 +164,7 @@ class ProjectManagerClient:
                    "MachineName": self.machineName,
                    "ApplicationName": self.applicationName}
         if self.apiKey:
-            headers["Api-Key"] = self.apiKey
-        elif self.bearerToken:
-            headers["Authorization"] = "Bearer " + self.bearerToken
+            headers["Authorization"] = "Bearer " + self.apiKey
     
         return requests.request(method, url, headers=headers, json=body, files=files)
         

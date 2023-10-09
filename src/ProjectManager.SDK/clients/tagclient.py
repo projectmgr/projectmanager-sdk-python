@@ -53,7 +53,7 @@ class TagClient:
         path = "/api/data/tags"
         result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TagDto](result.json(), list[TagDto]))
+            return AstroResult(None, True, False, result.status_code, list[TagDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -73,7 +73,7 @@ class TagClient:
         path = "/api/data/tags"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TagDto(result.json(), TagDto))
+            return AstroResult(None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -95,6 +95,6 @@ class TagClient:
         path = f"/api/data/tags/{tagId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TagDto(result.json(), TagDto))
+            return AstroResult(None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

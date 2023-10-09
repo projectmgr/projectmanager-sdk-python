@@ -53,7 +53,7 @@ class ApiKeyClient:
         path = "/api/data/api-keys"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ApiKeyDto(result.json(), ApiKeyDto))
+            return AstroResult(None, True, False, result.status_code, ApiKeyDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -83,7 +83,7 @@ class ApiKeyClient:
         path = "/api/data/api-keys"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[ApiKeyDto](result.json(), list[ApiKeyDto]))
+            return AstroResult(None, True, False, result.status_code, list[ApiKeyDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -117,7 +117,7 @@ class ApiKeyClient:
         path = "/api/data/api-keys/revoke-all"
         result = self.client.send_request("DELETE", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -149,6 +149,6 @@ class ApiKeyClient:
         path = f"/api/data/api-keys/{id}/revoke"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

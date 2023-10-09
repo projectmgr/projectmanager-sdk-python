@@ -41,7 +41,7 @@ class IntegrationClient:
         path = f"/api/data/integrations/{integrationId}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, IntegrationDto(result.json(), IntegrationDto))
+            return AstroResult(None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -61,7 +61,7 @@ class IntegrationClient:
         path = f"/api/data/integrations/{integrationId}"
         result = self.client.send_request("POST", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, IntegrationDto(result.json(), IntegrationDto))
+            return AstroResult(None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -81,7 +81,7 @@ class IntegrationClient:
         path = f"/api/data/integrations/{integrationId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -99,7 +99,7 @@ class IntegrationClient:
         path = "/api/data/integrations"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[IntegrationDto](result.json(), list[IntegrationDto]))
+            return AstroResult(None, True, False, result.status_code, list[IntegrationDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -122,7 +122,7 @@ class IntegrationClient:
         path = f"/api/data/integrations/{integrationId}/instance"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, NewIntegrationInstanceDto(result.json(), NewIntegrationInstanceDto))
+            return AstroResult(None, True, False, result.status_code, NewIntegrationInstanceDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -143,6 +143,6 @@ class IntegrationClient:
         path = f"/api/data/integrations/instances/{integrationInstanceId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(result.json(), object))
+            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)

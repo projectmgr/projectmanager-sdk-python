@@ -58,7 +58,7 @@ class TaskClient:
         path = "/api/data/tasks"
         result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TaskDto](result.json(), list[TaskDto]))
+            return AstroResult(None, True, False, result.status_code, list[TaskDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -82,7 +82,7 @@ class TaskClient:
         path = f"/api/data/tasks/{taskId}"
         result = self.client.send_request("GET", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TaskDetailsDto(result.json(), TaskDetailsDto))
+            return AstroResult(None, True, False, result.status_code, TaskDetailsDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -117,7 +117,7 @@ class TaskClient:
         path = f"/api/data/tasks/{taskId}"
         result = self.client.send_request("PUT", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -143,7 +143,7 @@ class TaskClient:
         path = f"/api/data/tasks/{taskId}"
         result = self.client.send_request("DELETE", path, None, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -167,7 +167,7 @@ class TaskClient:
         path = f"/api/data/projects/{projectId}/tasks"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(result.json(), ChangeSetStatusDto))
+            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -191,7 +191,7 @@ class TaskClient:
         path = "/api/data/tasks/priorities"
         result = self.client.send_request("GET", path, None, None, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[TaskPriorityDto](result.json(), list[TaskPriorityDto]))
+            return AstroResult(None, True, False, result.status_code, list[TaskPriorityDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
@@ -216,6 +216,6 @@ class TaskClient:
         path = f"/api/data/projects/{projectId}/tasks/bulk"
         result = self.client.send_request("POST", path, body, {}, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, list[ChangeSetStatusDto](result.json(), list[ChangeSetStatusDto]))
+            return AstroResult(None, True, False, result.status_code, list[ChangeSetStatusDto](**json.loads(result.content)['data']))
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
