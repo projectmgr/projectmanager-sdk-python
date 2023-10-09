@@ -13,7 +13,7 @@
 
 
 from dataclasses import dataclass
-from astroerror import AstroError
+from models.astroerror import AstroError
 from typing import TypeVar, Generic
 
 T = TypeVar('T')
