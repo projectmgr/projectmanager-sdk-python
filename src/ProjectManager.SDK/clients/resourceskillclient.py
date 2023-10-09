@@ -25,7 +25,7 @@ class ResourceSkillClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_skills(self, $top: int, $skip: int, $filter: str, $select: str, $orderby: str, $expand: str) -> AstroResult[list[ResourceSkillDto]]:
+    def retrieve_resource_skills(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
         """
         Retrieves all ResourceSkills defined within your Workspace.
 
@@ -53,7 +53,7 @@ class ResourceSkillClient:
             Include related data in the response
         """
         path = "/api/data/resources/skills"
-        result = self.client.send_request("GET", path, None, {"$top": $top, "$skip": $skip, "$filter": $filter, "$select": $select, "$orderby": $orderby, "$expand": $expand}, None)
+        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ResourceSkillDto](result.json(), list[ResourceSkillDto]))
         else:

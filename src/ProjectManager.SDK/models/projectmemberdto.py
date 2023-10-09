@@ -12,6 +12,7 @@
 #
 
 
+from models.permissionoptionsdto import PermissionOptionsDto
 from dataclasses import dataclass
 
 @dataclass

@@ -12,6 +12,7 @@
 #
 
 
+from models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from dataclasses import dataclass
 
 @dataclass

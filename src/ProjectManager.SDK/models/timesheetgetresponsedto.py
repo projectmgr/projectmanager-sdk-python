@@ -12,6 +12,8 @@
 #
 
 
+from models.timesheetprojectdto import TimeSheetProjectDto
+from models.timesheettaskdto import TimesheetTaskDto
 from dataclasses import dataclass
 
 @dataclass

@@ -12,6 +12,7 @@
 #
 
 
+from models.workspacelinksdto import WorkSpaceLinksDto
 from dataclasses import dataclass
 
 @dataclass

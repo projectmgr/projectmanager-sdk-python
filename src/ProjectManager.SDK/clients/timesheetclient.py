@@ -43,7 +43,7 @@ class TimesheetClient:
         else:
             return AstroResult(result.json(), False, True, result.status_code, None)
 
-    def query_timesheets(self, $top: int, $skip: int, $filter: str, $select: str, $orderby: str, $expand: str) -> AstroResult[list[TimesheetGetResponseDto]]:
+    def query_timesheets(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TimesheetGetResponseDto]]:
         """
         Retrieve a list of TimeSheets that match an [OData formatted
         query](https://www.odata.org/).
@@ -67,7 +67,7 @@ class TimesheetClient:
             Include related data in the response
         """
         path = "/api/data/timesheets"
-        result = self.client.send_request("GET", path, None, {"$top": $top, "$skip": $skip, "$filter": $filter, "$select": $select, "$orderby": $orderby, "$expand": $expand}, None)
+        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TimesheetGetResponseDto](result.json(), list[TimesheetGetResponseDto]))
         else:

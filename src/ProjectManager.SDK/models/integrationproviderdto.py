@@ -12,6 +12,7 @@
 #
 
 
+from models.integrationdto import IntegrationDto
 from dataclasses import dataclass
 
 @dataclass

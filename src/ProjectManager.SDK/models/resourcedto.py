@@ -12,6 +12,9 @@
 #
 
 
+from models.resourceapproverdto import ResourceApproverDto
+from models.resourceskilldto import ResourceSkillDto
+from models.resourceteamdto import ResourceTeamDto
 from dataclasses import dataclass
 
 @dataclass

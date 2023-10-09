@@ -12,6 +12,7 @@
 #
 
 
+from models.discussionemoji import DiscussionEmoji
 from dataclasses import dataclass
 
 @dataclass

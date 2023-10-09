@@ -25,7 +25,7 @@ class TagClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tags(self, $top: int, $skip: int, $filter: str, $select: str, $orderby: str, $expand: str) -> AstroResult[list[TagDto]]:
+    def query_tags(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TagDto]]:
         """
         Retrieve a list of Tags that match an [OData formatted
         query](https://www.odata.org/).
@@ -51,7 +51,7 @@ class TagClient:
             Include related data in the response
         """
         path = "/api/data/tags"
-        result = self.client.send_request("GET", path, None, {"$top": $top, "$skip": $skip, "$filter": $filter, "$select": $select, "$orderby": $orderby, "$expand": $expand}, None)
+        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[TagDto](result.json(), list[TagDto]))
         else:

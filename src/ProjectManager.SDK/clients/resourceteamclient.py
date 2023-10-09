@@ -25,7 +25,7 @@ class ResourceTeamClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_teams(self, $top: int, $skip: int, $filter: str, $select: str, $orderby: str, $expand: str) -> AstroResult[list[ResourceTeamDto]]:
+    def retrieve_resource_teams(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
         """
         Retrieves all ResourceTeams defined within your Workspace that
         match an [OData formatted query](https://www.odata.org/).
@@ -52,7 +52,7 @@ class ResourceTeamClient:
             Include related data in the response
         """
         path = "/api/data/resources/teams"
-        result = self.client.send_request("GET", path, None, {"$top": $top, "$skip": $skip, "$filter": $filter, "$select": $select, "$orderby": $orderby, "$expand": $expand}, None)
+        result = self.client.send_request("GET", path, None, {"$top": top, "$skip": skip, "$filter": filter, "$select": select, "$orderby": orderby, "$expand": expand}, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult(None, True, False, result.status_code, list[ResourceTeamDto](result.json(), list[ResourceTeamDto]))
         else:

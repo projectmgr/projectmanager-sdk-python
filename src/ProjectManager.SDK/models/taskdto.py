@@ -12,6 +12,8 @@
 #
 
 
+from models.taskassigneedto import TaskAssigneeDto
+from models.taskprojectdto import TaskProjectDto
 from dataclasses import dataclass
 
 @dataclass

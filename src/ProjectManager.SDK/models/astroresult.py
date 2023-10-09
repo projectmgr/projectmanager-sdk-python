@@ -12,8 +12,8 @@
 #
 
 
-from dataclasses import dataclass
 from models.astroerror import AstroError
+from dataclasses import dataclass
 from typing import TypeVar, Generic
 
 T = TypeVar('T')
@@ -50,9 +50,8 @@ class AstroResult(Generic[T]):
 
     data: T | None = None
     """
-    If successful, the data that was returned by this API call
+    If this API call was successful, contains the results.
     """
-
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
