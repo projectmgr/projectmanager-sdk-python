@@ -13,9 +13,13 @@
 
 
 from dataclasses import dataclass
+from astroerror import AstroError
+from typing import TypeVar, Generic
+
+T = TypeVar('T')
 
 @dataclass
-class AstroResult:
+class AstroResult(Generic[T]):
     """
     An API result that contains different values depending on whether
     the API call succeeded or failed. Use the `Success` value to
@@ -39,9 +43,14 @@ class AstroResult:
     True if the API call failed.
     """
 
-    statusCode: HttpStatusCode | None = None
+    statusCode: int | None = None
     """
     The HTTP code of the response.
+    """
+
+    data: T | None = None
+    """
+    If successful, the data that was returned by this API call
     """
 
 
