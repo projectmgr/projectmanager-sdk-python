@@ -1,0 +1,11 @@
+{
+  "source_directories": [
+    ".",
+    "src",
+    "src/ProjectManager.SDK",
+    "src/ProjectManager.SDK/clients",
+    "src/ProjectManager.SDK/models"
+  ],
+  "search_path": [
+  ]
+}
