@@ -26,7 +26,7 @@ class ProjectManagerClient:
     
     Use this object to connect to the API.
     """
-    apiKey: str | None
+    bearerToken: str | None
 
     def __init__(self, env: str, appname: str):
         """Construct a new ProjectManagerClient client object
@@ -41,41 +41,41 @@ class ProjectManagerClient:
             name will be recorded alongside API calls so that you can identify
             the source of errors. 
         """
-        from clients.apikeyclient import ApiKeyClient
-        from clients.changesetclient import ChangesetClient
-        from clients.dashboardclient import DashboardClient
-        from clients.discussionclient import DiscussionClient
-        from clients.fileclient import FileClient
-        from clients.homefileclient import HomeFileClient
-        from clients.integrationclient import IntegrationClient
-        from clients.integrationcategoryclient import IntegrationCategoryClient
-        from clients.integrationproviderclient import IntegrationProviderClient
-        from clients.jiraclient import JiraClient
-        from clients.licenseclient import LicenseClient
-        from clients.meclient import MeClient
-        from clients.projectclient import ProjectClient
-        from clients.projectchargecodeclient import ProjectChargeCodeClient
-        from clients.projectcustomerclient import ProjectCustomerClient
-        from clients.projectfieldclient import ProjectFieldClient
-        from clients.projectfileclient import ProjectFileClient
-        from clients.projectfolderclient import ProjectFolderClient
-        from clients.projectmembersclient import ProjectMembersClient
-        from clients.projectpriorityclient import ProjectPriorityClient
-        from clients.projectstatusclient import ProjectStatusClient
-        from clients.projecttemplateclient import ProjectTemplateClient
-        from clients.resourceclient import ResourceClient
-        from clients.resourceskillclient import ResourceSkillClient
-        from clients.resourceteamclient import ResourceTeamClient
-        from clients.tagclient import TagClient
-        from clients.taskclient import TaskClient
-        from clients.taskassigneeclient import TaskAssigneeClient
-        from clients.taskfieldclient import TaskFieldClient
-        from clients.taskfileclient import TaskFileClient
-        from clients.taskstatusclient import TaskStatusClient
-        from clients.tasktagclient import TaskTagClient
-        from clients.timesheetclient import TimesheetClient
-        from clients.userroleclient import UserRoleClient
-        from clients.workspaceclient import WorkSpaceClient
+        from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
+        from ProjectManagerSdk.clients.changesetclient import ChangesetClient
+        from ProjectManagerSdk.clients.dashboardclient import DashboardClient
+        from ProjectManagerSdk.clients.discussionclient import DiscussionClient
+        from ProjectManagerSdk.clients.fileclient import FileClient
+        from ProjectManagerSdk.clients.homefileclient import HomeFileClient
+        from ProjectManagerSdk.clients.integrationclient import IntegrationClient
+        from ProjectManagerSdk.clients.integrationcategoryclient import IntegrationCategoryClient
+        from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
+        from ProjectManagerSdk.clients.jiraclient import JiraClient
+        from ProjectManagerSdk.clients.licenseclient import LicenseClient
+        from ProjectManagerSdk.clients.meclient import MeClient
+        from ProjectManagerSdk.clients.projectclient import ProjectClient
+        from ProjectManagerSdk.clients.projectchargecodeclient import ProjectChargeCodeClient
+        from ProjectManagerSdk.clients.projectcustomerclient import ProjectCustomerClient
+        from ProjectManagerSdk.clients.projectfieldclient import ProjectFieldClient
+        from ProjectManagerSdk.clients.projectfileclient import ProjectFileClient
+        from ProjectManagerSdk.clients.projectfolderclient import ProjectFolderClient
+        from ProjectManagerSdk.clients.projectmembersclient import ProjectMembersClient
+        from ProjectManagerSdk.clients.projectpriorityclient import ProjectPriorityClient
+        from ProjectManagerSdk.clients.projectstatusclient import ProjectStatusClient
+        from ProjectManagerSdk.clients.projecttemplateclient import ProjectTemplateClient
+        from ProjectManagerSdk.clients.resourceclient import ResourceClient
+        from ProjectManagerSdk.clients.resourceskillclient import ResourceSkillClient
+        from ProjectManagerSdk.clients.resourceteamclient import ResourceTeamClient
+        from ProjectManagerSdk.clients.tagclient import TagClient
+        from ProjectManagerSdk.clients.taskclient import TaskClient
+        from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
+        from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
+        from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+        from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
+        from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
+        from ProjectManagerSdk.clients.timesheetclient import TimesheetClient
+        from ProjectManagerSdk.clients.userroleclient import UserRoleClient
+        from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
         self.apiKey = ApiKeyClient(self)
         self.changeset = ChangesetClient(self)
         self.dashboard = DashboardClient(self)
@@ -118,19 +118,19 @@ class ProjectManagerClient:
         self.sdkVersion = "11.1.2053"
         self.machineName = platform.uname().node
         self.applicationName = appname
-        self.apiKey = None
+        self.bearerToken = None
     
-    def with_api_key(self, apiKey: str):
+    def with_api_key(self, key: str):
         """Configure this API client to use API Key authentication
         
         
         
         Parameters
         ----------
-        apiKey : str
+        key : str
             The API Key to use for authentication.
         """
-        self.apiKey = apiKey
+        self.bearerToken = key
     
     def send_request(self, method: str, path: str, body: object, 
         query_params: typing.Dict[str, typing.Any] | None, filename: str | None) -> Response:
@@ -163,8 +163,8 @@ class ProjectManagerClient:
                    "SdkVersion": self.sdkVersion,
                    "MachineName": self.machineName,
                    "ApplicationName": self.applicationName}
-        if self.apiKey:
-            headers["Authorization"] = "Bearer " + self.apiKey
+        if self.bearerToken:
+            headers["Authorization"] = "Bearer " + self.bearerToken
     
         return requests.request(method, url, headers=headers, json=body, files=files)
         

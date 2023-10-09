@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.userroledto import UserRoleDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.userroledto import UserRoleDto
 import json
 
 class UserRoleClient:
     """
     API methods related to UserRole
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -43,6 +43,6 @@ class UserRoleClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(UserRoleDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[UserRoleDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[UserRoleDto]](result.json(), False, True, result.status_code, None)

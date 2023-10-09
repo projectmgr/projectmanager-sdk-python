@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createresourceteamdto import CreateResourceTeamDto
-from models.resourceteamdto import ResourceTeamDto
-from models.updateresourceteamdto import UpdateResourceTeamDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
+from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
+from ProjectManagerSdk.models.updateresourceteamdto import UpdateResourceTeamDto
 import json
 
 class ResourceTeamClient:
     """
     API methods related to ResourceTeam
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -71,9 +71,9 @@ class ResourceTeamClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceTeamDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ResourceTeamDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ResourceTeamDto]](result.json(), False, True, result.status_code, None)
 
     def create_resource_team(self, body: CreateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
@@ -88,9 +88,9 @@ class ResourceTeamClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceTeamDto](result.json(), False, True, result.status_code, None)
 
     def delete_resource_team(self, resourceTeamId: str) -> AstroResult[object]:
         """
@@ -106,9 +106,9 @@ class ResourceTeamClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)
 
     def update_resource_team(self, teamresourceId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
@@ -125,6 +125,6 @@ class ResourceTeamClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceTeamDto](result.json(), False, True, result.status_code, None)

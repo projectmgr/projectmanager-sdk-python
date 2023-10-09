@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectchargecodedto import ProjectChargeCodeDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 import json
 
 class ProjectChargeCodeClient:
     """
     API methods related to ProjectChargeCode
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -44,6 +44,6 @@ class ProjectChargeCodeClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectChargeCodeDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectChargeCodeDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectChargeCodeDto]](result.json(), False, True, result.status_code, None)

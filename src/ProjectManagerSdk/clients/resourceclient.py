@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.resourcecreatedto import ResourceCreateDto
-from models.resourcedto import ResourceDto
-from models.resourceupdatedto import ResourceUpdateDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
+from ProjectManagerSdk.models.resourcedto import ResourceDto
+from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
 import json
 
 class ResourceClient:
     """
     API methods related to Resource
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -47,9 +47,9 @@ class ResourceClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
 
     def query_resources(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
         """
@@ -99,9 +99,9 @@ class ResourceClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ResourceDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ResourceDto]](result.json(), False, True, result.status_code, None)
 
     def update_resource(self, resourceId: str, body: ResourceUpdateDto) -> AstroResult[ResourceDto]:
         """
@@ -126,6 +126,6 @@ class ResourceClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)

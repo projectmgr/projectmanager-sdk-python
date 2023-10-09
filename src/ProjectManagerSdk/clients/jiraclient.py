@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.retunjiraprojectsdto import RetunJiraProjectsDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.retunjiraprojectsdto import RetunJiraProjectsDto
 import json
 
 class JiraClient:
     """
     API methods related to Jira
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -42,9 +42,9 @@ class JiraClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, RetunJiraProjectsDto(**json.loads(result.content)['data']))
+            return AstroResult[RetunJiraProjectsDto](None, True, False, result.status_code, RetunJiraProjectsDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[RetunJiraProjectsDto](result.json(), False, True, result.status_code, None)
 
     def retrieve_projects_from_jira(self, jiraProjectId: str) -> AstroResult[RetunJiraProjectsDto]:
         """
@@ -63,9 +63,9 @@ class JiraClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, RetunJiraProjectsDto(**json.loads(result.content)['data']))
+            return AstroResult[RetunJiraProjectsDto](None, True, False, result.status_code, RetunJiraProjectsDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[RetunJiraProjectsDto](result.json(), False, True, result.status_code, None)
 
     def retrieve_projects_from_jira(self) -> AstroResult[list[RetunJiraProjectsDto]]:
         """
@@ -85,6 +85,6 @@ class JiraClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(RetunJiraProjectsDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[RetunJiraProjectsDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[RetunJiraProjectsDto]](result.json(), False, True, result.status_code, None)

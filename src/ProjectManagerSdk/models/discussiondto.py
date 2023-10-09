@@ -12,7 +12,7 @@
 #
 
 
-from models.discussionemoji import DiscussionEmoji
+from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from dataclasses import dataclass
 
 @dataclass

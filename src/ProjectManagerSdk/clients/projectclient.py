@@ -11,18 +11,18 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectcreaterequestdto import ProjectCreateRequestDto
-from models.projectcreateresponsedto import ProjectCreateResponseDto
-from models.projectdto import ProjectDto
-from models.projectupdatedto import ProjectUpdateDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectcreaterequestdto import ProjectCreateRequestDto
+from ProjectManagerSdk.models.projectcreateresponsedto import ProjectCreateResponseDto
+from ProjectManagerSdk.models.projectdto import ProjectDto
+from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 import json
 
 class ProjectClient:
     """
     API methods related to Project
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -72,9 +72,9 @@ class ProjectClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectDto]](result.json(), False, True, result.status_code, None)
 
     def create_project(self, body: ProjectCreateRequestDto) -> AstroResult[ProjectCreateResponseDto]:
         """
@@ -94,9 +94,9 @@ class ProjectClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectCreateResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectCreateResponseDto](None, True, False, result.status_code, ProjectCreateResponseDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectCreateResponseDto](result.json(), False, True, result.status_code, None)
 
     def retrieve_project(self, projectId: str) -> AstroResult[ProjectDto]:
         """
@@ -116,9 +116,9 @@ class ProjectClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectDto](None, True, False, result.status_code, ProjectDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectDto](result.json(), False, True, result.status_code, None)
 
     def update_project(self, projectId: str, body: ProjectUpdateDto) -> AstroResult[object]:
         """
@@ -147,6 +147,6 @@ class ProjectClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

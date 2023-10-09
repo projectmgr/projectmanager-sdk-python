@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.authenticationstatusdto import AuthenticationStatusDto
-from models.directlinkdto import DirectLinkDto
-from models.integrationproviderdto import IntegrationProviderDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
+from ProjectManagerSdk.models.directlinkdto import DirectLinkDto
+from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderDto
 import json
 
 class IntegrationProviderClient:
     """
     API methods related to IntegrationProvider
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -46,9 +46,9 @@ class IntegrationProviderClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(IntegrationProviderDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[IntegrationProviderDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[IntegrationProviderDto]](result.json(), False, True, result.status_code, None)
 
     def activate_integration_provider(self, providerId: str) -> AstroResult[DirectLinkDto]:
         """
@@ -71,9 +71,9 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
+            return AstroResult[DirectLinkDto](None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DirectLinkDto](result.json(), False, True, result.status_code, None)
 
     def update_integration_provider(self, providerId: str, body: AuthenticationStatusDto) -> AstroResult[object]:
         """
@@ -91,9 +91,9 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)
 
     def deactivate_integration_provider(self, providerId: str) -> AstroResult[object]:
         """
@@ -108,9 +108,9 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)
 
     def create_user_integration_provider_connection(self, providerId: str) -> AstroResult[DirectLinkDto]:
         """
@@ -130,9 +130,9 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
+            return AstroResult[DirectLinkDto](None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DirectLinkDto](result.json(), False, True, result.status_code, None)
 
     def update_user_integration_provider_connection(self, providerId: str, body: AuthenticationStatusDto) -> AstroResult[object]:
         """
@@ -150,6 +150,6 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

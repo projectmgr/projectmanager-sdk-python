@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 import json
 
 class ProjectPriorityClient:
     """
     API methods related to ProjectPriority
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -48,6 +48,6 @@ class ProjectPriorityClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectPriorityDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectPriorityDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectPriorityDto]](result.json(), False, True, result.status_code, None)

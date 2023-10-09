@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createintegrationinstancedto import CreateIntegrationInstanceDto
-from models.integrationdto import IntegrationDto
-from models.newintegrationinstancedto import NewIntegrationInstanceDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createintegrationinstancedto import CreateIntegrationInstanceDto
+from ProjectManagerSdk.models.integrationdto import IntegrationDto
+from ProjectManagerSdk.models.newintegrationinstancedto import NewIntegrationInstanceDto
 import json
 
 class IntegrationClient:
     """
     API methods related to Integration
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -43,9 +43,9 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
+            return AstroResult[IntegrationDto](None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[IntegrationDto](result.json(), False, True, result.status_code, None)
 
     def enable_integration(self, integrationId: str) -> AstroResult[IntegrationDto]:
         """
@@ -64,9 +64,9 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
+            return AstroResult[IntegrationDto](None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[IntegrationDto](result.json(), False, True, result.status_code, None)
 
     def disable_integration(self, integrationId: str) -> AstroResult[object]:
         """
@@ -85,9 +85,9 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)
 
     def retrieve_all_integrations(self) -> AstroResult[list[IntegrationDto]]:
         """
@@ -107,9 +107,9 @@ class IntegrationClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(IntegrationDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[IntegrationDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[IntegrationDto]](result.json(), False, True, result.status_code, None)
 
     def add_integration_instance(self, integrationId: str, body: CreateIntegrationInstanceDto) -> AstroResult[NewIntegrationInstanceDto]:
         """
@@ -131,9 +131,9 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, NewIntegrationInstanceDto(**json.loads(result.content)['data']))
+            return AstroResult[NewIntegrationInstanceDto](None, True, False, result.status_code, NewIntegrationInstanceDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[NewIntegrationInstanceDto](result.json(), False, True, result.status_code, None)
 
     def remove_integration_instance(self, integrationInstanceId: str) -> AstroResult[object]:
         """
@@ -153,6 +153,6 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

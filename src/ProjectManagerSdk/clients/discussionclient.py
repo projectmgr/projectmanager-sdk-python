@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.discussioncreatedto import DiscussionCreateDto
-from models.discussioncreateresponsedto import DiscussionCreateResponseDto
-from models.discussiondto import DiscussionDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.discussioncreatedto import DiscussionCreateDto
+from ProjectManagerSdk.models.discussioncreateresponsedto import DiscussionCreateResponseDto
+from ProjectManagerSdk.models.discussiondto import DiscussionDto
 import json
 
 class DiscussionClient:
     """
     API methods related to Discussion
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -42,9 +42,9 @@ class DiscussionClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(DiscussionDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[DiscussionDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[DiscussionDto]](result.json(), False, True, result.status_code, None)
 
     def create_task_comments(self, taskId: str, body: DiscussionCreateDto) -> AstroResult[DiscussionCreateResponseDto]:
         """
@@ -68,6 +68,6 @@ class DiscussionClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DiscussionCreateResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[DiscussionCreateResponseDto](None, True, False, result.status_code, DiscussionCreateResponseDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DiscussionCreateResponseDto](result.json(), False, True, result.status_code, None)

@@ -12,7 +12,7 @@
 #
 
 
-from models.integrationdto import IntegrationDto
+from ProjectManagerSdk.models.integrationdto import IntegrationDto
 from dataclasses import dataclass
 
 @dataclass

@@ -11,16 +11,16 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.dashboardsettingcreatedto import DashboardSettingCreateDto
-from models.dashboardsettingdto import DashboardSettingDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
+from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
 import json
 
 class DashboardClient:
     """
     API methods related to Dashboard
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -38,9 +38,9 @@ class DashboardClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
+            return AstroResult[DashboardSettingDto](None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DashboardSettingDto](result.json(), False, True, result.status_code, None)
 
     def create_or_update_user_dashboard_settings(self, body: DashboardSettingCreateDto) -> AstroResult[DashboardSettingDto]:
         """
@@ -55,6 +55,6 @@ class DashboardClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
+            return AstroResult[DashboardSettingDto](None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DashboardSettingDto](result.json(), False, True, result.status_code, None)

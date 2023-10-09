@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.changesetgetresponsedto import ChangesetGetResponseDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
 import json
 
 class ChangesetClient:
     """
     API methods related to Changeset
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -50,9 +50,9 @@ class ChangesetClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangesetGetResponseDto](result.json(), False, True, result.status_code, None)
 
     def retrieve_completed_changeset(self, changeSetId: str) -> AstroResult[ChangesetGetResponseDto]:
         """
@@ -88,6 +88,6 @@ class ChangesetClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangesetGetResponseDto](result.json(), False, True, result.status_code, None)

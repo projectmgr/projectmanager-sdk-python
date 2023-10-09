@@ -11,17 +11,17 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.createresourceskilldto import CreateResourceSkillDto
-from models.resourceskilldto import ResourceSkillDto
-from models.updateresourceskilldto import UpdateResourceSkillDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
+from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
+from ProjectManagerSdk.models.updateresourceskilldto import UpdateResourceSkillDto
 import json
 
 class ResourceSkillClient:
     """
     API methods related to ResourceSkill
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -72,9 +72,9 @@ class ResourceSkillClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceSkillDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ResourceSkillDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ResourceSkillDto]](result.json(), False, True, result.status_code, None)
 
     def create_resource_skill(self, body: CreateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
         """
@@ -89,9 +89,9 @@ class ResourceSkillClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceSkillDto](None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceSkillDto](result.json(), False, True, result.status_code, None)
 
     def update_resource_skill(self, skillId: str, body: UpdateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
         """
@@ -108,9 +108,9 @@ class ResourceSkillClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceSkillDto](None, True, False, result.status_code, ResourceSkillDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceSkillDto](result.json(), False, True, result.status_code, None)
 
     def delete_resource_skill(self, resourceSkillId: str) -> AstroResult[object]:
         """
@@ -126,6 +126,6 @@ class ResourceSkillClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

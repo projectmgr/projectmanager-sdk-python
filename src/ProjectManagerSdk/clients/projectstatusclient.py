@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.projectstatusdto import ProjectStatusDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 import json
 
 class ProjectStatusClient:
     """
     API methods related to ProjectStatus
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -44,6 +44,6 @@ class ProjectStatusClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectStatusDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectStatusDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectStatusDto]](result.json(), False, True, result.status_code, None)

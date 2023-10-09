@@ -12,7 +12,7 @@
 #
 
 
-from models.reactgridlayoutdto import ReactGridLayoutDto
+from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from dataclasses import dataclass
 
 @dataclass

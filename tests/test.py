@@ -1,4 +1,5 @@
 import os
+import ProjectManagerSdk.projectmanagerclient
 
 def retrieve_api_key():
     API_KEY = os.environ.get('PM_API_KEY')
@@ -11,7 +12,7 @@ def retrieve_api_key():
 
 def create_client(apikey):
     env = 'production'
-    client = ProjectManagerSdk.ProjectManagerClient(env, 'EXAMPLE_PYTHON_APP')
+    client = ProjectManagerSdk.projectmanagerclient.ProjectManagerClient(env, 'EXAMPLE_PYTHON_APP')
     client.with_api_key(apikey)
     if not client:
         print("Problem creating client; either missing an API key or an environment.")

@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.workspaceuserinfodto import WorkSpaceUserInfoDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
 import json
 
 class MeClient:
     """
     API methods related to Me
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -42,6 +42,6 @@ class MeClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, WorkSpaceUserInfoDto(**json.loads(result.content)['data']))
+            return AstroResult[WorkSpaceUserInfoDto](None, True, False, result.status_code, WorkSpaceUserInfoDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[WorkSpaceUserInfoDto](result.json(), False, True, result.status_code, None)

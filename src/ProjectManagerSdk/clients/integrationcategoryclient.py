@@ -11,15 +11,15 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
-from models.astroresult import AstroResult
-from models.integrationcategorydto import IntegrationCategoryDto
+from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
 import json
 
 class IntegrationCategoryClient:
     """
     API methods related to IntegrationCategory
     """
-    from projectmanagerclient import ProjectManagerClient
+    from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
@@ -44,6 +44,6 @@ class IntegrationCategoryClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(IntegrationCategoryDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[IntegrationCategoryDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[IntegrationCategoryDto]](result.json(), False, True, result.status_code, None)

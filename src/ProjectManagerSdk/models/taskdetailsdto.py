@@ -12,11 +12,11 @@
 #
 
 
-from models.taskassigneedto import TaskAssigneeDto
-from models.taskprojectdto import TaskProjectDto
-from models.taskstatusdto import TaskStatusDto
-from models.tasktagdto import TaskTagDto
-from models.tasktododto import TaskTodoDto
+from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
+from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
+from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
+from ProjectManagerSdk.models.tasktagdto import TaskTagDto
+from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from dataclasses import dataclass
 
 @dataclass
