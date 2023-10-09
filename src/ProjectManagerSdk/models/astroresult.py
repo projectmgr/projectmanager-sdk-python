@@ -12,7 +12,7 @@
 #
 
 
-from models.astroerror import AstroError
+from ProjectManagerSdk.models.astroerror import AstroError
 from dataclasses import dataclass
 from typing import TypeVar, Generic
 
