@@ -46,9 +46,9 @@ class ProjectMembersClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectMemberDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectMemberDto]](result.json(), False, True, result.status_code, None)
 
     def retrieve_user_project_membership(self, projectId: str, userId: str) -> AstroResult[ProjectMemberDto]:
         """
@@ -65,9 +65,9 @@ class ProjectMembersClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
 
     def create_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
@@ -87,9 +87,9 @@ class ProjectMembersClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
 
     def update_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
@@ -108,9 +108,9 @@ class ProjectMembersClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
 
     def remove_user_project_membership(self, projectId: str, userId: str) -> AstroResult[object]:
         """
@@ -127,6 +127,6 @@ class ProjectMembersClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

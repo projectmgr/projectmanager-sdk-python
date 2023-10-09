@@ -38,9 +38,9 @@ class DashboardClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
+            return AstroResult[DashboardSettingDto](None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DashboardSettingDto](result.json(), False, True, result.status_code, None)
 
     def create_or_update_user_dashboard_settings(self, body: DashboardSettingCreateDto) -> AstroResult[DashboardSettingDto]:
         """
@@ -55,6 +55,6 @@ class DashboardClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
+            return AstroResult[DashboardSettingDto](None, True, False, result.status_code, DashboardSettingDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[DashboardSettingDto](result.json(), False, True, result.status_code, None)

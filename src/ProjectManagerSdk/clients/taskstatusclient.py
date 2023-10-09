@@ -49,9 +49,9 @@ class TaskStatusClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskStatusDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[TaskStatusDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[TaskStatusDto]](result.json(), False, True, result.status_code, None)
 
     def create_taskstatus(self, projectId: str, body: TaskStatusCreateDto) -> AstroResult[TaskStatusDto]:
         """
@@ -75,9 +75,9 @@ class TaskStatusClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[TaskStatusDto](None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[TaskStatusDto](result.json(), False, True, result.status_code, None)
 
     def update_taskstatus(self, projectId: str, body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
         """
@@ -101,9 +101,9 @@ class TaskStatusClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[TaskStatusDto](None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[TaskStatusDto](result.json(), False, True, result.status_code, None)
 
     def delete_taskstatus(self, projectId: str, taskStatusId: str) -> AstroResult[object]:
         """
@@ -125,6 +125,6 @@ class TaskStatusClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

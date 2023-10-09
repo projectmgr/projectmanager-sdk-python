@@ -55,9 +55,9 @@ class ApiKeyClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ApiKeyDto(**json.loads(result.content)['data']))
+            return AstroResult[ApiKeyDto](None, True, False, result.status_code, ApiKeyDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ApiKeyDto](result.json(), False, True, result.status_code, None)
 
     def list_api_keys(self) -> AstroResult[list[ApiKeyDto]]:
         """
@@ -89,9 +89,9 @@ class ApiKeyClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ApiKeyDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ApiKeyDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ApiKeyDto]](result.json(), False, True, result.status_code, None)
 
     def revoke_all_api_keys(self) -> AstroResult[object]:
         """
@@ -124,9 +124,9 @@ class ApiKeyClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)
 
     def revoke_api_key(self, id: str) -> AstroResult[object]:
         """
@@ -157,6 +157,6 @@ class ApiKeyClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

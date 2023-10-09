@@ -75,9 +75,9 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[TaskDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[TaskDto]](result.json(), False, True, result.status_code, None)
 
     def retrieve_task(self, taskId: str) -> AstroResult[TaskDetailsDto]:
         """
@@ -100,9 +100,9 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TaskDetailsDto(**json.loads(result.content)['data']))
+            return AstroResult[TaskDetailsDto](None, True, False, result.status_code, TaskDetailsDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[TaskDetailsDto](result.json(), False, True, result.status_code, None)
 
     def update_task(self, taskId: str, body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -136,9 +136,9 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
     def delete_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -163,9 +163,9 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
     def create_task(self, projectId: str, body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -188,9 +188,9 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
     def retrieve_task_priorities(self) -> AstroResult[list[TaskPriorityDto]]:
         """
@@ -216,9 +216,9 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskPriorityDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[TaskPriorityDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[TaskPriorityDto]](result.json(), False, True, result.status_code, None)
 
     def create_many_tasks(self, projectId: str, body: list[object]) -> AstroResult[list[ChangeSetStatusDto]]:
         """
@@ -245,6 +245,6 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ChangeSetStatusDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ChangeSetStatusDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ChangeSetStatusDto]](result.json(), False, True, result.status_code, None)

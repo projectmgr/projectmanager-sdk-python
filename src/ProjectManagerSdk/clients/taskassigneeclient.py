@@ -46,9 +46,9 @@ class TaskAssigneeClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
     def create_or_update_taskassignee(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -73,9 +73,9 @@ class TaskAssigneeClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
     def delete_task_assignees(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -97,6 +97,6 @@ class TaskAssigneeClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)

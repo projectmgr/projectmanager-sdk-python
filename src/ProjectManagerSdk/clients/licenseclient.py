@@ -45,9 +45,9 @@ class LicenseClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(LicenseDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[LicenseDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[LicenseDto]](result.json(), False, True, result.status_code, None)
 
     def add_license(self, bundleSku: str) -> AstroResult[list[LicenseDto]]:
         """
@@ -71,6 +71,6 @@ class LicenseClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(LicenseDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[LicenseDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[LicenseDto]](result.json(), False, True, result.status_code, None)

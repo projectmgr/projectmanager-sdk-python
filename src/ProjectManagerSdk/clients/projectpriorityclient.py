@@ -48,6 +48,6 @@ class ProjectPriorityClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectPriorityDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectPriorityDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectPriorityDto]](result.json(), False, True, result.status_code, None)

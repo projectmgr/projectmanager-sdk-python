@@ -43,6 +43,6 @@ class UserRoleClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(UserRoleDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[UserRoleDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[UserRoleDto]](result.json(), False, True, result.status_code, None)

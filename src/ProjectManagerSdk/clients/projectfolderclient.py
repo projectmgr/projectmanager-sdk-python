@@ -41,6 +41,6 @@ class ProjectFolderClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectFolderDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ProjectFolderDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectFolderDto]](result.json(), False, True, result.status_code, None)

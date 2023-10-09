@@ -70,9 +70,9 @@ class TagClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TagDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[TagDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[TagDto]](result.json(), False, True, result.status_code, None)
 
     def create_tag(self, body: TagCreateDto) -> AstroResult[TagDto]:
         """
@@ -91,9 +91,9 @@ class TagClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
+            return AstroResult[TagDto](None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[TagDto](result.json(), False, True, result.status_code, None)
 
     def update_tag(self, tagId: str, body: TagUpdateDto) -> AstroResult[TagDto]:
         """
@@ -114,6 +114,6 @@ class TagClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
+            return AstroResult[TagDto](None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[TagDto](result.json(), False, True, result.status_code, None)

@@ -47,9 +47,9 @@ class ResourceClient:
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
 
     def query_resources(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
         """
@@ -99,9 +99,9 @@ class ResourceClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceDto(**dict))
-            return AstroResult(None, True, False, result.status_code, data)
+            return AstroResult[list[ResourceDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ResourceDto]](result.json(), False, True, result.status_code, None)
 
     def update_resource(self, resourceId: str, body: ResourceUpdateDto) -> AstroResult[ResourceDto]:
         """
@@ -126,6 +126,6 @@ class ResourceClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult(None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult(result.json(), False, True, result.status_code, None)
+            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
