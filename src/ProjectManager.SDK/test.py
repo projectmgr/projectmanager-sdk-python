@@ -25,28 +25,22 @@ def main():
     API_KEY = retrieve_api_key()
     client = create_client(API_KEY)
     status_results = client.me.retrieve_me()
-    print(f"StatusResult: {status_results}")
     if not status_results.success or not status_results.data:
         print("Your API key is not valid.")
         print("Please set the environment variable PM_API_KEY and PM_ENV and try again.")
         exit()
     print(f"Logged in as {status_results.data.fullName} ({status_results.data.emailAddress})")
 
-    page_num = 0
-    count = 1
+    tasks = client.task.query_tasks(None, None, None, None, None, None)
 
-    while page_num < 5:
-        tasks = client.task.query_tasks(None, None, None, None, None, None)
+    if tasks.data == None or len(tasks.data) == 0:
+        print("No records found matching this query.")
+        exit()
 
-        if tasks.data == None or len(tasks.data) == 0:
-            print("No records found matching this query.")
-            break
-
-        for task in tasks.data:
-            print(f"Task {count}: {task.Id}")
-            count += 1
-
-        page_num += 1
+    count = 0
+    for task in tasks.data:
+        print(f"Task {count}: {task.shortId} {task.name}")
+        count += 1
 
 
 
