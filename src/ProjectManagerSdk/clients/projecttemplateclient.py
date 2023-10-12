@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
 import json
 
@@ -45,3 +46,25 @@ class ProjectTemplateClient:
             return AstroResult[list[ProjectTemplateDto]](None, True, False, result.status_code, data)
         else:
             return AstroResult[list[ProjectTemplateDto]](result.json(), False, True, result.status_code, None)
+
+    def retrieve_project_templates(self) -> AstroResult[list[ProjectTemplateCategoryDto]]:
+        """
+        Retrieves all ProjectTemplates defined in the system.
+
+        A ProjectTemplate is a definition of default project related
+        data (eg. Tasks) that can be applied to a new project when it is
+        created.
+
+        Parameters
+        ----------
+        """
+        path = "/api/data/projects/templates/categories"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(ProjectTemplateCategoryDto(**dict))
+            return AstroResult[list[ProjectTemplateCategoryDto]](None, True, False, result.status_code, data)
+        else:
+            return AstroResult[list[ProjectTemplateCategoryDto]](result.json(), False, True, result.status_code, None)

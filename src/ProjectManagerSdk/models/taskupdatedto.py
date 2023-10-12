@@ -111,6 +111,13 @@ class TaskUpdateDto:
     If set, this represents the actual tracked cost for this Task.
     """
 
+    theme: str | None = None
+    """
+    Color theme definition for this task. eg. Blue, Brown, DarkBlue,
+    DarkGrey, Gold, Green, Grey, LightBrown, LightGreen, LightGrey,
+    LightPurple, LightYellow, Magenta, Mauve, Navy, Orange, Purple, Red.
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -16,6 +16,7 @@ from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
+from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from dataclasses import dataclass
@@ -148,6 +149,16 @@ class ProjectDto:
     """
     True if this Project is a template that will be reused as a
     framework for future Projects.
+    """
+
+    favorite: bool | None = None
+    """
+    True if this Project is marked as favorite for current user
+    """
+
+    members: list[ProjectMemberDto] | None = None
+    """
+    The members of the project
     """
 
 

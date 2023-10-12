@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2023 ProjectManager.com, Inc.
-# @version    11.1.2053
+# @version    96.0.2102
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -50,7 +50,6 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.integrationclient import IntegrationClient
         from ProjectManagerSdk.clients.integrationcategoryclient import IntegrationCategoryClient
         from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
-        from ProjectManagerSdk.clients.jiraclient import JiraClient
         from ProjectManagerSdk.clients.licenseclient import LicenseClient
         from ProjectManagerSdk.clients.meclient import MeClient
         from ProjectManagerSdk.clients.projectclient import ProjectClient
@@ -85,7 +84,6 @@ class ProjectManagerClient:
         self.integration = IntegrationClient(self)
         self.integrationCategory = IntegrationCategoryClient(self)
         self.integrationProvider = IntegrationProviderClient(self)
-        self.jira = JiraClient(self)
         self.license = LicenseClient(self)
         self.me = MeClient(self)
         self.project = ProjectClient(self)
@@ -115,7 +113,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "11.1.2053"
+        self.sdkVersion = "96.0.2102"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

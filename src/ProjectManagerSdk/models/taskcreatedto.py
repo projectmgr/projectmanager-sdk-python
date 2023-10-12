@@ -23,13 +23,6 @@ class TaskCreateDto:
     have a dependency or a connection.
     """
 
-    id: str | None = None
-    """
-    The unique identifier of this Task. TODO - Are people allowed to set
-    this when creating a task? Doesn't that violate the principle of
-    GUIDs?
-    """
-
     name: str | None = None
     """
     The common name of this Task.
@@ -38,12 +31,6 @@ class TaskCreateDto:
     description: str | None = None
     """
     A description of the work to be performed in this Task.
-    """
-
-    parentTaskId: str | None = None
-    """
-    If this Task is the child of another Task, set this value to the
-    unique identifier of the parent Task.
     """
 
     percentComplete: int | None = None
@@ -104,6 +91,13 @@ class TaskCreateDto:
     actualCost: float | None = None
     """
     The actual cost of this Task to date, if known.
+    """
+
+    theme: str | None = None
+    """
+    Color theme definition for this task. eg. Blue, Brown, DarkBlue,
+    DarkGrey, Gold, Green, Grey, LightBrown, LightGreen, LightGrey,
+    LightPurple, LightYellow, Magenta, Mauve, Navy, Orange, Purple, Red.
     """
 
 

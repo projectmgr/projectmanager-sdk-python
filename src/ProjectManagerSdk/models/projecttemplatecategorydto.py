@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
 from dataclasses import dataclass
 
 @dataclass
@@ -33,6 +34,11 @@ class ProjectTemplateCategoryDto:
     order: int | None = None
     """
     The overall order of this ProjectTemplate Category
+    """
+
+    templates: list[ProjectTemplateDto] | None = None
+    """
+    A list of templates in this category
     """
 
 

@@ -25,6 +25,24 @@ class ProjectMembersClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
+    def retrieve_new_project_members(self) -> AstroResult[list[ProjectMemberDto]]:
+        """
+        Returns a list of membership options for new projects.
+
+        Parameters
+        ----------
+        """
+        path = "/api/data/projects/members"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(ProjectMemberDto(**dict))
+            return AstroResult[list[ProjectMemberDto]](None, True, False, result.status_code, data)
+        else:
+            return AstroResult[list[ProjectMemberDto]](result.json(), False, True, result.status_code, None)
+
     def retrieve_project_members(self, projectId: str, includeAllUsers: bool) -> AstroResult[list[ProjectMemberDto]]:
         """
         Returns a list of membership options for existing members.

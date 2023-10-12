@@ -12,8 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.projectcreaterequestdto import ProjectCreateRequestDto
-from ProjectManagerSdk.models.projectcreateresponsedto import ProjectCreateResponseDto
+from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 import json
@@ -76,7 +75,7 @@ class ProjectClient:
         else:
             return AstroResult[list[ProjectDto]](result.json(), False, True, result.status_code, None)
 
-    def create_project(self, body: ProjectCreateRequestDto) -> AstroResult[ProjectCreateResponseDto]:
+    def create_project(self, body: ProjectCreateDto) -> AstroResult[ProjectDto]:
         """
         Create a new project based on the details provided.
 
@@ -87,16 +86,16 @@ class ProjectClient:
 
         Parameters
         ----------
-        body : ProjectCreateRequestDto
+        body : ProjectCreateDto
             Information about the Project you wish to create
         """
         path = "/api/data/projects"
         queryParams = {}
         result = self.client.send_request("POST", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectCreateResponseDto](None, True, False, result.status_code, ProjectCreateResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectDto](None, True, False, result.status_code, ProjectDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult[ProjectCreateResponseDto](result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectDto](result.json(), False, True, result.status_code, None)
 
     def retrieve_project(self, projectId: str) -> AstroResult[ProjectDto]:
         """
