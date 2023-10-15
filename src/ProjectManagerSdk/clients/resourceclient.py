@@ -129,3 +129,28 @@ class ResourceClient:
             return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
         else:
             return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
+
+    def retrieve_resource(self, resourceId: str) -> AstroResult[ResourceDto]:
+        """
+        Retrieve the Resource matching the specified unique ID.
+
+        A Resource represents a person, material, or tool that is used
+        within your Projects. When you attach a Resources to more than
+        one Task, the software will schedule the usage of your Resource
+        so that it is not allocated to more than one Task at the same
+        time. The users in your Workspace are also considered Resources.
+        To invite a new User to your Workspace, create a new Resource
+        for that user.
+
+        Parameters
+        ----------
+        resourceId : str
+            The id of the Resource
+        """
+        path = f"/api/data/resources/{resourceId}"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)

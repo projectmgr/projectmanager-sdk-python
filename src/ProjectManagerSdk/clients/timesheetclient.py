@@ -14,7 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
-from ProjectManagerSdk.models.timesheetgetresponsedto import TimesheetGetResponseDto
+from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
 from ProjectManagerSdk.models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
 import json
@@ -45,7 +45,7 @@ class TimesheetClient:
         else:
             return AstroResult[TimesheetResponseDto](result.json(), False, True, result.status_code, None)
 
-    def query_timesheets(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TimesheetGetResponseDto]]:
+    def query_timesheets(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
         """
         Retrieve a list of TimeSheets that match an [OData formatted
         query](https://www.odata.org/).
@@ -86,10 +86,10 @@ class TimesheetClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(TimesheetGetResponseDto(**dict))
-            return AstroResult[list[TimesheetGetResponseDto]](None, True, False, result.status_code, data)
+                data.append(TimesheetDto(**dict))
+            return AstroResult[list[TimesheetDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TimesheetGetResponseDto]](result.json(), False, True, result.status_code, None)
+            return AstroResult[list[TimesheetDto]](result.json(), False, True, result.status_code, None)
 
     def delete_time_entry(self, timesheetId: str) -> AstroResult[object]:
         """

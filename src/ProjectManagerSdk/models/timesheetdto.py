@@ -13,11 +13,12 @@
 
 
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
+from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
 from dataclasses import dataclass
 
 @dataclass
-class TimesheetGetResponseDto:
+class TimesheetDto:
     """
     Created Time entry response data
     """
@@ -55,6 +56,11 @@ class TimesheetGetResponseDto:
     project: TimeSheetProjectDto | None = None
     """
     associated projects with timesheet
+    """
+
+    resource: TimesheetResourceDto | None = None
+    """
+    The resource associated with this timesheet entry
     """
 
 

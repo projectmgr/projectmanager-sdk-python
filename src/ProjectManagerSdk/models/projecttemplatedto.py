@@ -12,7 +12,6 @@
 #
 
 
-from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from dataclasses import dataclass
 
 @dataclass
@@ -67,11 +66,9 @@ class ProjectTemplateDto:
     Templates that have been created from existing Project definitions.
     """
 
-    categories: list[ProjectTemplateCategoryDto] | None = None
+    defaultView: str | None = None
     """
-    The ProjectTemplateCategories that this Project Template belongs to.
-    Custom ProjectTemplates do not belong to any
-    ProjectTemplateCategories.
+    The web default view of the template.
     """
 
 

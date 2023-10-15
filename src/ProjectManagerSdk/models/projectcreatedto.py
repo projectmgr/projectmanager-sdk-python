@@ -16,7 +16,7 @@ from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessD
 from dataclasses import dataclass
 
 @dataclass
-class ProjectCreateRequestDto:
+class ProjectCreateDto:
     """
     A Project is a collection of Tasks that contributes towards a goal.
     Within a Project, Tasks represent individual items of work that team
@@ -112,6 +112,18 @@ class ProjectCreateRequestDto:
 
     NOTE: This does not support custom templates - TemplateId has to be
     a reference to a static non-Custom template.
+    """
+
+    targetDate: str | None = None
+    """
+    The target planned completion date for this Project, or null if one
+    has not been selected. This value can be updated in the Project
+    Settings page or the Portfolio Project page within the application.
+    """
+
+    favorite: bool | None = None
+    """
+    True if this Project is marked as favorite for current user
     """
 
 

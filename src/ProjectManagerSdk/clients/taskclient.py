@@ -12,7 +12,6 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.bulktaskcreatedto import BulkTaskCreateDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto

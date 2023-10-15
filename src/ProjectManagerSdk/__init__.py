@@ -10,7 +10,6 @@ from ProjectManagerSdk.clients.homefileclient import HomeFileClient
 from ProjectManagerSdk.clients.integrationclient import IntegrationClient
 from ProjectManagerSdk.clients.integrationcategoryclient import IntegrationCategoryClient
 from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
-from ProjectManagerSdk.clients.jiraclient import JiraClient
 from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
 from ProjectManagerSdk.clients.projectclient import ProjectClient
@@ -43,7 +42,6 @@ from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
 from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
-from ProjectManagerSdk.models.bulktaskcreatedto import BulkTaskCreateDto
 from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.createintegrationinstancedto import CreateIntegrationInstanceDto
@@ -75,8 +73,7 @@ from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
 from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateAccessMemberDto
-from ProjectManagerSdk.models.projectcreaterequestdto import ProjectCreateRequestDto
-from ProjectManagerSdk.models.projectcreateresponsedto import ProjectCreateResponseDto
+from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
@@ -96,7 +93,6 @@ from ProjectManagerSdk.models.resourcedto import ResourceDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
-from ProjectManagerSdk.models.retunjiraprojectsdto import RetunJiraProjectsDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
@@ -115,8 +111,9 @@ from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
-from ProjectManagerSdk.models.timesheetgetresponsedto import TimesheetGetResponseDto
+from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
+from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
 from ProjectManagerSdk.models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
