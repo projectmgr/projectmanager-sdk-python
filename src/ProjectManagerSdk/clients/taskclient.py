@@ -247,3 +247,58 @@ class TaskClient:
             return AstroResult[list[ChangeSetStatusDto]](None, True, False, result.status_code, data)
         else:
             return AstroResult[list[ChangeSetStatusDto]](result.json(), False, True, result.status_code, None)
+
+    def add_parent_task(self, taskId: str, parentTaskId: str) -> AstroResult[ChangeSetStatusDto]:
+        """
+        Adds a task parent relationship
+
+        Parameters
+        ----------
+        taskId : str
+            The task that will become the child
+        parentTaskId : str
+            The parent task
+        """
+        path = f"/api/data/tasks/{taskId}/parent/{parentTaskId}"
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+
+    def update_parent_task(self, taskId: str, parentTaskId: str) -> AstroResult[ChangeSetStatusDto]:
+        """
+        Updates a task parent relationship
+
+        Parameters
+        ----------
+        taskId : str
+            The task that will become the child
+        parentTaskId : str
+            The parent task
+        """
+        path = f"/api/data/tasks/{taskId}/parent/{parentTaskId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+
+    def remove_parent_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
+        """
+        Removes a task parent relationship completely
+
+        Parameters
+        ----------
+        taskId : str
+            The child task
+        """
+        path = f"/api/data/tasks/{taskId}/parent"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)

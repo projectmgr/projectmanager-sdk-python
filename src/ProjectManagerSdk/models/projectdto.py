@@ -32,7 +32,9 @@ class ProjectDto:
 
     id: str | None = None
     """
-    The unique identifier of the Project.
+    The unique identifier of the Project. This value is set by the
+    system and cannot be set with a CreateProject or changed with an
+    UpdateProject call.
     """
 
     name: str | None = None
@@ -94,6 +96,32 @@ class ProjectDto:
     Settings page or the Portfolio Project page within the application.
     """
 
+    plannedStartDate: str | None = None
+    """
+    The planned start date for this Project. This is calculated based
+    off of the earliest task start date
+    """
+
+    plannedFinishDate: str | None = None
+    """
+    The planned start date for this Project. This is calculated based
+    off of the latest task finish date
+    """
+
+    actualStartDate: str | None = None
+    """
+    The actual start date for this Project. This is calculated based on
+    the earliest task actual start date, or null if no projects have
+    been started
+    """
+
+    actualFinishDate: str | None = None
+    """
+    The actual finish date for this Project. This is calculated based on
+    the latest task actual finish date, or null if no projects have been
+    finished
+    """
+
     priority: ProjectPriorityDto | None = None
     """
     The ProjectPriority level of this Project, if defined.
@@ -138,11 +166,15 @@ class ProjectDto:
     modifyDate: str | None = None
     """
     The timestamp in UTC when the Project was most recently modified.
+    This field is automatically determined by the system when this
+    Project is modified and cannot be directly changed by the user.
     """
 
     createDate: str | None = None
     """
-    The timestamp in UTC when the Project was created.
+    The timestamp in UTC when the Project was created. This field is
+    automatically determined by the system when this Project is created
+    and cannot be changed by the user.
     """
 
     isTemplate: bool | None = None

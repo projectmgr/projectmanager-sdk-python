@@ -14,6 +14,9 @@
 
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
+from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
+from ProjectManagerSdk.models.tasktagdto import TaskTagDto
+from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from dataclasses import dataclass
 
 @dataclass
@@ -35,6 +38,11 @@ class TaskDto:
     The Project to which this Task belongs.
     """
 
+    tags: list[TaskTagDto] | None = None
+    """
+    The TaskTags that apply to this Task.
+    """
+
     projectId: str | None = None
     """
     The unique identifier of the Project to which this Task belongs.
@@ -43,6 +51,11 @@ class TaskDto:
     assignees: list[TaskAssigneeDto] | None = None
     """
     The list of assignees who are to work on this Task, if any.
+    """
+
+    todos: list[TaskTodoDto] | None = None
+    """
+    A list of TaskTodo items, which are sub-tasks within this Task.
     """
 
     shortId: str | None = None
@@ -59,6 +72,11 @@ class TaskDto:
     description: str | None = None
     """
     A description of the work to be performed in this Task.
+    """
+
+    status: TaskStatusDto | None = None
+    """
+    The TaskStatus assigned to this Task.
     """
 
     plannedStartDate: str | None = None
@@ -171,6 +189,16 @@ class TaskDto:
     plannedCost: float | None = None
     """
     The planned cost for this Task. Cannot be negative.
+    """
+
+    plannedDuration: int | None = None
+    """
+    The planned duration (in minutes) for this Task.
+    """
+
+    plannedEffort: int | None = None
+    """
+    The planned effort (in minutes) for this Task.
     """
 
 
