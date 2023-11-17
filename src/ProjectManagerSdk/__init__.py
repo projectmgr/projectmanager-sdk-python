@@ -63,15 +63,6 @@ from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
 from ProjectManagerSdk.models.gettaskfieldsresponsedto import GetTaskFieldsResponseDto
 from ProjectManagerSdk.models.iddto import IdDto
-from ProjectManagerSdk.models.iedmentitycontainer import IEdmEntityContainer
-from ProjectManagerSdk.models.iedmentitycontainerelement import IEdmEntityContainerElement
-from ProjectManagerSdk.models.iedmexpression import IEdmExpression
-from ProjectManagerSdk.models.iedmmodel import IEdmModel
-from ProjectManagerSdk.models.iedmschemaelement import IEdmSchemaElement
-from ProjectManagerSdk.models.iedmterm import IEdmTerm
-from ProjectManagerSdk.models.iedmtype import IEdmType
-from ProjectManagerSdk.models.iedmtypereference import IEdmTypeReference
-from ProjectManagerSdk.models.iedmvocabularyannotation import IEdmVocabularyAnnotation
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
