@@ -24,7 +24,7 @@ class TaskFileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_task_file(self, taskId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_task_file(self, taskId: str, xintegrationname: , filename: str) -> AstroResult[FileDto]:
         """
         Uploads a file to a task.
 
@@ -43,6 +43,9 @@ class TaskFileClient:
         ----------
         taskId : str
             The reference to the task
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         filename : str
             The full path of a file to upload to the API
         """

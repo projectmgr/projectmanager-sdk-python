@@ -24,7 +24,7 @@ class UserRoleClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_userroles(self) -> AstroResult[list[UserRoleDto]]:
+    def retrieve_userroles(self, xintegrationname: ) -> AstroResult[list[UserRoleDto]]:
         """
         Retrieves the list of UserRoles defined within this Workspace.
 
@@ -35,6 +35,9 @@ class UserRoleClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = "/api/data/users/roles"
         queryParams = {}

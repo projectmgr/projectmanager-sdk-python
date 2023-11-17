@@ -48,14 +48,19 @@ class TimesheetDto:
     Total Hours
     """
 
+    modifiedDate: str | None = None
+    """
+    Date and time (in UTC) that this timesheet entry was last modified.
+    """
+
     task: TimesheetTaskDto | None = None
     """
-    associated tasks with time sheet
+    The task associated with this timesheet entry
     """
 
     project: TimeSheetProjectDto | None = None
     """
-    associated projects with timesheet
+    The project associated with this timesheet entry
     """
 
     resource: TimesheetResourceDto | None = None

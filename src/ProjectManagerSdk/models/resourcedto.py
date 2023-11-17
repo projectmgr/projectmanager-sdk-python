@@ -47,7 +47,12 @@ class ResourceDto:
 
     email: str | None = None
     """
-    The email address of this Resource.
+    If this Resource is a person who can log on to ProjectManager.com,
+    this value should be the email address of the person. If this
+    Resource is not a person, but you wish to receive email alerts for
+    usage of this Resource, you can also add an email address here and
+    notifications will be sent when this Resource is used. Otherwise
+    this value should be `null`.
     """
 
     hourlyRate: float | None = None

@@ -39,6 +39,11 @@ class CreateProjectFieldDto:
     selected
     """
 
+    shortId: str | None = None
+    """
+    The short Id of this field - human readable identity
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

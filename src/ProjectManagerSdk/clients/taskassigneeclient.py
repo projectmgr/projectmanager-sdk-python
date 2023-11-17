@@ -26,7 +26,7 @@ class TaskAssigneeClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def replace_task_assignees(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def replace_task_assignees(self, taskId: str, xintegrationname: , body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
         Replace all TaskAssignees on a Task with new TaskAssignees.
 
@@ -39,6 +39,9 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task whose TaskAssignees will
             be replaced
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : list[object]
             The new list of TaskAssignees for this Task
         """
@@ -50,7 +53,7 @@ class TaskAssigneeClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def create_or_update_taskassignee(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def create_or_update_taskassignee(self, taskId: str, xintegrationname: , body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
         Adds or updates a TaskAssignee to a Task. If the TaskAssignee is
         already assigned to the Task, update their allocation. If the
@@ -66,6 +69,9 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task to add or update an
             assignment
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : list[object]
             List of Assignee data
         """
@@ -77,7 +83,7 @@ class TaskAssigneeClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def delete_task_assignees(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def delete_task_assignees(self, taskId: str, xintegrationname: , body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
         Remove one or more TaskAssignees from a Task.
 
@@ -90,6 +96,9 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task whose TaskAssignee will be
             removed
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : list[object]
             List of TaskAssignee records to remove
         """

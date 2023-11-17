@@ -24,12 +24,12 @@ class ProjectPriorityClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_priorities(self) -> AstroResult[list[ProjectPriorityDto]]:
+    def retrieve_project_priorities(self, xintegrationname: ) -> AstroResult[list[ProjectPriorityDto]]:
         """
         Retrieves all ProjectPriorities defined within your Workspace.
 
         A ProjectPriority is a named priority level used by your
-        business to determine how to decide which Tasks are the most
+        business to determine how to decide which Projects are the most
         important. You can name your ProjectPriority levels anything you
         like and you can reorganize the order of the ProjectPriority
         levels at any time.
@@ -40,6 +40,9 @@ class ProjectPriorityClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = "/api/data/projects/priorities"
         queryParams = {}

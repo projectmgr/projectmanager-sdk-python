@@ -12,21 +12,15 @@
 #
 
 
+from ProjectManagerSdk.models.iedmentitycontainer import IEdmEntityContainer
 from dataclasses import dataclass
 
 @dataclass
-class NewIntegrationInstanceDto:
-    """
-    The Integrations API is intended for use by ProjectManager and its
-    business development partners. Please contact ProjectManager's sales
-    team to request use of this API.
-    """
+class IEdmEntityContainerElement:
 
-    id: str | None = None
-    """
-    The unique identifier of the newly created IntegrationInstance.
-    """
-
+    containerElementKind: str | None = None
+    container: IEdmEntityContainer | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

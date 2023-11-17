@@ -24,7 +24,7 @@ class IntegrationCategoryClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_provider_categories(self) -> AstroResult[list[IntegrationCategoryDto]]:
+    def retrieve_provider_categories(self, xintegrationname: ) -> AstroResult[list[IntegrationCategoryDto]]:
         """
         Retrieves the list of available IntegrationProvider categories.
 
@@ -36,6 +36,9 @@ class IntegrationCategoryClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = "/api/data/integrations/categories"
         queryParams = {}

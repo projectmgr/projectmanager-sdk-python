@@ -24,7 +24,7 @@ class FileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def download_file(self, documentId: str, type: str) -> AstroResult[object]:
+    def download_file(self, documentId: str, type: str, xintegrationname: ) -> AstroResult[object]:
         """
         Downloads the contents of a file that was previously uploaded to
         ProjectManager.com.
@@ -47,6 +47,9 @@ class FileClient:
         type : str
             If you specify a type of `html`, processes the file using
             text encoding, otherwise binary
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/files/{documentId}/download"
         queryParams = {}
@@ -58,7 +61,7 @@ class FileClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
+    def update_file(self, fileId: str, xintegrationname: , body: UpdateRequestDto) -> AstroResult[object]:
         """
         Updates information about a File uploaded to your Workspace.
 
@@ -77,6 +80,9 @@ class FileClient:
         ----------
         fileId : str
             The unique identifier of the File to update
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : UpdateRequestDto
             Information to change about the File and its location
         """

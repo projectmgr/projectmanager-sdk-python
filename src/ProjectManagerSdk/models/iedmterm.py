@@ -12,21 +12,18 @@
 #
 
 
+from ProjectManagerSdk.models.iedmtypereference import IEdmTypeReference
 from dataclasses import dataclass
 
 @dataclass
-class CreateIntegrationInstanceDto:
-    """
-    The Integrations API is intended for use by ProjectManager and its
-    business development partners. Please contact ProjectManager's sales
-    team to request use of this API.
-    """
+class IEdmTerm:
 
-    config: object | None = None
-    """
-    Extra metadata required by this Integration Instance.
-    """
-
+    type: IEdmTypeReference | None = None
+    appliesTo: str | None = None
+    defaultValue: str | None = None
+    schemaElementKind: str | None = None
+    namespace: str | None = None
+    name: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

@@ -25,7 +25,7 @@ class DashboardClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_dashboard_user_settings(self, type: str) -> AstroResult[DashboardSettingDto]:
+    def retrieve_dashboard_user_settings(self, type: str, xintegrationname: ) -> AstroResult[DashboardSettingDto]:
         """
         Returns user dashboard settings
 
@@ -33,6 +33,9 @@ class DashboardClient:
         ----------
         type : str
             The dashboard type that is not custom
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/dashboards/settings/{type}"
         queryParams = {}
@@ -42,12 +45,15 @@ class DashboardClient:
         else:
             return AstroResult[DashboardSettingDto](result.json(), False, True, result.status_code, None)
 
-    def create_or_update_user_dashboard_settings(self, body: DashboardSettingCreateDto) -> AstroResult[DashboardSettingDto]:
+    def create_or_update_user_dashboard_settings(self, xintegrationname: , body: DashboardSettingCreateDto) -> AstroResult[DashboardSettingDto]:
         """
         Create or Update User Dashboard Settings
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : DashboardSettingCreateDto
             User dashboard settings object
         """

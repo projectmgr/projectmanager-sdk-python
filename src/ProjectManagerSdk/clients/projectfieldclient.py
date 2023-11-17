@@ -16,6 +16,7 @@ from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
 from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
 from ProjectManagerSdk.models.deleteprojectfielddto import DeleteProjectFieldDto
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
+from ProjectManagerSdk.models.projectfieldsvalueresponsedto import ProjectFieldsValueResponseDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
 import json
 
@@ -28,7 +29,7 @@ class ProjectFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_fields(self) -> AstroResult[list[GetProjectFieldsResponseDto]]:
+    def retrieve_project_fields(self, xintegrationname: ) -> AstroResult[list[GetProjectFieldsResponseDto]]:
         """
         Retrieves all ProjectFields defined within your Workspace.
 
@@ -40,6 +41,9 @@ class ProjectFieldClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = "/api/data/projects/fields"
         queryParams = {}
@@ -52,7 +56,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[list[GetProjectFieldsResponseDto]](result.json(), False, True, result.status_code, None)
 
-    def create_project_field(self, body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
+    def create_project_field(self, xintegrationname: , body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
         """
         Creates a new ProjectField within your Workspace.
 
@@ -64,6 +68,9 @@ class ProjectFieldClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : CreateProjectFieldDto
             Information about the ProjectField to create
         """
@@ -75,7 +82,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[CreateProjectFieldResponseDto](result.json(), False, True, result.status_code, None)
 
-    def delete_project_field(self, body: DeleteProjectFieldDto) -> AstroResult[object]:
+    def delete_project_field(self, xintegrationname: , body: DeleteProjectFieldDto) -> AstroResult[object]:
         """
         Deletes an existing ProjectField within your Workspace.
 
@@ -87,6 +94,9 @@ class ProjectFieldClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : DeleteProjectFieldDto
             The identity of the ProjectField to delete
         """
@@ -98,7 +108,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def update_project_field(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
+    def update_project_field(self, projectId: str, fieldId: str, xintegrationname: , body: UpdateProjectFieldValueDto) -> AstroResult[object]:
         """
         Updates an existing ProjectField with new information.
 
@@ -115,6 +125,9 @@ class ProjectFieldClient:
             ProjectField
         fieldId : str
             The unique identifier of this ProjectField
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : UpdateProjectFieldValueDto
             The new information for this ProjectField
         """
@@ -125,3 +138,52 @@ class ProjectFieldClient:
             return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
+
+    def retrieve_projectfield_value(self, projectId: str, fieldId: str, xintegrationname: ) -> AstroResult[ProjectFieldsValueResponseDto]:
+        """
+        Retrieves the current ProjectField value for a particular
+        Project and ProjectField.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project of the value to
+            retrieve
+        fieldId : str
+            The unique identifier of the ProjectField of the value to
+            retrieve
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
+        """
+        path = f"/api/data/projects/{projectId}/fields/{fieldId}"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[ProjectFieldsValueResponseDto](None, True, False, result.status_code, ProjectFieldsValueResponseDto(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[ProjectFieldsValueResponseDto](result.json(), False, True, result.status_code, None)
+
+    def retrieve_all_projectfield_values(self, projectId: str, xintegrationname: ) -> AstroResult[list[ProjectFieldsValueResponseDto]]:
+        """
+        Retrieves all ProjectField values for a particular Project.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project for which we want
+            ProjectField values
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
+        """
+        path = f"/api/data/projects/{projectId}/fields"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(ProjectFieldsValueResponseDto(**dict))
+            return AstroResult[list[ProjectFieldsValueResponseDto]](None, True, False, result.status_code, data)
+        else:
+            return AstroResult[list[ProjectFieldsValueResponseDto]](result.json(), False, True, result.status_code, None)

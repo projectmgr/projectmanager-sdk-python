@@ -24,10 +24,10 @@ class ProjectChargeCodeClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_charge_codes(self) -> AstroResult[list[ProjectChargeCodeDto]]:
+    def retrieve_charge_codes(self, xintegrationname: ) -> AstroResult[list[ProjectChargeCodeDto]]:
         """
         Retrieve all defined ChargeCodes that can be used when creating
-        Tasks.
+        Projects.
 
         A ChargeCode is a code used to identify costs within your
         Projects. Each ChargeCode has a name and a unique identifier.
@@ -36,6 +36,9 @@ class ProjectChargeCodeClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = "/api/data/projects/chargecodes"
         queryParams = {}

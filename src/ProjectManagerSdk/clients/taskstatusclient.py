@@ -26,7 +26,7 @@ class TaskStatusClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_statuses(self, projectId: str) -> AstroResult[list[TaskStatusDto]]:
+    def retrieve_task_statuses(self, projectId: str, xintegrationname: ) -> AstroResult[list[TaskStatusDto]]:
         """
         Retrieves the list of TaskStatus levels for a specific Project
         within your Workspace.
@@ -41,6 +41,9 @@ class TaskStatusClient:
         projectId : str
             The unique identifier of the Project to retrieve
             TaskStatuses
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
         queryParams = {}
@@ -53,7 +56,7 @@ class TaskStatusClient:
         else:
             return AstroResult[list[TaskStatusDto]](result.json(), False, True, result.status_code, None)
 
-    def create_taskstatus(self, projectId: str, body: TaskStatusCreateDto) -> AstroResult[TaskStatusDto]:
+    def create_taskstatus(self, projectId: str, xintegrationname: , body: TaskStatusCreateDto) -> AstroResult[TaskStatusDto]:
         """
         Creates a new TaskStatus level for a specific Project within
         your Workspace.
@@ -67,6 +70,9 @@ class TaskStatusClient:
         ----------
         projectId : str
             The unique identifier of the Project for the new TaskStatus
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : TaskStatusCreateDto
             Information about the new TaskStatus level to create within
             this Project
@@ -79,7 +85,7 @@ class TaskStatusClient:
         else:
             return AstroResult[TaskStatusDto](result.json(), False, True, result.status_code, None)
 
-    def update_taskstatus(self, projectId: str, body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
+    def update_taskstatus(self, projectId: str, xintegrationname: , body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
         """
         Updates an existing TaskStatus level for a specific Project
         within your Workspace.
@@ -93,6 +99,9 @@ class TaskStatusClient:
         ----------
         projectId : str
             The unique identifier of the Project for the new TaskStatus
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : TaskStatusUpdateDto
             Information about the existing TaskStatus level to update
             within this Project
@@ -105,7 +114,7 @@ class TaskStatusClient:
         else:
             return AstroResult[TaskStatusDto](result.json(), False, True, result.status_code, None)
 
-    def delete_taskstatus(self, projectId: str, taskStatusId: str) -> AstroResult[object]:
+    def delete_taskstatus(self, projectId: str, taskStatusId: str, xintegrationname: ) -> AstroResult[object]:
         """
         The endpoint is used to delete a TaskStatus.
 
@@ -120,6 +129,9 @@ class TaskStatusClient:
             level to delete
         taskStatusId : str
             The Id of the TaskStatus level to be removed.
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}"
         queryParams = {}

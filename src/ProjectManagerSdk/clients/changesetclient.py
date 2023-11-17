@@ -24,7 +24,7 @@ class ChangesetClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_changeset(self, changeSetId: str) -> AstroResult[ChangesetGetResponseDto]:
+    def retrieve_changeset(self, changeSetId: str, xintegrationname: ) -> AstroResult[ChangesetGetResponseDto]:
         """
         Retrieve a Changeset by its unique ID.
 
@@ -45,6 +45,9 @@ class ChangesetClient:
         ----------
         changeSetId : str
             The unique ID number of the Changeset to retrieve
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/changesets/{changeSetId}"
         queryParams = {}
@@ -54,7 +57,7 @@ class ChangesetClient:
         else:
             return AstroResult[ChangesetGetResponseDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_completed_changeset(self, changeSetId: str) -> AstroResult[ChangesetGetResponseDto]:
+    def retrieve_completed_changeset(self, changeSetId: str, xintegrationname: ) -> AstroResult[ChangesetGetResponseDto]:
         """
         Retrieve a Changeset by its unique ID. This endpoint waits for
         the Changeset to complete its processing prior to returning a
@@ -83,6 +86,9 @@ class ChangesetClient:
         ----------
         changeSetId : str
             The unique ID number of the Changeset to retrieve
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/changesets/{changeSetId}/poll"
         queryParams = {}

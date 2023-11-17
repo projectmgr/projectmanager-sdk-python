@@ -24,9 +24,10 @@ class ProjectFileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_project_file(self, projectId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_project_file(self, projectId: str, xintegrationname: , filename: str) -> AstroResult[FileDto]:
         """
-        Uploads a file to a project folder.
+        Uploads a file to the All Files folder on the Files page within
+        the project that you specify.
 
         ProjectManager allows you to store Files connected to other
         elements of your Workspace such as a Project, a Task, or Home.
@@ -43,6 +44,9 @@ class ProjectFileClient:
         ----------
         projectId : str
             The reference to the project
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         filename : str
             The full path of a file to upload to the API
         """
@@ -54,14 +58,18 @@ class ProjectFileClient:
         else:
             return AstroResult[FileDto](result.json(), False, True, result.status_code, None)
 
-    def upload_project_file_to_folder(self, projectId: str, folderId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_project_file_to_folder(self, projectId: str, folderId: str, xintegrationname: , filename: str) -> AstroResult[FileDto]:
         """
-        Uploads a file to a project folder.
+        Uploads a file to a specific folder on the Files page within the
+        project that you specify.
 
         ProjectManager allows you to store Files connected to other
         elements of your Workspace such as a Project, a Task, or Home.
         Files are maintained separately based on the location where the
         file was stored.
+
+        You can organize your files in the Home Files and Project Files
+        pages by adding folders.
 
         When you upload a File, please allow a few moments for the File
         to be processed and verified. ProjectManager may reject File
@@ -75,6 +83,9 @@ class ProjectFileClient:
             The reference to the project
         folderId : str
             The reference to the sub folder to put the file into
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         filename : str
             The full path of a file to upload to the API
         """

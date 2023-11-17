@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
 from dataclasses import dataclass
 
@@ -71,6 +72,11 @@ class IntegrationProviderDto:
     integrations: list[IntegrationDto] | None = None
     """
     The list of available Integrations for this Provider.
+    """
+
+    authSetup: IntegrationAuthSetupDto | None = None
+    """
+    The list of available AuthSetup for this Provider.
     """
 
 

@@ -26,7 +26,7 @@ class ProjectClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_projects(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ProjectDto]]:
+    def query_projects(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ProjectDto]]:
         """
         Retrieve a list of Projects that match an [OData formatted
         query](https://www.odata.org/).
@@ -38,6 +38,9 @@ class ProjectClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -75,7 +78,7 @@ class ProjectClient:
         else:
             return AstroResult[list[ProjectDto]](result.json(), False, True, result.status_code, None)
 
-    def create_project(self, body: ProjectCreateDto) -> AstroResult[ProjectDto]:
+    def create_project(self, xintegrationname: , body: ProjectCreateDto) -> AstroResult[ProjectDto]:
         """
         Create a new project based on the details provided.
 
@@ -86,6 +89,9 @@ class ProjectClient:
 
         Parameters
         ----------
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : ProjectCreateDto
             Information about the Project you wish to create
         """
@@ -97,7 +103,7 @@ class ProjectClient:
         else:
             return AstroResult[ProjectDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_project(self, projectId: str) -> AstroResult[ProjectDto]:
+    def retrieve_project(self, projectId: str, xintegrationname: ) -> AstroResult[ProjectDto]:
         """
         Retrieves a project based on its unique identifier.
 
@@ -110,6 +116,9 @@ class ProjectClient:
         ----------
         projectId : str
             The unique identifier of the Project to retrieve.
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         """
         path = f"/api/data/projects/{projectId}"
         queryParams = {}
@@ -119,7 +128,7 @@ class ProjectClient:
         else:
             return AstroResult[ProjectDto](result.json(), False, True, result.status_code, None)
 
-    def update_project(self, projectId: str, body: ProjectUpdateDto) -> AstroResult[object]:
+    def update_project(self, projectId: str, xintegrationname: , body: ProjectUpdateDto) -> AstroResult[object]:
         """
         Update an existing Project and replace the values of fields
         specified.
@@ -138,6 +147,9 @@ class ProjectClient:
         ----------
         projectId : str
             The unique identifier of the Project to update
+        x-integration-name : 
+            The name of the calling system passed along as a header
+            parameter
         body : ProjectUpdateDto
             All non-null fields in this object will replace previous
             data within the Project
