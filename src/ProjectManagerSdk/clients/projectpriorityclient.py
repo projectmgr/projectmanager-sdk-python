@@ -24,7 +24,7 @@ class ProjectPriorityClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_priorities(self, xintegrationname: ) -> AstroResult[list[ProjectPriorityDto]]:
+    def retrieve_project_priorities(self) -> AstroResult[list[ProjectPriorityDto]]:
         """
         Retrieves all ProjectPriorities defined within your Workspace.
 
@@ -40,9 +40,6 @@ class ProjectPriorityClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/projects/priorities"
         queryParams = {}

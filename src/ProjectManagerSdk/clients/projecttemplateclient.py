@@ -25,7 +25,7 @@ class ProjectTemplateClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_templates(self, xintegrationname: ) -> AstroResult[list[ProjectTemplateDto]]:
+    def retrieve_project_templates(self) -> AstroResult[list[ProjectTemplateDto]]:
         """
         Retrieves all ProjectTemplates defined in the system.
 
@@ -36,9 +36,6 @@ class ProjectTemplateClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/projects/templates"
         queryParams = {}
@@ -51,7 +48,7 @@ class ProjectTemplateClient:
         else:
             return AstroResult[list[ProjectTemplateDto]](result.json(), False, True, result.status_code, None)
 
-    def retrieve_template_categories(self, xintegrationname: ) -> AstroResult[list[ProjectTemplateCategoryDto]]:
+    def retrieve_template_categories(self) -> AstroResult[list[ProjectTemplateCategoryDto]]:
         """
         Retrieves all ProjectTemplate Categories defined in the system.
 
@@ -62,9 +59,6 @@ class ProjectTemplateClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/projects/templates/categories"
         queryParams = {}

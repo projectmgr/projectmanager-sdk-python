@@ -28,7 +28,7 @@ class IntegrationProviderClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def list_providers(self, xintegrationname: ) -> AstroResult[list[IntegrationProviderDto]]:
+    def list_providers(self) -> AstroResult[list[IntegrationProviderDto]]:
         """
         List all available IntegrationProviders that can be activated.
 
@@ -40,9 +40,6 @@ class IntegrationProviderClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/integrations/providers"
         queryParams = {}
@@ -55,7 +52,7 @@ class IntegrationProviderClient:
         else:
             return AstroResult[list[IntegrationProviderDto]](result.json(), False, True, result.status_code, None)
 
-    def activate_integration_provider(self, providerId: str, xintegrationname: ) -> AstroResult[ConnectionSchemaDto]:
+    def activate_integration_provider(self, providerId: str) -> AstroResult[ConnectionSchemaDto]:
         """
         Activates an Integration Provider and retrieves authentication
         information about a specific IntegrationProvider.
@@ -71,9 +68,6 @@ class IntegrationProviderClient:
         providerId : str
             The unique identifier of the IntegrationProvider for which
             you are requesting authentication information
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/integrations/providers/{providerId}"
         queryParams = {}
@@ -83,7 +77,7 @@ class IntegrationProviderClient:
         else:
             return AstroResult[ConnectionSchemaDto](result.json(), False, True, result.status_code, None)
 
-    def update_integration_provider(self, providerId: str, xintegrationname: , body: AuthenticationDto) -> AstroResult[object]:
+    def update_integration_provider(self, providerId: str, body: AuthenticationDto) -> AstroResult[object]:
         """
         Allows you to update the auth status of the provider specific
         connection.
@@ -92,9 +86,6 @@ class IntegrationProviderClient:
         ----------
         providerId : str
             The identifier to the provider
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : AuthenticationDto
             Specify the auth status
         """
@@ -106,7 +97,7 @@ class IntegrationProviderClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def deactivate_integration_provider(self, providerId: str, xintegrationname: ) -> AstroResult[object]:
+    def deactivate_integration_provider(self, providerId: str) -> AstroResult[object]:
         """
         Allows you to deactivate an integration provider
 
@@ -114,9 +105,6 @@ class IntegrationProviderClient:
         ----------
         providerId : str
             The identifier to the provider
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/integrations/providers/{providerId}"
         queryParams = {}
@@ -126,7 +114,7 @@ class IntegrationProviderClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def create_user_integration_provider_connection(self, providerId: str, xintegrationname: ) -> AstroResult[DirectLinkDto]:
+    def create_user_integration_provider_connection(self, providerId: str) -> AstroResult[DirectLinkDto]:
         """
         Retrieves user authentication information about a specific
         IntegrationProvider.
@@ -139,9 +127,6 @@ class IntegrationProviderClient:
         providerId : str
             The unique identifier of the IntegrationProvider for which
             you are requesting authentication information
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/integrations/providers/{providerId}/user-connection"
         queryParams = {}
@@ -151,7 +136,7 @@ class IntegrationProviderClient:
         else:
             return AstroResult[DirectLinkDto](result.json(), False, True, result.status_code, None)
 
-    def update_user_integration_provider_connection(self, providerId: str, xintegrationname: , body: AuthenticationStatusDto) -> AstroResult[object]:
+    def update_user_integration_provider_connection(self, providerId: str, body: AuthenticationStatusDto) -> AstroResult[object]:
         """
         Allows you to update the auth status of the provider specific
         user connection.
@@ -160,9 +145,6 @@ class IntegrationProviderClient:
         ----------
         providerId : str
             The identifier to the provider
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : AuthenticationStatusDto
             Specify the auth status
         """

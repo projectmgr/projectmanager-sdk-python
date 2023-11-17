@@ -28,7 +28,7 @@ class TaskFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_fields(self, projectId: str, xintegrationname: ) -> AstroResult[list[GetTaskFieldsResponseDto]]:
+    def retrieve_task_fields(self, projectId: str) -> AstroResult[list[GetTaskFieldsResponseDto]]:
         """
         Retrieves all TaskFields defined for a specific Project within
         your Workspace.
@@ -44,9 +44,6 @@ class TaskFieldClient:
         ----------
         projectId : str
             The unique identifier of the Project to retrieve TaskFields
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/tasks/fields"
         queryParams = {}
@@ -59,7 +56,7 @@ class TaskFieldClient:
         else:
             return AstroResult[list[GetTaskFieldsResponseDto]](result.json(), False, True, result.status_code, None)
 
-    def create_task_field(self, projectId: str, xintegrationname: , body: CreateTaskFieldRequestDto) -> AstroResult[ChangeSetStatusDto]:
+    def create_task_field(self, projectId: str, body: CreateTaskFieldRequestDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Creates a new TaskFields for a specific Project within your
         Workspace.
@@ -76,9 +73,6 @@ class TaskFieldClient:
         projectId : str
             The unique identifier of the Project within which to create
             this TaskField
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : CreateTaskFieldRequestDto
             Information about the TaskField to create
         """
@@ -90,7 +84,7 @@ class TaskFieldClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def delete_task_field(self, projectId: str, fieldId: str, xintegrationname: ) -> AstroResult[object]:
+    def delete_task_field(self, projectId: str, fieldId: str) -> AstroResult[object]:
         """
         Deletes a TaskField for a specific Project within your
         Workspace.
@@ -109,9 +103,6 @@ class TaskFieldClient:
             TaskField
         fieldId : str
             The unique identifier of the TaskField to delete
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/tasks/fields/{fieldId}"
         queryParams = {}
@@ -121,7 +112,7 @@ class TaskFieldClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def retrieve_taskfield_value(self, taskId: str, fieldId: str, xintegrationname: ) -> AstroResult[TaskFieldsValueResponseDto]:
+    def retrieve_taskfield_value(self, taskId: str, fieldId: str) -> AstroResult[TaskFieldsValueResponseDto]:
         """
         Retrieves the current TaskField value for a particular Task and
         TaskField.
@@ -140,9 +131,6 @@ class TaskFieldClient:
         fieldId : str
             The unique identifier of the TaskField of the value to
             retrieve
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
         queryParams = {}
@@ -152,7 +140,7 @@ class TaskFieldClient:
         else:
             return AstroResult[TaskFieldsValueResponseDto](result.json(), False, True, result.status_code, None)
 
-    def update_taskfield_value(self, taskId: str, fieldId: str, xintegrationname: , body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
+    def update_taskfield_value(self, taskId: str, fieldId: str, body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Replaces the current value of a TaskFields for a specific Task
         within your Workspace.
@@ -172,9 +160,6 @@ class TaskFieldClient:
         fieldId : str
             The unique identifier of the TaskField whose value you wish
             to update
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : UpdateTaskFieldValueDto
             The new value for this TaskField for this Task
         """
@@ -186,7 +171,7 @@ class TaskFieldClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_all_taskfield_values(self, taskId: str, xintegrationname: ) -> AstroResult[list[TaskFieldsValueResponseDto]]:
+    def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldsValueResponseDto]]:
         """
         Retrieves all TaskField values for a particular Task.
 
@@ -202,9 +187,6 @@ class TaskFieldClient:
         taskId : str
             The unique identifier of the Task for which we want
             TaskField values
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}/fields"
         queryParams = {}

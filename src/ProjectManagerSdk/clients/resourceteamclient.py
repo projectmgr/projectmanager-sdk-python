@@ -26,7 +26,7 @@ class ResourceTeamClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_teams(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
+    def retrieve_resource_teams(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
         """
         Retrieves all ResourceTeams defined within your Workspace that
         match an [OData formatted query](https://www.odata.org/).
@@ -38,9 +38,6 @@ class ResourceTeamClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -78,15 +75,12 @@ class ResourceTeamClient:
         else:
             return AstroResult[list[ResourceTeamDto]](result.json(), False, True, result.status_code, None)
 
-    def create_resource_team(self, xintegrationname: , body: CreateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
+    def create_resource_team(self, body: CreateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
         Create a Resource Team.
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : CreateResourceTeamDto
             The name of the team to create.
         """
@@ -98,7 +92,7 @@ class ResourceTeamClient:
         else:
             return AstroResult[ResourceTeamDto](result.json(), False, True, result.status_code, None)
 
-    def delete_resource_team(self, resourceTeamId: str, xintegrationname: ) -> AstroResult[object]:
+    def delete_resource_team(self, resourceTeamId: str) -> AstroResult[object]:
         """
         The endpoint is used to delete a resource team. Users assigned
         to this team will no longer be assigned thereafter.
@@ -107,9 +101,6 @@ class ResourceTeamClient:
         ----------
         resourceTeamId : str
             The Id of the team to be removed.
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/resources/teams/{resourceTeamId}"
         queryParams = {}
@@ -119,7 +110,7 @@ class ResourceTeamClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def update_resource_team(self, teamresourceId: str, xintegrationname: , body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
+    def update_resource_team(self, teamresourceId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
         Update a Resource Team.
 
@@ -127,9 +118,6 @@ class ResourceTeamClient:
         ----------
         teamresourceId : str
             The id of the resource team
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : UpdateResourceTeamDto
             The name of the team to Update.
         """

@@ -26,7 +26,7 @@ class ResourceSkillClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_skills(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
+    def retrieve_resource_skills(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
         """
         Retrieves all ResourceSkills defined within your Workspace.
 
@@ -39,9 +39,6 @@ class ResourceSkillClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -79,15 +76,12 @@ class ResourceSkillClient:
         else:
             return AstroResult[list[ResourceSkillDto]](result.json(), False, True, result.status_code, None)
 
-    def create_resource_skill(self, xintegrationname: , body: CreateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
+    def create_resource_skill(self, body: CreateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
         """
         Create a Resource Skill.
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : CreateResourceSkillDto
             The name of the skill to create.
         """
@@ -99,7 +93,7 @@ class ResourceSkillClient:
         else:
             return AstroResult[ResourceSkillDto](result.json(), False, True, result.status_code, None)
 
-    def update_resource_skill(self, skillId: str, xintegrationname: , body: UpdateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
+    def update_resource_skill(self, skillId: str, body: UpdateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
         """
         Update a Resource Skill.
 
@@ -107,9 +101,6 @@ class ResourceSkillClient:
         ----------
         skillId : str
             The id of the skill to update.
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : UpdateResourceSkillDto
             The data of the skill to update.
         """
@@ -121,7 +112,7 @@ class ResourceSkillClient:
         else:
             return AstroResult[ResourceSkillDto](result.json(), False, True, result.status_code, None)
 
-    def delete_resource_skill(self, resourceSkillId: str, xintegrationname: ) -> AstroResult[object]:
+    def delete_resource_skill(self, resourceSkillId: str) -> AstroResult[object]:
         """
         The endpoint is used to delete a resource skill. Users assigned
         to this skill will no longer be assigned thereafter.
@@ -130,9 +121,6 @@ class ResourceSkillClient:
         ----------
         resourceSkillId : str
             The Id of the skill to be removed.
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/resources/skills/{resourceSkillId}"
         queryParams = {}

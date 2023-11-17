@@ -24,7 +24,7 @@ class ProjectStatusClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_statuses(self, xintegrationname: ) -> AstroResult[list[ProjectStatusDto]]:
+    def retrieve_project_statuses(self) -> AstroResult[list[ProjectStatusDto]]:
         """
         Retrieves all ProjectStatuses defined within your Workspace.
 
@@ -36,9 +36,6 @@ class ProjectStatusClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/projects/statuses"
         queryParams = {}

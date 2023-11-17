@@ -29,7 +29,7 @@ class TaskClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tasks(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TaskDto]]:
+    def query_tasks(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TaskDto]]:
         """
         Retrieve a list of Tasks that match an [OData formatted
         query](https://www.odata.org/).
@@ -41,9 +41,6 @@ class TaskClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -81,7 +78,7 @@ class TaskClient:
         else:
             return AstroResult[list[TaskDto]](result.json(), False, True, result.status_code, None)
 
-    def retrieve_task(self, taskId: str, xintegrationname: ) -> AstroResult[TaskDetailsDto]:
+    def retrieve_task(self, taskId: str) -> AstroResult[TaskDetailsDto]:
         """
         Retrieve a Task by its unique identifier or by its short ID. A
         Task has both a unique identifier, which is a GUID, and a short
@@ -97,9 +94,6 @@ class TaskClient:
         ----------
         taskId : str
             The unique identifier or short ID of the Task to retrieve
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}"
         queryParams = {}
@@ -109,7 +103,7 @@ class TaskClient:
         else:
             return AstroResult[TaskDetailsDto](result.json(), False, True, result.status_code, None)
 
-    def update_task(self, taskId: str, xintegrationname: , body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
+    def update_task(self, taskId: str, body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Update an existing Task and replace the values of fields
         specified.
@@ -133,9 +127,6 @@ class TaskClient:
         ----------
         taskId : str
             The unique identifier of the Task to update
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : TaskUpdateDto
             All non-null fields in this object will replace existing
             data in the Task
@@ -148,7 +139,7 @@ class TaskClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def delete_task(self, taskId: str, xintegrationname: ) -> AstroResult[ChangeSetStatusDto]:
+    def delete_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
         Delete an existing Task.
 
@@ -166,9 +157,6 @@ class TaskClient:
         ----------
         taskId : str
             Unique identifier of the Task to delete
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}"
         queryParams = {}
@@ -178,7 +166,7 @@ class TaskClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def create_task(self, projectId: str, xintegrationname: , body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
+    def create_task(self, projectId: str, body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Create a new Task within a specified project.
 
@@ -192,9 +180,6 @@ class TaskClient:
         projectId : str
             The unique identifier of the Project that will contain this
             Task
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : TaskCreateDto
             The new Task to create
         """
@@ -206,7 +191,7 @@ class TaskClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_task_priorities(self, xintegrationname: ) -> AstroResult[list[TaskPriorityDto]]:
+    def retrieve_task_priorities(self) -> AstroResult[list[TaskPriorityDto]]:
         """
         Retrieves all TaskPriorities defined within your Workspace.
 
@@ -222,9 +207,6 @@ class TaskClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/tasks/priorities"
         queryParams = {}
@@ -237,7 +219,7 @@ class TaskClient:
         else:
             return AstroResult[list[TaskPriorityDto]](result.json(), False, True, result.status_code, None)
 
-    def create_many_tasks(self, projectId: str, xintegrationname: , body: list[object]) -> AstroResult[list[ChangeSetStatusDto]]:
+    def create_many_tasks(self, projectId: str, body: list[object]) -> AstroResult[list[ChangeSetStatusDto]]:
         """
         Create multiple new Tasks within a specified project with a
         single API call.
@@ -252,9 +234,6 @@ class TaskClient:
         projectId : str
             The unique identifier of the Project that will contain these
             Tasks
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : list[object]
             The list of new Tasks to create
         """
@@ -269,7 +248,7 @@ class TaskClient:
         else:
             return AstroResult[list[ChangeSetStatusDto]](result.json(), False, True, result.status_code, None)
 
-    def add_parent_task(self, taskId: str, parentTaskId: str, xintegrationname: ) -> AstroResult[ChangeSetStatusDto]:
+    def add_parent_task(self, taskId: str, parentTaskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
         Adds a task parent relationship
 
@@ -279,9 +258,6 @@ class TaskClient:
             The task that will become the child
         parentTaskId : str
             The parent task
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}/parent/{parentTaskId}"
         queryParams = {}
@@ -291,7 +267,7 @@ class TaskClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def update_parent_task(self, taskId: str, parentTaskId: str, xintegrationname: ) -> AstroResult[ChangeSetStatusDto]:
+    def update_parent_task(self, taskId: str, parentTaskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
         Updates a task parent relationship
 
@@ -301,9 +277,6 @@ class TaskClient:
             The task that will become the child
         parentTaskId : str
             The parent task
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}/parent/{parentTaskId}"
         queryParams = {}
@@ -313,7 +286,7 @@ class TaskClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def remove_parent_task(self, taskId: str, xintegrationname: ) -> AstroResult[ChangeSetStatusDto]:
+    def remove_parent_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
         Removes a task parent relationship completely
 
@@ -321,9 +294,6 @@ class TaskClient:
         ----------
         taskId : str
             The child task
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}/parent"
         queryParams = {}

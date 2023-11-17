@@ -25,7 +25,7 @@ class ApiKeyClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def create_api_key(self, xintegrationname: , body: ApiKeyCreateDto) -> AstroResult[ApiKeyDto]:
+    def create_api_key(self, body: ApiKeyCreateDto) -> AstroResult[ApiKeyDto]:
         """
         Creates a new API key for the current user with the specified
         options.
@@ -48,9 +48,6 @@ class ApiKeyClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : ApiKeyCreateDto
             Options for the API key to create
         """
@@ -62,7 +59,7 @@ class ApiKeyClient:
         else:
             return AstroResult[ApiKeyDto](result.json(), False, True, result.status_code, None)
 
-    def list_api_keys(self, xintegrationname: ) -> AstroResult[list[ApiKeyDto]]:
+    def list_api_keys(self) -> AstroResult[list[ApiKeyDto]]:
         """
         Returns a list of all API keys within the current workspace.
 
@@ -84,9 +81,6 @@ class ApiKeyClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/api-keys"
         queryParams = {}
@@ -99,7 +93,7 @@ class ApiKeyClient:
         else:
             return AstroResult[list[ApiKeyDto]](result.json(), False, True, result.status_code, None)
 
-    def revoke_all_api_keys(self, xintegrationname: ) -> AstroResult[object]:
+    def revoke_all_api_keys(self) -> AstroResult[object]:
         """
         This API call revokes all existing API keys in given workspace.
         No existing keys will continue to work after this call
@@ -125,9 +119,6 @@ class ApiKeyClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/api-keys/revoke-all"
         queryParams = {}
@@ -137,7 +128,7 @@ class ApiKeyClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def revoke_api_key(self, id: str, xintegrationname: ) -> AstroResult[object]:
+    def revoke_api_key(self, id: str) -> AstroResult[object]:
         """
         Revokes a single API key in the current workspace.
 
@@ -161,9 +152,6 @@ class ApiKeyClient:
         ----------
         id : str
             The unique identifier of the API key to revoke
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/api-keys/{id}/revoke"
         queryParams = {}

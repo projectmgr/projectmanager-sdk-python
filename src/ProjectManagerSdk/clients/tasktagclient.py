@@ -25,7 +25,7 @@ class TaskTagClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def replace_tasktags(self, taskId: str, xintegrationname: , body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def replace_tasktags(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
         Replaces the existing TaskTags on a Task with a newly provided
         list of TaskTags.
@@ -40,9 +40,6 @@ class TaskTagClient:
         taskId : str
             The unique identifier of the Task for which we will replace
             TaskTags
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : list[object]
             The replacement list of TaskTags for this Task
         """
@@ -54,7 +51,7 @@ class TaskTagClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def add_tasktag_to_task(self, taskId: str, xintegrationname: , body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def add_tasktag_to_task(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
         Add one or more new TaskTags to a Task.
 
@@ -68,9 +65,6 @@ class TaskTagClient:
         taskId : str
             The unique identifier of the Task for which we will add
             TaskTags
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : list[object]
             The new TaskTags to add to this Task
         """
@@ -82,7 +76,7 @@ class TaskTagClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def remove_tasktag_from_task(self, taskId: str, xintegrationname: , body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def remove_tasktag_from_task(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
         Removes one or more existing TaskTags from a Task.
 
@@ -96,9 +90,6 @@ class TaskTagClient:
         taskId : str
             The unique identifier of the Task for which we will remove
             existing TaskTags
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : list[object]
             The TaskTags to remove from this Task
         """

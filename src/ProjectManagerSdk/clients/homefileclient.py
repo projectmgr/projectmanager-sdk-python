@@ -24,7 +24,7 @@ class HomeFileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_home_file(self, xintegrationname: , filename: str) -> AstroResult[FileDto]:
+    def upload_home_file(self, filename: str) -> AstroResult[FileDto]:
         """
         Uploads a file to the My Files folder on your Home Files page.
 
@@ -41,9 +41,6 @@ class HomeFileClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         filename : str
             The full path of a file to upload to the API
         """
@@ -55,7 +52,7 @@ class HomeFileClient:
         else:
             return AstroResult[FileDto](result.json(), False, True, result.status_code, None)
 
-    def upload_home_file_to_folder(self, folderId: str, xintegrationname: , filename: str) -> AstroResult[FileDto]:
+    def upload_home_file_to_folder(self, folderId: str, filename: str) -> AstroResult[FileDto]:
         """
         Uploads a file to a specific folder on your Home Files page.
 
@@ -77,9 +74,6 @@ class HomeFileClient:
         ----------
         folderId : str
             The reference to the sub folder to put the file into
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         filename : str
             The full path of a file to upload to the API
         """

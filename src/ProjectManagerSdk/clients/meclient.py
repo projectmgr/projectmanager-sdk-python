@@ -24,7 +24,7 @@ class MeClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_me(self, xintegrationname: ) -> AstroResult[WorkSpaceUserInfoDto]:
+    def retrieve_me(self) -> AstroResult[WorkSpaceUserInfoDto]:
         """
         Retrieve information about the currently logged on user.
 
@@ -37,9 +37,6 @@ class MeClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/me"
         queryParams = {}

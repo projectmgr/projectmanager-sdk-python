@@ -26,7 +26,7 @@ class ResourceClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def create_resource(self, xintegrationname: , body: ResourceCreateDto) -> AstroResult[ResourceDto]:
+    def create_resource(self, body: ResourceCreateDto) -> AstroResult[ResourceDto]:
         """
         Create a new Resource within your Workspace.
 
@@ -40,9 +40,6 @@ class ResourceClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : ResourceCreateDto
             The details for the new Resource to create
         """
@@ -54,7 +51,7 @@ class ResourceClient:
         else:
             return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
 
-    def query_resources(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
+    def query_resources(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
         """
         Retrieve a list of Resources that match an [OData formatted
         query](https://www.odata.org/).
@@ -69,9 +66,6 @@ class ResourceClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -109,7 +103,7 @@ class ResourceClient:
         else:
             return AstroResult[list[ResourceDto]](result.json(), False, True, result.status_code, None)
 
-    def update_resource(self, resourceId: str, xintegrationname: , body: ResourceUpdateDto) -> AstroResult[ResourceDto]:
+    def update_resource(self, resourceId: str, body: ResourceUpdateDto) -> AstroResult[ResourceDto]:
         """
         Updates an existing Resource based on information you provide.
 
@@ -125,9 +119,6 @@ class ResourceClient:
         ----------
         resourceId : str
             The id of the resource
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : ResourceUpdateDto
             The information to update the resource
         """
@@ -139,7 +130,7 @@ class ResourceClient:
         else:
             return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_resource(self, resourceId: str, xintegrationname: ) -> AstroResult[ResourceDto]:
+    def retrieve_resource(self, resourceId: str) -> AstroResult[ResourceDto]:
         """
         Retrieve the Resource matching the specified unique ID.
 
@@ -155,9 +146,6 @@ class ResourceClient:
         ----------
         resourceId : str
             The id of the Resource
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/resources/{resourceId}"
         queryParams = {}

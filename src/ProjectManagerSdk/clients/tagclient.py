@@ -26,7 +26,7 @@ class TagClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tags(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TagDto]]:
+    def query_tags(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TagDto]]:
         """
         Retrieve a list of Tags that match an [OData formatted
         query](https://www.odata.org/).
@@ -37,9 +37,6 @@ class TagClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -77,7 +74,7 @@ class TagClient:
         else:
             return AstroResult[list[TagDto]](result.json(), False, True, result.status_code, None)
 
-    def create_tag(self, xintegrationname: , body: TagCreateDto) -> AstroResult[TagDto]:
+    def create_tag(self, body: TagCreateDto) -> AstroResult[TagDto]:
         """
         Creates a new Tag based on information you provide.
 
@@ -87,9 +84,6 @@ class TagClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : TagCreateDto
             The information for the new Tag to create
         """
@@ -101,7 +95,7 @@ class TagClient:
         else:
             return AstroResult[TagDto](result.json(), False, True, result.status_code, None)
 
-    def update_tag(self, tagId: str, xintegrationname: , body: TagUpdateDto) -> AstroResult[TagDto]:
+    def update_tag(self, tagId: str, body: TagUpdateDto) -> AstroResult[TagDto]:
         """
         Updates an existing Tag based on information you provide.
 
@@ -113,9 +107,6 @@ class TagClient:
         ----------
         tagId : str
             The id of the tag
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : TagUpdateDto
             The information to update the tag
         """

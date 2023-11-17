@@ -26,7 +26,7 @@ class DiscussionClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_comments(self, taskId: str, xintegrationname: ) -> AstroResult[list[DiscussionDto]]:
+    def retrieve_task_comments(self, taskId: str) -> AstroResult[list[DiscussionDto]]:
         """
         Retrieve all comments written about a task
 
@@ -34,9 +34,6 @@ class DiscussionClient:
         ----------
         taskId : str
             The unique ID number of the task to retrieve comments
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/tasks/{taskId}/discussions"
         queryParams = {}
@@ -49,7 +46,7 @@ class DiscussionClient:
         else:
             return AstroResult[list[DiscussionDto]](result.json(), False, True, result.status_code, None)
 
-    def create_task_comments(self, taskId: str, xintegrationname: , body: DiscussionCreateDto) -> AstroResult[DiscussionCreateResponseDto]:
+    def create_task_comments(self, taskId: str, body: DiscussionCreateDto) -> AstroResult[DiscussionCreateResponseDto]:
         """
         Adds a Markdown-formatted comment to a task.
 
@@ -64,9 +61,6 @@ class DiscussionClient:
         ----------
         taskId : str
             The unique ID number of the task being commented upon
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : DiscussionCreateDto
             The Markdown-formatted text of the comment
         """

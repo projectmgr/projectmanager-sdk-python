@@ -29,7 +29,7 @@ class ProjectFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_fields(self, xintegrationname: ) -> AstroResult[list[GetProjectFieldsResponseDto]]:
+    def retrieve_project_fields(self) -> AstroResult[list[GetProjectFieldsResponseDto]]:
         """
         Retrieves all ProjectFields defined within your Workspace.
 
@@ -41,9 +41,6 @@ class ProjectFieldClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/projects/fields"
         queryParams = {}
@@ -56,7 +53,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[list[GetProjectFieldsResponseDto]](result.json(), False, True, result.status_code, None)
 
-    def create_project_field(self, xintegrationname: , body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
+    def create_project_field(self, body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
         """
         Creates a new ProjectField within your Workspace.
 
@@ -68,9 +65,6 @@ class ProjectFieldClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : CreateProjectFieldDto
             Information about the ProjectField to create
         """
@@ -82,7 +76,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[CreateProjectFieldResponseDto](result.json(), False, True, result.status_code, None)
 
-    def delete_project_field(self, xintegrationname: , body: DeleteProjectFieldDto) -> AstroResult[object]:
+    def delete_project_field(self, body: DeleteProjectFieldDto) -> AstroResult[object]:
         """
         Deletes an existing ProjectField within your Workspace.
 
@@ -94,9 +88,6 @@ class ProjectFieldClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : DeleteProjectFieldDto
             The identity of the ProjectField to delete
         """
@@ -108,7 +99,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def update_project_field(self, projectId: str, fieldId: str, xintegrationname: , body: UpdateProjectFieldValueDto) -> AstroResult[object]:
+    def update_project_field(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
         """
         Updates an existing ProjectField with new information.
 
@@ -125,9 +116,6 @@ class ProjectFieldClient:
             ProjectField
         fieldId : str
             The unique identifier of this ProjectField
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : UpdateProjectFieldValueDto
             The new information for this ProjectField
         """
@@ -139,7 +127,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def retrieve_projectfield_value(self, projectId: str, fieldId: str, xintegrationname: ) -> AstroResult[ProjectFieldsValueResponseDto]:
+    def retrieve_projectfield_value(self, projectId: str, fieldId: str) -> AstroResult[ProjectFieldsValueResponseDto]:
         """
         Retrieves the current ProjectField value for a particular
         Project and ProjectField.
@@ -152,9 +140,6 @@ class ProjectFieldClient:
         fieldId : str
             The unique identifier of the ProjectField of the value to
             retrieve
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/fields/{fieldId}"
         queryParams = {}
@@ -164,7 +149,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[ProjectFieldsValueResponseDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_all_projectfield_values(self, projectId: str, xintegrationname: ) -> AstroResult[list[ProjectFieldsValueResponseDto]]:
+    def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[list[ProjectFieldsValueResponseDto]]:
         """
         Retrieves all ProjectField values for a particular Project.
 
@@ -173,9 +158,6 @@ class ProjectFieldClient:
         projectId : str
             The unique identifier of the Project for which we want
             ProjectField values
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/fields"
         queryParams = {}

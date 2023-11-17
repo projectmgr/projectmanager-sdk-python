@@ -24,7 +24,7 @@ class LicenseClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_licenses(self, xintegrationname: ) -> AstroResult[list[LicenseDto]]:
+    def retrieve_licenses(self) -> AstroResult[list[LicenseDto]]:
         """
         Retrieve information about the current licenses possessed by
         this Workspace.
@@ -37,9 +37,6 @@ class LicenseClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/license"
         queryParams = {}
@@ -52,7 +49,7 @@ class LicenseClient:
         else:
             return AstroResult[list[LicenseDto]](result.json(), False, True, result.status_code, None)
 
-    def add_license(self, bundleSku: str, xintegrationname: ) -> AstroResult[list[LicenseDto]]:
+    def add_license(self, bundleSku: str) -> AstroResult[list[LicenseDto]]:
         """
         Adds a new License to the current Workspace.
 
@@ -66,9 +63,6 @@ class LicenseClient:
         ----------
         bundleSku : str
             Information about the SKU you wish to add to your Workspace
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/license/{bundleSku}/try"
         queryParams = {}

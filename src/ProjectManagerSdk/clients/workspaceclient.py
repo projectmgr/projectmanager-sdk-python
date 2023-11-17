@@ -25,7 +25,7 @@ class WorkSpaceClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_workspaces(self, xintegrationname: ) -> AstroResult[list[WorkSpaceDto]]:
+    def retrieve_workspaces(self) -> AstroResult[list[WorkSpaceDto]]:
         """
         Retrieve the list of Workspaces to which the currently logged on
         user has access.
@@ -38,9 +38,6 @@ class WorkSpaceClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/workspaces"
         queryParams = {}
@@ -53,7 +50,7 @@ class WorkSpaceClient:
         else:
             return AstroResult[list[WorkSpaceDto]](result.json(), False, True, result.status_code, None)
 
-    def invite_to_workspace(self, organizationId: str, xintegrationname: , body: WorkSpaceJoinDto) -> AstroResult[object]:
+    def invite_to_workspace(self, organizationId: str, body: WorkSpaceJoinDto) -> AstroResult[object]:
         """
         Invite a specific user to join a Workspace to which the current
         user has administrator rights.
@@ -72,9 +69,6 @@ class WorkSpaceClient:
         organizationId : str
             The unique identifier of the Organization that you are
             inviting a User to joi
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : WorkSpaceJoinDto
             Information about the user which will receive the invitation
         """

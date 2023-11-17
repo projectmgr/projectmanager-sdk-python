@@ -25,15 +25,12 @@ class ProjectMembersClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_new_project_members(self, xintegrationname: ) -> AstroResult[list[ProjectMemberDto]]:
+    def retrieve_new_project_members(self) -> AstroResult[list[ProjectMemberDto]]:
         """
         Returns a list of membership options for new projects.
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/projects/members"
         queryParams = {}
@@ -46,7 +43,7 @@ class ProjectMembersClient:
         else:
             return AstroResult[list[ProjectMemberDto]](result.json(), False, True, result.status_code, None)
 
-    def retrieve_project_members(self, projectId: str, includeAllUsers: bool, xintegrationname: ) -> AstroResult[list[ProjectMemberDto]]:
+    def retrieve_project_members(self, projectId: str, includeAllUsers: bool) -> AstroResult[list[ProjectMemberDto]]:
         """
         Returns a list of membership options for existing members.
         Optionally include users who are not a member yet.
@@ -57,9 +54,6 @@ class ProjectMembersClient:
             Reference to the project
         includeAllUsers : bool
             Set to true to include all users in the workspace
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/members"
         queryParams = {}
@@ -74,7 +68,7 @@ class ProjectMembersClient:
         else:
             return AstroResult[list[ProjectMemberDto]](result.json(), False, True, result.status_code, None)
 
-    def retrieve_user_project_membership(self, projectId: str, userId: str, xintegrationname: ) -> AstroResult[ProjectMemberDto]:
+    def retrieve_user_project_membership(self, projectId: str, userId: str) -> AstroResult[ProjectMemberDto]:
         """
         Return the membership of a project for a user.
 
@@ -84,9 +78,6 @@ class ProjectMembersClient:
             Reference of Project
         userId : str
             Reference of User
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
         queryParams = {}
@@ -96,7 +87,7 @@ class ProjectMembersClient:
         else:
             return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
 
-    def create_user_project_membership(self, projectId: str, userId: str, xintegrationname: , body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
+    def create_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
         Creates a membership for a user in a project and assigns the
         user appropriate permissions
@@ -107,9 +98,6 @@ class ProjectMembersClient:
             Reference to Project
         userId : str
             Reference to User
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : ProjectMemberRoleDto
             The permission to set
         """
@@ -121,7 +109,7 @@ class ProjectMembersClient:
         else:
             return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
 
-    def update_user_project_membership(self, projectId: str, userId: str, xintegrationname: , body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
+    def update_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
         Update existing Project Access Control for user for project
 
@@ -131,9 +119,6 @@ class ProjectMembersClient:
             Reference to Project
         userId : str
             Reference to User
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : ProjectMemberRoleDto
             The permission to update
         """
@@ -145,7 +130,7 @@ class ProjectMembersClient:
         else:
             return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
 
-    def remove_user_project_membership(self, projectId: str, userId: str, xintegrationname: ) -> AstroResult[object]:
+    def remove_user_project_membership(self, projectId: str, userId: str) -> AstroResult[object]:
         """
         Deletes Project Member
 
@@ -155,9 +140,6 @@ class ProjectMembersClient:
             Reference to Project
         userId : str
             Reference to User
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
         queryParams = {}

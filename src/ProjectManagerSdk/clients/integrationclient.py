@@ -24,7 +24,7 @@ class IntegrationClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_integration(self, integrationId: str, xintegrationname: ) -> AstroResult[IntegrationDto]:
+    def retrieve_integration(self, integrationId: str) -> AstroResult[IntegrationDto]:
         """
         Retrieves an Integration specified by a unique identifier.
 
@@ -36,9 +36,6 @@ class IntegrationClient:
         ----------
         integrationId : str
             The unique identifier of this Integration
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/integrations/{integrationId}"
         queryParams = {}
@@ -48,7 +45,7 @@ class IntegrationClient:
         else:
             return AstroResult[IntegrationDto](result.json(), False, True, result.status_code, None)
 
-    def enable_integration(self, integrationId: str, xintegrationname: ) -> AstroResult[IntegrationDto]:
+    def enable_integration(self, integrationId: str) -> AstroResult[IntegrationDto]:
         """
         Enable a specific Integration for the current Workspace.
 
@@ -60,9 +57,6 @@ class IntegrationClient:
         ----------
         integrationId : str
             The unique identifier of the Integration to enable
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/integrations/{integrationId}"
         queryParams = {}
@@ -72,7 +66,7 @@ class IntegrationClient:
         else:
             return AstroResult[IntegrationDto](result.json(), False, True, result.status_code, None)
 
-    def disable_integration(self, integrationId: str, xintegrationname: ) -> AstroResult[object]:
+    def disable_integration(self, integrationId: str) -> AstroResult[object]:
         """
         Disable a specific Integration for the current Workspace.
 
@@ -84,9 +78,6 @@ class IntegrationClient:
         ----------
         integrationId : str
             The unique identifier of the Integration to disable
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/integrations/{integrationId}"
         queryParams = {}
@@ -96,7 +87,7 @@ class IntegrationClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def retrieve_all_integrations(self, xintegrationname: ) -> AstroResult[list[IntegrationDto]]:
+    def retrieve_all_integrations(self) -> AstroResult[list[IntegrationDto]]:
         """
         Retrieves all Integrations for the current Workspace.
 
@@ -106,9 +97,6 @@ class IntegrationClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/integrations"
         queryParams = {}

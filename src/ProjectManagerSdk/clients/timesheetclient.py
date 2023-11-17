@@ -28,15 +28,12 @@ class TimesheetClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def create_time_entry(self, xintegrationname: , body: TimesheetCreateRequestDto) -> AstroResult[TimesheetResponseDto]:
+    def create_time_entry(self, body: TimesheetCreateRequestDto) -> AstroResult[TimesheetResponseDto]:
         """
         Creates new time entry for given resource on given day.
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : TimesheetCreateRequestDto
             Payload
         """
@@ -48,7 +45,7 @@ class TimesheetClient:
         else:
             return AstroResult[TimesheetResponseDto](result.json(), False, True, result.status_code, None)
 
-    def query_timesheets(self, xintegrationname: , top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
+    def query_timesheets(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
         """
         Retrieve a list of TimeSheets that match an [OData formatted
         query](https://www.odata.org/).
@@ -57,9 +54,6 @@ class TimesheetClient:
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         $top : int
             The number of records to return
         $skip : int
@@ -97,7 +91,7 @@ class TimesheetClient:
         else:
             return AstroResult[list[TimesheetDto]](result.json(), False, True, result.status_code, None)
 
-    def delete_time_entry(self, timesheetId: str, xintegrationname: ) -> AstroResult[object]:
+    def delete_time_entry(self, timesheetId: str) -> AstroResult[object]:
         """
         Delete time entry by id.
 
@@ -105,9 +99,6 @@ class TimesheetClient:
         ----------
         timesheetId : str
             time entry id
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = f"/api/data/timesheets/{timesheetId}"
         queryParams = {}
@@ -117,7 +108,7 @@ class TimesheetClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def update_time_entry(self, timesheetId: str, xintegrationname: , body: TimesheetUpdateRequestDto) -> AstroResult[TimesheetResponseDto]:
+    def update_time_entry(self, timesheetId: str, body: TimesheetUpdateRequestDto) -> AstroResult[TimesheetResponseDto]:
         """
         Updates a time entry by its unique identifier.
 
@@ -125,9 +116,6 @@ class TimesheetClient:
         ----------
         timesheetId : str
             time entry id
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         body : TimesheetUpdateRequestDto
             payload
         """
@@ -139,16 +127,13 @@ class TimesheetClient:
         else:
             return AstroResult[TimesheetResponseDto](result.json(), False, True, result.status_code, None)
 
-    def returns_active_admin_tasks_that_are_used_to_report_time(self, xintegrationname: ) -> AstroResult[list[TimesheetAdminTypeDto]]:
+    def returns_active_admin_tasks_that_are_used_to_report_time(self) -> AstroResult[list[TimesheetAdminTypeDto]]:
         """
         Returns active admin tasks that are used to report time not
         related to work on projects. I.e. annual/sick leave etc
 
         Parameters
         ----------
-        x-integration-name : 
-            The name of the calling system passed along as a header
-            parameter
         """
         path = "/api/data/timesheets/admin-tasks"
         queryParams = {}
