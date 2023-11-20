@@ -12,9 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.createintegrationinstancedto import CreateIntegrationInstanceDto
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
-from ProjectManagerSdk.models.newintegrationinstancedto import NewIntegrationInstanceDto
 import json
 
 class IntegrationClient:
@@ -110,49 +108,3 @@ class IntegrationClient:
             return AstroResult[list[IntegrationDto]](None, True, False, result.status_code, data)
         else:
             return AstroResult[list[IntegrationDto]](result.json(), False, True, result.status_code, None)
-
-    def add_integration_instance(self, integrationId: str, body: CreateIntegrationInstanceDto) -> AstroResult[NewIntegrationInstanceDto]:
-        """
-        Adds a new Integration instance to a Workspace.
-
-        The Integrations API is intended for use by ProjectManager and
-        its business development partners. Please contact
-        ProjectManager's sales team to request use of this API.
-
-        Parameters
-        ----------
-        integrationId : str
-            The unique identifier of the Integration to add to this
-            Workspace
-        body : CreateIntegrationInstanceDto
-            The information about this Integration to add
-        """
-        path = f"/api/data/integrations/{integrationId}/instance"
-        queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[NewIntegrationInstanceDto](None, True, False, result.status_code, NewIntegrationInstanceDto(**json.loads(result.content)['data']))
-        else:
-            return AstroResult[NewIntegrationInstanceDto](result.json(), False, True, result.status_code, None)
-
-    def remove_integration_instance(self, integrationInstanceId: str) -> AstroResult[object]:
-        """
-        Removes an existing Integration instance from a Workspace.
-
-        The Integrations API is intended for use by ProjectManager and
-        its business development partners. Please contact
-        ProjectManager's sales team to request use of this API.
-
-        Parameters
-        ----------
-        integrationInstanceId : str
-            The unique identifier of the IntegrationInstance to remove
-            from this Workspace
-        """
-        path = f"/api/data/integrations/instances/{integrationInstanceId}"
-        queryParams = {}
-        result = self.client.send_request("DELETE", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
-        else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)

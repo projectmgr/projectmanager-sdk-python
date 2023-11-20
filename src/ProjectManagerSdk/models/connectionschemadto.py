@@ -15,16 +15,21 @@
 from dataclasses import dataclass
 
 @dataclass
-class NewIntegrationInstanceDto:
+class ConnectionSchemaDto:
     """
-    The Integrations API is intended for use by ProjectManager and its
-    business development partners. Please contact ProjectManager's sales
-    team to request use of this API.
+    This class contains the URL or AuthScheme to use to authenticate
+    with the Integration Provider.
     """
 
-    id: str | None = None
+    url: str | None = None
     """
-    The unique identifier of the newly created IntegrationInstance.
+    The URL to use to authenticate with the Integration Provider.
+    """
+
+    authScheme: object | None = None
+    """
+    This class contains the AuthScheme to use to authenticate with the
+    Integration Provider.
     """
 
 

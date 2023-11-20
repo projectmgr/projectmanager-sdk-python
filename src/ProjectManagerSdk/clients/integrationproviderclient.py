@@ -12,7 +12,9 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
 from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
+from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.directlinkdto import DirectLinkDto
 from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderDto
 import json
@@ -50,7 +52,7 @@ class IntegrationProviderClient:
         else:
             return AstroResult[list[IntegrationProviderDto]](result.json(), False, True, result.status_code, None)
 
-    def activate_integration_provider(self, providerId: str) -> AstroResult[DirectLinkDto]:
+    def activate_integration_provider(self, providerId: str) -> AstroResult[ConnectionSchemaDto]:
         """
         Activates an Integration Provider and retrieves authentication
         information about a specific IntegrationProvider.
@@ -71,11 +73,11 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[DirectLinkDto](None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
+            return AstroResult[ConnectionSchemaDto](None, True, False, result.status_code, ConnectionSchemaDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult[DirectLinkDto](result.json(), False, True, result.status_code, None)
+            return AstroResult[ConnectionSchemaDto](result.json(), False, True, result.status_code, None)
 
-    def update_integration_provider(self, providerId: str, body: AuthenticationStatusDto) -> AstroResult[object]:
+    def update_integration_provider(self, providerId: str, body: AuthenticationDto) -> AstroResult[object]:
         """
         Allows you to update the auth status of the provider specific
         connection.
@@ -84,7 +86,7 @@ class IntegrationProviderClient:
         ----------
         providerId : str
             The identifier to the provider
-        body : AuthenticationStatusDto
+        body : AuthenticationDto
             Specify the auth status
         """
         path = f"/api/data/integrations/providers/{providerId}"

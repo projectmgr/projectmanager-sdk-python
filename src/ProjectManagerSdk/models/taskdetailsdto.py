@@ -150,6 +150,11 @@ class TaskDetailsDto:
     The planned cost for this Task. Cannot be negative.
     """
 
+    fields: object | None = None
+    """
+    Task fields array with values
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

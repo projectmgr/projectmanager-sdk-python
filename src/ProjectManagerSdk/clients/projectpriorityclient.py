@@ -29,7 +29,7 @@ class ProjectPriorityClient:
         Retrieves all ProjectPriorities defined within your Workspace.
 
         A ProjectPriority is a named priority level used by your
-        business to determine how to decide which Tasks are the most
+        business to determine how to decide which Projects are the most
         important. You can name your ProjectPriority levels anything you
         like and you can reorganize the order of the ProjectPriority
         levels at any time.

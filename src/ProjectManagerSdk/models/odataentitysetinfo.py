@@ -12,21 +12,16 @@
 #
 
 
+from ProjectManagerSdk.models.odatatypeannotation import ODataTypeAnnotation
 from dataclasses import dataclass
 
 @dataclass
-class CreateIntegrationInstanceDto:
-    """
-    The Integrations API is intended for use by ProjectManager and its
-    business development partners. Please contact ProjectManager's sales
-    team to request use of this API.
-    """
+class ODataEntitySetInfo:
 
-    config: object | None = None
-    """
-    Extra metadata required by this Integration Instance.
-    """
-
+    typeAnnotation: ODataTypeAnnotation | None = None
+    url: str | None = None
+    name: str | None = None
+    title: str | None = None
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

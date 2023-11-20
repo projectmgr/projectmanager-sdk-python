@@ -32,11 +32,6 @@ class IntegrationInstanceDto:
     A short ID that uniquely identifies this IntegrationInstance
     """
 
-    config: object | None = None
-    """
-    Metadata for this IntegrationInstance
-    """
-
     enabledBy: str | None = None
     """
     The unique identifier of the user who enabled this
@@ -51,6 +46,22 @@ class IntegrationInstanceDto:
     modifyDate: str | None = None
     """
     Timestamp when this record was most recently modified
+    """
+
+    projectId: str | None = None
+    """
+    The id of the project manager project this instance is related to
+    """
+
+    providerItemId: str | None = None
+    """
+    The identifier in the integration provider, could be a reference to
+    a file, task, project.
+    """
+
+    providerItemName: str | None = None
+    """
+    The name of the item in the integration provider.
     """
 
 

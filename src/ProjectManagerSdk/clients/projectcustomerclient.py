@@ -30,8 +30,8 @@ class ProjectCustomerClient:
 
         A ProjectCustomer is a code used to identify costs within your
         Projects. Each ProjectCustomer has a name and a unique
-        identifier. ChargeCodes are defined per Workspace and are shared
-        among Projects.
+        identifier. ProjectCustomers are defined per Workspace and are
+        shared among Projects.
 
         Parameters
         ----------

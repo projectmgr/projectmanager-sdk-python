@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
+from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
@@ -199,6 +200,11 @@ class TaskDto:
     plannedEffort: int | None = None
     """
     The planned effort (in minutes) for this Task.
+    """
+
+    fields: list[TaskFieldDto] | None = None
+    """
+    Task fields array with values
     """
 
 

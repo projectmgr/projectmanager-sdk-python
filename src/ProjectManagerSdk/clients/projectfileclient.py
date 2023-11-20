@@ -26,7 +26,8 @@ class ProjectFileClient:
 
     def upload_project_file(self, projectId: str, filename: str) -> AstroResult[FileDto]:
         """
-        Uploads a file to a project folder.
+        Uploads a file to the All Files folder on the Files page within
+        the project that you specify.
 
         ProjectManager allows you to store Files connected to other
         elements of your Workspace such as a Project, a Task, or Home.
@@ -56,12 +57,16 @@ class ProjectFileClient:
 
     def upload_project_file_to_folder(self, projectId: str, folderId: str, filename: str) -> AstroResult[FileDto]:
         """
-        Uploads a file to a project folder.
+        Uploads a file to a specific folder on the Files page within the
+        project that you specify.
 
         ProjectManager allows you to store Files connected to other
         elements of your Workspace such as a Project, a Task, or Home.
         Files are maintained separately based on the location where the
         file was stored.
+
+        You can organize your files in the Home Files and Project Files
+        pages by adding folders.
 
         When you upload a File, please allow a few moments for the File
         to be processed and verified. ProjectManager may reject File
