@@ -32,6 +32,7 @@ from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
 from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
 from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
 from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
+from ProjectManagerSdk.clients.teamsclient import TeamsClient
 from ProjectManagerSdk.clients.timesheetclient import TimesheetClient
 from ProjectManagerSdk.clients.userroleclient import UserRoleClient
 from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient

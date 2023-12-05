@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.updaterequestdto import UpdateRequestDto
+from requests.models import Response
 import json
 
 class FileClient:
@@ -57,6 +58,30 @@ class FileClient:
             return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
+
+    def download_a_thumbnail_image(self, documentId: str) -> Response:
+        """
+        Downloads a thumbnail image associated with a document that was
+        previously uploaded to ProjectManager.com. ProjectManager allows
+        you to store files linked to various elements within your
+        Workspace, such as Projects, Tasks, or your Home. Files are
+        organized based on their storage location. When uploading a
+        file, please allow some time for the file to undergo processing
+        and verification. ProjectManager may reject file uploads
+        containing issues such as malware. Once a file has completed the
+        upload process, you can retrieve its associated thumbnail using
+        the DownloadThumbnail API.
+
+        Parameters
+        ----------
+        documentId : str
+            The unique identifier of the document for which to download
+            the thumbnail.
+        """
+        path = f"/api/data/files/{documentId}/thumbnail"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        return result
 
     def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
         """
