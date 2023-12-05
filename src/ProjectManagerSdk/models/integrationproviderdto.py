@@ -79,6 +79,11 @@ class IntegrationProviderDto:
     The list of available AuthSetup for this Provider.
     """
 
+    createInWorkato: bool | None = None
+    """
+    Flag whether user/workspace needs to be setup in Workato
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

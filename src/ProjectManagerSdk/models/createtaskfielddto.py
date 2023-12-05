@@ -15,7 +15,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class TaskFieldsValueResponseDto:
+class CreateTaskFieldDto:
     """
     A TaskField is a custom field defined within your Workspace for a
     specific Project. You can define TaskFields for any integration
@@ -24,25 +24,28 @@ class TaskFieldsValueResponseDto:
     edited for each Task inside this Project.
     """
 
-    id: str | None = None
-    """
-    The unique identifier of this TaskField.
-    """
-
-    value: str | None = None
-    """
-    The value currently set for this TaskField for this Task.
-    """
-
     name: str | None = None
     """
-    The name of this TaskField.
+    The name of the TaskField
     """
 
     type: str | None = None
     """
     The type of this TaskField. Valid types are the following: * Text *
-    Number * Date * Checkbox * Currency * Dropdown
+    Number * Date * Checkbox * Currency * DropdownSingle * DropdownMulti
+    """
+
+    options: list[str] | None = None
+    """
+    A list of options for use of this TaskField. This is only valid if
+    the `Type` value is set to `Dropdown`. When a custom TaskField of
+    type `DropDown` is shown to a user in the application, they will be
+    able to choose one of the `Options` in this list.
+    """
+
+    shortId: str | None = None
+    """
+    The short Id of this field - human readable identity
     """
 
 

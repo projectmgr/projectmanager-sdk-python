@@ -27,7 +27,14 @@ class ProjectMembersClient:
 
     def retrieve_new_project_members(self) -> AstroResult[list[ProjectMemberDto]]:
         """
-        Returns a list of membership options for new projects.
+        Returns a list of users that can be added as members of a new
+        project, as well as their available project security roles.
+
+        A project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
 
         Parameters
         ----------
@@ -45,8 +52,17 @@ class ProjectMembersClient:
 
     def retrieve_project_members(self, projectId: str, includeAllUsers: bool) -> AstroResult[list[ProjectMemberDto]]:
         """
-        Returns a list of membership options for existing members.
-        Optionally include users who are not a member yet.
+        Returns a list of users that are currently members of a
+        specified project, as well as their current project security
+        roles and available project security roles. Optionally include
+        users who are not currently members of the project, but who are
+        available to be added.
+
+        A project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
 
         Parameters
         ----------
@@ -70,7 +86,14 @@ class ProjectMembersClient:
 
     def retrieve_user_project_membership(self, projectId: str, userId: str) -> AstroResult[ProjectMemberDto]:
         """
-        Return the membership of a project for a user.
+        Returns the project security role in a specified project for a
+        current project member.
+
+        A project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
 
         Parameters
         ----------
@@ -89,8 +112,15 @@ class ProjectMembersClient:
 
     def create_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
-        Creates a membership for a user in a project and assigns the
-        user appropriate permissions
+        Creates a membership for a user in a specified project, and
+        assigns the user the appropriate project access based on the
+        specified project security role.
+
+        A project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
 
         Parameters
         ----------
@@ -111,7 +141,14 @@ class ProjectMembersClient:
 
     def update_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
-        Update existing Project Access Control for user for project
+        Updates the project access for a current member of a specified
+        project by giving the user a new project security role.
+
+        A project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
 
         Parameters
         ----------
@@ -132,7 +169,14 @@ class ProjectMembersClient:
 
     def remove_user_project_membership(self, projectId: str, userId: str) -> AstroResult[object]:
         """
-        Deletes Project Member
+        Removes a current project member from a specified project. This
+        removes the user's access to that project.
+
+        A project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
 
         Parameters
         ----------

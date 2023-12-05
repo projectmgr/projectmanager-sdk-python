@@ -17,18 +17,18 @@ from dataclasses import dataclass
 @dataclass
 class WorkSpaceLinksDto:
     """
-    TODO - What is this?
+    A shortcut link within the currently logged in Workspace.
     """
 
     project: str | None = None
     """
-    TODO - What is this?
+    The name of the project for this link.
     """
 
     workSpaceApi: str | None = None
     """
-    This is the link to the api for this business, some legacy endpoints
-    may need this.
+    This is the link to the api for this business. Some endpoints may
+    need this value.
     """
 
 

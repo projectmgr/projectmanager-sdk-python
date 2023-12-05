@@ -14,7 +14,6 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
 from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
-from ProjectManagerSdk.models.deleteprojectfielddto import DeleteProjectFieldDto
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
 from ProjectManagerSdk.models.projectfieldsvalueresponsedto import ProjectFieldsValueResponseDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
@@ -76,7 +75,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[CreateProjectFieldResponseDto](result.json(), False, True, result.status_code, None)
 
-    def delete_project_field(self, body: DeleteProjectFieldDto) -> AstroResult[object]:
+    def delete_project_field(self, fieldId: str) -> AstroResult[object]:
         """
         Deletes an existing ProjectField within your Workspace.
 
@@ -88,20 +87,21 @@ class ProjectFieldClient:
 
         Parameters
         ----------
-        body : DeleteProjectFieldDto
-            The identity of the ProjectField to delete
+        fieldId : str
+            The unique identifier or short ID of this ProjectField
         """
-        path = "/api/data/projects/fields"
+        path = f"/api/data/projects/fields/{fieldId}"
         queryParams = {}
-        result = self.client.send_request("DELETE", path, body, queryParams, None)
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def update_project_field(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
+    def update_projectfield_value(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
         """
-        Updates an existing ProjectField with new information.
+        Replaces the current value of a ProjectField for a specific
+        Project within your Workspace.
 
         A ProjectField is a custom field defined within your Workspace.
         You can define ProjectFields for any integration purpose that is
@@ -115,7 +115,7 @@ class ProjectFieldClient:
             The unique identifier of the Project that contains this
             ProjectField
         fieldId : str
-            The unique identifier of this ProjectField
+            The unique identifier or short ID of this ProjectField
         body : UpdateProjectFieldValueDto
             The new information for this ProjectField
         """
@@ -132,14 +132,20 @@ class ProjectFieldClient:
         Retrieves the current ProjectField value for a particular
         Project and ProjectField.
 
+        A ProjectField is a custom field defined within your Workspace.
+        You can define ProjectFields for any integration purpose that is
+        important to your business. Each ProjectField has a data type as
+        well as options in how it is handled. ProjectFields can be
+        edited for each Project within your Workspace.
+
         Parameters
         ----------
         projectId : str
             The unique identifier of the Project of the value to
             retrieve
         fieldId : str
-            The unique identifier of the ProjectField of the value to
-            retrieve
+            The unique identifier or short ID of the ProjectField of the
+            value to retrieve
         """
         path = f"/api/data/projects/{projectId}/fields/{fieldId}"
         queryParams = {}
@@ -152,6 +158,12 @@ class ProjectFieldClient:
     def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[list[ProjectFieldsValueResponseDto]]:
         """
         Retrieves all ProjectField values for a particular Project.
+
+        A ProjectField is a custom field defined within your Workspace.
+        You can define ProjectFields for any integration purpose that is
+        important to your business. Each ProjectField has a data type as
+        well as options in how it is handled. ProjectFields can be
+        edited for each Project within your Workspace.
 
         Parameters
         ----------

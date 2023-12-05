@@ -14,7 +14,6 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
-from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
@@ -78,7 +77,7 @@ class TaskClient:
         else:
             return AstroResult[list[TaskDto]](result.json(), False, True, result.status_code, None)
 
-    def retrieve_task(self, taskId: str) -> AstroResult[TaskDetailsDto]:
+    def retrieve_task(self, taskId: str) -> AstroResult[TaskDto]:
         """
         Retrieve a Task by its unique identifier or by its short ID. A
         Task has both a unique identifier, which is a GUID, and a short
@@ -99,9 +98,9 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TaskDetailsDto](None, True, False, result.status_code, TaskDetailsDto(**json.loads(result.content)['data']))
+            return AstroResult[TaskDto](None, True, False, result.status_code, TaskDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult[TaskDetailsDto](result.json(), False, True, result.status_code, None)
+            return AstroResult[TaskDto](result.json(), False, True, result.status_code, None)
 
     def update_task(self, taskId: str, body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """

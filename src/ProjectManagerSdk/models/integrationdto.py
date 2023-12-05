@@ -76,6 +76,11 @@ class IntegrationDto:
     True if the user has authenticated
     """
 
+    autoEnabled: bool | None = None
+    """
+    True if the integration is auto-enabled
+    """
+
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)

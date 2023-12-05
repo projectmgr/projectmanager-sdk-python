@@ -12,22 +12,64 @@
 #
 
 
+from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
 from dataclasses import dataclass
 
 @dataclass
 class TaskFieldDto:
     """
-    A model that contains the value for a TaskField.
+    A TaskField is a custom field defined within your Workspace for a
+    specific Project. You can define TaskFields for any integration
+    purpose that is important to your business. Each TaskField has a
+    data type as well as options in how it is handled. TaskFields can be
+    edited for each Task inside this Project.
+    """
+
+    id: str | None = None
+    """
+    The unique identifier of this TaskField
+    """
+
+    name: str | None = None
+    """
+    The name of this TaskField
+    """
+
+    type: str | None = None
+    """
+    The type of this TaskField. Valid types are the following: * Text *
+    Number * Date * Checkbox * Currency * Dropdown Attempting to create
+    a field with any Type other than these will return an error. For
+    Dropdown TaskFields, specify the list of choices in the `Options`
+    field.
+    """
+
+    options: list[str] | None = None
+    """
+    A list of options for use of this TaskField. This is only valid if
+    the `Type` value is set to `Dropdown`. When a custom TaskField of
+    type `DropDown` is shown to a user in the application, they will be
+    able to choose one of the `Options` in this list.
     """
 
     shortId: str | None = None
     """
-    The unique Short Id of this TaskField.
+    The short Id of this TaskField - human readable identity
     """
 
-    value: str | None = None
+    project: TaskFieldProjectDto | None = None
     """
-    The value currently set for this TaskField for this Task.
+    The Project to which this TaskField belongs.
+    """
+
+    createdDate: str | None = None
+    """
+    Date and time (in UTC) that this TaskField was created.
+    """
+
+    modifiedDate: str | None = None
+    """
+    Date and time (in UTC) that this TaskField was last modified.
     """
 
 

@@ -15,26 +15,25 @@
 from dataclasses import dataclass
 
 @dataclass
-class ConnectionSchemaDto:
+class TaskFieldProjectDto:
     """
-    This class contains the URL or AuthScheme to use to authenticate
-    with the Integration Provider.
-    """
-
-    connected: bool | None = None
-    """
-    Whether or not the Integration Provider is connected.
+    The TaskFieldProject is a summary of the Project that this TaskField
+    relates to.
     """
 
-    url: str | None = None
+    id: str | None = None
     """
-    The URL to use to authenticate with the Integration Provider.
+    The unique identifier of this Project.
     """
 
-    authScheme: object | None = None
+    shortId: str | None = None
     """
-    This class contains the AuthScheme to use to authenticate with the
-    Integration Provider.
+    The ShortId of this Project.
+    """
+
+    name: str | None = None
+    """
+    The common name of this Project.
     """
 
 
