@@ -13,9 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
-from ProjectManagerSdk.models.createtaskfieldrequestdto import CreateTaskFieldRequestDto
-from ProjectManagerSdk.models.gettaskfieldsresponsedto import GetTaskFieldsResponseDto
-from ProjectManagerSdk.models.taskfieldsvalueresponsedto import TaskFieldsValueResponseDto
+from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
+from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
+from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
 import json
 
@@ -28,7 +28,7 @@ class TaskFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_fields(self, projectId: str) -> AstroResult[list[GetTaskFieldsResponseDto]]:
+    def retrieve_task_fields(self, projectId: str) -> AstroResult[list[TaskFieldDto]]:
         """
         Retrieves all TaskFields defined for a specific Project within
         your Workspace.
@@ -51,14 +51,14 @@ class TaskFieldClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(GetTaskFieldsResponseDto(**dict))
-            return AstroResult[list[GetTaskFieldsResponseDto]](None, True, False, result.status_code, data)
+                data.append(TaskFieldDto(**dict))
+            return AstroResult[list[TaskFieldDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[GetTaskFieldsResponseDto]](result.json(), False, True, result.status_code, None)
+            return AstroResult[list[TaskFieldDto]](result.json(), False, True, result.status_code, None)
 
-    def create_task_field(self, projectId: str, body: CreateTaskFieldRequestDto) -> AstroResult[ChangeSetStatusDto]:
+    def create_task_field(self, projectId: str, body: CreateTaskFieldDto) -> AstroResult[ChangeSetStatusDto]:
         """
-        Creates a new TaskFields for a specific Project within your
+        Creates a new TaskField for a specific Project within your
         Workspace.
 
         A TaskField is a custom field defined within your Workspace for
@@ -73,7 +73,7 @@ class TaskFieldClient:
         projectId : str
             The unique identifier of the Project within which to create
             this TaskField
-        body : CreateTaskFieldRequestDto
+        body : CreateTaskFieldDto
             Information about the TaskField to create
         """
         path = f"/api/data/projects/{projectId}/tasks/fields"
@@ -83,6 +83,57 @@ class TaskFieldClient:
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+
+    def query_task_fields(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldDto]]:
+        """
+        Retrieve a list of TaskFields that match an [OData formatted
+        query](https://www.odata.org/).
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside a
+        Project.
+
+        Parameters
+        ----------
+        $top : int
+            The number of records to return
+        $skip : int
+            Skips the given number of records and then returns $top
+            records
+        $filter : str
+            Filter the expression according to oData queries
+        $select : str
+            Specify which properties should be returned
+        $orderby : str
+            Order collection by this field.
+        $expand : str
+            Include related data in the response
+        """
+        path = "/api/data/projects/tasks/fields"
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(TaskFieldDto(**dict))
+            return AstroResult[list[TaskFieldDto]](None, True, False, result.status_code, data)
+        else:
+            return AstroResult[list[TaskFieldDto]](result.json(), False, True, result.status_code, None)
 
     def delete_task_field(self, projectId: str, fieldId: str) -> AstroResult[object]:
         """
@@ -112,7 +163,86 @@ class TaskFieldClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def retrieve_taskfield_value(self, taskId: str, fieldId: str) -> AstroResult[TaskFieldsValueResponseDto]:
+    def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldValueDto]]:
+        """
+        Retrieves all TaskField values for a particular Task.
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task for which we want
+            TaskField values
+        """
+        path = f"/api/data/tasks/{taskId}/fields/values"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(TaskFieldValueDto(**dict))
+            return AstroResult[list[TaskFieldValueDto]](None, True, False, result.status_code, data)
+        else:
+            return AstroResult[list[TaskFieldValueDto]](result.json(), False, True, result.status_code, None)
+
+    def query_task_field_values(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldValueDto]]:
+        """
+        Retrieve a list of TaskFieldValues that match an [OData
+        formatted query](https://www.odata.org/).
+
+        A TaskField is a custom field defined within your Workspace for
+        a specific Project. You can define TaskFields for any
+        integration purpose that is important to your business. Each
+        TaskField has a data type as well as options in how it is
+        handled. TaskFields can be edited for each Task inside this
+        Project.
+
+        Parameters
+        ----------
+        $top : int
+            The number of records to return
+        $skip : int
+            Skips the given number of records and then returns $top
+            records
+        $filter : str
+            Filter the expression according to oData queries
+        $select : str
+            Specify which properties should be returned
+        $orderby : str
+            Order collection by this field.
+        $expand : str
+            Include related data in the response
+        """
+        path = "/api/data/tasks/fields/values"
+        queryParams = {}
+        if top:
+            queryParams['$top'] = top
+        if skip:
+            queryParams['$skip'] = skip
+        if filter:
+            queryParams['$filter'] = filter
+        if select:
+            queryParams['$select'] = select
+        if orderby:
+            queryParams['$orderby'] = orderby
+        if expand:
+            queryParams['$expand'] = expand
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(TaskFieldValueDto(**dict))
+            return AstroResult[list[TaskFieldValueDto]](None, True, False, result.status_code, data)
+        else:
+            return AstroResult[list[TaskFieldValueDto]](result.json(), False, True, result.status_code, None)
+
+    def retrieve_task_field_value(self, taskId: str, fieldId: str) -> AstroResult[TaskFieldValueDto]:
         """
         Retrieves the current TaskField value for a particular Task and
         TaskField.
@@ -132,17 +262,17 @@ class TaskFieldClient:
             The unique identifier of the TaskField of the value to
             retrieve
         """
-        path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
+        path = f"/api/data/tasks/{taskId}/fields/{fieldId}/values"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TaskFieldsValueResponseDto](None, True, False, result.status_code, TaskFieldsValueResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[TaskFieldValueDto](None, True, False, result.status_code, TaskFieldValueDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult[TaskFieldsValueResponseDto](result.json(), False, True, result.status_code, None)
+            return AstroResult[TaskFieldValueDto](result.json(), False, True, result.status_code, None)
 
-    def update_taskfield_value(self, taskId: str, fieldId: str, body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
+    def update_task_field_value(self, taskId: str, fieldId: str, body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
         """
-        Replaces the current value of a TaskFields for a specific Task
+        Replaces the current value of a TaskField for a specific Task
         within your Workspace.
 
         A TaskField is a custom field defined within your Workspace for
@@ -163,38 +293,10 @@ class TaskFieldClient:
         body : UpdateTaskFieldValueDto
             The new value for this TaskField for this Task
         """
-        path = f"/api/data/tasks/{taskId}/fields/{fieldId}"
+        path = f"/api/data/tasks/{taskId}/fields/{fieldId}/values"
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
-
-    def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldsValueResponseDto]]:
-        """
-        Retrieves all TaskField values for a particular Task.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
-        TaskField has a data type as well as options in how it is
-        handled. TaskFields can be edited for each Task inside this
-        Project.
-
-        Parameters
-        ----------
-        taskId : str
-            The unique identifier of the Task for which we want
-            TaskField values
-        """
-        path = f"/api/data/tasks/{taskId}/fields"
-        queryParams = {}
-        result = self.client.send_request("GET", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = []
-            for dict in json.loads(result.content)['data']:
-                data.append(TaskFieldsValueResponseDto(**dict))
-            return AstroResult[list[TaskFieldsValueResponseDto]](None, True, False, result.status_code, data)
-        else:
-            return AstroResult[list[TaskFieldsValueResponseDto]](result.json(), False, True, result.status_code, None)

@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
@@ -66,6 +67,11 @@ class TimesheetDto:
     resource: TimesheetResourceDto | None = None
     """
     The resource associated with this timesheet entry
+    """
+
+    adminType: TimesheetAdminTypeDto | None = None
+    """
+    The administration type associated with this timesheet entry
     """
 
 

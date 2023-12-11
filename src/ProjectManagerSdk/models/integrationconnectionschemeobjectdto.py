@@ -15,26 +15,24 @@
 from dataclasses import dataclass
 
 @dataclass
-class ConnectionSchemaDto:
+class IntegrationConnectionSchemeObjectDto:
     """
-    This class contains the URL or AuthScheme to use to authenticate
-    with the Integration Provider.
-    """
-
-    connected: bool | None = None
-    """
-    Whether or not the Integration Provider is connected.
+    Master Connection Scheme for Providers
     """
 
-    url: str | None = None
+    value: str | None = None
     """
-    The URL to use to authenticate with the Integration Provider.
+    The value of the property
     """
 
-    authScheme: object | None = None
+    type: str | None = None
     """
-    This class contains the AuthScheme to use to authenticate with the
-    Integration Provider.
+    The type of the property
+    """
+
+    sendToClient: bool | None = None
+    """
+    Send to the client true/false
     """
 
 

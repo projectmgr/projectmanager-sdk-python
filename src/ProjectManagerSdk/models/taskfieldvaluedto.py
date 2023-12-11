@@ -12,40 +12,28 @@
 #
 
 
+from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
 from dataclasses import dataclass
 
 @dataclass
-class ProjectFieldsValueResponseDto:
+class TaskFieldValueDto:
     """
-    A ProjectField is a custom field defined within your Workspace for
-    each Project. Each ProjectField has a data type as well as options
-    in how it is handled.
+    A model that contains the value for a TaskField.
     """
 
     id: str | None = None
     """
-    The unique identifier of this Project Field.
-    """
-
-    value: str | None = None
-    """
-    The value currently set for this Project Field.
-    """
-
-    name: str | None = None
-    """
-    The name of this Project Field.
-    """
-
-    type: str | None = None
-    """
-    The type of this Project Field. Valid types are the following: *
-    Text * Number * Date * Checkbox * Currency * Dropdown
+    The unique identifier of this TaskField.
     """
 
     shortId: str | None = None
     """
-    The short Id of this field - human readable identity
+    The unique Short Id of this TaskField.
+    """
+
+    value: str | None = None
+    """
+    The value currently set for this TaskFieldValue.
     """
 
     createdDate: str | None = None
@@ -56,6 +44,11 @@ class ProjectFieldsValueResponseDto:
     modifiedDate: str | None = None
     """
     Date and time (in UTC) that this TaskField was last modified.
+    """
+
+    task: TaskFieldValueTaskDto | None = None
+    """
+    The Task to which this Value belongs.
     """
 
 
