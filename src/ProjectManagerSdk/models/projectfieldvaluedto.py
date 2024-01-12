@@ -1,13 +1,13 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -15,11 +15,9 @@
 from dataclasses import dataclass
 
 @dataclass
-class ProjectFieldsValueResponseDto:
+class ProjectFieldValueDto:
     """
-    A ProjectField is a custom field defined within your Workspace for
-    each Project. Each ProjectField has a data type as well as options
-    in how it is handled.
+    A model that contains the value for a ProjectField.
     """
 
     id: str | None = None
@@ -27,9 +25,9 @@ class ProjectFieldsValueResponseDto:
     The unique identifier of this Project Field.
     """
 
-    value: str | None = None
+    shortId: str | None = None
     """
-    The value currently set for this Project Field.
+    The unique Short Id of this Project Field.
     """
 
     name: str | None = None
@@ -43,9 +41,9 @@ class ProjectFieldsValueResponseDto:
     Text * Number * Date * Checkbox * Currency * Dropdown
     """
 
-    shortId: str | None = None
+    value: str | None = None
     """
-    The short Id of this field - human readable identity
+    The value currently set for this Project Field Value.
     """
 
     createdDate: str | None = None

@@ -1,13 +1,13 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -31,8 +31,13 @@ class TaskAssigneeClient:
         Replace all TaskAssignees on a Task with new TaskAssignees.
 
         A TaskAssignee is an assignment of a Resource to a Task. You can
-        assign multiple Resources to a Task and designate what
-        proportion of their time will be allocated to this Task.
+        assign multiple Resources to a Task and designate how much of
+        their time will be allocated to this Task.
+
+        In the request body, id is the id of the Resource you would like
+        to assign to the Task, and assignedEffort is the amount of time
+        that Resource is expected to spend on the task. assignedEffort
+        should be entered in minutes.
 
         Parameters
         ----------

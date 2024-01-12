@@ -1,13 +1,13 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -39,6 +39,8 @@ class ProjectFileClient:
         uploads that contain problems such as malware. Once a File has
         completed the upload the process, you may retrieve it using the
         DownloadFile API.
+
+        This API returns a JSON response indicating success or failure.
 
         Parameters
         ----------
@@ -73,6 +75,8 @@ class ProjectFileClient:
         uploads that contain problems such as malware. Once a File has
         completed the upload the process, you may retrieve it using the
         DownloadFile API.
+
+        This API returns a JSON response indicating success or failure.
 
         Parameters
         ----------

@@ -15,18 +15,18 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.filedto import FileDto
 import json
 
-class TaskFileClient:
+class NptFilesClient:
     """
-    API methods related to TaskFile
+    API methods related to NptFiles
     """
     from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_task_file(self, taskId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_file_to_non_project_tasks(self, taskId: str, filename: str) -> AstroResult[FileDto]:
         """
-        Uploads a file to a task.
+        Uploads a file to a non-project task.
 
         ProjectManager allows you to store Files connected to other
         elements of your Workspace such as a Project, a Task, or Home.
@@ -48,7 +48,7 @@ class TaskFileClient:
         filename : str
             The full path of a file to upload to the API
         """
-        path = f"/api/data/tasks/{taskId}/files"
+        path = f"/api/data/non-project-tasks/{taskId}/files"
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, filename)
         if result.status_code >= 200 and result.status_code < 300:
