@@ -24,7 +24,7 @@ class FileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def download_file(self, documentId: str, type: str) -> AstroResult[bytearray]:
+    def download_file(self, documentId: str, type: str) -> AstroResult[bytes]:
         """
         Downloads the contents of a file that was previously uploaded to
         ProjectManager.com. ProjectManager allows you to store Files
@@ -53,11 +53,11 @@ class FileClient:
             queryParams['type'] = type
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[bytearray](None, True, False, result.status_code, result.content.__bytes__)
+            return AstroResult[bytes](None, True, False, result.status_code, result.content)
         else:
-            return AstroResult[bytearray](result.json(), False, True, result.status_code, None)
+            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
 
-    def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytearray]:
+    def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytes]:
         """
         Downloads a thumbnail image associated with a document that was
         previously uploaded to ProjectManager.com. ProjectManager allows
@@ -82,9 +82,9 @@ class FileClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[bytearray](None, True, False, result.status_code, result.content.__bytes__)
+            return AstroResult[bytes](None, True, False, result.status_code, result.content)
         else:
-            return AstroResult[bytearray](result.json(), False, True, result.status_code, None)
+            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
 
     def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
         """
