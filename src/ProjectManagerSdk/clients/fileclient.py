@@ -12,7 +12,6 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.byte import byte
 from ProjectManagerSdk.models.updaterequestdto import UpdateRequestDto
 import json
 
@@ -25,7 +24,7 @@ class FileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def download_file(self, documentId: str, type: str) -> byte:
+    def download_file(self, documentId: str, type: str) -> AstroResult[bytearray]:
         """
         Downloads the contents of a file that was previously uploaded to
         ProjectManager.com. ProjectManager allows you to store Files
@@ -53,12 +52,9 @@ class FileClient:
         if type:
             queryParams['type'] = type
         result = self.client.send_request("GET", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[byte](None, True, False, result.status_code, byte(**json.loads(result.content)['data']))
-        else:
-            return AstroResult[byte](result.json(), False, True, result.status_code, None)
+        return result
 
-    def download_a_thumbnail_image(self, documentId: str) -> byte:
+    def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytearray]:
         """
         Downloads a thumbnail image associated with a document that was
         previously uploaded to ProjectManager.com. ProjectManager allows
@@ -82,10 +78,7 @@ class FileClient:
         path = f"/api/data/files/{documentId}/thumbnail"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[byte](None, True, False, result.status_code, byte(**json.loads(result.content)['data']))
-        else:
-            return AstroResult[byte](result.json(), False, True, result.status_code, None)
+        return result
 
     def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
         """

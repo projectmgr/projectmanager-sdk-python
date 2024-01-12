@@ -12,7 +12,6 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.byte import byte
 import json
 
 class TeamsClient:
@@ -24,7 +23,7 @@ class TeamsClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_zip_file_for_teams_integrations(self) -> byte:
+    def retrieve_zip_file_for_teams_integrations(self) -> AstroResult[bytearray]:
         """
         Retrieves zip file for teams integrations. The Teams API is
         intended for use by ProjectManager and its business development
@@ -37,7 +36,4 @@ class TeamsClient:
         path = "/api/data/integrations/teams/application"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[byte](None, True, False, result.status_code, byte(**json.loads(result.content)['data']))
-        else:
-            return AstroResult[byte](result.json(), False, True, result.status_code, None)
+        return result
