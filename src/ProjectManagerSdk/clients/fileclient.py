@@ -52,7 +52,10 @@ class FileClient:
         if type:
             queryParams['type'] = type
         result = self.client.send_request("GET", path, None, queryParams, None)
-        return result
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[bytearray](None, True, False, result.status_code, result.content.__bytes__)
+        else:
+            return AstroResult[bytearray](result.json(), False, True, result.status_code, None)
 
     def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytearray]:
         """
@@ -78,7 +81,10 @@ class FileClient:
         path = f"/api/data/files/{documentId}/thumbnail"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
-        return result
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[bytearray](None, True, False, result.status_code, result.content.__bytes__)
+        else:
+            return AstroResult[bytearray](result.json(), False, True, result.status_code, None)
 
     def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
         """
