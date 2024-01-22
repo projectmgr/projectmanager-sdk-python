@@ -32,6 +32,7 @@ from ProjectManagerSdk.clients.taskclient import TaskClient
 from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
 from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
 from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
 from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
 from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
 from ProjectManagerSdk.clients.teamsclient import TeamsClient
@@ -58,9 +59,10 @@ from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
 from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
 from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
 from ProjectManagerSdk.models.directlinkdto import DirectLinkDto
-from ProjectManagerSdk.models.discussioncreatedto import DiscussionCreateDto
-from ProjectManagerSdk.models.discussioncreateresponsedto import DiscussionCreateResponseDto
-from ProjectManagerSdk.models.discussiondto import DiscussionDto
+from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
+from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
+from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
+from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
@@ -83,6 +85,8 @@ from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
+from ProjectManagerSdk.models.projectfiledto import ProjectFileDto
+from ProjectManagerSdk.models.projectfiletaskdto import ProjectFileTaskDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
@@ -111,6 +115,9 @@ from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
 from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
 from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
+from ProjectManagerSdk.models.taskfiledto import TaskFileDto
+from ProjectManagerSdk.models.taskmetadatasearchdto import TaskMetadataSearchDto
+from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
@@ -122,6 +129,7 @@ from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
+from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto

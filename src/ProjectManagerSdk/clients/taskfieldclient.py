@@ -84,7 +84,7 @@ class TaskFieldClient:
         else:
             return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
 
-    def query_task_fields(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldDto]]:
+    def query_task_fields(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldDto]]:
         """
         Retrieve a list of TaskFields that match an [OData formatted
         query](https://www.odata.org/).
@@ -105,8 +105,6 @@ class TaskFieldClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -120,8 +118,6 @@ class TaskFieldClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:
@@ -191,7 +187,7 @@ class TaskFieldClient:
         else:
             return AstroResult[list[TaskFieldValueDto]](result.json(), False, True, result.status_code, None)
 
-    def query_task_field_values(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldValueDto]]:
+    def query_task_field_values(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldValueDto]]:
         """
         Retrieve a list of TaskFieldValues that match an [OData
         formatted query](https://www.odata.org/).
@@ -212,8 +208,6 @@ class TaskFieldClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -227,8 +221,6 @@ class TaskFieldClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:

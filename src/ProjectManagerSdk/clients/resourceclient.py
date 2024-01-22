@@ -51,7 +51,7 @@ class ResourceClient:
         else:
             return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
 
-    def query_resources(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
+    def query_resources(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
         """
         Retrieve a list of Resources that match an [OData formatted
         query](https://www.odata.org/).
@@ -73,8 +73,6 @@ class ResourceClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -88,8 +86,6 @@ class ResourceClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:

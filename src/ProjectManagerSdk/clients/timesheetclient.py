@@ -45,7 +45,7 @@ class TimesheetClient:
         else:
             return AstroResult[TimesheetResponseDto](result.json(), False, True, result.status_code, None)
 
-    def query_timesheets(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
+    def query_timesheets(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
         """
         Retrieve a list of TimeSheets that match an [OData formatted
         query](https://www.odata.org/).
@@ -61,8 +61,6 @@ class TimesheetClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -76,8 +74,6 @@ class TimesheetClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:

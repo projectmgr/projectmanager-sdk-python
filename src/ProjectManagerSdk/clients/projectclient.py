@@ -26,7 +26,7 @@ class ProjectClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_projects(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ProjectDto]]:
+    def query_projects(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ProjectDto]]:
         """
         Retrieve a list of Projects that match an [OData formatted
         query](https://www.odata.org/).
@@ -45,8 +45,6 @@ class ProjectClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -60,8 +58,6 @@ class ProjectClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:

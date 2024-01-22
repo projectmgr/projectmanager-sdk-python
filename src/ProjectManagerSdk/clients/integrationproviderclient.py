@@ -179,3 +179,26 @@ class IntegrationProviderClient:
             return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
+
+    def disconnect_user_integration_provider_connection(self, providerId: str) -> AstroResult[object]:
+        """
+        Allows you to disconnect the provider specific user connection.
+
+        An IntegrationProvider is the name of an external application or
+        service that can be connected to ProjectManager.com. The
+        Integrations API is intended for use by ProjectManager and its
+        business development partners. Please contact ProjectManager's
+        sales team to request use of this API.
+
+        Parameters
+        ----------
+        providerId : str
+            The identifier to the provider
+        """
+        path = f"/api/data/integrations/providers/{providerId}/user-connection"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[object](result.json(), False, True, result.status_code, None)

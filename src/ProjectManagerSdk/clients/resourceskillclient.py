@@ -26,7 +26,7 @@ class ResourceSkillClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_skills(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
+    def retrieve_resource_skills(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
         """
         Retrieves all ResourceSkills defined within your Workspace.
 
@@ -46,8 +46,6 @@ class ResourceSkillClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -61,8 +59,6 @@ class ResourceSkillClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:

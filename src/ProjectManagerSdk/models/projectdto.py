@@ -15,6 +15,7 @@
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
+from ProjectManagerSdk.models.projectfiledto import ProjectFileDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
@@ -216,6 +217,15 @@ class ProjectDto:
     fieldValues: list[ProjectFieldValueDto] | None = None
     """
     Project fields array with values
+    """
+
+    files: list[ProjectFileDto] | None = None
+    """
+    The list of files associated with this Project, if any. This field
+    will be present when you fetch a single object. When you query for
+    multiple objects, this field is not included in results by default.
+    To expand this field, specify the name of this field in the
+    `$expand` parameter.
     """
 
 

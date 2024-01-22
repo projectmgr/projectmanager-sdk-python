@@ -26,7 +26,7 @@ class HolidayClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_resource_holidays(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceHolidayDto]]:
+    def query_resource_holidays(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceHolidayDto]]:
         """
         Retrieve a list of resource holidays that match an [OData
         formatted query](https://www.odata.org/).
@@ -40,8 +40,6 @@ class HolidayClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -55,8 +53,6 @@ class HolidayClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:
@@ -70,7 +66,7 @@ class HolidayClient:
         else:
             return AstroResult[list[ResourceHolidayDto]](result.json(), False, True, result.status_code, None)
 
-    def query_country_holidays(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[CountryHolidayDto]]:
+    def query_country_holidays(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[CountryHolidayDto]]:
         """
         Retrieve a list of country holidays that match an [OData
         formatted query](https://www.odata.org/).
@@ -84,8 +80,6 @@ class HolidayClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -99,8 +93,6 @@ class HolidayClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:
@@ -114,7 +106,7 @@ class HolidayClient:
         else:
             return AstroResult[list[CountryHolidayDto]](result.json(), False, True, result.status_code, None)
 
-    def query_global_holidays(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[GlobalHolidayDto]]:
+    def query_global_holidays(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[GlobalHolidayDto]]:
         """
         Retrieve a list of global holidays that match an [OData
         formatted query](https://www.odata.org/).
@@ -128,8 +120,6 @@ class HolidayClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -143,8 +133,6 @@ class HolidayClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:

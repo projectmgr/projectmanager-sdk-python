@@ -15,18 +15,14 @@
 from dataclasses import dataclass
 
 @dataclass
-class DiscussionCreateResponseDto:
+class TaskMetadataUpdateDto:
     """
-    Tasks can have discussions attached to them. These discussions can
-    include text with simple formatting. Discussion comments are
-    formatted using [Markdown](https://www.markdownguide.org/) and users
-    should be aware that HTML embedding is not permitted due to the risk
-    of cross-site attacks and other embedding challenges.
+    Task Metadata DTO
     """
 
-    discussionCommentId: str | None = None
+    data: object | None = None
     """
-    The unique identifier of the discussion comment created.
+    Customer or system metadata
     """
 
 

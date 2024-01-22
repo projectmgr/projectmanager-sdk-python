@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2024 ProjectManager.com, Inc.
-# @version    101.0.2818
+# @version    102.0.2886
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -72,6 +72,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
         from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
         from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+        from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
         from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
         from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
         from ProjectManagerSdk.clients.teamsclient import TeamsClient
@@ -109,6 +110,7 @@ class ProjectManagerClient:
         self.taskAssignee = TaskAssigneeClient(self)
         self.taskField = TaskFieldClient(self)
         self.taskFile = TaskFileClient(self)
+        self.taskMetadata = TaskMetadataClient(self)
         self.taskStatus = TaskStatusClient(self)
         self.taskTag = TaskTagClient(self)
         self.teams = TeamsClient(self)
@@ -119,7 +121,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "101.0.2818"
+        self.sdkVersion = "102.0.2886"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

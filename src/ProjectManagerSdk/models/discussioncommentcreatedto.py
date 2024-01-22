@@ -15,7 +15,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class DiscussionCreateDto:
+class DiscussionCommentCreateDto:
     """
     Tasks can have discussions attached to them. These discussions can
     include text with simple formatting. Discussion comments are

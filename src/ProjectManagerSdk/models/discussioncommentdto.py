@@ -12,17 +12,28 @@
 #
 
 
+from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from dataclasses import dataclass
 
 @dataclass
-class DiscussionDto:
+class DiscussionCommentDto:
     """
     Tasks can have discussions attached to them. These discussions can
     include text with simple formatting. Discussion comments are
     formatted using [Markdown](https://www.markdownguide.org/) and users
     should be aware that HTML embedding is not permitted due to the risk
     of cross-site attacks and other embedding challenges.
+    """
+
+    id: str | None = None
+    """
+    The unique ID of the discussion comment.
+    """
+
+    discussionCommentId: str | None = None
+    """
+    Obsolete - use Id instead
     """
 
     text: str | None = None
@@ -32,11 +43,6 @@ class DiscussionDto:
     [Markdown](https://www.markdownguide.org/) and users should be aware
     that HTML embedding is not permitted due to the risk of cross-site
     attacks and other embedding challenges.
-    """
-
-    discussionCommentId: str | None = None
-    """
-    The unique ID of the discussion comment.
     """
 
     authorId: str | None = None
@@ -65,6 +71,15 @@ class DiscussionDto:
     The list of emoji reactions to this discussion comment, if any. This
     object will be null if no emoji reactions have been recorded on this
     discussion comment.
+    """
+
+    files: list[DiscussionCommentFileDto] | None = None
+    """
+    The list of files associated with this Comment, if any. This field
+    will be present when you fetch a single object. When you query for
+    multiple objects, this field is not included in results by default.
+    To expand this field, specify the name of this field in the
+    `$expand` parameter.
     """
 
 
