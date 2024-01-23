@@ -1,18 +1,17 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from requests.models import Response
 import json
 
 class TeamsClient:
@@ -24,7 +23,7 @@ class TeamsClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_zip_file_for_teams_integrations(self) -> Response:
+    def retrieve_zip_file_for_teams_integrations(self) -> AstroResult[bytes]:
         """
         Retrieves zip file for teams integrations. The Teams API is
         intended for use by ProjectManager and its business development
@@ -37,4 +36,7 @@ class TeamsClient:
         path = "/api/data/integrations/teams/application"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
-        return result
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[bytes](None, True, False, result.status_code, result.content)
+        else:
+            return AstroResult[bytes](result.json(), False, True, result.status_code, None)

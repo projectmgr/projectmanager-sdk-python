@@ -1,13 +1,13 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -15,7 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
 from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
-from ProjectManagerSdk.models.projectfieldsvalueresponsedto import ProjectFieldsValueResponseDto
+from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
 import json
 
@@ -127,7 +127,7 @@ class ProjectFieldClient:
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
 
-    def retrieve_projectfield_value(self, projectId: str, fieldId: str) -> AstroResult[ProjectFieldsValueResponseDto]:
+    def retrieve_projectfield_value(self, projectId: str, fieldId: str) -> AstroResult[ProjectFieldValueDto]:
         """
         Retrieves the current ProjectField value for a particular
         Project and ProjectField.
@@ -151,11 +151,11 @@ class ProjectFieldClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectFieldsValueResponseDto](None, True, False, result.status_code, ProjectFieldsValueResponseDto(**json.loads(result.content)['data']))
+            return AstroResult[ProjectFieldValueDto](None, True, False, result.status_code, ProjectFieldValueDto(**json.loads(result.content)['data']))
         else:
-            return AstroResult[ProjectFieldsValueResponseDto](result.json(), False, True, result.status_code, None)
+            return AstroResult[ProjectFieldValueDto](result.json(), False, True, result.status_code, None)
 
-    def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[list[ProjectFieldsValueResponseDto]]:
+    def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[list[ProjectFieldValueDto]]:
         """
         Retrieves all ProjectField values for a particular Project.
 
@@ -177,7 +177,7 @@ class ProjectFieldClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ProjectFieldsValueResponseDto(**dict))
-            return AstroResult[list[ProjectFieldsValueResponseDto]](None, True, False, result.status_code, data)
+                data.append(ProjectFieldValueDto(**dict))
+            return AstroResult[list[ProjectFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectFieldsValueResponseDto]](result.json(), False, True, result.status_code, None)
+            return AstroResult[list[ProjectFieldValueDto]](result.json(), False, True, result.status_code, None)

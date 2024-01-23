@@ -1,19 +1,21 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
 
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
+from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
+from ProjectManagerSdk.models.projectfiledto import ProjectFileDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
@@ -99,11 +101,9 @@ class ProjectDto:
     plannedStartDate: str | None = None
     """
     A calculated field of the estimated date on which this Project is
-    expected to start.
-
-    This date is calculated based on the earliest estimated start date
-    for a Task within this Project. This value is null if no Tasks have
-    an estimated start date within this Project.
+    expected to start. This date is calculated based on the earliest
+    estimated start date for a Task within this Project. This value is
+    null if no Tasks have an estimated start date within this Project.
     """
 
     plannedFinishDate: str | None = None
@@ -198,6 +198,12 @@ class ProjectDto:
     True if this Project is marked as favorite for current user
     """
 
+    creationTemplateId: str | None = None
+    """
+    The TemplateId that this project was created from. Will be null if
+    no template was selected at project creation.
+    """
+
     members: list[ProjectMemberDto] | None = None
     """
     The members of the project
@@ -205,7 +211,21 @@ class ProjectDto:
 
     fields: object | None = None
     """
+    Obsolete - use FieldValues instead
+    """
+
+    fieldValues: list[ProjectFieldValueDto] | None = None
+    """
     Project fields array with values
+    """
+
+    files: list[ProjectFileDto] | None = None
+    """
+    The list of files associated with this Project, if any. This field
+    will be present when you fetch a single object. When you query for
+    multiple objects, this field is not included in results by default.
+    To expand this field, specify the name of this field in the
+    `$expand` parameter.
     """
 
 

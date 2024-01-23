@@ -1,19 +1,18 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.updaterequestdto import UpdateRequestDto
-from requests.models import Response
 import json
 
 class FileClient:
@@ -25,21 +24,20 @@ class FileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def download_file(self, documentId: str, type: str) -> AstroResult[object]:
+    def download_file(self, documentId: str, type: str) -> AstroResult[bytes]:
         """
         Downloads the contents of a file that was previously uploaded to
-        ProjectManager.com.
-
-        ProjectManager allows you to store Files connected to other
-        elements of your Workspace such as a Project, a Task, or Home.
-        Files are maintained separately based on the location where the
-        file was stored.
-
-        When you upload a File, please allow a few moments for the File
-        to be processed and verified. ProjectManager may reject File
-        uploads that contain problems such as malware. Once a File has
-        completed the upload the process, you may retrieve it using the
-        DownloadFile API.
+        ProjectManager.com. ProjectManager allows you to store Files
+        connected to other elements of your Workspace such as a Project,
+        a Task, or Home. Files are maintained separately based on the
+        location where the file was stored. When you upload a File,
+        please allow a few moments for the File to be processed and
+        verified. ProjectManager may reject File uploads that contain
+        problems such as malware. Once a File has completed the upload
+        the process, you may retrieve it using the DownloadFile API. If
+        successful, this API returns the file contents as an
+        octet-stream (raw bytes). If an error occurs, you will receive a
+        JSON result with error information.
 
         Parameters
         ----------
@@ -55,11 +53,11 @@ class FileClient:
             queryParams['type'] = type
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            return AstroResult[bytes](None, True, False, result.status_code, result.content)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
 
-    def download_a_thumbnail_image(self, documentId: str) -> Response:
+    def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytes]:
         """
         Downloads a thumbnail image associated with a document that was
         previously uploaded to ProjectManager.com. ProjectManager allows
@@ -70,7 +68,9 @@ class FileClient:
         and verification. ProjectManager may reject file uploads
         containing issues such as malware. Once a file has completed the
         upload process, you can retrieve its associated thumbnail using
-        the DownloadThumbnail API.
+        the DownloadThumbnail API. If successful, this API returns the
+        file contents as an octet-stream (raw bytes). If an error
+        occurs, you will receive a JSON result with error information.
 
         Parameters
         ----------
@@ -81,7 +81,10 @@ class FileClient:
         path = f"/api/data/files/{documentId}/thumbnail"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
-        return result
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[bytes](None, True, False, result.status_code, result.content)
+        else:
+            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
 
     def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
         """
@@ -98,6 +101,8 @@ class FileClient:
         completed the upload the process, you may retrieve it using the
         DownloadFile API.
 
+        This API returns a JSON response indicating success or failure.
+
         Parameters
         ----------
         fileId : str
@@ -108,6 +113,31 @@ class FileClient:
         path = f"/api/data/files/{fileId}"
         queryParams = {}
         result = self.client.send_request("PUT", path, body, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+        else:
+            return AstroResult[object](result.json(), False, True, result.status_code, None)
+
+    def delete_file(self, fileId: str, hard: bool) -> AstroResult[object]:
+        """
+        In case of soft delete moves file to trash folder. For hard
+        delete completely deletes file's metadata from pm database as
+        well as from amazon storage
+
+        This API returns a JSON response indicating success or failure.
+
+        Parameters
+        ----------
+        fileId : str
+            The unique identifier of the File to delete
+        hard : bool
+            Param indicates that file should be hard deleted
+        """
+        path = f"/api/data/files/{fileId}"
+        queryParams = {}
+        if hard:
+            queryParams['hard'] = hard
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:

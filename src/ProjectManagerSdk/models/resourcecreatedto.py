@@ -1,13 +1,13 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -94,36 +94,30 @@ class ResourceCreateDto:
     country: str | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
-    Country data on the CountryCode property.
-
-    A text field indicating the country in which this Resource is
-    located. This value is not constrained to the list of known ISO 3166
-    country names or codes.
+    Country data on the CountryCode property. A text field indicating
+    the country in which this Resource is located. This value is not
+    constrained to the list of known ISO 3166 country names or codes.
     """
 
     role: str | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
-    Role data on the RoleId property
-
-    The Role privileges associated with this Resource. Applies to
-    personnel Resources only.
+    Role data on the RoleId property The Role privileges associated with
+    this Resource. Applies to personnel Resources only.
     """
 
     teams: list[str] | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
-    Team data on the TeamIds property
-
-    The list of ResourceTeams to which this Resource belongs.
+    Team data on the TeamIds property The list of ResourceTeams to which
+    this Resource belongs.
     """
 
     skills: list[str] | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
-    Skill data on the SkillIds property
-
-    The list of ResourceSkills possessed by this Resource.
+    Skill data on the SkillIds property The list of ResourceSkills
+    possessed by this Resource.
     """
 
 

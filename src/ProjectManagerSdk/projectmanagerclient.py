@@ -1,15 +1,15 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
-# @copyright  2023-2023 ProjectManager.com, Inc.
-# @version    99.0.2548
+# @copyright  2023-2024 ProjectManager.com, Inc.
+# @version    102.0.2886
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -46,12 +46,14 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.dashboardclient import DashboardClient
         from ProjectManagerSdk.clients.discussionclient import DiscussionClient
         from ProjectManagerSdk.clients.fileclient import FileClient
+        from ProjectManagerSdk.clients.holidayclient import HolidayClient
         from ProjectManagerSdk.clients.homefileclient import HomeFileClient
         from ProjectManagerSdk.clients.integrationclient import IntegrationClient
         from ProjectManagerSdk.clients.integrationcategoryclient import IntegrationCategoryClient
         from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
         from ProjectManagerSdk.clients.licenseclient import LicenseClient
         from ProjectManagerSdk.clients.meclient import MeClient
+        from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
         from ProjectManagerSdk.clients.projectclient import ProjectClient
         from ProjectManagerSdk.clients.projectchargecodeclient import ProjectChargeCodeClient
         from ProjectManagerSdk.clients.projectcustomerclient import ProjectCustomerClient
@@ -70,6 +72,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
         from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
         from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+        from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
         from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
         from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
         from ProjectManagerSdk.clients.teamsclient import TeamsClient
@@ -81,12 +84,14 @@ class ProjectManagerClient:
         self.dashboard = DashboardClient(self)
         self.discussion = DiscussionClient(self)
         self.file = FileClient(self)
+        self.holiday = HolidayClient(self)
         self.homeFile = HomeFileClient(self)
         self.integration = IntegrationClient(self)
         self.integrationCategory = IntegrationCategoryClient(self)
         self.integrationProvider = IntegrationProviderClient(self)
         self.license = LicenseClient(self)
         self.me = MeClient(self)
+        self.nptFiles = NptFilesClient(self)
         self.project = ProjectClient(self)
         self.projectChargeCode = ProjectChargeCodeClient(self)
         self.projectCustomer = ProjectCustomerClient(self)
@@ -105,6 +110,7 @@ class ProjectManagerClient:
         self.taskAssignee = TaskAssigneeClient(self)
         self.taskField = TaskFieldClient(self)
         self.taskFile = TaskFileClient(self)
+        self.taskMetadata = TaskMetadataClient(self)
         self.taskStatus = TaskStatusClient(self)
         self.taskTag = TaskTagClient(self)
         self.teams = TeamsClient(self)
@@ -115,7 +121,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "99.0.2548"
+        self.sdkVersion = "102.0.2886"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

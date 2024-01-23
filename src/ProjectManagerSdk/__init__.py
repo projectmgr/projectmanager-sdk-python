@@ -6,12 +6,14 @@ from ProjectManagerSdk.clients.changesetclient import ChangesetClient
 from ProjectManagerSdk.clients.dashboardclient import DashboardClient
 from ProjectManagerSdk.clients.discussionclient import DiscussionClient
 from ProjectManagerSdk.clients.fileclient import FileClient
+from ProjectManagerSdk.clients.holidayclient import HolidayClient
 from ProjectManagerSdk.clients.homefileclient import HomeFileClient
 from ProjectManagerSdk.clients.integrationclient import IntegrationClient
 from ProjectManagerSdk.clients.integrationcategoryclient import IntegrationCategoryClient
 from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
 from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
+from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
 from ProjectManagerSdk.clients.projectclient import ProjectClient
 from ProjectManagerSdk.clients.projectchargecodeclient import ProjectChargeCodeClient
 from ProjectManagerSdk.clients.projectcustomerclient import ProjectCustomerClient
@@ -30,6 +32,7 @@ from ProjectManagerSdk.clients.taskclient import TaskClient
 from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
 from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
 from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
 from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
 from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
 from ProjectManagerSdk.clients.teamsclient import TeamsClient
@@ -47,6 +50,7 @@ from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatu
 from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
+from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
 from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
 from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
 from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
@@ -55,12 +59,14 @@ from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
 from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
 from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
 from ProjectManagerSdk.models.directlinkdto import DirectLinkDto
-from ProjectManagerSdk.models.discussioncreatedto import DiscussionCreateDto
-from ProjectManagerSdk.models.discussioncreateresponsedto import DiscussionCreateResponseDto
-from ProjectManagerSdk.models.discussiondto import DiscussionDto
+from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
+from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
+from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
+from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
+from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
 from ProjectManagerSdk.models.iddto import IdDto
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
@@ -71,11 +77,6 @@ from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderD
 from ProjectManagerSdk.models.licensedto import LicenseDto
 from ProjectManagerSdk.models.masterconnectionschemedto import MasterConnectionSchemeDto
 from ProjectManagerSdk.models.namedto import NameDto
-from ProjectManagerSdk.models.odataentitysetinfo import ODataEntitySetInfo
-from ProjectManagerSdk.models.odatafunctionimportinfo import ODataFunctionImportInfo
-from ProjectManagerSdk.models.odataservicedocument import ODataServiceDocument
-from ProjectManagerSdk.models.odatasingletoninfo import ODataSingletonInfo
-from ProjectManagerSdk.models.odatatypeannotation import ODataTypeAnnotation
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
@@ -83,7 +84,9 @@ from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateA
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
-from ProjectManagerSdk.models.projectfieldsvalueresponsedto import ProjectFieldsValueResponseDto
+from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
+from ProjectManagerSdk.models.projectfiledto import ProjectFileDto
+from ProjectManagerSdk.models.projectfiletaskdto import ProjectFileTaskDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
@@ -98,6 +101,7 @@ from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemD
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
+from ProjectManagerSdk.models.resourceholidaydto import ResourceHolidayDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
@@ -111,6 +115,9 @@ from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
 from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
 from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
+from ProjectManagerSdk.models.taskfiledto import TaskFileDto
+from ProjectManagerSdk.models.taskmetadatasearchdto import TaskMetadataSearchDto
+from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
@@ -122,6 +129,7 @@ from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
+from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto

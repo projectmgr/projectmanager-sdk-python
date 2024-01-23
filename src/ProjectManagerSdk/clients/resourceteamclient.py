@@ -1,13 +1,13 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2023 ProjectManager.com, Inc.
+# (c) 2023-2024 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
-# @copyright  2023-2023 ProjectManager.com, Inc.
+# @copyright  2023-2024 ProjectManager.com, Inc.
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -26,7 +26,7 @@ class ResourceTeamClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_teams(self, top: int, skip: int, filter: str, select: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
+    def retrieve_resource_teams(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
         """
         Retrieves all ResourceTeams defined within your Workspace that
         match an [OData formatted query](https://www.odata.org/).
@@ -45,8 +45,6 @@ class ResourceTeamClient:
             records
         $filter : str
             Filter the expression according to oData queries
-        $select : str
-            Specify which properties should be returned
         $orderby : str
             Order collection by this field.
         $expand : str
@@ -60,8 +58,6 @@ class ResourceTeamClient:
             queryParams['$skip'] = skip
         if filter:
             queryParams['$filter'] = filter
-        if select:
-            queryParams['$select'] = select
         if orderby:
             queryParams['$orderby'] = orderby
         if expand:
