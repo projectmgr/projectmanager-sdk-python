@@ -12,7 +12,6 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.stringobjectdictionary import StringObjectDictionary
 from ProjectManagerSdk.models.taskmetadatasearchdto import TaskMetadataSearchDto
 from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
 import json
@@ -53,17 +52,6 @@ class TaskMetadataClient:
             return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
         else:
             return AstroResult[object](result.json(), False, True, result.status_code, None)
-
-    def get_task_metadata(self, taskId: str, isSystem: bool) -> AstroResult[StringObjectDictionary]:
-        path = f"/api/data/tasks/{taskId}/metadata"
-        queryParams = {}
-        if isSystem:
-            queryParams['isSystem'] = isSystem
-        result = self.client.send_request("GET", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[StringObjectDictionary](None, True, False, result.status_code, StringObjectDictionary(**json.loads(result.content)['data']))
-        else:
-            return AstroResult[StringObjectDictionary](result.json(), False, True, result.status_code, None)
 
     def get_tasks_by_project_id_and_foreign_key_id(self, foreignKey: str, projectId: str, isSystem: bool) -> AstroResult[list[TaskMetadataSearchDto]]:
         path = f"/api/data/projects/{projectId}/tasks/metadata"
