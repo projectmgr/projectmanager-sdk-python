@@ -18,5 +18,5 @@ classifiers = [
 "Bug Tracker" = "https://github.com/projectmgr/projectmanager-sdk-python/issues"
 
 [build-system]
-requires = ["hatchling", "find", "requests"]
+requires = ["hatchling", "find", "requests", "dacite"]
 build-backend = "hatchling.build"

@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
+from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
 import dacite

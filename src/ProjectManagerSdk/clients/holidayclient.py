@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
 from ProjectManagerSdk.models.resourceholidaydto import ResourceHolidayDto
+from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
 import dacite

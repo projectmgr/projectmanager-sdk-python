@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
+from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
 import dacite
@@ -91,7 +92,7 @@ class ProjectClient:
         """
         path = "/api/data/projects"
         queryParams = {}
-        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ProjectDto, data=json.loads(result.content)['data'])
             return AstroResult[ProjectDto](None, True, False, result.status_code, data)
@@ -150,7 +151,7 @@ class ProjectClient:
         """
         path = f"/api/data/projects/{projectId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
             return AstroResult[object](None, True, False, result.status_code, data)

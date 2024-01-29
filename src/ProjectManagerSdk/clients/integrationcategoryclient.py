@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
+from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
 import dacite

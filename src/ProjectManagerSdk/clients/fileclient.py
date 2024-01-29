@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.updaterequestdto import UpdateRequestDto
+from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
 import dacite
@@ -118,7 +119,7 @@ class FileClient:
         """
         path = f"/api/data/files/{fileId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
             return AstroResult[object](None, True, False, result.status_code, data)

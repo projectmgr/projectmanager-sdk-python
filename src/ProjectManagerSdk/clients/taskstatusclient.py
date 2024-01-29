@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
+from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
 import dacite
@@ -77,7 +78,7 @@ class TaskStatusClient:
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
         queryParams = {}
-        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=TaskStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[TaskStatusDto](None, True, False, result.status_code, data)
@@ -106,7 +107,7 @@ class TaskStatusClient:
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
         queryParams = {}
-        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=TaskStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[TaskStatusDto](None, True, False, result.status_code, data)
