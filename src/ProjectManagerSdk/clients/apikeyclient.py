@@ -14,7 +14,9 @@
 from ProjectManagerSdk.models.apikeycreatedto import ApiKeyCreateDto
 from ProjectManagerSdk.models.apikeydto import ApiKeyDto
 from ProjectManagerSdk.models.astroresult import AstroResult
+import dataclasses
 import json
+import dacite
 
 class ApiKeyClient:
     """
@@ -53,11 +55,14 @@ class ApiKeyClient:
         """
         path = "/api/data/api-keys"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ApiKeyDto](None, True, False, result.status_code, ApiKeyDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ApiKeyDto, data=json.loads(result.content)['data'])
+            return AstroResult[ApiKeyDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ApiKeyDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ApiKeyDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def list_api_keys(self) -> AstroResult[list[ApiKeyDto]]:
         """
@@ -91,7 +96,9 @@ class ApiKeyClient:
                 data.append(ApiKeyDto(**dict))
             return AstroResult[list[ApiKeyDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ApiKeyDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ApiKeyDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def revoke_all_api_keys(self) -> AstroResult[object]:
         """
@@ -124,9 +131,12 @@ class ApiKeyClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def revoke_api_key(self, id: str) -> AstroResult[object]:
         """
@@ -157,6 +167,9 @@ class ApiKeyClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectManagerDto:
     """
     A ProjectManager is a person who manages a Project.
@@ -41,5 +41,3 @@ class ProjectManagerDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

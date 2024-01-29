@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectStatusDto:
     """
     A ProjectStatus is a named condition used by your business to
@@ -40,5 +40,3 @@ class ProjectStatusDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

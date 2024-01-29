@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class LicenseDto:
     """
     A License represents a subscription to a particular product or
@@ -43,5 +43,3 @@ class LicenseDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

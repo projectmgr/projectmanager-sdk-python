@@ -13,7 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.userroledto import UserRoleDto
+import dataclasses
 import json
+import dacite
 
 class UserRoleClient:
     """
@@ -45,4 +47,6 @@ class UserRoleClient:
                 data.append(UserRoleDto(**dict))
             return AstroResult[list[UserRoleDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[UserRoleDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[UserRoleDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

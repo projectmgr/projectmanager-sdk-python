@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TimesheetCreateRequestDto:
     """
     Payload to create time entry
@@ -51,5 +51,3 @@ class TimesheetCreateRequestDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

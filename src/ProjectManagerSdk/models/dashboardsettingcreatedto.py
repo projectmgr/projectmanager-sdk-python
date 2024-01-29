@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DashboardSettingCreateDto:
     """
     User dashboard create or update dto
@@ -42,5 +42,3 @@ class DashboardSettingCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

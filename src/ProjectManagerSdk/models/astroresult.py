@@ -13,8 +13,11 @@
 
 
 from ProjectManagerSdk.models.astroerror import AstroError
+from requests.models import Response
 from dataclasses import dataclass
 from typing import TypeVar, Generic
+import dacite
+import json
 
 T = TypeVar('T')
 
@@ -62,3 +65,6 @@ class AstroResult(Generic[T]):
 
     def to_dict(self) -> dict:
         return dataclass.asdict(self)
+    
+    def load_error(self, result: Response):
+        self.error = dacite.from_dict(data_class=AstroError, data=json.loads(result.content)['error'])

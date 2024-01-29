@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskFileDto:
     """
     Represents a file associated with a Task in project manager
@@ -36,5 +36,3 @@ class TaskFileDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ResourceTeamDto:
     """
     A ResourceTeam is a group of Resources that can be referred to as a
@@ -33,5 +33,3 @@ class ResourceTeamDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

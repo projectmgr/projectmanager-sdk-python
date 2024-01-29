@@ -17,7 +17,9 @@ from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatu
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.directlinkdto import DirectLinkDto
 from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderDto
+import dataclasses
 import json
+import dacite
 
 class IntegrationProviderClient:
     """
@@ -50,7 +52,9 @@ class IntegrationProviderClient:
                 data.append(IntegrationProviderDto(**dict))
             return AstroResult[list[IntegrationProviderDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[IntegrationProviderDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[IntegrationProviderDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def activate_integration_provider(self, providerId: str) -> AstroResult[ConnectionSchemaDto]:
         """
@@ -73,9 +77,12 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ConnectionSchemaDto](None, True, False, result.status_code, ConnectionSchemaDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ConnectionSchemaDto, data=json.loads(result.content)['data'])
+            return AstroResult[ConnectionSchemaDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ConnectionSchemaDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ConnectionSchemaDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_integration_provider(self, providerId: str, body: AuthenticationDto) -> AstroResult[object]:
         """
@@ -97,11 +104,14 @@ class IntegrationProviderClient:
         """
         path = f"/api/data/integrations/providers/{providerId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def deactivate_integration_provider(self, providerId: str) -> AstroResult[object]:
         """
@@ -122,9 +132,12 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_user_integration_provider_connection(self, providerId: str) -> AstroResult[DirectLinkDto]:
         """
@@ -150,9 +163,12 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[DirectLinkDto](None, True, False, result.status_code, DirectLinkDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=DirectLinkDto, data=json.loads(result.content)['data'])
+            return AstroResult[DirectLinkDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[DirectLinkDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[DirectLinkDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_user_integration_provider_connection(self, providerId: str, body: AuthenticationStatusDto) -> AstroResult[object]:
         """
@@ -174,11 +190,14 @@ class IntegrationProviderClient:
         """
         path = f"/api/data/integrations/providers/{providerId}/user-connection"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def disconnect_user_integration_provider_connection(self, providerId: str) -> AstroResult[object]:
         """
@@ -199,6 +218,9 @@ class IntegrationProviderClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class MasterConnectionSchemeDto:
     """
     Master Connection Scheme for Providers
@@ -36,5 +36,3 @@ class MasterConnectionSchemeDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

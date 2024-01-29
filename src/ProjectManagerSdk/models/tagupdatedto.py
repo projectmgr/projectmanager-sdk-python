@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TagUpdateDto:
     """
     A Tag is a named categorization you can use to distinguish objects
@@ -32,5 +32,3 @@ class TagUpdateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

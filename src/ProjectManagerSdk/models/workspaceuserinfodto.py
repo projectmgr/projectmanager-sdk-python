@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class WorkSpaceUserInfoDto:
     """
     Information about a currently logged in user. You can call the
@@ -67,5 +67,3 @@ class WorkSpaceUserInfoDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

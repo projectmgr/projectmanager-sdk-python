@@ -13,7 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.updaterequestdto import UpdateRequestDto
+import dataclasses
 import json
+import dacite
 
 class FileClient:
     """
@@ -55,7 +57,9 @@ class FileClient:
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult[bytes](None, True, False, result.status_code, result.content)
         else:
-            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
+            response = AstroResult[bytes](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytes]:
         """
@@ -84,7 +88,9 @@ class FileClient:
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult[bytes](None, True, False, result.status_code, result.content)
         else:
-            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
+            response = AstroResult[bytes](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_file(self, fileId: str, body: UpdateRequestDto) -> AstroResult[object]:
         """
@@ -112,11 +118,14 @@ class FileClient:
         """
         path = f"/api/data/files/{fileId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_file(self, fileId: str, hard: bool) -> AstroResult[object]:
         """
@@ -139,6 +148,9 @@ class FileClient:
             queryParams['hard'] = hard
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

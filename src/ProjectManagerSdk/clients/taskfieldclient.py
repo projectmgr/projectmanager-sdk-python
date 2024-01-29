@@ -17,7 +17,9 @@ from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
 from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
 from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
+import dataclasses
 import json
+import dacite
 
 class TaskFieldClient:
     """
@@ -54,7 +56,9 @@ class TaskFieldClient:
                 data.append(TaskFieldDto(**dict))
             return AstroResult[list[TaskFieldDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskFieldDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskFieldDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_task_field(self, projectId: str, body: CreateTaskFieldDto) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -78,11 +82,14 @@ class TaskFieldClient:
         """
         path = f"/api/data/projects/{projectId}/tasks/fields"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def query_task_fields(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldDto]]:
         """
@@ -129,7 +136,9 @@ class TaskFieldClient:
                 data.append(TaskFieldDto(**dict))
             return AstroResult[list[TaskFieldDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskFieldDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskFieldDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_task_field(self, projectId: str, fieldId: str) -> AstroResult[object]:
         """
@@ -155,9 +164,12 @@ class TaskFieldClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldValueDto]]:
         """
@@ -185,7 +197,9 @@ class TaskFieldClient:
                 data.append(TaskFieldValueDto(**dict))
             return AstroResult[list[TaskFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskFieldValueDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskFieldValueDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def query_task_field_values(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldValueDto]]:
         """
@@ -232,7 +246,9 @@ class TaskFieldClient:
                 data.append(TaskFieldValueDto(**dict))
             return AstroResult[list[TaskFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskFieldValueDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskFieldValueDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_task_field_value(self, taskId: str, fieldId: str) -> AstroResult[TaskFieldValueDto]:
         """
@@ -258,9 +274,12 @@ class TaskFieldClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TaskFieldValueDto](None, True, False, result.status_code, TaskFieldValueDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TaskFieldValueDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskFieldValueDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TaskFieldValueDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TaskFieldValueDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_task_field_value(self, taskId: str, fieldId: str, body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -287,8 +306,11 @@ class TaskFieldClient:
         """
         path = f"/api/data/tasks/{taskId}/fields/{fieldId}/values"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

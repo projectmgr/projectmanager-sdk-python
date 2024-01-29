@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TimesheetResponseDto:
     """
     Time entry representation
@@ -66,5 +66,3 @@ class TimesheetResponseDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class UserRoleDto:
     """
     A UserRole is a name for a privilege level granted to a specific
@@ -34,5 +34,3 @@ class UserRoleDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

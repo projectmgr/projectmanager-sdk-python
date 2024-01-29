@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class GetProjectFieldsResponseDto:
     """
     Represents either a ProjectField or a TaskField, depending on the
@@ -67,5 +67,3 @@ class GetProjectFieldsResponseDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

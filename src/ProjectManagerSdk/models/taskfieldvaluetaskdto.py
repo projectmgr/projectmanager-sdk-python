@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskFieldValueTaskDto:
     """
     The TaskFieldTask is a summary of the Task that this TaskFieldValue
@@ -37,5 +37,3 @@ class TaskFieldValueTaskDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DiscussionCommentCreateDto:
     """
     Tasks can have discussions attached to them. These discussions can
@@ -34,5 +34,3 @@ class DiscussionCommentCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

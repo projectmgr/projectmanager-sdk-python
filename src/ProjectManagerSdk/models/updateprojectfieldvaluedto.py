@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class UpdateProjectFieldValueDto:
     """
     A model that contains a new value to be set for a ProjectField.
@@ -26,5 +26,3 @@ class UpdateProjectFieldValueDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

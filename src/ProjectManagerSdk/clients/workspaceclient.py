@@ -14,7 +14,9 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
 from ProjectManagerSdk.models.workspacejoindto import WorkSpaceJoinDto
+import dataclasses
 import json
+import dacite
 
 class WorkSpaceClient:
     """
@@ -48,7 +50,9 @@ class WorkSpaceClient:
                 data.append(WorkSpaceDto(**dict))
             return AstroResult[list[WorkSpaceDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[WorkSpaceDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[WorkSpaceDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def invite_to_workspace(self, organizationId: str, body: WorkSpaceJoinDto) -> AstroResult[object]:
         """
@@ -74,8 +78,11 @@ class WorkSpaceClient:
         """
         path = f"/api/data/workspaces/{organizationId}/join"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

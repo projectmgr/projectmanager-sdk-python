@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectFieldValueDto:
     """
     A model that contains the value for a ProjectField.
@@ -57,5 +57,3 @@ class ProjectFieldValueDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

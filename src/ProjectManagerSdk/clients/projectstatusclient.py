@@ -13,7 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
+import dataclasses
 import json
+import dacite
 
 class ProjectStatusClient:
     """
@@ -46,4 +48,6 @@ class ProjectStatusClient:
                 data.append(ProjectStatusDto(**dict))
             return AstroResult[list[ProjectStatusDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectStatusDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectStatusDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

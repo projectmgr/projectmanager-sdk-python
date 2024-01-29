@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectMemberDto:
     """
     A ProjectMember is a user who can collaborate on a Project. You can
@@ -66,5 +66,3 @@ class ProjectMemberDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

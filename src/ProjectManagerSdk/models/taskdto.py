@@ -19,9 +19,9 @@ from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskDto:
     """
     A Task is an individual element of work that must be performed to
@@ -223,5 +223,3 @@ class TaskDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

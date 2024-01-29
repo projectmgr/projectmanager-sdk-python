@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskFieldValueDto:
     """
     A model that contains the value for a TaskField.
@@ -63,5 +63,3 @@ class TaskFieldValueDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

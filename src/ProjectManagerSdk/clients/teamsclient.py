@@ -12,7 +12,9 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+import dataclasses
 import json
+import dacite
 
 class TeamsClient:
     """
@@ -39,4 +41,6 @@ class TeamsClient:
         if result.status_code >= 200 and result.status_code < 300:
             return AstroResult[bytes](None, True, False, result.status_code, result.content)
         else:
-            return AstroResult[bytes](result.json(), False, True, result.status_code, None)
+            response = AstroResult[bytes](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

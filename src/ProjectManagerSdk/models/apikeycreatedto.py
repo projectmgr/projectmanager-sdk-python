@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ApiKeyCreateDto:
     """
     Represents a new api access key entity
@@ -26,5 +26,3 @@ class ApiKeyCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

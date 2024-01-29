@@ -15,7 +15,9 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
+import dataclasses
 import json
+import dacite
 
 class TaskStatusClient:
     """
@@ -51,7 +53,9 @@ class TaskStatusClient:
                 data.append(TaskStatusDto(**dict))
             return AstroResult[list[TaskStatusDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskStatusDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskStatusDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_taskstatus(self, projectId: str, body: TaskStatusCreateDto) -> AstroResult[TaskStatusDto]:
         """
@@ -73,11 +77,14 @@ class TaskStatusClient:
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TaskStatusDto](None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TaskStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TaskStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TaskStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_taskstatus(self, projectId: str, body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
         """
@@ -99,11 +106,14 @@ class TaskStatusClient:
         """
         path = f"/api/data/projects/{projectId}/tasks/statuses"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TaskStatusDto](None, True, False, result.status_code, TaskStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TaskStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TaskStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TaskStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_taskstatus(self, projectId: str, taskStatusId: str) -> AstroResult[object]:
         """
@@ -125,6 +135,9 @@ class TaskStatusClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

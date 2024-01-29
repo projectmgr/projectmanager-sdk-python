@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskCreateDto:
     """
     A Task is an individual element of work that must be performed to
@@ -101,5 +101,3 @@ class TaskCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskStatusUpdateDto:
     """
     A TaskStatus is a named status level used by your business to
@@ -40,5 +40,3 @@ class TaskStatusUpdateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

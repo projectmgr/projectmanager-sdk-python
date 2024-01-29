@@ -15,7 +15,9 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
 from ProjectManagerSdk.models.resourceholidaydto import ResourceHolidayDto
+import dataclasses
 import json
+import dacite
 
 class HolidayClient:
     """
@@ -64,7 +66,9 @@ class HolidayClient:
                 data.append(ResourceHolidayDto(**dict))
             return AstroResult[list[ResourceHolidayDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ResourceHolidayDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ResourceHolidayDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def query_country_holidays(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[CountryHolidayDto]]:
         """
@@ -104,7 +108,9 @@ class HolidayClient:
                 data.append(CountryHolidayDto(**dict))
             return AstroResult[list[CountryHolidayDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[CountryHolidayDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[CountryHolidayDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def query_global_holidays(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[GlobalHolidayDto]]:
         """
@@ -144,4 +150,6 @@ class HolidayClient:
                 data.append(GlobalHolidayDto(**dict))
             return AstroResult[list[GlobalHolidayDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[GlobalHolidayDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[GlobalHolidayDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

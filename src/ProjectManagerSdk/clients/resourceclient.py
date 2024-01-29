@@ -15,7 +15,9 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+import dataclasses
 import json
+import dacite
 
 class ResourceClient:
     """
@@ -45,11 +47,14 @@ class ResourceClient:
         """
         path = "/api/data/resources"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ResourceDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ResourceDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def query_resources(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
         """
@@ -97,7 +102,9 @@ class ResourceClient:
                 data.append(ResourceDto(**dict))
             return AstroResult[list[ResourceDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ResourceDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ResourceDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_resource(self, resourceId: str, body: ResourceUpdateDto) -> AstroResult[ResourceDto]:
         """
@@ -120,11 +127,14 @@ class ResourceClient:
         """
         path = f"/api/data/resources/{resourceId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ResourceDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ResourceDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_resource(self, resourceId: str) -> AstroResult[ResourceDto]:
         """
@@ -147,6 +157,9 @@ class ResourceClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ResourceDto](None, True, False, result.status_code, ResourceDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ResourceDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ResourceDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ResourceDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

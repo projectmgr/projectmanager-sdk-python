@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DirectLinkDto:
     """
     This class contains the URL to use to authenticate with the
@@ -27,5 +27,3 @@ class DirectLinkDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

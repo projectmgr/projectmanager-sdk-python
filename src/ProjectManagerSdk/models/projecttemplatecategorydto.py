@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectTemplateCategoryDto:
     """
     Information about a Category of ProjectTemplates.
@@ -42,5 +42,3 @@ class ProjectTemplateCategoryDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

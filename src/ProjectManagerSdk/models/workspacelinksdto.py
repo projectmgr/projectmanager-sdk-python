@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class WorkSpaceLinksDto:
     """
     A shortcut link within the currently logged in Workspace.
@@ -32,5 +32,3 @@ class WorkSpaceLinksDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ResourceCreateDto:
     """
     A Resource represents a person, material, or tool that is used
@@ -121,5 +121,3 @@ class ResourceCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

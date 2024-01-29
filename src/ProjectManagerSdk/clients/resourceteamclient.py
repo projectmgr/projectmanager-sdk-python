@@ -15,7 +15,9 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.updateresourceteamdto import UpdateResourceTeamDto
+import dataclasses
 import json
+import dacite
 
 class ResourceTeamClient:
     """
@@ -69,7 +71,9 @@ class ResourceTeamClient:
                 data.append(ResourceTeamDto(**dict))
             return AstroResult[list[ResourceTeamDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ResourceTeamDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ResourceTeamDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_resource_team(self, body: CreateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
@@ -82,11 +86,14 @@ class ResourceTeamClient:
         """
         path = "/api/data/resources/teams"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ResourceTeamDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ResourceTeamDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_resource_team(self, resourceTeamId: str) -> AstroResult[object]:
         """
@@ -102,9 +109,12 @@ class ResourceTeamClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_resource_team(self, teamresourceId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
@@ -119,8 +129,11 @@ class ResourceTeamClient:
         """
         path = f"/api/data/resources/teams/{teamresourceId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, ResourceTeamDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ResourceTeamDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ResourceTeamDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

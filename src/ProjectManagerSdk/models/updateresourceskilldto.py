@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class UpdateResourceSkillDto:
     """
     This is a skill that can be allocated to a resource.
@@ -26,5 +26,3 @@ class UpdateResourceSkillDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

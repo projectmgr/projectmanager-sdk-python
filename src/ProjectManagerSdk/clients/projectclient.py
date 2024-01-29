@@ -15,7 +15,9 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
+import dataclasses
 import json
+import dacite
 
 class ProjectClient:
     """
@@ -69,7 +71,9 @@ class ProjectClient:
                 data.append(ProjectDto(**dict))
             return AstroResult[list[ProjectDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_project(self, body: ProjectCreateDto) -> AstroResult[ProjectDto]:
         """
@@ -87,11 +91,14 @@ class ProjectClient:
         """
         path = "/api/data/projects"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectDto](None, True, False, result.status_code, ProjectDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ProjectDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ProjectDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ProjectDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_project(self, projectId: str) -> AstroResult[ProjectDto]:
         """
@@ -111,9 +118,12 @@ class ProjectClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectDto](None, True, False, result.status_code, ProjectDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ProjectDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ProjectDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ProjectDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_project(self, projectId: str, body: ProjectUpdateDto) -> AstroResult[object]:
         """
@@ -140,8 +150,40 @@ class ProjectClient:
         """
         path = f"/api/data/projects/{projectId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def delete_project(self, projectId: str, hardDelete: bool) -> AstroResult[object]:
+        """
+        Delete a project based on the details provided.
+
+        A Project is a collection of Tasks that contributes towards a
+        goal. Within a Project, Tasks represent individual items of work
+        that team members must complete. The sum total of Tasks within a
+        Project represents the work to be completed for that Project.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project to delete
+        hardDelete : bool
+            Hard delete project true or false
+        """
+        path = f"/api/data/projects/{projectId}"
+        queryParams = {}
+        if hardDelete:
+            queryParams['hardDelete'] = hardDelete
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

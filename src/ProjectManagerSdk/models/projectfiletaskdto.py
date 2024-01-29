@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectFileTaskDto:
 
     id: str | None = None
@@ -34,5 +34,3 @@ class ProjectFileTaskDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

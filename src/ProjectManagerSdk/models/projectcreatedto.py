@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectCreateDto:
     """
     A Project is a collection of Tasks that contributes towards a goal.
@@ -130,5 +130,3 @@ class ProjectCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

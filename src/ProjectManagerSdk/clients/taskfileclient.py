@@ -13,7 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.filedto import FileDto
+import dataclasses
 import json
+import dacite
 
 class TaskFileClient:
     """
@@ -52,6 +54,9 @@ class TaskFileClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, filename)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[FileDto](None, True, False, result.status_code, FileDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=FileDto, data=json.loads(result.content)['data'])
+            return AstroResult[FileDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[FileDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[FileDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

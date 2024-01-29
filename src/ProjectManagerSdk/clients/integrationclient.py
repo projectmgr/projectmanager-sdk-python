@@ -13,7 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
+import dataclasses
 import json
+import dacite
 
 class IntegrationClient:
     """
@@ -41,9 +43,12 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[IntegrationDto](None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=IntegrationDto, data=json.loads(result.content)['data'])
+            return AstroResult[IntegrationDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[IntegrationDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[IntegrationDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def enable_integration(self, integrationId: str) -> AstroResult[IntegrationDto]:
         """
@@ -62,9 +67,12 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[IntegrationDto](None, True, False, result.status_code, IntegrationDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=IntegrationDto, data=json.loads(result.content)['data'])
+            return AstroResult[IntegrationDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[IntegrationDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[IntegrationDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def disable_integration(self, integrationId: str) -> AstroResult[object]:
         """
@@ -83,9 +91,12 @@ class IntegrationClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_all_integrations(self) -> AstroResult[list[IntegrationDto]]:
         """
@@ -107,4 +118,6 @@ class IntegrationClient:
                 data.append(IntegrationDto(**dict))
             return AstroResult[list[IntegrationDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[IntegrationDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[IntegrationDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

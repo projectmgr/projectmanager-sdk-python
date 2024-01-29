@@ -15,7 +15,9 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
 from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
 from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
+import dataclasses
 import json
+import dacite
 
 class DiscussionClient:
     """
@@ -44,7 +46,9 @@ class DiscussionClient:
                 data.append(DiscussionCommentDto(**dict))
             return AstroResult[list[DiscussionCommentDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[DiscussionCommentDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[DiscussionCommentDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_task_comments(self, taskId: str, body: DiscussionCommentCreateDto) -> AstroResult[DiscussionCommentCreateResponseDto]:
         """
@@ -66,8 +70,11 @@ class DiscussionClient:
         """
         path = f"/api/data/tasks/{taskId}/comments"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[DiscussionCommentCreateResponseDto](None, True, False, result.status_code, DiscussionCommentCreateResponseDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=DiscussionCommentCreateResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[DiscussionCommentCreateResponseDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[DiscussionCommentCreateResponseDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[DiscussionCommentCreateResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class WorkSpaceDto:
     """
     A Workspace represents a single business subscription to the
@@ -89,5 +89,3 @@ class WorkSpaceDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

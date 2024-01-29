@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DiscussionCommentFileDto:
 
     id: str | None = None
@@ -33,5 +33,3 @@ class DiscussionCommentFileDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

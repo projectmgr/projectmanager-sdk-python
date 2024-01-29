@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskTodoDto:
     """
     A TaskTodo is a sub-task that represents a unit of work on the Task.
@@ -48,5 +48,3 @@ class TaskTodoDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

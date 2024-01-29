@@ -14,7 +14,9 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
+import dataclasses
 import json
+import dacite
 
 class ProjectMembersClient:
     """
@@ -48,7 +50,9 @@ class ProjectMembersClient:
                 data.append(ProjectMemberDto(**dict))
             return AstroResult[list[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectMemberDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectMemberDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_project_members(self, projectId: str, includeAllUsers: bool) -> AstroResult[list[ProjectMemberDto]]:
         """
@@ -82,7 +86,9 @@ class ProjectMembersClient:
                 data.append(ProjectMemberDto(**dict))
             return AstroResult[list[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectMemberDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectMemberDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_user_project_membership(self, projectId: str, userId: str) -> AstroResult[ProjectMemberDto]:
         """
@@ -106,9 +112,12 @@ class ProjectMembersClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ProjectMemberDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ProjectMemberDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
@@ -133,11 +142,14 @@ class ProjectMembersClient:
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ProjectMemberDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ProjectMemberDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
@@ -161,11 +173,14 @@ class ProjectMembersClient:
         """
         path = f"/api/data/projects/{projectId}/members/{userId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, ProjectMemberDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ProjectMemberDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ProjectMemberDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ProjectMemberDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def remove_user_project_membership(self, projectId: str, userId: str) -> AstroResult[object]:
         """
@@ -189,6 +204,9 @@ class ProjectMembersClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

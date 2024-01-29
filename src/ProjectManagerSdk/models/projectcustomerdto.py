@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectCustomerDto:
     """
     A ProjectCustomer is a code used to identify costs within your
@@ -33,5 +33,3 @@ class ProjectCustomerDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

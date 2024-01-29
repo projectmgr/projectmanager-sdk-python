@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class PermissionOptionsDto:
     """
     Specifies the permissions a member can be changed to on a project.
@@ -49,5 +49,3 @@ class PermissionOptionsDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

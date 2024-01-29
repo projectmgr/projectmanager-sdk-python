@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectPriorityDto:
     """
     A ProjectPriority is a named priority level used by your business to
@@ -34,5 +34,3 @@ class ProjectPriorityDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ResourceApproverDto:
     """
     When managing users, you can choose who will approve a person's
@@ -33,5 +33,3 @@ class ResourceApproverDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

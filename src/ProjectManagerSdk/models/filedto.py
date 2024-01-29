@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class FileDto:
     """
     Represents a file in project manager
@@ -92,5 +92,3 @@ class FileDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

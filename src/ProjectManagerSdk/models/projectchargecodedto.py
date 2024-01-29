@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectChargeCodeDto:
     """
     A ChargeCode is a code used to identify costs within your Projects.
@@ -33,5 +33,3 @@ class ProjectChargeCodeDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

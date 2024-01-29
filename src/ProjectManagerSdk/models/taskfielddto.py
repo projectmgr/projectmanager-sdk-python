@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskFieldDto:
     """
     A TaskField is a custom field defined within your Workspace for a
@@ -73,5 +73,3 @@ class TaskFieldDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ConnectionSchemaDto:
     """
     This class contains the URL or AuthScheme to use to authenticate
@@ -38,5 +38,3 @@ class ConnectionSchemaDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

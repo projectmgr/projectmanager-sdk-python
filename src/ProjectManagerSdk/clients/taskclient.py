@@ -17,7 +17,9 @@ from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
+import dataclasses
 import json
+import dacite
 
 class TaskClient:
     """
@@ -71,7 +73,9 @@ class TaskClient:
                 data.append(TaskDto(**dict))
             return AstroResult[list[TaskDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_task(self, taskId: str) -> AstroResult[TaskDto]:
         """
@@ -94,9 +98,12 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TaskDto](None, True, False, result.status_code, TaskDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TaskDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TaskDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TaskDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_task(self, taskId: str, body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -128,11 +135,14 @@ class TaskClient:
         """
         path = f"/api/data/tasks/{taskId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -157,9 +167,12 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_task(self, projectId: str, body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -180,11 +193,14 @@ class TaskClient:
         """
         path = f"/api/data/projects/{projectId}/tasks"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_task_priorities(self) -> AstroResult[list[TaskPriorityDto]]:
         """
@@ -212,7 +228,9 @@ class TaskClient:
                 data.append(TaskPriorityDto(**dict))
             return AstroResult[list[TaskPriorityDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TaskPriorityDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TaskPriorityDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_many_tasks(self, projectId: str, body: list[object]) -> AstroResult[list[ChangeSetStatusDto]]:
         """
@@ -234,14 +252,16 @@ class TaskClient:
         """
         path = f"/api/data/projects/{projectId}/tasks/bulk"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, json.dumps(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ChangeSetStatusDto(**dict))
             return AstroResult[list[ChangeSetStatusDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ChangeSetStatusDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ChangeSetStatusDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def add_parent_task(self, taskId: str, parentTaskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -258,9 +278,12 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_parent_task(self, taskId: str, parentTaskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -277,9 +300,12 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("PUT", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def remove_parent_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -294,6 +320,9 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

@@ -17,9 +17,9 @@ from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TimesheetDto:
     """
     Created Time entry response data
@@ -85,5 +85,3 @@ class TimesheetDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

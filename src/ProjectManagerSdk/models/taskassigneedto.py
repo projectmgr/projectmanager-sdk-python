@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskAssigneeDto:
     """
     A TaskAssignee is the person to whom a Task is assigned. A single
@@ -94,5 +94,3 @@ class TaskAssigneeDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)
