@@ -12,11 +12,14 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "dacite ~= 1.8.1"
+]
 
 [project.urls]
 "Homepage" = "https://github.com/projectmgr/projectmanager-sdk-python"
 "Bug Tracker" = "https://github.com/projectmgr/projectmanager-sdk-python/issues"
 
 [build-system]
-requires = ["hatchling", "find", "requests", "dacite"]
+requires = ["hatchling", "find", "requests"]
 build-backend = "hatchling.build"
