@@ -1,0 +1,2 @@
+# Dependencies required by Pyre for a full check
+dacite
