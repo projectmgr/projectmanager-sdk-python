@@ -90,7 +90,7 @@ class TagClient:
         """
         path = "/api/data/tags"
         queryParams = {}
-        result = self.client.send_request("POST", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=TagDto, data=json.loads(result.content)['data'])
             return AstroResult[TagDto](None, True, False, result.status_code, data)
@@ -116,7 +116,7 @@ class TagClient:
         """
         path = f"/api/data/tags/{tagId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=TagDto, data=json.loads(result.content)['data'])
             return AstroResult[TagDto](None, True, False, result.status_code, data)

@@ -52,7 +52,7 @@ class TaskAssigneeClient:
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("POST", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
@@ -82,7 +82,7 @@ class TaskAssigneeClient:
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("PUT", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
@@ -109,7 +109,7 @@ class TaskAssigneeClient:
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("DELETE", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("DELETE", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)

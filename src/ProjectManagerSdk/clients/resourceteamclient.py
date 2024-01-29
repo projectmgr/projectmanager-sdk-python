@@ -87,7 +87,7 @@ class ResourceTeamClient:
         """
         path = "/api/data/resources/teams"
         queryParams = {}
-        result = self.client.send_request("POST", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
             return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
@@ -130,7 +130,7 @@ class ResourceTeamClient:
         """
         path = f"/api/data/resources/teams/{teamresourceId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, json.dumps(remove_empty_elements(dataclasses.asdict(body))), queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
             return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
