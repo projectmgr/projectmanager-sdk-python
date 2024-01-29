@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectTemplateDto:
     """
     A ProjectTemplate is a named document that contains default Project
@@ -72,5 +72,3 @@ class ProjectTemplateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class IntegrationCategoryClient:
     """
@@ -46,4 +49,6 @@ class IntegrationCategoryClient:
                 data.append(IntegrationCategoryDto(**dict))
             return AstroResult[list[IntegrationCategoryDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[IntegrationCategoryDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[IntegrationCategoryDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

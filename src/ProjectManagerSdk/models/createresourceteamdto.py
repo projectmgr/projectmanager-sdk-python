@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class CreateResourceTeamDto:
     """
     A resource can be allocated a team.
@@ -26,5 +26,3 @@ class CreateResourceTeamDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

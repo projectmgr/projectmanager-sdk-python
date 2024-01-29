@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class ChangesetClient:
     """
@@ -50,9 +53,12 @@ class ChangesetClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangesetGetResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangesetGetResponseDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangesetGetResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_completed_changeset(self, changeSetId: str) -> AstroResult[ChangesetGetResponseDto]:
         """
@@ -88,6 +94,9 @@ class ChangesetClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, ChangesetGetResponseDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangesetGetResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangesetGetResponseDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangesetGetResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

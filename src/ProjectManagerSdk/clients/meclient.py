@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class MeClient:
     """
@@ -42,6 +45,9 @@ class MeClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[WorkSpaceUserInfoDto](None, True, False, result.status_code, WorkSpaceUserInfoDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=WorkSpaceUserInfoDto, data=json.loads(result.content)['data'])
+            return AstroResult[WorkSpaceUserInfoDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[WorkSpaceUserInfoDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[WorkSpaceUserInfoDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

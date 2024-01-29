@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectFolderDto:
     """
     A ProjectFolder is a named storage location that can contain
@@ -32,5 +32,3 @@ class ProjectFolderDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

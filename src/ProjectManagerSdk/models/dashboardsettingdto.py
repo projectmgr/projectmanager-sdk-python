@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DashboardSettingDto:
     """
     The Dashboards API is intended for use by ProjectManager
@@ -42,5 +42,3 @@ class DashboardSettingDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

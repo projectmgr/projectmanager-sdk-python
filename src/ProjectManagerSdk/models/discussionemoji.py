@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DiscussionEmoji:
     """
     A reaction to a specific comment within a discussion thread.
@@ -31,5 +31,3 @@ class DiscussionEmoji:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskTagDto:
     """
     A TaskTag is a connection between a Task and a Tag. Each Task can
@@ -43,5 +43,3 @@ class TaskTagDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

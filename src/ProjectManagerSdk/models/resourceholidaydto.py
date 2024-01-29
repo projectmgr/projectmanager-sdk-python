@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ResourceHolidayDto:
     """
     Resource holiday entry
@@ -36,5 +36,3 @@ class ResourceHolidayDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

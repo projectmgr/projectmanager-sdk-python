@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class IntegrationDto:
     """
     The Integrations API is intended for use by ProjectManager and its
@@ -82,5 +82,3 @@ class IntegrationDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -14,7 +14,10 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.namedto import NameDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class TaskTagClient:
     """
@@ -45,11 +48,14 @@ class TaskTagClient:
         """
         path = f"/api/data/tasks/{taskId}/tags"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def add_tasktag_to_task(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -70,11 +76,14 @@ class TaskTagClient:
         """
         path = f"/api/data/tasks/{taskId}/tags"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def remove_tasktag_from_task(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -95,8 +104,11 @@ class TaskTagClient:
         """
         path = f"/api/data/tasks/{taskId}/tags"
         queryParams = {}
-        result = self.client.send_request("DELETE", path, body, queryParams, None)
+        result = self.client.send_request("DELETE", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

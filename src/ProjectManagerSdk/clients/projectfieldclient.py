@@ -17,7 +17,10 @@ from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProject
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class ProjectFieldClient:
     """
@@ -50,7 +53,9 @@ class ProjectFieldClient:
                 data.append(GetProjectFieldsResponseDto(**dict))
             return AstroResult[list[GetProjectFieldsResponseDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[GetProjectFieldsResponseDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[GetProjectFieldsResponseDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_project_field(self, body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
         """
@@ -69,11 +74,14 @@ class ProjectFieldClient:
         """
         path = "/api/data/projects/fields"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[CreateProjectFieldResponseDto](None, True, False, result.status_code, CreateProjectFieldResponseDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=CreateProjectFieldResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[CreateProjectFieldResponseDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[CreateProjectFieldResponseDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[CreateProjectFieldResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_project_field(self, fieldId: str) -> AstroResult[object]:
         """
@@ -94,9 +102,12 @@ class ProjectFieldClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_projectfield_value(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
         """
@@ -121,11 +132,14 @@ class ProjectFieldClient:
         """
         path = f"/api/data/projects/{projectId}/fields/{fieldId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_projectfield_value(self, projectId: str, fieldId: str) -> AstroResult[ProjectFieldValueDto]:
         """
@@ -151,9 +165,12 @@ class ProjectFieldClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ProjectFieldValueDto](None, True, False, result.status_code, ProjectFieldValueDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ProjectFieldValueDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectFieldValueDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ProjectFieldValueDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ProjectFieldValueDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[list[ProjectFieldValueDto]]:
         """
@@ -180,4 +197,6 @@ class ProjectFieldClient:
                 data.append(ProjectFieldValueDto(**dict))
             return AstroResult[list[ProjectFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectFieldValueDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectFieldValueDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

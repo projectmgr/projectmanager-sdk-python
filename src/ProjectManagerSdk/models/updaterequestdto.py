@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class UpdateRequestDto:
     """
     Represents an update request for a File within ProjectManager.
@@ -43,5 +43,3 @@ class UpdateRequestDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

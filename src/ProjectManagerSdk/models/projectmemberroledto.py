@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectMemberRoleDto:
     """
     Dto To Describe a ProjectMember Role
@@ -26,5 +26,3 @@ class ProjectMemberRoleDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

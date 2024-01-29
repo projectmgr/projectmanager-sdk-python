@@ -14,7 +14,10 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class ProjectTemplateClient:
     """
@@ -46,7 +49,9 @@ class ProjectTemplateClient:
                 data.append(ProjectTemplateDto(**dict))
             return AstroResult[list[ProjectTemplateDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectTemplateDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectTemplateDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def retrieve_template_categories(self) -> AstroResult[list[ProjectTemplateCategoryDto]]:
         """
@@ -69,4 +74,6 @@ class ProjectTemplateClient:
                 data.append(ProjectTemplateCategoryDto(**dict))
             return AstroResult[list[ProjectTemplateCategoryDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectTemplateCategoryDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectTemplateCategoryDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

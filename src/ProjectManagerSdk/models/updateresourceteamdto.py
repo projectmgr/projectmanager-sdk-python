@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class UpdateResourceTeamDto:
     """
     A resource can update a team.
@@ -26,5 +26,3 @@ class UpdateResourceTeamDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

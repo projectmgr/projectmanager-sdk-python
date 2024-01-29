@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class CreateTaskFieldDto:
     """
     A TaskField is a custom field defined within your Workspace for a
@@ -49,5 +49,3 @@ class CreateTaskFieldDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

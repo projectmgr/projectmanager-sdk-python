@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.projectfiletaskdto import ProjectFileTaskDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectFileDto:
 
     id: str | None = None
@@ -43,5 +43,3 @@ class ProjectFileDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

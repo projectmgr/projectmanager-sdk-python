@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TimeSheetProjectDto:
     """
     A Project is a collection of Tasks that contributes towards a goal.
@@ -112,5 +112,3 @@ class TimeSheetProjectDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

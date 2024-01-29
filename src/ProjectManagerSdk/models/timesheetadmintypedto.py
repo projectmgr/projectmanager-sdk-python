@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TimesheetAdminTypeDto:
     """
     Represents admin task to track time
@@ -31,5 +31,3 @@ class TimesheetAdminTypeDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

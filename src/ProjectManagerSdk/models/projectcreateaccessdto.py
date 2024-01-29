@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateAccessMemberDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectCreateAccessDto:
     """
     Specify who has access to a newly created project
@@ -33,5 +33,3 @@ class ProjectCreateAccessDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

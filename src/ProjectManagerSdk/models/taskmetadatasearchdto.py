@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskMetadataSearchDto:
     """
     Task Metadata Search DTO
@@ -36,5 +36,3 @@ class TaskMetadataSearchDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ChangesetGetResponseDto:
     """
     A Changeset is an individual edit that has been made to a project.
@@ -42,5 +42,3 @@ class ChangesetGetResponseDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

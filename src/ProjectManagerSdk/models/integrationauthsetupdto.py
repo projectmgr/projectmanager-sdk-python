@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class IntegrationAuthSetupDto:
     """
     Integration Auth Setup for Provider.
@@ -36,5 +36,3 @@ class IntegrationAuthSetupDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

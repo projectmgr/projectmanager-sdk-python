@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectUpdateDto:
     """
     A Project is a collection of Tasks that contributes towards a goal.
@@ -101,5 +101,3 @@ class ProjectUpdateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

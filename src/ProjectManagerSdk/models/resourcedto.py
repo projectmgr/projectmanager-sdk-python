@@ -15,9 +15,9 @@
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ResourceDto:
     """
     A Resource represents a person, material, or tool that is used
@@ -127,5 +127,3 @@ class ResourceDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

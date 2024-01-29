@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class AssigneeUpsertDto:
     """
     An AssigneeUpsert is a create-or-update process that will either
@@ -35,5 +35,3 @@ class AssigneeUpsertDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

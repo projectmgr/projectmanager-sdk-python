@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class AstroError:
     """
     Information about an error that occurred within the ProjectManager
@@ -40,5 +40,3 @@ class AstroError:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

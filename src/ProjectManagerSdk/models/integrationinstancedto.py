@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class IntegrationInstanceDto:
     """
     The Integrations API is intended for use by ProjectManager and its
@@ -65,5 +65,3 @@ class IntegrationInstanceDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

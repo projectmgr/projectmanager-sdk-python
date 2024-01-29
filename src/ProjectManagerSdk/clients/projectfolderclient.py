@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class ProjectFolderClient:
     """
@@ -43,4 +46,6 @@ class ProjectFolderClient:
                 data.append(ProjectFolderDto(**dict))
             return AstroResult[list[ProjectFolderDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectFolderDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectFolderDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

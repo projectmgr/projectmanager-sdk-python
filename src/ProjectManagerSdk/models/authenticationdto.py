@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class AuthenticationDto:
     """
     Set the connection status of an integration
@@ -32,5 +32,3 @@ class AuthenticationDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

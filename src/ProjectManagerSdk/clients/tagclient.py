@@ -15,7 +15,10 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class TagClient:
     """
@@ -68,7 +71,9 @@ class TagClient:
                 data.append(TagDto(**dict))
             return AstroResult[list[TagDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TagDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TagDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_tag(self, body: TagCreateDto) -> AstroResult[TagDto]:
         """
@@ -85,11 +90,14 @@ class TagClient:
         """
         path = "/api/data/tags"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TagDto](None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TagDto, data=json.loads(result.content)['data'])
+            return AstroResult[TagDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TagDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TagDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_tag(self, tagId: str, body: TagUpdateDto) -> AstroResult[TagDto]:
         """
@@ -108,8 +116,11 @@ class TagClient:
         """
         path = f"/api/data/tags/{tagId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TagDto](None, True, False, result.status_code, TagDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TagDto, data=json.loads(result.content)['data'])
+            return AstroResult[TagDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TagDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TagDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

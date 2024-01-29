@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class IdDto:
     """
     When uploading a list of unique identifiers to the API, this data
@@ -29,5 +29,3 @@ class IdDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

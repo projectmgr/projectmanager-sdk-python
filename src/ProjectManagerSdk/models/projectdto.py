@@ -21,9 +21,9 @@ from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectDto:
     """
     A Project is a collection of Tasks that contributes towards a goal.
@@ -229,5 +229,3 @@ class ProjectDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

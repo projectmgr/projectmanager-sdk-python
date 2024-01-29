@@ -17,7 +17,10 @@ from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRe
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
 from ProjectManagerSdk.models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class TimesheetClient:
     """
@@ -39,11 +42,14 @@ class TimesheetClient:
         """
         path = "/api/data/timesheets"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TimesheetResponseDto](None, True, False, result.status_code, TimesheetResponseDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TimesheetResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[TimesheetResponseDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TimesheetResponseDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TimesheetResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def query_timesheets(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
         """
@@ -85,7 +91,9 @@ class TimesheetClient:
                 data.append(TimesheetDto(**dict))
             return AstroResult[list[TimesheetDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TimesheetDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TimesheetDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_time_entry(self, timesheetId: str) -> AstroResult[object]:
         """
@@ -100,9 +108,12 @@ class TimesheetClient:
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[object](None, True, False, result.status_code, object(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
         else:
-            return AstroResult[object](result.json(), False, True, result.status_code, None)
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def update_time_entry(self, timesheetId: str, body: TimesheetUpdateRequestDto) -> AstroResult[TimesheetResponseDto]:
         """
@@ -117,11 +128,14 @@ class TimesheetClient:
         """
         path = f"/api/data/timesheets/{timesheetId}"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[TimesheetResponseDto](None, True, False, result.status_code, TimesheetResponseDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=TimesheetResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[TimesheetResponseDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[TimesheetResponseDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[TimesheetResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def returns_active_admin_tasks_that_are_used_to_report_time(self) -> AstroResult[list[TimesheetAdminTypeDto]]:
         """
@@ -140,4 +154,6 @@ class TimesheetClient:
                 data.append(TimesheetAdminTypeDto(**dict))
             return AstroResult[list[TimesheetAdminTypeDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[TimesheetAdminTypeDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[TimesheetAdminTypeDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

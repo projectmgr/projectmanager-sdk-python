@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class CreateProjectFieldResponseDto:
     """
     A ProjectField is a custom field defined within your Workspace. You
@@ -35,5 +35,3 @@ class CreateProjectFieldResponseDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

@@ -1,5 +1,6 @@
 # API client
 from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
+from ProjectManagerSdk.tools import remove_empty_elements
 # API categories
 from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
 from ProjectManagerSdk.clients.changesetclient import ChangesetClient

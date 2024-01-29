@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class NameDto:
     """
     When uploading a list of names to an API, this data structure
@@ -28,5 +28,3 @@ class NameDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

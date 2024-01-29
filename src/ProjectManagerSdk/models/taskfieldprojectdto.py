@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TaskFieldProjectDto:
     """
     The TaskFieldProject is a summary of the Project that this TaskField
@@ -37,5 +37,3 @@ class TaskFieldProjectDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

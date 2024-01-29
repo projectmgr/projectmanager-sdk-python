@@ -15,7 +15,10 @@ from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.iddto import IdDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class TaskAssigneeClient:
     """
@@ -49,11 +52,14 @@ class TaskAssigneeClient:
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("POST", path, body, queryParams, None)
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_or_update_taskassignee(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -76,11 +82,14 @@ class TaskAssigneeClient:
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("PUT", path, body, queryParams, None)
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def delete_task_assignees(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
         """
@@ -100,8 +109,11 @@ class TaskAssigneeClient:
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("DELETE", path, body, queryParams, None)
+        result = self.client.send_request("DELETE", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, ChangeSetStatusDto(**json.loads(result.content)['data']))
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
-            return AstroResult[ChangeSetStatusDto](result.json(), False, True, result.status_code, None)
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

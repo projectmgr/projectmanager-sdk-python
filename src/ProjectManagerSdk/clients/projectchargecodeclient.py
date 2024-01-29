@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class ProjectChargeCodeClient:
     """
@@ -46,4 +49,6 @@ class ProjectChargeCodeClient:
                 data.append(ProjectChargeCodeDto(**dict))
             return AstroResult[list[ProjectChargeCodeDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectChargeCodeDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectChargeCodeDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

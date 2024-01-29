@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.licensedto import LicenseDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class LicenseClient:
     """
@@ -47,7 +50,9 @@ class LicenseClient:
                 data.append(LicenseDto(**dict))
             return AstroResult[list[LicenseDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[LicenseDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[LicenseDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def add_license(self, bundleSku: str) -> AstroResult[list[LicenseDto]]:
         """
@@ -73,4 +78,6 @@ class LicenseClient:
                 data.append(LicenseDto(**dict))
             return AstroResult[list[LicenseDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[LicenseDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[LicenseDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

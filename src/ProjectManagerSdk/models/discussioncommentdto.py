@@ -14,9 +14,9 @@
 
 from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class DiscussionCommentDto:
     """
     Tasks can have discussions attached to them. These discussions can
@@ -83,5 +83,3 @@ class DiscussionCommentDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

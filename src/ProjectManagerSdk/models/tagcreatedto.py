@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class TagCreateDto:
     """
     A Tag is a named categorization you can use to distinguish objects
@@ -37,5 +37,3 @@ class TagCreateDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

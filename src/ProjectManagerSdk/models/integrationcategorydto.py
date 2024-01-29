@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class IntegrationCategoryDto:
     """
     Information about a category of Integrations available on the
@@ -44,5 +44,3 @@ class IntegrationCategoryDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

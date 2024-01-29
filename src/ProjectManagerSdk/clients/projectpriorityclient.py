@@ -13,7 +13,10 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.tools import remove_empty_elements
+import dataclasses
 import json
+import dacite
 
 class ProjectPriorityClient:
     """
@@ -50,4 +53,6 @@ class ProjectPriorityClient:
                 data.append(ProjectPriorityDto(**dict))
             return AstroResult[list[ProjectPriorityDto]](None, True, False, result.status_code, data)
         else:
-            return AstroResult[list[ProjectPriorityDto]](result.json(), False, True, result.status_code, None)
+            response = AstroResult[list[ProjectPriorityDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

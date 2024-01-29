@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ResourceSkillDto:
     """
     A ResourceSkill is a capability possessed by this Resource that can
@@ -34,5 +34,3 @@ class ResourceSkillDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

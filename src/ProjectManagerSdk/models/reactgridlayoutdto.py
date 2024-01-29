@@ -13,9 +13,9 @@
 
 
 from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ReactGridLayoutDto:
     """
     A setting for react grid layout sizes
@@ -47,5 +47,3 @@ class ReactGridLayoutDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

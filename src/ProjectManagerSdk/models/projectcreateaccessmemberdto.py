@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ProjectCreateAccessMemberDto:
     """
     Represents project member that have access to new project
@@ -31,5 +31,3 @@ class ProjectCreateAccessMemberDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

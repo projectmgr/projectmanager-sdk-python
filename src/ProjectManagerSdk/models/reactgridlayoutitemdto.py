@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ReactGridLayoutItemDto:
     """
     React grid layout item object
@@ -56,5 +56,3 @@ class ReactGridLayoutItemDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

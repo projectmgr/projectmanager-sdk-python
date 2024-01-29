@@ -12,9 +12,9 @@
 #
 
 
-from dataclasses import dataclass
+import dataclasses
 
-@dataclass
+@dataclasses.dataclass
 class ChangeSetStatusDto:
     """
     Returns the id of a specific ChangeSet
@@ -33,5 +33,3 @@ class ChangeSetStatusDto:
     """
 
 
-    def to_dict(self) -> dict:
-        return dataclass.asdict(self)

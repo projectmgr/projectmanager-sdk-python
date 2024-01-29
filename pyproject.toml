@@ -1,6 +1,6 @@
 [project]
 name = "ProjectManagerSdk"
-version = "102.0.2886"
+version = "102.0.2931"
 authors = [
     { name = "ProjectManager.com", email = "support@projectmanager.com" }
 ]
@@ -11,6 +11,9 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+]
+dependencies = [
+    "dacite ~= 1.8.1"
 ]
 
 [project.urls]
