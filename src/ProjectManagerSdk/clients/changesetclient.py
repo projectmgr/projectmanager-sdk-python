@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
+from ProjectManagerSdk.models.changesetresponsedto import ChangeSetResponseDto
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -98,5 +99,39 @@ class ChangesetClient:
             return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ChangesetGetResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def retrieve_changesets_by_project_id(self, projectId: str, version: int, page: int, take: int) -> AstroResult[list[ChangeSetResponseDto]]:
+        """
+        Retrieve Changesets by Project ID
+
+        Parameters
+        ----------
+        projectId : str
+
+        version : int
+
+        page : int
+
+        take : int
+
+        """
+        path = f"/api/data/projects/{projectId}/changesets"
+        queryParams = {}
+        if version:
+            queryParams['version'] = version
+        if page:
+            queryParams['page'] = page
+        if take:
+            queryParams['take'] = take
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(ChangeSetResponseDto(**dict))
+            return AstroResult[list[ChangeSetResponseDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[list[ChangeSetResponseDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

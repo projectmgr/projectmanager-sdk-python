@@ -49,6 +49,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
 from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
 from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
+from ProjectManagerSdk.models.changesetresponsedto import ChangeSetResponseDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
@@ -87,6 +88,7 @@ from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
 from ProjectManagerSdk.models.projectfiledto import ProjectFileDto
+from ProjectManagerSdk.models.projectfilefolderdto import ProjectFileFolderDto
 from ProjectManagerSdk.models.projectfiletaskdto import ProjectFileTaskDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
