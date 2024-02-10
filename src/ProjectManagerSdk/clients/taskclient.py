@@ -233,7 +233,7 @@ class TaskClient:
             response.load_error(result)
             return response
 
-    def create_many_tasks(self, projectId: str, body: list[object]) -> AstroResult[list[ChangeSetStatusDto]]:
+    def create_many_tasks(self, projectId: str, body: list[TaskCreateDto]) -> AstroResult[list[ChangeSetStatusDto]]:
         """
         Create multiple new Tasks within a specified project with a
         single API call.
@@ -248,12 +248,15 @@ class TaskClient:
         projectId : str
             The unique identifier of the Project that will contain these
             Tasks
-        body : list[object]
+        body : list[TaskCreateDto]
             The list of new Tasks to create
         """
         path = f"/api/data/projects/{projectId}/tasks/bulk"
         queryParams = {}
-        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("POST", path, bodyArray, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
