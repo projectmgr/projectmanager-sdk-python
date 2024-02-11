@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.projectfilefolderdto import ProjectFileFolderDto
 from ProjectManagerSdk.models.projectfiletaskdto import ProjectFileTaskDto
 import dataclasses
 
@@ -40,6 +41,14 @@ class ProjectFileDto:
     objects, this field is not included in results by default. To expand
     this field, specify the name of this field in the `$expand`
     parameter.
+    """
+
+    folder: ProjectFileFolderDto | None = None
+    """
+    The folder that this file relates to. This field will be present
+    when you fetch a single object. When you query for multiple objects,
+    this field is not included in results by default. To expand this
+    field, specify the name of this field in the `$expand` parameter.
     """
 
 

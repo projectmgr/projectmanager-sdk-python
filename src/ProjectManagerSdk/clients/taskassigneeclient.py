@@ -29,7 +29,7 @@ class TaskAssigneeClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def replace_task_assignees(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def replace_task_assignees(self, taskId: str, body: list[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Replace all TaskAssignees on a Task with new TaskAssignees.
 
@@ -47,12 +47,15 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task whose TaskAssignees will
             be replaced
-        body : list[object]
+        body : list[AssigneeUpsertDto]
             The new list of TaskAssignees for this Task
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("POST", path, bodyArray, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
@@ -61,7 +64,7 @@ class TaskAssigneeClient:
             response.load_error(result)
             return response
 
-    def create_or_update_taskassignee(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def create_or_update_taskassignee(self, taskId: str, body: list[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Adds or updates a TaskAssignee to a Task. If the TaskAssignee is
         already assigned to the Task, update their allocation. If the
@@ -77,12 +80,15 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task to add or update an
             assignment
-        body : list[object]
+        body : list[AssigneeUpsertDto]
             List of Assignee data
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("PUT", path, bodyArray, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
@@ -91,7 +97,7 @@ class TaskAssigneeClient:
             response.load_error(result)
             return response
 
-    def delete_task_assignees(self, taskId: str, body: list[object]) -> AstroResult[ChangeSetStatusDto]:
+    def delete_task_assignees(self, taskId: str, body: list[IdDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Remove one or more TaskAssignees from a Task.
 
@@ -104,12 +110,15 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task whose TaskAssignee will be
             removed
-        body : list[object]
+        body : list[IdDto]
             List of TaskAssignee records to remove
         """
         path = f"/api/data/tasks/{taskId}/assignees"
         queryParams = {}
-        result = self.client.send_request("DELETE", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("DELETE", path, bodyArray, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
