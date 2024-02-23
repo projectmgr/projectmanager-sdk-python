@@ -12,8 +12,8 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
-from ProjectManagerSdk.models.changesetresponsedto import ChangeSetResponseDto
+from ProjectManagerSdk.models.projectchangedto import ProjectChangeDto
+from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -28,7 +28,7 @@ class ChangesetClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_changeset(self, changeSetId: str) -> AstroResult[ChangesetGetResponseDto]:
+    def retrieve_changeset_status(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
         """
         Retrieve a Changeset by its unique ID.
 
@@ -54,14 +54,14 @@ class ChangesetClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=ChangesetGetResponseDto, data=json.loads(result.content)['data'])
-            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ProjectChangeStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectChangeStatusDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[ChangesetGetResponseDto](None, False, True, result.status_code, None)
+            response = AstroResult[ProjectChangeStatusDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def retrieve_completed_changeset(self, changeSetId: str) -> AstroResult[ChangesetGetResponseDto]:
+    def retrieve_completed_changeset_status(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
         """
         Retrieve a Changeset by its unique ID. This endpoint waits for
         the Changeset to complete its processing prior to returning a
@@ -95,16 +95,16 @@ class ChangesetClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=ChangesetGetResponseDto, data=json.loads(result.content)['data'])
-            return AstroResult[ChangesetGetResponseDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ProjectChangeStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectChangeStatusDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[ChangesetGetResponseDto](None, False, True, result.status_code, None)
+            response = AstroResult[ProjectChangeStatusDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def retrieve_changesets_by_project_id(self, projectId: str, version: int, page: int, take: int) -> AstroResult[list[ChangeSetResponseDto]]:
+    def retrieve_project_changes_by_project_id(self, projectId: str, version: int, page: int, take: int) -> AstroResult[list[ProjectChangeDto]]:
         """
-        Retrieve Changesets by Project ID
+        Retrieve specific Project Changes by Project ID
 
         Parameters
         ----------
@@ -117,7 +117,7 @@ class ChangesetClient:
         take : int
 
         """
-        path = f"/api/data/projects/{projectId}/changesets"
+        path = f"/api/data/projects/{projectId}/changes"
         queryParams = {}
         if version:
             queryParams['version'] = version
@@ -129,9 +129,9 @@ class ChangesetClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ChangeSetResponseDto(**dict))
-            return AstroResult[list[ChangeSetResponseDto]](None, True, False, result.status_code, data)
+                data.append(ProjectChangeDto(**dict))
+            return AstroResult[list[ProjectChangeDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ChangeSetResponseDto]](None, False, True, result.status_code, None)
+            response = AstroResult[list[ProjectChangeDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
