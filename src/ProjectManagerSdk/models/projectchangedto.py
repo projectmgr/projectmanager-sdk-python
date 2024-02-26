@@ -15,19 +15,19 @@
 import dataclasses
 
 @dataclasses.dataclass
-class ChangeSetResponseDto:
+class ProjectChangeDto:
     """
-    The project task change set
-    """
-
-    projectChangeSetId: int | None = None
-    """
-    Project Changeset ID
+    The specific change action made against a project
     """
 
     id: str | None = None
     """
-    The unique identifier of this Changeset
+    Project Change ID
+    """
+
+    businessId: str | None = None
+    """
+    Workspace ID
     """
 
     projectId: str | None = None
@@ -37,7 +37,7 @@ class ChangeSetResponseDto:
 
     version: int | None = None
     """
-    Task version
+    Version of this Project Change
     """
 
     createBy: str | None = None
@@ -50,54 +50,19 @@ class ChangeSetResponseDto:
     Created date
     """
 
-    actions: str | None = None
-    """
-    Change set action
-    """
-
-    changeSets: str | None = None
-    """
-    Change set in json string
-    """
-
     processDate: str | None = None
     """
     Processed date
     """
 
-    success: bool | None = None
+    status: int | None = None
     """
-    If process was successful
-    """
-
-    exception: str | None = None
-    """
-    Error message
+    The status of the Project Change
     """
 
-    clientId: str | None = None
+    changeData: object | None = None
     """
-    UI ID
-    """
-
-    jsonData: str | None = None
-    """
-    Changeset JSON data
-    """
-
-    isUndo: bool | None = None
-    """
-    Is change set from UNDO
-    """
-
-    state: int | None = None
-    """
-    The state of the changeset
-    """
-
-    businessId: str | None = None
-    """
-    Business ID
+    Project Change as JSON data
     """
 
 

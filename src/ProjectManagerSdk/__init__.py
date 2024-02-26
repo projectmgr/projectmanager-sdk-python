@@ -48,8 +48,7 @@ from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
 from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
-from ProjectManagerSdk.models.changesetgetresponsedto import ChangesetGetResponseDto
-from ProjectManagerSdk.models.changesetresponsedto import ChangeSetResponseDto
+from ProjectManagerSdk.models.changesetdto import ChangeSetDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
@@ -80,6 +79,8 @@ from ProjectManagerSdk.models.licensedto import LicenseDto
 from ProjectManagerSdk.models.masterconnectionschemedto import MasterConnectionSchemeDto
 from ProjectManagerSdk.models.namedto import NameDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
+from ProjectManagerSdk.models.projectchangedto import ProjectChangeDto
+from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
 from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateAccessMemberDto
