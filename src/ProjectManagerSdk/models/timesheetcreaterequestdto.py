@@ -37,7 +37,7 @@ class TimesheetCreateRequestDto:
 
     adminTypeId: str | None = None
     """
-    Admin task id that time reportsed to
+    Admin task id that time reported to
     """
 
     resourceId: str | None = None

@@ -47,4 +47,9 @@ class TimesheetResourceDto:
     The email address of this Resource.
     """
 
+    hourlyRate: float | None = None
+    """
+    The default hourly rate of the resource.
+    """
+
 
