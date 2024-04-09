@@ -153,12 +153,32 @@ class TimesheetTaskDto:
 
     actualCost: float | None = None
     """
-    The actual cost of this Task to date, if known.
+    The actual cost of this Task, if known.
+    """
+
+    actualResourceCost: float | None = None
+    """
+    The actual resource cost of this Task
+    """
+
+    actualEffort: int | None = None
+    """
+    The actual effort (in minutes) of this task, if known.
     """
 
     plannedCost: float | None = None
     """
     The planned cost for this Task. Cannot be negative.
+    """
+
+    plannedResourceCost: float | None = None
+    """
+    The planned resource cost of this Task
+    """
+
+    plannedEffort: int | None = None
+    """
+    The planned effort (in minutes) of this task, if known.
     """
 
 

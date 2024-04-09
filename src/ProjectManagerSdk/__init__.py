@@ -79,7 +79,6 @@ from ProjectManagerSdk.models.licensedto import LicenseDto
 from ProjectManagerSdk.models.masterconnectionschemedto import MasterConnectionSchemeDto
 from ProjectManagerSdk.models.namedto import NameDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
-from ProjectManagerSdk.models.projectchangedto import ProjectChangeDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
@@ -100,6 +99,8 @@ from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
+from ProjectManagerSdk.models.projectversionchangedatadto import ProjectVersionChangeDataDto
+from ProjectManagerSdk.models.projectversiondto import ProjectVersionDto
 from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto

@@ -12,7 +12,6 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.projectchangedto import ProjectChangeDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -99,39 +98,5 @@ class ChangesetClient:
             return AstroResult[ProjectChangeStatusDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ProjectChangeStatusDto](None, False, True, result.status_code, None)
-            response.load_error(result)
-            return response
-
-    def retrieve_project_changes_by_project_id(self, projectId: str, version: int, page: int, take: int) -> AstroResult[list[ProjectChangeDto]]:
-        """
-        Retrieve specific Project Changes by Project ID
-
-        Parameters
-        ----------
-        projectId : str
-
-        version : int
-
-        page : int
-
-        take : int
-
-        """
-        path = f"/api/data/projects/{projectId}/changes"
-        queryParams = {}
-        if version:
-            queryParams['version'] = version
-        if page:
-            queryParams['page'] = page
-        if take:
-            queryParams['take'] = take
-        result = self.client.send_request("GET", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = []
-            for dict in json.loads(result.content)['data']:
-                data.append(ProjectChangeDto(**dict))
-            return AstroResult[list[ProjectChangeDto]](None, True, False, result.status_code, data)
-        else:
-            response = AstroResult[list[ProjectChangeDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
