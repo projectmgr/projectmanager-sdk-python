@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

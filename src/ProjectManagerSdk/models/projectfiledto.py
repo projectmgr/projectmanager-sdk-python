@@ -14,6 +14,7 @@
 
 from ProjectManagerSdk.models.projectfilefolderdto import ProjectFileFolderDto
 from ProjectManagerSdk.models.projectfiletaskdto import ProjectFileTaskDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

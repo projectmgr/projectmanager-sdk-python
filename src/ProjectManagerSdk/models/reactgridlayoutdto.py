@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

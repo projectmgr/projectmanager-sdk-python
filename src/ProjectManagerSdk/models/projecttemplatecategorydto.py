@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

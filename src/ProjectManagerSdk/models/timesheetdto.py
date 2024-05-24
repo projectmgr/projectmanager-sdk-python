@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

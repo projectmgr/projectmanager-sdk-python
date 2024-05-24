@@ -14,6 +14,7 @@
 
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

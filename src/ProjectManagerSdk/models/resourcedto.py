@@ -15,6 +15,7 @@
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

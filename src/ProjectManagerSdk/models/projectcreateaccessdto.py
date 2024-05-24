@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateAccessMemberDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

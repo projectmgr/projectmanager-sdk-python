@@ -14,6 +14,7 @@
 
 from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

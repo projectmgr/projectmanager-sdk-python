@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
