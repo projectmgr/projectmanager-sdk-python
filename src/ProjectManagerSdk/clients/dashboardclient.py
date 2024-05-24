@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
 from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
