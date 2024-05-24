@@ -30,12 +30,10 @@ class ProjectChargeCodeClient:
     def retrieve_charge_codes(self) -> AstroResult[list[ProjectChargeCodeDto]]:
         """
         Retrieve all defined ChargeCodes that can be used when creating
-        Projects.
-
-        A ChargeCode is a code used to identify costs within your
-        Projects. Each ChargeCode has a name and a unique identifier.
-        ChargeCodes are defined per Workspace and are shared among
-        Projects.
+        Projects. A ChargeCode is a code used to identify costs within
+        your Projects. Each ChargeCode has a name and a unique
+        identifier. ChargeCodes are defined per Workspace and are shared
+        among Projects.
 
         Parameters
         ----------

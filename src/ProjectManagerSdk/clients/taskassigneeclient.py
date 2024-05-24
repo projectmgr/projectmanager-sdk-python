@@ -31,9 +31,8 @@ class TaskAssigneeClient:
 
     def replace_task_assignees(self, taskId: str, body: list[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
         """
-        Replace all TaskAssignees on a Task with new TaskAssignees.
-
-        A TaskAssignee is an assignment of a Resource to a Task. You can
+        Replace all TaskAssignees on a Task with new TaskAssignees. A
+        TaskAssignee is an assignment of a Resource to a Task. You can
         assign multiple Resources to a Task and designate how much of
         their time will be allocated to this Task.
 
@@ -69,11 +68,10 @@ class TaskAssigneeClient:
         Adds or updates a TaskAssignee to a Task. If the TaskAssignee is
         already assigned to the Task, update their allocation. If the
         TaskAssignee is not yet assigned to the Task, assign them and
-        set their allocation level to the correct amount.
-
-        A TaskAssignee is an assignment of a Resource to a Task. You can
-        assign multiple Resources to a Task and designate what
-        proportion of their time will be allocated to this Task.
+        set their allocation level to the correct amount. A TaskAssignee
+        is an assignment of a Resource to a Task. You can assign
+        multiple Resources to a Task and designate what proportion of
+        their time will be allocated to this Task.
 
         Parameters
         ----------
@@ -99,11 +97,10 @@ class TaskAssigneeClient:
 
     def delete_task_assignees(self, taskId: str, body: list[IdDto]) -> AstroResult[ChangeSetStatusDto]:
         """
-        Remove one or more TaskAssignees from a Task.
-
-        A TaskAssignee is an assignment of a Resource to a Task. You can
-        assign multiple Resources to a Task and designate what
-        proportion of their time will be allocated to this Task.
+        Remove one or more TaskAssignees from a Task. A TaskAssignee is
+        an assignment of a Resource to a Task. You can assign multiple
+        Resources to a Task and designate what proportion of their time
+        will be allocated to this Task.
 
         Parameters
         ----------

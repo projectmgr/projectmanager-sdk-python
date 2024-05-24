@@ -34,12 +34,11 @@ class TaskClient:
     def query_tasks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskDto]]:
         """
         Retrieve a list of Tasks that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        query](https://www.odata.org/). A Task is an individual element
+        of work that must be performed to complete a Project. A Task can
+        have one or more Resources assigned to it. Tasks can be linked
+        to other Tasks to indicate whether they have a dependency or a
+        connection.
 
         Parameters
         ----------
@@ -83,12 +82,10 @@ class TaskClient:
         Retrieve a Task by its unique identifier or by its short ID. A
         Task has both a unique identifier, which is a GUID, and a short
         ID, which is a small text label that is unique only within your
-        Workspace.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        Workspace. A Task is an individual element of work that must be
+        performed to complete a Project. A Task can have one or more
+        Resources assigned to it. Tasks can be linked to other Tasks to
+        indicate whether they have a dependency or a connection.
 
         Parameters
         ----------
@@ -109,18 +106,14 @@ class TaskClient:
     def update_task(self, taskId: str, body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Update an existing Task and replace the values of fields
-        specified.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
-
+        specified. A Task is an individual element of work that must be
+        performed to complete a Project. A Task can have one or more
+        Resources assigned to it. Tasks can be linked to other Tasks to
+        indicate whether they have a dependency or a connection.
         Multiple users can be working on data at the same time. When you
         call an API to update an object, this call is converted into a
         Changeset that is then applied sequentially. You can use
         RetrieveChangeset to see the status of an individual Changeset.
-
         Known Issues: This API returns an error if your Update call
         includes too many changes in a single API call. Please restrict
         usage to one change per API request. This API will be deprecated
@@ -147,17 +140,15 @@ class TaskClient:
 
     def delete_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
-        Delete an existing Task.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
-
-        Multiple users can be working on data at the same time. When you
-        call an API to update an object, this call is converted into a
-        Changeset that is then applied sequentially. You can use
-        RetrieveChangeset to see the status of an individual Changeset.
+        Delete an existing Task. A Task is an individual element of work
+        that must be performed to complete a Project. A Task can have
+        one or more Resources assigned to it. Tasks can be linked to
+        other Tasks to indicate whether they have a dependency or a
+        connection. Multiple users can be working on data at the same
+        time. When you call an API to update an object, this call is
+        converted into a Changeset that is then applied sequentially.
+        You can use RetrieveChangeset to see the status of an individual
+        Changeset.
 
         Parameters
         ----------
@@ -177,12 +168,11 @@ class TaskClient:
 
     def create_task(self, projectId: str, body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
         """
-        Create a new Task within a specified project.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        Create a new Task within a specified project. A Task is an
+        individual element of work that must be performed to complete a
+        Project. A Task can have one or more Resources assigned to it.
+        Tasks can be linked to other Tasks to indicate whether they have
+        a dependency or a connection.
 
         Parameters
         ----------
@@ -205,14 +195,11 @@ class TaskClient:
 
     def retrieve_task_priorities(self) -> AstroResult[list[TaskPriorityDto]]:
         """
-        Retrieves all TaskPriorities defined within your Workspace.
-
-        A TaskPriority is a named priority level used by your business
-        to determine how to decide which Tasks are the most important.
-        You can name your TaskPriority levels anything you like and you
-        can reorganize the order of the TaskPriority levels at any time.
-
-
+        Retrieves all TaskPriorities defined within your Workspace. A
+        TaskPriority is a named priority level used by your business to
+        determine how to decide which Tasks are the most important. You
+        can name your TaskPriority levels anything you like and you can
+        reorganize the order of the TaskPriority levels at any time.
         Note that TaskPriority and ProjectPriority are different classes
         of priority levels. Even if they may have similar names, they
         are different objects and must be tracked separately.
@@ -236,12 +223,11 @@ class TaskClient:
     def create_many_tasks(self, projectId: str, body: list[TaskCreateDto]) -> AstroResult[list[ChangeSetStatusDto]]:
         """
         Create multiple new Tasks within a specified project with a
-        single API call.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        single API call. A Task is an individual element of work that
+        must be performed to complete a Project. A Task can have one or
+        more Resources assigned to it. Tasks can be linked to other
+        Tasks to indicate whether they have a dependency or a
+        connection.
 
         Parameters
         ----------

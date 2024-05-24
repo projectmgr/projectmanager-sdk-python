@@ -53,14 +53,12 @@ class DiscussionClient:
 
     def create_task_comments(self, taskId: str, body: DiscussionCommentCreateDto) -> AstroResult[DiscussionCommentCreateResponseDto]:
         """
-        Adds a Markdown-formatted comment to a task.
-
-        Tasks can have discussions attached to them. These discussions
-        can include text with simple formatting. Discussion comments are
-        formatted using [Markdown](https://www.markdownguide.org/) and
-        users should be aware that HTML embedding is not permitted due
-        to the risk of cross-site attacks and other embedding
-        challenges.
+        Adds a Markdown-formatted comment to a task. Tasks can have
+        discussions attached to them. These discussions can include text
+        with simple formatting. Discussion comments are formatted using
+        [Markdown](https://www.markdownguide.org/) and users should be
+        aware that HTML embedding is not permitted due to the risk of
+        cross-site attacks and other embedding challenges.
 
         Parameters
         ----------

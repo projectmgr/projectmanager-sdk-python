@@ -54,9 +54,8 @@ class TimesheetClient:
     def query_timesheets(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
         """
         Retrieve a list of TimeSheets that match an [OData formatted
-        query](https://www.odata.org/).
-
-        Time Sheets is a list of times per task
+        query](https://www.odata.org/). Time Sheets is a list of times
+        per task
 
         Parameters
         ----------

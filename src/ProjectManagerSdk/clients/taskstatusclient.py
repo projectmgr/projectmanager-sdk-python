@@ -32,12 +32,11 @@ class TaskStatusClient:
     def retrieve_task_statuses(self, projectId: str) -> AstroResult[list[TaskStatusDto]]:
         """
         Retrieves the list of TaskStatus levels for a specific Project
-        within your Workspace.
-
-        A TaskStatus is a named status level used by your business to
-        determine how to measure the progress of Tasks. You can define
-        your own named status levels that are appropriate for your
-        business and determine which status levels are considered done.
+        within your Workspace. A TaskStatus is a named status level used
+        by your business to determine how to measure the progress of
+        Tasks. You can define your own named status levels that are
+        appropriate for your business and determine which status levels
+        are considered done.
 
         Parameters
         ----------
@@ -61,12 +60,10 @@ class TaskStatusClient:
     def create_taskstatus(self, projectId: str, body: TaskStatusCreateDto) -> AstroResult[TaskStatusDto]:
         """
         Creates a new TaskStatus level for a specific Project within
-        your Workspace.
-
-        A TaskStatus is a named status level used by your business to
-        determine how to measure the progress of Tasks. You can define
-        your own named status levels that are appropriate for your
-        business.
+        your Workspace. A TaskStatus is a named status level used by
+        your business to determine how to measure the progress of Tasks.
+        You can define your own named status levels that are appropriate
+        for your business.
 
         Parameters
         ----------
@@ -90,12 +87,10 @@ class TaskStatusClient:
     def update_taskstatus(self, projectId: str, body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
         """
         Updates an existing TaskStatus level for a specific Project
-        within your Workspace.
-
-        A TaskStatus is a named status level used by your business to
-        determine how to measure the progress of Tasks. You can define
-        your own named status levels that are appropriate for your
-        business.
+        within your Workspace. A TaskStatus is a named status level used
+        by your business to determine how to measure the progress of
+        Tasks. You can define your own named status levels that are
+        appropriate for your business.
 
         Parameters
         ----------
@@ -118,11 +113,10 @@ class TaskStatusClient:
 
     def delete_taskstatus(self, projectId: str, taskStatusId: str) -> AstroResult[object]:
         """
-        The endpoint is used to delete a TaskStatus.
-
-        You will not be able to delete a TaskStatus if there are tasks
-        that have been assigned to this status level or if the
-        TaskStatus is the default status level.
+        The endpoint is used to delete a TaskStatus. You will not be
+        able to delete a TaskStatus if there are tasks that have been
+        assigned to this status level or if the TaskStatus is the
+        default status level.
 
         Parameters
         ----------

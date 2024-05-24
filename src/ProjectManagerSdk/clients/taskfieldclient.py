@@ -34,12 +34,10 @@ class TaskFieldClient:
     def retrieve_task_fields(self, projectId: str) -> AstroResult[list[TaskFieldDto]]:
         """
         Retrieves all TaskFields defined for a specific Project within
-        your Workspace.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
-        TaskField has a data type as well as options in how it is
+        your Workspace. A TaskField is a custom field defined within
+        your Workspace for a specific Project. You can define TaskFields
+        for any integration purpose that is important to your business.
+        Each TaskField has a data type as well as options in how it is
         handled. TaskFields can be edited for each Task inside this
         Project.
 
@@ -64,11 +62,9 @@ class TaskFieldClient:
     def create_task_field(self, projectId: str, body: CreateTaskFieldDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Creates a new TaskField for a specific Project within your
-        Workspace.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
+        Workspace. A TaskField is a custom field defined within your
+        Workspace for a specific Project. You can define TaskFields for
+        any integration purpose that is important to your business. Each
         TaskField has a data type as well as options in how it is
         handled. TaskFields can be edited for each Task inside this
         Project.
@@ -95,14 +91,12 @@ class TaskFieldClient:
     def query_task_fields(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldDto]]:
         """
         Retrieve a list of TaskFields that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
-        TaskField has a data type as well as options in how it is
-        handled. TaskFields can be edited for each Task inside a
-        Project.
+        query](https://www.odata.org/). A TaskField is a custom field
+        defined within your Workspace for a specific Project. You can
+        define TaskFields for any integration purpose that is important
+        to your business. Each TaskField has a data type as well as
+        options in how it is handled. TaskFields can be edited for each
+        Task inside a Project.
 
         Parameters
         ----------
@@ -144,11 +138,9 @@ class TaskFieldClient:
     def delete_task_field(self, projectId: str, fieldId: str) -> AstroResult[object]:
         """
         Deletes a TaskField for a specific Project within your
-        Workspace.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
+        Workspace. A TaskField is a custom field defined within your
+        Workspace for a specific Project. You can define TaskFields for
+        any integration purpose that is important to your business. Each
         TaskField has a data type as well as options in how it is
         handled. TaskFields can be edited for each Task inside this
         Project.
@@ -174,14 +166,12 @@ class TaskFieldClient:
 
     def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldValueDto]]:
         """
-        Retrieves all TaskField values for a particular Task.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
-        TaskField has a data type as well as options in how it is
-        handled. TaskFields can be edited for each Task inside this
-        Project.
+        Retrieves all TaskField values for a particular Task. A
+        TaskField is a custom field defined within your Workspace for a
+        specific Project. You can define TaskFields for any integration
+        purpose that is important to your business. Each TaskField has a
+        data type as well as options in how it is handled. TaskFields
+        can be edited for each Task inside this Project.
 
         Parameters
         ----------
@@ -205,14 +195,12 @@ class TaskFieldClient:
     def query_task_field_values(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldValueDto]]:
         """
         Retrieve a list of TaskFieldValues that match an [OData
-        formatted query](https://www.odata.org/).
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
-        TaskField has a data type as well as options in how it is
-        handled. TaskFields can be edited for each Task inside this
-        Project.
+        formatted query](https://www.odata.org/). A TaskField is a
+        custom field defined within your Workspace for a specific
+        Project. You can define TaskFields for any integration purpose
+        that is important to your business. Each TaskField has a data
+        type as well as options in how it is handled. TaskFields can be
+        edited for each Task inside this Project.
 
         Parameters
         ----------
@@ -254,11 +242,9 @@ class TaskFieldClient:
     def retrieve_task_field_value(self, taskId: str, fieldId: str) -> AstroResult[TaskFieldValueDto]:
         """
         Retrieves the current TaskField value for a particular Task and
-        TaskField.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
+        TaskField. A TaskField is a custom field defined within your
+        Workspace for a specific Project. You can define TaskFields for
+        any integration purpose that is important to your business. Each
         TaskField has a data type as well as options in how it is
         handled. TaskFields can be edited for each Task inside this
         Project.
@@ -285,14 +271,12 @@ class TaskFieldClient:
     def update_task_field_value(self, taskId: str, fieldId: str, body: UpdateTaskFieldValueDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Replaces the current value of a TaskField for a specific Task
-        within your Workspace.
-
-        A TaskField is a custom field defined within your Workspace for
-        a specific Project. You can define TaskFields for any
-        integration purpose that is important to your business. Each
-        TaskField has a data type as well as options in how it is
-        handled. TaskFields can be edited for each Task inside this
-        Project.
+        within your Workspace. A TaskField is a custom field defined
+        within your Workspace for a specific Project. You can define
+        TaskFields for any integration purpose that is important to your
+        business. Each TaskField has a data type as well as options in
+        how it is handled. TaskFields can be edited for each Task inside
+        this Project.
 
         Parameters
         ----------

@@ -29,11 +29,10 @@ class IntegrationClient:
 
     def retrieve_integration(self, integrationId: str) -> AstroResult[IntegrationDto]:
         """
-        Retrieves an Integration specified by a unique identifier.
-
-        The Integrations API is intended for use by ProjectManager and
-        its business development partners. Please contact
-        ProjectManager's sales team to request use of this API.
+        Retrieves an Integration specified by a unique identifier. The
+        Integrations API is intended for use by ProjectManager and its
+        business development partners. Please contact ProjectManager's
+        sales team to request use of this API.
 
         Parameters
         ----------
@@ -53,11 +52,10 @@ class IntegrationClient:
 
     def enable_integration(self, integrationId: str) -> AstroResult[IntegrationDto]:
         """
-        Enable a specific Integration for the current Workspace.
-
-        The Integrations API is intended for use by ProjectManager and
-        its business development partners. Please contact
-        ProjectManager's sales team to request use of this API.
+        Enable a specific Integration for the current Workspace. The
+        Integrations API is intended for use by ProjectManager and its
+        business development partners. Please contact ProjectManager's
+        sales team to request use of this API.
 
         Parameters
         ----------
@@ -77,11 +75,10 @@ class IntegrationClient:
 
     def disable_integration(self, integrationId: str) -> AstroResult[object]:
         """
-        Disable a specific Integration for the current Workspace.
-
-        The Integrations API is intended for use by ProjectManager and
-        its business development partners. Please contact
-        ProjectManager's sales team to request use of this API.
+        Disable a specific Integration for the current Workspace. The
+        Integrations API is intended for use by ProjectManager and its
+        business development partners. Please contact ProjectManager's
+        sales team to request use of this API.
 
         Parameters
         ----------
@@ -101,11 +98,10 @@ class IntegrationClient:
 
     def retrieve_all_integrations(self) -> AstroResult[list[IntegrationDto]]:
         """
-        Retrieves all Integrations for the current Workspace.
-
-        The Integrations API is intended for use by ProjectManager and
-        its business development partners. Please contact
-        ProjectManager's sales team to request use of this API.
+        Retrieves all Integrations for the current Workspace. The
+        Integrations API is intended for use by ProjectManager and its
+        business development partners. Please contact ProjectManager's
+        sales team to request use of this API.
 
         Parameters
         ----------

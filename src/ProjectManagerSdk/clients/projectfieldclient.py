@@ -33,9 +33,8 @@ class ProjectFieldClient:
 
     def retrieve_project_fields(self) -> AstroResult[list[GetProjectFieldsResponseDto]]:
         """
-        Retrieves all ProjectFields defined within your Workspace.
-
-        A ProjectField is a custom field defined within your Workspace.
+        Retrieves all ProjectFields defined within your Workspace. A
+        ProjectField is a custom field defined within your Workspace.
         You can define ProjectFields for any integration purpose that is
         important to your business. Each ProjectField has a data type as
         well as options in how it is handled. ProjectFields can be
@@ -59,13 +58,12 @@ class ProjectFieldClient:
 
     def create_project_field(self, body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
         """
-        Creates a new ProjectField within your Workspace.
-
-        A ProjectField is a custom field defined within your Workspace.
-        You can define ProjectFields for any integration purpose that is
-        important to your business. Each ProjectField has a data type as
-        well as options in how it is handled. ProjectFields can be
-        edited for each Project within your Workspace.
+        Creates a new ProjectField within your Workspace. A ProjectField
+        is a custom field defined within your Workspace. You can define
+        ProjectFields for any integration purpose that is important to
+        your business. Each ProjectField has a data type as well as
+        options in how it is handled. ProjectFields can be edited for
+        each Project within your Workspace.
 
         Parameters
         ----------
@@ -85,9 +83,8 @@ class ProjectFieldClient:
 
     def delete_project_field(self, fieldId: str) -> AstroResult[object]:
         """
-        Deletes an existing ProjectField within your Workspace.
-
-        A ProjectField is a custom field defined within your Workspace.
+        Deletes an existing ProjectField within your Workspace. A
+        ProjectField is a custom field defined within your Workspace.
         You can define ProjectFields for any integration purpose that is
         important to your business. Each ProjectField has a data type as
         well as options in how it is handled. ProjectFields can be
@@ -112,13 +109,12 @@ class ProjectFieldClient:
     def update_projectfield_value(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
         """
         Replaces the current value of a ProjectField for a specific
-        Project within your Workspace.
-
-        A ProjectField is a custom field defined within your Workspace.
-        You can define ProjectFields for any integration purpose that is
-        important to your business. Each ProjectField has a data type as
-        well as options in how it is handled. ProjectFields can be
-        edited for each Project within your Workspace.
+        Project within your Workspace. A ProjectField is a custom field
+        defined within your Workspace. You can define ProjectFields for
+        any integration purpose that is important to your business. Each
+        ProjectField has a data type as well as options in how it is
+        handled. ProjectFields can be edited for each Project within
+        your Workspace.
 
         Parameters
         ----------

@@ -30,10 +30,9 @@ class ProjectTemplateClient:
 
     def retrieve_project_templates(self) -> AstroResult[list[ProjectTemplateDto]]:
         """
-        Retrieves all ProjectTemplates defined in the system.
-
-        A ProjectTemplate is a definition of default project related
-        data (eg. Tasks) that can be applied to a new project when it is
+        Retrieves all ProjectTemplates defined in the system. A
+        ProjectTemplate is a definition of default project related data
+        (eg. Tasks) that can be applied to a new project when it is
         created. ProjectTemplates are categorized using the
         TemplateCategory system.
 
@@ -56,7 +55,6 @@ class ProjectTemplateClient:
     def retrieve_template_categories(self) -> AstroResult[list[ProjectTemplateCategoryDto]]:
         """
         Retrieves all ProjectTemplate Categories defined in the system.
-
         A ProjectTemplate is a definition of default project related
         data (eg. Tasks) that can be applied to a new project when it is
         created. ProjectTemplates are categorized using the

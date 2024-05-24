@@ -34,7 +34,6 @@ class IntegrationProviderClient:
     def list_providers(self) -> AstroResult[list[IntegrationProviderDto]]:
         """
         List all available IntegrationProviders that can be activated.
-
         An IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its
@@ -60,9 +59,8 @@ class IntegrationProviderClient:
     def activate_integration_provider(self, providerId: str) -> AstroResult[ConnectionSchemaDto]:
         """
         Activates an Integration Provider and retrieves authentication
-        information about a specific IntegrationProvider.
-
-        An IntegrationProvider is the name of an external application or
+        information about a specific IntegrationProvider. An
+        IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its
         business development partners. Please contact ProjectManager's
@@ -143,10 +141,8 @@ class IntegrationProviderClient:
     def create_user_integration_provider_connection(self, providerId: str) -> AstroResult[DirectLinkDto]:
         """
         Retrieves user authentication information about a specific
-        IntegrationProvider.
-
-        This connection can be used for requests to Providers that
-        require specific user data.
+        IntegrationProvider. This connection can be used for requests to
+        Providers that require specific user data.
 
         An IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The

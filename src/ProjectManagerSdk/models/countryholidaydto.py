@@ -32,7 +32,12 @@ class CountryHolidayDto:
 
     countryId: int | None = None
     """
-    Country id holiday associated to
+    The Country Id the holiday is associated to
+    """
+
+    countryName: str | None = None
+    """
+    The Country Name the holiday is associated to
     """
 
 

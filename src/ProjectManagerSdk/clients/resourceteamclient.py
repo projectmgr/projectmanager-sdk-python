@@ -32,12 +32,11 @@ class ResourceTeamClient:
     def retrieve_resource_teams(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
         """
         Retrieves all ResourceTeams defined within your Workspace that
-        match an [OData formatted query](https://www.odata.org/).
-
-        A ResourceTeam is a grouping of Resources that allows you to
-        keep track of assignments in a manner consistent with your
-        business needs. You can assign Resources to be members of zero,
-        one, or many ResourceTeams.
+        match an [OData formatted query](https://www.odata.org/). A
+        ResourceTeam is a grouping of Resources that allows you to keep
+        track of assignments in a manner consistent with your business
+        needs. You can assign Resources to be members of zero, one, or
+        many ResourceTeams.
 
         Parameters
         ----------

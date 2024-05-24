@@ -30,13 +30,11 @@ class LicenseClient:
     def retrieve_licenses(self) -> AstroResult[list[LicenseDto]]:
         """
         Retrieve information about the current licenses possessed by
-        this Workspace.
-
-        Licenses contain information about your current subscription
-        level and features that have been enabled on your Workspace. To
-        modify the License information, please log on to the
-        ProjectManager.com application and use the Account | Editions
-        screen to review or update your Licenses.
+        this Workspace. Licenses contain information about your current
+        subscription level and features that have been enabled on your
+        Workspace. To modify the License information, please log on to
+        the ProjectManager.com application and use the Account |
+        Editions screen to review or update your Licenses.
 
         Parameters
         ----------
@@ -56,13 +54,12 @@ class LicenseClient:
 
     def add_license(self, bundleSku: str) -> AstroResult[list[LicenseDto]]:
         """
-        Adds a new License to the current Workspace.
-
-        Licenses contain information about your current subscription
-        level and features that have been enabled on your Workspace. To
-        modify the License information, please log on to the
-        ProjectManager.com application and use the Account | Editions
-        screen to review or update your Licenses.
+        Adds a new License to the current Workspace. Licenses contain
+        information about your current subscription level and features
+        that have been enabled on your Workspace. To modify the License
+        information, please log on to the ProjectManager.com application
+        and use the Account | Editions screen to review or update your
+        Licenses.
 
         Parameters
         ----------

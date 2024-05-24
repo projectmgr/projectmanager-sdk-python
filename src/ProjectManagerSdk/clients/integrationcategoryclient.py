@@ -30,7 +30,6 @@ class IntegrationCategoryClient:
     def retrieve_provider_categories(self) -> AstroResult[list[IntegrationCategoryDto]]:
         """
         Retrieves the list of available IntegrationProvider categories.
-
         An IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its

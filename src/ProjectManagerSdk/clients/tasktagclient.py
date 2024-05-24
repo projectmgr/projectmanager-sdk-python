@@ -31,12 +31,10 @@ class TaskTagClient:
     def replace_tasktags(self, taskId: str, body: list[NameDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Replaces the existing TaskTags on a Task with a newly provided
-        list of TaskTags.
-
-        A TaskTag is a connection between a Task and a Tag. Each Task
-        can have zero, one or many TaskTags associated with it. TaskTags
-        can be assigned and removed from the Task to help you classify
-        your Tasks and prioritize work.
+        list of TaskTags. A TaskTag is a connection between a Task and a
+        Tag. Each Task can have zero, one or many TaskTags associated
+        with it. TaskTags can be assigned and removed from the Task to
+        help you classify your Tasks and prioritize work.
 
         Parameters
         ----------
@@ -62,12 +60,11 @@ class TaskTagClient:
 
     def add_tasktag_to_task(self, taskId: str, body: list[NameDto]) -> AstroResult[ChangeSetStatusDto]:
         """
-        Add one or more new TaskTags to a Task.
-
-        A TaskTag is a connection between a Task and a Tag. Each Task
-        can have zero, one or many TaskTags associated with it. TaskTags
-        can be assigned and removed from the Task to help you classify
-        your Tasks and prioritize work.
+        Add one or more new TaskTags to a Task. A TaskTag is a
+        connection between a Task and a Tag. Each Task can have zero,
+        one or many TaskTags associated with it. TaskTags can be
+        assigned and removed from the Task to help you classify your
+        Tasks and prioritize work.
 
         Parameters
         ----------
@@ -93,12 +90,11 @@ class TaskTagClient:
 
     def remove_tasktag_from_task(self, taskId: str, body: list[NameDto]) -> AstroResult[ChangeSetStatusDto]:
         """
-        Removes one or more existing TaskTags from a Task.
-
-        A TaskTag is a connection between a Task and a Tag. Each Task
-        can have zero, one or many TaskTags associated with it. TaskTags
-        can be assigned and removed from the Task to help you classify
-        your Tasks and prioritize work.
+        Removes one or more existing TaskTags from a Task. A TaskTag is
+        a connection between a Task and a Tag. Each Task can have zero,
+        one or many TaskTags associated with it. TaskTags can be
+        assigned and removed from the Task to help you classify your
+        Tasks and prioritize work.
 
         Parameters
         ----------

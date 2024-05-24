@@ -32,11 +32,9 @@ class TagClient:
     def query_tags(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TagDto]]:
         """
         Retrieve a list of Tags that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A Tag is a named categorization you can use to distinguish
-        objects from each other. Tags each have a unique identifier, a
-        name, and a color.
+        query](https://www.odata.org/). A Tag is a named categorization
+        you can use to distinguish objects from each other. Tags each
+        have a unique identifier, a name, and a color.
 
         Parameters
         ----------
@@ -77,11 +75,10 @@ class TagClient:
 
     def create_tag(self, body: TagCreateDto) -> AstroResult[TagDto]:
         """
-        Creates a new Tag based on information you provide.
-
-        A Tag is a named categorization you can use to distinguish
-        objects from each other. Tags each have a unique identifier, a
-        name, and a color.
+        Creates a new Tag based on information you provide. A Tag is a
+        named categorization you can use to distinguish objects from
+        each other. Tags each have a unique identifier, a name, and a
+        color.
 
         Parameters
         ----------
@@ -101,11 +98,10 @@ class TagClient:
 
     def update_tag(self, tagId: str, body: TagUpdateDto) -> AstroResult[TagDto]:
         """
-        Updates an existing Tag based on information you provide.
-
-        A Tag is a named categorization you can use to distinguish
-        objects from each other. Tags each have a unique identifier, a
-        name, and a color.
+        Updates an existing Tag based on information you provide. A Tag
+        is a named categorization you can use to distinguish objects
+        from each other. Tags each have a unique identifier, a name, and
+        a color.
 
         Parameters
         ----------

@@ -29,17 +29,15 @@ class ProjectPriorityClient:
 
     def retrieve_project_priorities(self) -> AstroResult[list[ProjectPriorityDto]]:
         """
-        Retrieves all ProjectPriorities defined within your Workspace.
-
-        A ProjectPriority is a named priority level used by your
-        business to determine how to decide which Projects are the most
+        Retrieves all ProjectPriorities defined within your Workspace. A
+        ProjectPriority is a named priority level used by your business
+        to determine how to decide which Projects are the most
         important. You can name your ProjectPriority levels anything you
         like and you can reorganize the order of the ProjectPriority
-        levels at any time.
-
-        Note that TaskPriority and ProjectPriority are different classes
-        of priority levels. Even if they may have similar names, they
-        are different objects and must be tracked separately.
+        levels at any time. Note that TaskPriority and ProjectPriority
+        are different classes of priority levels. Even if they may have
+        similar names, they are different objects and must be tracked
+        separately.
 
         Parameters
         ----------

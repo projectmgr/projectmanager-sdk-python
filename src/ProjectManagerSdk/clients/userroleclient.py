@@ -29,9 +29,8 @@ class UserRoleClient:
 
     def retrieve_userroles(self) -> AstroResult[list[UserRoleDto]]:
         """
-        Retrieves the list of UserRoles defined within this Workspace.
-
-        A UserRole is a name for a privilege level granted to a specific
+        Retrieves the list of UserRoles defined within this Workspace. A
+        UserRole is a name for a privilege level granted to a specific
         User. The 'Global Admin' UserRole is granted to the owner of the
         Workspace, and this UserRole cannot be changed. You can choose
         which UserRole applies to a User within your Workspace.

@@ -31,13 +31,12 @@ class WorkSpaceClient:
     def retrieve_workspaces(self) -> AstroResult[list[WorkSpaceDto]]:
         """
         Retrieve the list of Workspaces to which the currently logged on
-        user has access.
-
-        A single User may have access to multiple Workspaces, although
-        they can only be logged on to one Workspace at a time. This API
-        lists all Workspaces to which the currently logged on user is
-        entitled to access. To determine which Workspace a user is
-        currently logged on use the `/api/data/me` endpoint.
+        user has access. A single User may have access to multiple
+        Workspaces, although they can only be logged on to one Workspace
+        at a time. This API lists all Workspaces to which the currently
+        logged on user is entitled to access. To determine which
+        Workspace a user is currently logged on use the `/api/data/me`
+        endpoint.
 
         Parameters
         ----------
@@ -58,16 +57,13 @@ class WorkSpaceClient:
     def invite_to_workspace(self, organizationId: str, body: WorkSpaceJoinDto) -> AstroResult[object]:
         """
         Invite a specific user to join a Workspace to which the current
-        user has administrator rights.
-
-        A single User may have access to multiple Workspaces, although
-        they can only be logged on to one Workspace at a time. This API
-        lists all Workspaces to which the currently logged on user is
-        entitled to access. To determine which Workspace a user is
-        currently logged on use the `/api/data/me` endpoint.
-
-        This API allows you to invite a specific an invitation to join a
-        specific Workspace.
+        user has administrator rights. A single User may have access to
+        multiple Workspaces, although they can only be logged on to one
+        Workspace at a time. This API lists all Workspaces to which the
+        currently logged on user is entitled to access. To determine
+        which Workspace a user is currently logged on use the
+        `/api/data/me` endpoint. This API allows you to invite a
+        specific an invitation to join a specific Workspace.
 
         Parameters
         ----------

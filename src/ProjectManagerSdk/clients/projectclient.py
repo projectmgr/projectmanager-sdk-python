@@ -32,12 +32,11 @@ class ProjectClient:
     def query_projects(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ProjectDto]]:
         """
         Retrieve a list of Projects that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A Project is a collection of Tasks that contributes towards a
-        goal. Within a Project, Tasks represent individual items of work
-        that team members must complete. The sum total of Tasks within a
-        Project represents the work to be completed for that Project.
+        query](https://www.odata.org/). A Project is a collection of
+        Tasks that contributes towards a goal. Within a Project, Tasks
+        represent individual items of work that team members must
+        complete. The sum total of Tasks within a Project represents the
+        work to be completed for that Project.
 
         Parameters
         ----------
@@ -78,12 +77,11 @@ class ProjectClient:
 
     def create_project(self, body: ProjectCreateDto) -> AstroResult[ProjectDto]:
         """
-        Create a new project based on the details provided.
-
-        A Project is a collection of Tasks that contributes towards a
-        goal. Within a Project, Tasks represent individual items of work
-        that team members must complete. The sum total of Tasks within a
-        Project represents the work to be completed for that Project.
+        Create a new project based on the details provided. A Project is
+        a collection of Tasks that contributes towards a goal. Within a
+        Project, Tasks represent individual items of work that team
+        members must complete. The sum total of Tasks within a Project
+        represents the work to be completed for that Project.
 
         Parameters
         ----------
@@ -103,12 +101,11 @@ class ProjectClient:
 
     def retrieve_project(self, projectId: str) -> AstroResult[ProjectDto]:
         """
-        Retrieves a project based on its unique identifier.
-
-        A Project is a collection of Tasks that contributes towards a
-        goal. Within a Project, Tasks represent individual items of work
-        that team members must complete. The sum total of Tasks within a
-        Project represents the work to be completed for that Project.
+        Retrieves a project based on its unique identifier. A Project is
+        a collection of Tasks that contributes towards a goal. Within a
+        Project, Tasks represent individual items of work that team
+        members must complete. The sum total of Tasks within a Project
+        represents the work to be completed for that Project.
 
         Parameters
         ----------
@@ -129,17 +126,15 @@ class ProjectClient:
     def update_project(self, projectId: str, body: ProjectUpdateDto) -> AstroResult[object]:
         """
         Update an existing Project and replace the values of fields
-        specified.
-
-        A Project is a collection of Tasks that contributes towards a
-        goal. Within a Project, Tasks represent individual items of work
-        that team members must complete. The sum total of Tasks within a
-        Project represents the work to be completed for that Project.
-
-        Multiple users can be working on data at the same time. When you
-        call an API to update an object, this call is converted into a
-        Changeset that is then applied sequentially. You can use
-        RetrieveChangeset to see the status of an individual Changeset.
+        specified. A Project is a collection of Tasks that contributes
+        towards a goal. Within a Project, Tasks represent individual
+        items of work that team members must complete. The sum total of
+        Tasks within a Project represents the work to be completed for
+        that Project. Multiple users can be working on data at the same
+        time. When you call an API to update an object, this call is
+        converted into a Changeset that is then applied sequentially.
+        You can use RetrieveChangeset to see the status of an individual
+        Changeset.
 
         Parameters
         ----------
@@ -162,12 +157,11 @@ class ProjectClient:
 
     def delete_project(self, projectId: str, hardDelete: bool) -> AstroResult[object]:
         """
-        Delete a project based on the details provided.
-
-        A Project is a collection of Tasks that contributes towards a
-        goal. Within a Project, Tasks represent individual items of work
-        that team members must complete. The sum total of Tasks within a
-        Project represents the work to be completed for that Project.
+        Delete a project based on the details provided. A Project is a
+        collection of Tasks that contributes towards a goal. Within a
+        Project, Tasks represent individual items of work that team
+        members must complete. The sum total of Tasks within a Project
+        represents the work to be completed for that Project.
 
         Parameters
         ----------

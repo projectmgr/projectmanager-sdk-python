@@ -31,9 +31,8 @@ class ResourceSkillClient:
 
     def retrieve_resource_skills(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
         """
-        Retrieves all ResourceSkills defined within your Workspace.
-
-        A ResourceSkill is a capability possessed by a Resource that can
+        Retrieves all ResourceSkills defined within your Workspace. A
+        ResourceSkill is a capability possessed by a Resource that can
         be used to distinguish different classes of Resources suitable
         for use by a Task. You can specify that a Task requires a
         Resource with a particular set of ResourceSkills and then

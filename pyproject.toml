@@ -1,6 +1,6 @@
 [project]
 name = "ProjectManagerSdk"
-version = "107.0.3368"
+version = "110.0.3705"
 authors = [
     { name = "ProjectManager.com", email = "support@projectmanager.com" }
 ]

@@ -29,9 +29,8 @@ class ProjectFolderClient:
 
     def retrieve_project_folders(self) -> AstroResult[list[ProjectFolderDto]]:
         """
-        Retrieves all ProjectFolders defined within your Workspace.
-
-        A ProjectFolder is a named storage location that can contain
+        Retrieves all ProjectFolders defined within your Workspace. A
+        ProjectFolder is a named storage location that can contain
         Projects.
 
         Parameters
