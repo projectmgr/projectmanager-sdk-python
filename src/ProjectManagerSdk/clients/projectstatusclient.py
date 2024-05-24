@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -27,7 +28,7 @@ class ProjectStatusClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_statuses(self) -> AstroResult[list[ProjectStatusDto]]:
+    def retrieve_project_statuses(self) -> AstroResult[List[ProjectStatusDto]]:
         """
         Retrieves all ProjectStatuses defined within your Workspace. A
         ProjectStatus is a named condition used by your business to
@@ -46,8 +47,8 @@ class ProjectStatusClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectStatusDto(**dict))
-            return AstroResult[list[ProjectStatusDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ProjectStatusDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ProjectStatusDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectStatusDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

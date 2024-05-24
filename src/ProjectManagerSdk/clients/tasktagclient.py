@@ -28,7 +28,7 @@ class TaskTagClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def replace_tasktags(self, taskId: str, body: list[NameDto]) -> AstroResult[ChangeSetStatusDto]:
+    def replace_tasktags(self, taskId: str, body: List[NameDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Replaces the existing TaskTags on a Task with a newly provided
         list of TaskTags. A TaskTag is a connection between a Task and a
@@ -41,7 +41,7 @@ class TaskTagClient:
         taskId : str
             The unique identifier of the Task for which we will replace
             TaskTags
-        body : list[NameDto]
+        body : List[NameDto]
             The replacement list of TaskTags for this Task
         """
         path = f"/api/data/tasks/{taskId}/tags"
@@ -58,7 +58,7 @@ class TaskTagClient:
             response.load_error(result)
             return response
 
-    def add_tasktag_to_task(self, taskId: str, body: list[NameDto]) -> AstroResult[ChangeSetStatusDto]:
+    def add_tasktag_to_task(self, taskId: str, body: List[NameDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Add one or more new TaskTags to a Task. A TaskTag is a
         connection between a Task and a Tag. Each Task can have zero,
@@ -71,7 +71,7 @@ class TaskTagClient:
         taskId : str
             The unique identifier of the Task for which we will add
             TaskTags
-        body : list[NameDto]
+        body : List[NameDto]
             The new TaskTags to add to this Task
         """
         path = f"/api/data/tasks/{taskId}/tags"
@@ -88,7 +88,7 @@ class TaskTagClient:
             response.load_error(result)
             return response
 
-    def remove_tasktag_from_task(self, taskId: str, body: list[NameDto]) -> AstroResult[ChangeSetStatusDto]:
+    def remove_tasktag_from_task(self, taskId: str, body: List[NameDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Removes one or more existing TaskTags from a Task. A TaskTag is
         a connection between a Task and a Tag. Each Task can have zero,
@@ -101,7 +101,7 @@ class TaskTagClient:
         taskId : str
             The unique identifier of the Task for which we will remove
             existing TaskTags
-        body : list[NameDto]
+        body : List[NameDto]
             The TaskTags to remove from this Task
         """
         path = f"/api/data/tasks/{taskId}/tags"

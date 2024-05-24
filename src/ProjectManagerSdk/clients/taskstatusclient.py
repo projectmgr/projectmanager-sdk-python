@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,7 +30,7 @@ class TaskStatusClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_statuses(self, projectId: str) -> AstroResult[list[TaskStatusDto]]:
+    def retrieve_task_statuses(self, projectId: str) -> AstroResult[List[TaskStatusDto]]:
         """
         Retrieves the list of TaskStatus levels for a specific Project
         within your Workspace. A TaskStatus is a named status level used
@@ -51,9 +52,9 @@ class TaskStatusClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskStatusDto(**dict))
-            return AstroResult[list[TaskStatusDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskStatusDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskStatusDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskStatusDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

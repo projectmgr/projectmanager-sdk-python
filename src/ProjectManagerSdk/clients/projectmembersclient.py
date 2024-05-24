@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -28,7 +29,7 @@ class ProjectMembersClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_new_project_members(self) -> AstroResult[list[ProjectMemberDto]]:
+    def retrieve_new_project_members(self) -> AstroResult[List[ProjectMemberDto]]:
         """
         Returns a list of users that can be added as members of a new
         project, as well as their available project security roles.
@@ -49,13 +50,13 @@ class ProjectMembersClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectMemberDto(**dict))
-            return AstroResult[list[ProjectMemberDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ProjectMemberDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectMemberDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def retrieve_project_members(self, projectId: str, includeAllUsers: bool) -> AstroResult[list[ProjectMemberDto]]:
+    def retrieve_project_members(self, projectId: str, includeAllUsers: bool) -> AstroResult[List[ProjectMemberDto]]:
         """
         Returns a list of users that are currently members of a
         specified project, as well as their current project security
@@ -85,9 +86,9 @@ class ProjectMembersClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectMemberDto(**dict))
-            return AstroResult[list[ProjectMemberDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ProjectMemberDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectMemberDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

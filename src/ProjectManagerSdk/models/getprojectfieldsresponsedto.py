@@ -53,7 +53,7 @@ class GetProjectFieldsResponseDto:
     The entity type of the Field, either `projects` or `tasks`.
     """
 
-    options: list[str] | None = None
+    options: List[str] | None = None
     """
     A list of options for use of this Field. This is only valid if the
     `Type` value is set to `Dropdown`. When a custom Field of type

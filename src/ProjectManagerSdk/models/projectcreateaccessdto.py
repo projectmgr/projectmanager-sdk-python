@@ -26,7 +26,7 @@ class ProjectCreateAccessDto:
     If set to true every user will get access to this project
     """
 
-    members: list[ProjectCreateAccessMemberDto] | None = None
+    members: List[ProjectCreateAccessMemberDto] | None = None
     """
     If everyone is set to false the list of members will be used to give
     people access

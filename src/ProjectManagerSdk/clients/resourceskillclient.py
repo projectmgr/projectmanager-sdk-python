@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.updateresourceskilldto import UpdateResourceSkillDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,7 +30,7 @@ class ResourceSkillClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_skills(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceSkillDto]]:
+    def retrieve_resource_skills(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ResourceSkillDto]]:
         """
         Retrieves all ResourceSkills defined within your Workspace. A
         ResourceSkill is a capability possessed by a Resource that can
@@ -70,9 +71,9 @@ class ResourceSkillClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceSkillDto(**dict))
-            return AstroResult[list[ResourceSkillDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ResourceSkillDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ResourceSkillDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ResourceSkillDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

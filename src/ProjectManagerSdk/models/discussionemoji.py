@@ -25,7 +25,7 @@ class DiscussionEmoji:
     The name of the emoji
     """
 
-    userIds: list[str] | None = None
+    userIds: List[str] | None = None
     """
     The list of user IDs of the users who tagged these emoji
     """

@@ -52,7 +52,7 @@ class TaskCreateDto:
     A numerical value representing the Priority of this Task
     """
 
-    assignees: list[str] | None = None
+    assignees: List[str] | None = None
     """
     A list of unique identifiers of TaskAssignees to be assigned to this
     Task

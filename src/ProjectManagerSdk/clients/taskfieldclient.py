@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
 from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
 from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -31,7 +32,7 @@ class TaskFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_fields(self, projectId: str) -> AstroResult[list[TaskFieldDto]]:
+    def retrieve_task_fields(self, projectId: str) -> AstroResult[List[TaskFieldDto]]:
         """
         Retrieves all TaskFields defined for a specific Project within
         your Workspace. A TaskField is a custom field defined within
@@ -53,9 +54,9 @@ class TaskFieldClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskFieldDto(**dict))
-            return AstroResult[list[TaskFieldDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskFieldDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskFieldDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskFieldDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -88,7 +89,7 @@ class TaskFieldClient:
             response.load_error(result)
             return response
 
-    def query_task_fields(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldDto]]:
+    def query_task_fields(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TaskFieldDto]]:
         """
         Retrieve a list of TaskFields that match an [OData formatted
         query](https://www.odata.org/). A TaskField is a custom field
@@ -129,9 +130,9 @@ class TaskFieldClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskFieldDto(**dict))
-            return AstroResult[list[TaskFieldDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskFieldDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskFieldDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskFieldDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -164,7 +165,7 @@ class TaskFieldClient:
             response.load_error(result)
             return response
 
-    def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[list[TaskFieldValueDto]]:
+    def retrieve_all_taskfield_values(self, taskId: str) -> AstroResult[List[TaskFieldValueDto]]:
         """
         Retrieves all TaskField values for a particular Task. A
         TaskField is a custom field defined within your Workspace for a
@@ -186,13 +187,13 @@ class TaskFieldClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskFieldValueDto(**dict))
-            return AstroResult[list[TaskFieldValueDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskFieldValueDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskFieldValueDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def query_task_field_values(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskFieldValueDto]]:
+    def query_task_field_values(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TaskFieldValueDto]]:
         """
         Retrieve a list of TaskFieldValues that match an [OData
         formatted query](https://www.odata.org/). A TaskField is a
@@ -233,9 +234,9 @@ class TaskFieldClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskFieldValueDto(**dict))
-            return AstroResult[list[TaskFieldValueDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskFieldValueDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskFieldValueDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

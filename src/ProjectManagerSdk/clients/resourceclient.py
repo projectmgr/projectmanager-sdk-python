@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -55,7 +56,7 @@ class ResourceClient:
             response.load_error(result)
             return response
 
-    def query_resources(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
+    def query_resources(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ResourceDto]]:
         """
         Retrieve a list of Resources that match an [OData formatted
         query](https://www.odata.org/). A Resource represents a person,
@@ -97,9 +98,9 @@ class ResourceClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceDto(**dict))
-            return AstroResult[list[ResourceDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ResourceDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ResourceDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ResourceDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

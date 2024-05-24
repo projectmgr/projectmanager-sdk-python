@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,7 +30,7 @@ class TagClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tags(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TagDto]]:
+    def query_tags(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TagDto]]:
         """
         Retrieve a list of Tags that match an [OData formatted
         query](https://www.odata.org/). A Tag is a named categorization
@@ -67,9 +68,9 @@ class TagClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TagDto(**dict))
-            return AstroResult[list[TagDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TagDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TagDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TagDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -31,7 +32,7 @@ class TaskClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tasks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskDto]]:
+    def query_tasks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TaskDto]]:
         """
         Retrieve a list of Tasks that match an [OData formatted
         query](https://www.odata.org/). A Task is an individual element
@@ -71,9 +72,9 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskDto(**dict))
-            return AstroResult[list[TaskDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -193,7 +194,7 @@ class TaskClient:
             response.load_error(result)
             return response
 
-    def retrieve_task_priorities(self) -> AstroResult[list[TaskPriorityDto]]:
+    def retrieve_task_priorities(self) -> AstroResult[List[TaskPriorityDto]]:
         """
         Retrieves all TaskPriorities defined within your Workspace. A
         TaskPriority is a named priority level used by your business to
@@ -214,13 +215,13 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskPriorityDto(**dict))
-            return AstroResult[list[TaskPriorityDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskPriorityDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskPriorityDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskPriorityDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def create_many_tasks(self, projectId: str, body: list[TaskCreateDto]) -> AstroResult[list[ChangeSetStatusDto]]:
+    def create_many_tasks(self, projectId: str, body: List[TaskCreateDto]) -> AstroResult[List[ChangeSetStatusDto]]:
         """
         Create multiple new Tasks within a specified project with a
         single API call. A Task is an individual element of work that
@@ -234,7 +235,7 @@ class TaskClient:
         projectId : str
             The unique identifier of the Project that will contain these
             Tasks
-        body : list[TaskCreateDto]
+        body : List[TaskCreateDto]
             The list of new Tasks to create
         """
         path = f"/api/data/projects/{projectId}/tasks/bulk"
@@ -247,9 +248,9 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ChangeSetStatusDto(**dict))
-            return AstroResult[list[ChangeSetStatusDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ChangeSetStatusDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ChangeSetStatusDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ChangeSetStatusDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

@@ -66,14 +66,14 @@ class DiscussionCommentDto:
     the create date.
     """
 
-    emoji: list[DiscussionEmoji] | None = None
+    emoji: List[DiscussionEmoji] | None = None
     """
     The list of emoji reactions to this discussion comment, if any. This
     object will be null if no emoji reactions have been recorded on this
     discussion comment.
     """
 
-    files: list[DiscussionCommentFileDto] | None = None
+    files: List[DiscussionCommentFileDto] | None = None
     """
     The list of files associated with this Comment, if any. This field
     will be present when you fetch a single object. When you query for

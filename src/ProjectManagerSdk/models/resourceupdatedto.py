@@ -82,12 +82,12 @@ class ResourceUpdateDto:
     Resources only.
     """
 
-    teamIds: list[str] | None = None
+    teamIds: List[str] | None = None
     """
     The list of ResourceTeams to which this Resource belongs.
     """
 
-    skillIds: list[str] | None = None
+    skillIds: List[str] | None = None
     """
     The list of ResourceSkills possessed by this Resource.
     """

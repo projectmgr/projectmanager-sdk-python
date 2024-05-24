@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,7 +30,7 @@ class ProjectClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_projects(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ProjectDto]]:
+    def query_projects(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ProjectDto]]:
         """
         Retrieve a list of Projects that match an [OData formatted
         query](https://www.odata.org/). A Project is a collection of
@@ -69,9 +70,9 @@ class ProjectClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectDto(**dict))
-            return AstroResult[list[ProjectDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ProjectDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ProjectDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

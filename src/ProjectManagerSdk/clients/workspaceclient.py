@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
 from ProjectManagerSdk.models.workspacejoindto import WorkSpaceJoinDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -28,7 +29,7 @@ class WorkSpaceClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_workspaces(self) -> AstroResult[list[WorkSpaceDto]]:
+    def retrieve_workspaces(self) -> AstroResult[List[WorkSpaceDto]]:
         """
         Retrieve the list of Workspaces to which the currently logged on
         user has access. A single User may have access to multiple
@@ -48,9 +49,9 @@ class WorkSpaceClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(WorkSpaceDto(**dict))
-            return AstroResult[list[WorkSpaceDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[WorkSpaceDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[WorkSpaceDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[WorkSpaceDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

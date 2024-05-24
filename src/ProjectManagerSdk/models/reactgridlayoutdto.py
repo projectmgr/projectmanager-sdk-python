@@ -21,27 +21,27 @@ class ReactGridLayoutDto:
     A setting for react grid layout sizes
     """
 
-    lg: list[ReactGridLayoutItemDto] | None = None
+    lg: List[ReactGridLayoutItemDto] | None = None
     """
     Used for large screen size (1200)
     """
 
-    md: list[ReactGridLayoutItemDto] | None = None
+    md: List[ReactGridLayoutItemDto] | None = None
     """
     Used for medium screen size (996)
     """
 
-    sm: list[ReactGridLayoutItemDto] | None = None
+    sm: List[ReactGridLayoutItemDto] | None = None
     """
     Used for small screen size (768)
     """
 
-    xs: list[ReactGridLayoutItemDto] | None = None
+    xs: List[ReactGridLayoutItemDto] | None = None
     """
     Used for extra small screen size (480)
     """
 
-    xxs: list[ReactGridLayoutItemDto] | None = None
+    xxs: List[ReactGridLayoutItemDto] | None = None
     """
     Used for super small screen size (0)
     """

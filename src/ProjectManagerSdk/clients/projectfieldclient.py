@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProject
 from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -31,7 +32,7 @@ class ProjectFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_fields(self) -> AstroResult[list[GetProjectFieldsResponseDto]]:
+    def retrieve_project_fields(self) -> AstroResult[List[GetProjectFieldsResponseDto]]:
         """
         Retrieves all ProjectFields defined within your Workspace. A
         ProjectField is a custom field defined within your Workspace.
@@ -50,9 +51,9 @@ class ProjectFieldClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(GetProjectFieldsResponseDto(**dict))
-            return AstroResult[list[GetProjectFieldsResponseDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[GetProjectFieldsResponseDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[GetProjectFieldsResponseDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[GetProjectFieldsResponseDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -168,7 +169,7 @@ class ProjectFieldClient:
             response.load_error(result)
             return response
 
-    def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[list[ProjectFieldValueDto]]:
+    def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[List[ProjectFieldValueDto]]:
         """
         Retrieves all ProjectField values for a particular Project.
 
@@ -191,8 +192,8 @@ class ProjectFieldClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectFieldValueDto(**dict))
-            return AstroResult[list[ProjectFieldValueDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ProjectFieldValueDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ProjectFieldValueDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectFieldValueDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

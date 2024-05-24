@@ -96,12 +96,12 @@ class ResourceDto:
     within the Resource object.
     """
 
-    teams: list[ResourceTeamDto] | None = None
+    teams: List[ResourceTeamDto] | None = None
     """
     The list of ResourceTeams to which this Resource belongs.
     """
 
-    skills: list[ResourceSkillDto] | None = None
+    skills: List[ResourceSkillDto] | None = None
     """
     The list of ResourceSkills possessed by this Resource.
     """

@@ -36,7 +36,7 @@ class ProjectTemplateCategoryDto:
     The overall order of this ProjectTemplate Category
     """
 
-    templates: list[ProjectTemplateDto] | None = None
+    templates: List[ProjectTemplateDto] | None = None
     """
     A list of templates in this category
     """

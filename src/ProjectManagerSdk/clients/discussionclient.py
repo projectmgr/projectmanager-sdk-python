@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
 from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
 from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,7 +30,7 @@ class DiscussionClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_comments(self, taskId: str) -> AstroResult[list[DiscussionCommentDto]]:
+    def retrieve_task_comments(self, taskId: str) -> AstroResult[List[DiscussionCommentDto]]:
         """
         Retrieve all comments written about a task
 
@@ -45,9 +46,9 @@ class DiscussionClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(DiscussionCommentDto(**dict))
-            return AstroResult[list[DiscussionCommentDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[DiscussionCommentDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[DiscussionCommentDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[DiscussionCommentDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

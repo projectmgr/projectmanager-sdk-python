@@ -204,7 +204,7 @@ class ProjectDto:
     no template was selected at project creation.
     """
 
-    members: list[ProjectMemberDto] | None = None
+    members: List[ProjectMemberDto] | None = None
     """
     The members of the project
     """
@@ -214,12 +214,12 @@ class ProjectDto:
     Obsolete - use FieldValues instead
     """
 
-    fieldValues: list[ProjectFieldValueDto] | None = None
+    fieldValues: List[ProjectFieldValueDto] | None = None
     """
     Project fields array with values
     """
 
-    files: list[ProjectFileDto] | None = None
+    files: List[ProjectFileDto] | None = None
     """
     The list of files associated with this Project, if any. This field
     will be present when you fetch a single object. When you query for

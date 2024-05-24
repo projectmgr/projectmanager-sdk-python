@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -27,7 +28,7 @@ class ProjectFolderClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_folders(self) -> AstroResult[list[ProjectFolderDto]]:
+    def retrieve_project_folders(self) -> AstroResult[List[ProjectFolderDto]]:
         """
         Retrieves all ProjectFolders defined within your Workspace. A
         ProjectFolder is a named storage location that can contain
@@ -43,8 +44,8 @@ class ProjectFolderClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ProjectFolderDto(**dict))
-            return AstroResult[list[ProjectFolderDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ProjectFolderDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ProjectFolderDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectFolderDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
