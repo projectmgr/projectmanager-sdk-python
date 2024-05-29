@@ -19,6 +19,7 @@ from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -40,7 +41,7 @@ class TaskDto:
     The Project to which this Task belongs.
     """
 
-    tags: list[TaskTagDto] | None = None
+    tags: List[TaskTagDto] | None = None
     """
     The TaskTags that apply to this Task.
     """
@@ -50,12 +51,12 @@ class TaskDto:
     The unique identifier of the Project to which this Task belongs.
     """
 
-    assignees: list[TaskAssigneeDto] | None = None
+    assignees: List[TaskAssigneeDto] | None = None
     """
     The list of assignees who are to work on this Task, if any.
     """
 
-    todos: list[TaskTodoDto] | None = None
+    todos: List[TaskTodoDto] | None = None
     """
     A list of TaskTodo items, which are sub-tasks within this Task.
     """
@@ -218,17 +219,17 @@ class TaskDto:
     The planned effort (in minutes) for this Task.
     """
 
-    fields: list[TaskFieldValueDto] | None = None
+    fields: List[TaskFieldValueDto] | None = None
     """
     Obsolete - use FieldValues instead
     """
 
-    fieldValues: list[TaskFieldValueDto] | None = None
+    fieldValues: List[TaskFieldValueDto] | None = None
     """
     Task fields array with values
     """
 
-    files: list[TaskFileDto] | None = None
+    files: List[TaskFileDto] | None = None
     """
     The list of files associated with this Task, if any. This field will
     be present when you fetch a single object. When you query for

@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.licensedto import LicenseDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -27,16 +28,14 @@ class LicenseClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_licenses(self) -> AstroResult[list[LicenseDto]]:
+    def retrieve_licenses(self) -> AstroResult[List[LicenseDto]]:
         """
         Retrieve information about the current licenses possessed by
-        this Workspace.
-
-        Licenses contain information about your current subscription
-        level and features that have been enabled on your Workspace. To
-        modify the License information, please log on to the
-        ProjectManager.com application and use the Account | Editions
-        screen to review or update your Licenses.
+        this Workspace. Licenses contain information about your current
+        subscription level and features that have been enabled on your
+        Workspace. To modify the License information, please log on to
+        the ProjectManager.com application and use the Account |
+        Editions screen to review or update your Licenses.
 
         Parameters
         ----------
@@ -48,21 +47,20 @@ class LicenseClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(LicenseDto(**dict))
-            return AstroResult[list[LicenseDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[LicenseDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[LicenseDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[LicenseDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def add_license(self, bundleSku: str) -> AstroResult[list[LicenseDto]]:
+    def add_license(self, bundleSku: str) -> AstroResult[List[LicenseDto]]:
         """
-        Adds a new License to the current Workspace.
-
-        Licenses contain information about your current subscription
-        level and features that have been enabled on your Workspace. To
-        modify the License information, please log on to the
-        ProjectManager.com application and use the Account | Editions
-        screen to review or update your Licenses.
+        Adds a new License to the current Workspace. Licenses contain
+        information about your current subscription level and features
+        that have been enabled on your Workspace. To modify the License
+        information, please log on to the ProjectManager.com application
+        and use the Account | Editions screen to review or update your
+        Licenses.
 
         Parameters
         ----------
@@ -76,8 +74,8 @@ class LicenseClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(LicenseDto(**dict))
-            return AstroResult[list[LicenseDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[LicenseDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[LicenseDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[LicenseDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

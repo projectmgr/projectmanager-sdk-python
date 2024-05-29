@@ -15,6 +15,7 @@
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -96,12 +97,12 @@ class ResourceDto:
     within the Resource object.
     """
 
-    teams: list[ResourceTeamDto] | None = None
+    teams: List[ResourceTeamDto] | None = None
     """
     The list of ResourceTeams to which this Resource belongs.
     """
 
-    skills: list[ResourceSkillDto] | None = None
+    skills: List[ResourceSkillDto] | None = None
     """
     The list of ResourceSkills possessed by this Resource.
     """

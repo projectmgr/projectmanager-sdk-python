@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -44,7 +45,7 @@ class TaskFieldDto:
     field.
     """
 
-    options: list[str] | None = None
+    options: List[str] | None = None
     """
     A list of options for use of this TaskField. This is only valid if
     the `Type` value is set to `Dropdown`. When a custom TaskField of

@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json

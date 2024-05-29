@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.userroledto import UserRoleDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -27,11 +28,10 @@ class UserRoleClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_userroles(self) -> AstroResult[list[UserRoleDto]]:
+    def retrieve_userroles(self) -> AstroResult[List[UserRoleDto]]:
         """
-        Retrieves the list of UserRoles defined within this Workspace.
-
-        A UserRole is a name for a privilege level granted to a specific
+        Retrieves the list of UserRoles defined within this Workspace. A
+        UserRole is a name for a privilege level granted to a specific
         User. The 'Global Admin' UserRole is granted to the owner of the
         Workspace, and this UserRole cannot be changed. You can choose
         which UserRole applies to a User within your Workspace.
@@ -46,8 +46,8 @@ class UserRoleClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(UserRoleDto(**dict))
-            return AstroResult[list[UserRoleDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[UserRoleDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[UserRoleDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[UserRoleDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

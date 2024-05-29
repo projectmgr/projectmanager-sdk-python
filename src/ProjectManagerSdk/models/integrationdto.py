@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -55,12 +56,12 @@ class IntegrationDto:
     Extra configuration metadata for this Instance.
     """
 
-    licenseSkus: list[str] | None = None
+    licenseSkus: List[str] | None = None
     """
     The list of SKUS for this Integration.
     """
 
-    instances: list[IntegrationInstanceDto] | None = None
+    instances: List[IntegrationInstanceDto] | None = None
     """
     For multi-Instance Integrations, this contains the list of
     IntegrationInstances.

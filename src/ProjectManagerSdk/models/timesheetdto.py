@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -75,7 +76,7 @@ class TimesheetDto:
     The administration type associated with this timesheet entry
     """
 
-    files: list[TimesheetFileDto] | None = None
+    files: List[TimesheetFileDto] | None = None
     """
     The list of files associated with this Timesheet, if any. This field
     will be present when you fetch a single object. When you query for

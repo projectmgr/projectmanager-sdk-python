@@ -12,6 +12,7 @@
 #
 
 
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -81,12 +82,12 @@ class ResourceCreateDto:
     Resources only.
     """
 
-    teamIds: list[str] | None = None
+    teamIds: List[str] | None = None
     """
     The list of ResourceTeams to which this Resource belongs.
     """
 
-    skillIds: list[str] | None = None
+    skillIds: List[str] | None = None
     """
     The list of ResourceSkills possessed by this Resource.
     """
@@ -106,14 +107,14 @@ class ResourceCreateDto:
     this Resource. Applies to personnel Resources only.
     """
 
-    teams: list[str] | None = None
+    teams: List[str] | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
     Team data on the TeamIds property The list of ResourceTeams to which
     this Resource belongs.
     """
 
-    skills: list[str] | None = None
+    skills: List[str] | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
     Skill data on the SkillIds property The list of ResourceSkills

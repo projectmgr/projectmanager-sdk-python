@@ -12,6 +12,7 @@
 #
 
 
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -27,7 +28,7 @@ class AstroError:
     display to end users.
     """
 
-    additionalErrors: list[str] | None = None
+    additionalErrors: List[str] | None = None
     """
     If additional errors beyond the main error in `Message` occurred,
     they will be listed here as individual messages.

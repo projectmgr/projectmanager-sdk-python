@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.iddto import IdDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,11 +30,10 @@ class TaskAssigneeClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def replace_task_assignees(self, taskId: str, body: list[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
+    def replace_task_assignees(self, taskId: str, body: List[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
         """
-        Replace all TaskAssignees on a Task with new TaskAssignees.
-
-        A TaskAssignee is an assignment of a Resource to a Task. You can
+        Replace all TaskAssignees on a Task with new TaskAssignees. A
+        TaskAssignee is an assignment of a Resource to a Task. You can
         assign multiple Resources to a Task and designate how much of
         their time will be allocated to this Task.
 
@@ -47,7 +47,7 @@ class TaskAssigneeClient:
         taskId : str
             The unique identifier of the Task whose TaskAssignees will
             be replaced
-        body : list[AssigneeUpsertDto]
+        body : List[AssigneeUpsertDto]
             The new list of TaskAssignees for this Task
         """
         path = f"/api/data/tasks/{taskId}/assignees"
@@ -64,23 +64,22 @@ class TaskAssigneeClient:
             response.load_error(result)
             return response
 
-    def create_or_update_taskassignee(self, taskId: str, body: list[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
+    def create_or_update_taskassignee(self, taskId: str, body: List[AssigneeUpsertDto]) -> AstroResult[ChangeSetStatusDto]:
         """
         Adds or updates a TaskAssignee to a Task. If the TaskAssignee is
         already assigned to the Task, update their allocation. If the
         TaskAssignee is not yet assigned to the Task, assign them and
-        set their allocation level to the correct amount.
-
-        A TaskAssignee is an assignment of a Resource to a Task. You can
-        assign multiple Resources to a Task and designate what
-        proportion of their time will be allocated to this Task.
+        set their allocation level to the correct amount. A TaskAssignee
+        is an assignment of a Resource to a Task. You can assign
+        multiple Resources to a Task and designate what proportion of
+        their time will be allocated to this Task.
 
         Parameters
         ----------
         taskId : str
             The unique identifier of the Task to add or update an
             assignment
-        body : list[AssigneeUpsertDto]
+        body : List[AssigneeUpsertDto]
             List of Assignee data
         """
         path = f"/api/data/tasks/{taskId}/assignees"
@@ -97,20 +96,19 @@ class TaskAssigneeClient:
             response.load_error(result)
             return response
 
-    def delete_task_assignees(self, taskId: str, body: list[IdDto]) -> AstroResult[ChangeSetStatusDto]:
+    def delete_task_assignees(self, taskId: str, body: List[IdDto]) -> AstroResult[ChangeSetStatusDto]:
         """
-        Remove one or more TaskAssignees from a Task.
-
-        A TaskAssignee is an assignment of a Resource to a Task. You can
-        assign multiple Resources to a Task and designate what
-        proportion of their time will be allocated to this Task.
+        Remove one or more TaskAssignees from a Task. A TaskAssignee is
+        an assignment of a Resource to a Task. You can assign multiple
+        Resources to a Task and designate what proportion of their time
+        will be allocated to this Task.
 
         Parameters
         ----------
         taskId : str
             The unique identifier of the Task whose TaskAssignee will be
             removed
-        body : list[IdDto]
+        body : List[IdDto]
             List of TaskAssignee records to remove
         """
         path = f"/api/data/tasks/{taskId}/assignees"

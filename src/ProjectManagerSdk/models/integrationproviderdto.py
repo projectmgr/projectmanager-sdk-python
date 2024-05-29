@@ -14,6 +14,7 @@
 
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -49,12 +50,12 @@ class IntegrationProviderDto:
     A longer description of this Provider and their service.
     """
 
-    licenseSkus: list[str] | None = None
+    licenseSkus: List[str] | None = None
     """
     A list of available license SKUs for this Provider.
     """
 
-    categoryShortIds: list[str] | None = None
+    categoryShortIds: List[str] | None = None
     """
     A list of category IDs that this Provider exists within.
     """
@@ -69,7 +70,7 @@ class IntegrationProviderDto:
     True if this Provider requires authentication.
     """
 
-    integrations: list[IntegrationDto] | None = None
+    integrations: List[IntegrationDto] | None = None
     """
     The list of available Integrations for this Provider.
     """

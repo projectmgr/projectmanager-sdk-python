@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,15 +30,12 @@ class ChangesetClient:
 
     def retrieve_changeset_status(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
         """
-        Retrieve a Changeset by its unique ID.
-
-        A Changeset is an individual edit that has been made to a
-        project. Since multiple users can edit a project at the same
-        time, individual Changesets are applied in a sequential fashion.
-        If a Changeset causes a conflict or cannot be applied, it will
-        be rejected. You can examine a Changeset to determine its
-        conflict resolution status.
-
+        Retrieve a Changeset by its unique ID. A Changeset is an
+        individual edit that has been made to a project. Since multiple
+        users can edit a project at the same time, individual Changesets
+        are applied in a sequential fashion. If a Changeset causes a
+        conflict or cannot be applied, it will be rejected. You can
+        examine a Changeset to determine its conflict resolution status.
         When checking the status of a Changeset, you can call either
         RetrieveChangeset or RetrieveCompletedChangeset. Using
         RetrieveChangeset will give you the immediate status of the
@@ -64,26 +62,22 @@ class ChangesetClient:
         """
         Retrieve a Changeset by its unique ID. This endpoint waits for
         the Changeset to complete its processing prior to returning a
-        result.
-
-        A Changeset is an individual edit that has been made to a
-        project. Since multiple users can edit a project at the same
+        result. A Changeset is an individual edit that has been made to
+        a project. Since multiple users can edit a project at the same
         time, individual Changesets are applied in a sequential fashion.
         If a Changeset causes a conflict or cannot be applied, it will
         be rejected. You can examine a Changeset to determine its
-        conflict resolution status.
-
-        When checking the status of a Changeset, you can call either
-        RetrieveChangeset or RetrieveCompletedChangeset. Using
-        RetrieveChangeset will give you the immediate status of the
-        Changeset. Using RetrieveCompletedChangeset will delay the
-        response until the Changeset has finished processing.
-
-        Although most Changesets complete instantly, some Changesets may
-        need additional time to complete. If the Changeset cannot be
-        processed within a reasonable length of time, this API call may
-        fail. If this API fails, it will return a status error
-        indicating the Changeset is still being processed.
+        conflict resolution status. When checking the status of a
+        Changeset, you can call either RetrieveChangeset or
+        RetrieveCompletedChangeset. Using RetrieveChangeset will give
+        you the immediate status of the Changeset. Using
+        RetrieveCompletedChangeset will delay the response until the
+        Changeset has finished processing. Although most Changesets
+        complete instantly, some Changesets may need additional time to
+        complete. If the Changeset cannot be processed within a
+        reasonable length of time, this API call may fail. If this API
+        fails, it will return a status error indicating the Changeset is
+        still being processed.
 
         Parameters
         ----------

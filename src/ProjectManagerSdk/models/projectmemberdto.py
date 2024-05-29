@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

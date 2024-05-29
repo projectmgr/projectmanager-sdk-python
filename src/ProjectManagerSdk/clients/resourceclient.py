@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -31,15 +32,13 @@ class ResourceClient:
 
     def create_resource(self, body: ResourceCreateDto) -> AstroResult[ResourceDto]:
         """
-        Create a new Resource within your Workspace.
-
-        A Resource represents a person, material, or tool that is used
-        within your Projects. When you attach a Resources to more than
-        one Task, the software will schedule the usage of your Resource
-        so that it is not allocated to more than one Task at the same
-        time. The users in your Workspace are also considered Resources.
-        To invite a new User to your Workspace, create a new Resource
-        for that user.
+        Create a new Resource within your Workspace. A Resource
+        represents a person, material, or tool that is used within your
+        Projects. When you attach a Resources to more than one Task, the
+        software will schedule the usage of your Resource so that it is
+        not allocated to more than one Task at the same time. The users
+        in your Workspace are also considered Resources. To invite a new
+        User to your Workspace, create a new Resource for that user.
 
         Parameters
         ----------
@@ -57,18 +56,16 @@ class ResourceClient:
             response.load_error(result)
             return response
 
-    def query_resources(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceDto]]:
+    def query_resources(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ResourceDto]]:
         """
         Retrieve a list of Resources that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A Resource represents a person, material, or tool that is used
-        within your Projects. When you attach a Resources to more than
-        one Task, the software will schedule the usage of your Resource
-        so that it is not allocated to more than one Task at the same
-        time. The users in your Workspace are also considered Resources.
-        To invite a new User to your Workspace, create a new Resource
-        for that user.
+        query](https://www.odata.org/). A Resource represents a person,
+        material, or tool that is used within your Projects. When you
+        attach a Resources to more than one Task, the software will
+        schedule the usage of your Resource so that it is not allocated
+        to more than one Task at the same time. The users in your
+        Workspace are also considered Resources. To invite a new User to
+        your Workspace, create a new Resource for that user.
 
         Parameters
         ----------
@@ -101,17 +98,16 @@ class ResourceClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceDto(**dict))
-            return AstroResult[list[ResourceDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ResourceDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ResourceDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ResourceDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
     def update_resource(self, resourceId: str, body: ResourceUpdateDto) -> AstroResult[ResourceDto]:
         """
-        Updates an existing Resource based on information you provide.
-
-        A Resource represents a person, material, or tool that is used
+        Updates an existing Resource based on information you provide. A
+        Resource represents a person, material, or tool that is used
         within your Projects. When you attach a Resources to more than
         one Task, the software will schedule the usage of your Resource
         so that it is not allocated to more than one Task at the same
@@ -139,9 +135,8 @@ class ResourceClient:
 
     def retrieve_resource(self, resourceId: str) -> AstroResult[ResourceDto]:
         """
-        Retrieve the Resource matching the specified unique ID.
-
-        A Resource represents a person, material, or tool that is used
+        Retrieve the Resource matching the specified unique ID. A
+        Resource represents a person, material, or tool that is used
         within your Projects. When you attach a Resources to more than
         one Task, the software will schedule the usage of your Resource
         so that it is not allocated to more than one Task at the same

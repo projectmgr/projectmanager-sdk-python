@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -31,15 +32,14 @@ class TaskClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tasks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TaskDto]]:
+    def query_tasks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TaskDto]]:
         """
         Retrieve a list of Tasks that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        query](https://www.odata.org/). A Task is an individual element
+        of work that must be performed to complete a Project. A Task can
+        have one or more Resources assigned to it. Tasks can be linked
+        to other Tasks to indicate whether they have a dependency or a
+        connection.
 
         Parameters
         ----------
@@ -72,9 +72,9 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskDto(**dict))
-            return AstroResult[list[TaskDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -83,12 +83,10 @@ class TaskClient:
         Retrieve a Task by its unique identifier or by its short ID. A
         Task has both a unique identifier, which is a GUID, and a short
         ID, which is a small text label that is unique only within your
-        Workspace.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        Workspace. A Task is an individual element of work that must be
+        performed to complete a Project. A Task can have one or more
+        Resources assigned to it. Tasks can be linked to other Tasks to
+        indicate whether they have a dependency or a connection.
 
         Parameters
         ----------
@@ -109,18 +107,14 @@ class TaskClient:
     def update_task(self, taskId: str, body: TaskUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Update an existing Task and replace the values of fields
-        specified.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
-
+        specified. A Task is an individual element of work that must be
+        performed to complete a Project. A Task can have one or more
+        Resources assigned to it. Tasks can be linked to other Tasks to
+        indicate whether they have a dependency or a connection.
         Multiple users can be working on data at the same time. When you
         call an API to update an object, this call is converted into a
         Changeset that is then applied sequentially. You can use
         RetrieveChangeset to see the status of an individual Changeset.
-
         Known Issues: This API returns an error if your Update call
         includes too many changes in a single API call. Please restrict
         usage to one change per API request. This API will be deprecated
@@ -147,17 +141,15 @@ class TaskClient:
 
     def delete_task(self, taskId: str) -> AstroResult[ChangeSetStatusDto]:
         """
-        Delete an existing Task.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
-
-        Multiple users can be working on data at the same time. When you
-        call an API to update an object, this call is converted into a
-        Changeset that is then applied sequentially. You can use
-        RetrieveChangeset to see the status of an individual Changeset.
+        Delete an existing Task. A Task is an individual element of work
+        that must be performed to complete a Project. A Task can have
+        one or more Resources assigned to it. Tasks can be linked to
+        other Tasks to indicate whether they have a dependency or a
+        connection. Multiple users can be working on data at the same
+        time. When you call an API to update an object, this call is
+        converted into a Changeset that is then applied sequentially.
+        You can use RetrieveChangeset to see the status of an individual
+        Changeset.
 
         Parameters
         ----------
@@ -177,12 +169,11 @@ class TaskClient:
 
     def create_task(self, projectId: str, body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
         """
-        Create a new Task within a specified project.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        Create a new Task within a specified project. A Task is an
+        individual element of work that must be performed to complete a
+        Project. A Task can have one or more Resources assigned to it.
+        Tasks can be linked to other Tasks to indicate whether they have
+        a dependency or a connection.
 
         Parameters
         ----------
@@ -203,16 +194,13 @@ class TaskClient:
             response.load_error(result)
             return response
 
-    def retrieve_task_priorities(self) -> AstroResult[list[TaskPriorityDto]]:
+    def retrieve_task_priorities(self) -> AstroResult[List[TaskPriorityDto]]:
         """
-        Retrieves all TaskPriorities defined within your Workspace.
-
-        A TaskPriority is a named priority level used by your business
-        to determine how to decide which Tasks are the most important.
-        You can name your TaskPriority levels anything you like and you
-        can reorganize the order of the TaskPriority levels at any time.
-
-
+        Retrieves all TaskPriorities defined within your Workspace. A
+        TaskPriority is a named priority level used by your business to
+        determine how to decide which Tasks are the most important. You
+        can name your TaskPriority levels anything you like and you can
+        reorganize the order of the TaskPriority levels at any time.
         Note that TaskPriority and ProjectPriority are different classes
         of priority levels. Even if they may have similar names, they
         are different objects and must be tracked separately.
@@ -227,28 +215,27 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TaskPriorityDto(**dict))
-            return AstroResult[list[TaskPriorityDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TaskPriorityDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TaskPriorityDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TaskPriorityDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def create_many_tasks(self, projectId: str, body: list[TaskCreateDto]) -> AstroResult[list[ChangeSetStatusDto]]:
+    def create_many_tasks(self, projectId: str, body: List[TaskCreateDto]) -> AstroResult[List[ChangeSetStatusDto]]:
         """
         Create multiple new Tasks within a specified project with a
-        single API call.
-
-        A Task is an individual element of work that must be performed
-        to complete a Project. A Task can have one or more Resources
-        assigned to it. Tasks can be linked to other Tasks to indicate
-        whether they have a dependency or a connection.
+        single API call. A Task is an individual element of work that
+        must be performed to complete a Project. A Task can have one or
+        more Resources assigned to it. Tasks can be linked to other
+        Tasks to indicate whether they have a dependency or a
+        connection.
 
         Parameters
         ----------
         projectId : str
             The unique identifier of the Project that will contain these
             Tasks
-        body : list[TaskCreateDto]
+        body : List[TaskCreateDto]
             The list of new Tasks to create
         """
         path = f"/api/data/projects/{projectId}/tasks/bulk"
@@ -261,9 +248,9 @@ class TaskClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ChangeSetStatusDto(**dict))
-            return AstroResult[list[ChangeSetStatusDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ChangeSetStatusDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ChangeSetStatusDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ChangeSetStatusDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

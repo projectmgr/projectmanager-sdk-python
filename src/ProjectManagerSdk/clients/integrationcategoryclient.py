@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -27,10 +28,9 @@ class IntegrationCategoryClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_provider_categories(self) -> AstroResult[list[IntegrationCategoryDto]]:
+    def retrieve_provider_categories(self) -> AstroResult[List[IntegrationCategoryDto]]:
         """
         Retrieves the list of available IntegrationProvider categories.
-
         An IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its
@@ -47,8 +47,8 @@ class IntegrationCategoryClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(IntegrationCategoryDto(**dict))
-            return AstroResult[list[IntegrationCategoryDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[IntegrationCategoryDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[IntegrationCategoryDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[IntegrationCategoryDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

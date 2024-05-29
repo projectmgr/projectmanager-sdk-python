@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,14 +30,12 @@ class TagClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def query_tags(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TagDto]]:
+    def query_tags(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TagDto]]:
         """
         Retrieve a list of Tags that match an [OData formatted
-        query](https://www.odata.org/).
-
-        A Tag is a named categorization you can use to distinguish
-        objects from each other. Tags each have a unique identifier, a
-        name, and a color.
+        query](https://www.odata.org/). A Tag is a named categorization
+        you can use to distinguish objects from each other. Tags each
+        have a unique identifier, a name, and a color.
 
         Parameters
         ----------
@@ -69,19 +68,18 @@ class TagClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TagDto(**dict))
-            return AstroResult[list[TagDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TagDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TagDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TagDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
     def create_tag(self, body: TagCreateDto) -> AstroResult[TagDto]:
         """
-        Creates a new Tag based on information you provide.
-
-        A Tag is a named categorization you can use to distinguish
-        objects from each other. Tags each have a unique identifier, a
-        name, and a color.
+        Creates a new Tag based on information you provide. A Tag is a
+        named categorization you can use to distinguish objects from
+        each other. Tags each have a unique identifier, a name, and a
+        color.
 
         Parameters
         ----------
@@ -101,11 +99,10 @@ class TagClient:
 
     def update_tag(self, tagId: str, body: TagUpdateDto) -> AstroResult[TagDto]:
         """
-        Updates an existing Tag based on information you provide.
-
-        A Tag is a named categorization you can use to distinguish
-        objects from each other. Tags each have a unique identifier, a
-        name, and a color.
+        Updates an existing Tag based on information you provide. A Tag
+        is a named categorization you can use to distinguish objects
+        from each other. Tags each have a unique identifier, a name, and
+        a color.
 
         Parameters
         ----------

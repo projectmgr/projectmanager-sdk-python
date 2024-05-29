@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.projectversionchangedatadto import ProjectVersionChangeDataDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

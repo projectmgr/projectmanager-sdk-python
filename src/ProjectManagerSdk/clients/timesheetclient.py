@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRe
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
 from ProjectManagerSdk.models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -51,12 +52,11 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def query_timesheets(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[TimesheetDto]]:
+    def query_timesheets(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TimesheetDto]]:
         """
         Retrieve a list of TimeSheets that match an [OData formatted
-        query](https://www.odata.org/).
-
-        Time Sheets is a list of times per task
+        query](https://www.odata.org/). Time Sheets is a list of times
+        per task
 
         Parameters
         ----------
@@ -89,9 +89,9 @@ class TimesheetClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TimesheetDto(**dict))
-            return AstroResult[list[TimesheetDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TimesheetDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TimesheetDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TimesheetDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -137,7 +137,7 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def returns_active_admin_tasks_that_are_used_to_report_time(self) -> AstroResult[list[TimesheetAdminTypeDto]]:
+    def returns_active_admin_tasks_that_are_used_to_report_time(self) -> AstroResult[List[TimesheetAdminTypeDto]]:
         """
         Returns active admin tasks that are used to report time not
         related to work on projects. I.e. annual/sick leave etc
@@ -152,8 +152,8 @@ class TimesheetClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(TimesheetAdminTypeDto(**dict))
-            return AstroResult[list[TimesheetAdminTypeDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[TimesheetAdminTypeDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[TimesheetAdminTypeDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[TimesheetAdminTypeDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

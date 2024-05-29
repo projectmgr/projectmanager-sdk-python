@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass

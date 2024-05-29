@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.updateresourceteamdto import UpdateResourceTeamDto
+from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
 import json
@@ -29,15 +30,14 @@ class ResourceTeamClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_teams(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[list[ResourceTeamDto]]:
+    def retrieve_resource_teams(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ResourceTeamDto]]:
         """
         Retrieves all ResourceTeams defined within your Workspace that
-        match an [OData formatted query](https://www.odata.org/).
-
-        A ResourceTeam is a grouping of Resources that allows you to
-        keep track of assignments in a manner consistent with your
-        business needs. You can assign Resources to be members of zero,
-        one, or many ResourceTeams.
+        match an [OData formatted query](https://www.odata.org/). A
+        ResourceTeam is a grouping of Resources that allows you to keep
+        track of assignments in a manner consistent with your business
+        needs. You can assign Resources to be members of zero, one, or
+        many ResourceTeams.
 
         Parameters
         ----------
@@ -70,9 +70,9 @@ class ResourceTeamClient:
             data = []
             for dict in json.loads(result.content)['data']:
                 data.append(ResourceTeamDto(**dict))
-            return AstroResult[list[ResourceTeamDto]](None, True, False, result.status_code, data)
+            return AstroResult[List[ResourceTeamDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[list[ResourceTeamDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ResourceTeamDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

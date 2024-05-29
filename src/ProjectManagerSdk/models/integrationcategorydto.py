@@ -12,6 +12,7 @@
 #
 
 
+from typing import List
 import dataclasses
 
 @dataclasses.dataclass
@@ -37,7 +38,7 @@ class IntegrationCategoryDto:
     Category.
     """
 
-    integrationShortIds: list[str] | None = None
+    integrationShortIds: List[str] | None = None
     """
     A list of short identifiers for Integrations available within this
     Integration Category.
