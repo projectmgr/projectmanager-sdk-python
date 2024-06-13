@@ -16,7 +16,7 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class CreateProjectFieldDto:
+class ProjectFieldCreateDto:
     """
     A ProjectField is a custom field defined within your Workspace. You
     can define ProjectFields for any integration purpose that is
@@ -32,17 +32,24 @@ class CreateProjectFieldDto:
 
     type: str | None = None
     """
-    The type of the Field. Valid types are the following: * Text *
-    Number * Date * Currency * Dropdown Attempting to create a field
-    with any Type other than these will return an error. For Dropdown
-    Field, specify the list of choices in the `Options` field. TODO -
-    This object needs to support a list of options, in case dropdown is
-    selected
+    The type of the Field. Attempting to create a field with any Type
+    other than these will return an error. For Dropdown Field types,
+    specify the list of choices in the `Options` field. Valid options
+    are: * string * number * date * bool * currency * dropdown-single *
+    dropdown-multi
     """
 
     shortId: str | None = None
     """
     The short Id of this field - human readable identity
+    """
+
+    options: List[str] | None = None
+    """
+    A list of options for use of this ProjectField. This is only valid
+    if the `Type` value is set to `Dropdown`. When a custom TaskField of
+    type `DropDown` is shown to a user in the application, they will be
+    able to choose one of the `Options` in this list.
     """
 
 

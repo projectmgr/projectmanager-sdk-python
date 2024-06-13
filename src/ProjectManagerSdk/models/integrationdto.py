@@ -82,4 +82,9 @@ class IntegrationDto:
     True if the integration is auto-enabled
     """
 
+    noAdminPermission: bool | None = None
+    """
+    No Admin Permission
+    """
+
 

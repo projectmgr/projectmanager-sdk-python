@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
+from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from typing import List
 import dataclasses
 
@@ -128,6 +129,11 @@ class ProjectCreateDto:
     favorite: bool | None = None
     """
     True if this Project is marked as favorite for current user
+    """
+
+    taskStatusCreate: List[TaskStatusCreateDto] | None = None
+    """
+    Create default task status upfront
     """
 
 

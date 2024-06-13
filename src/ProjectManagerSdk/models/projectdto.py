@@ -229,4 +229,9 @@ class ProjectDto:
     `$expand` parameter.
     """
 
+    percentComplete: int | None = None
+    """
+    The percentage of the project tasks completed
+    """
+
 

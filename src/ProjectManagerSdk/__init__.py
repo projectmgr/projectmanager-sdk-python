@@ -52,8 +52,6 @@ from ProjectManagerSdk.models.changesetdto import ChangeSetDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
-from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
-from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
 from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
 from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
 from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
@@ -66,7 +64,6 @@ from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
 from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from ProjectManagerSdk.models.filedto import FileDto
-from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
 from ProjectManagerSdk.models.iddto import IdDto
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
@@ -86,6 +83,8 @@ from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateA
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
+from ProjectManagerSdk.models.projectfieldcreatedto import ProjectFieldCreateDto
+from ProjectManagerSdk.models.projectfielddto import ProjectFieldDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
 from ProjectManagerSdk.models.projectfiledto import ProjectFileDto
 from ProjectManagerSdk.models.projectfilefolderdto import ProjectFileFolderDto
