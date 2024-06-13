@@ -40,4 +40,10 @@ class TaskStatusCreateDto:
     according to the needs of your business.
     """
 
+    isDone: bool | None = None
+    """
+    A numerical value that can be used to sort TaskStatus values
+    according to the needs of your business.
+    """
+
 

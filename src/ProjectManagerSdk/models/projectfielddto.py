@@ -16,7 +16,7 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class GetProjectFieldsResponseDto:
+class ProjectFieldDto:
     """
     Represents either a ProjectField or a TaskField, depending on the
     value of the `EntityType` for this object. A ProjectField is a

@@ -12,9 +12,8 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
-from ProjectManagerSdk.models.createprojectfielddto import CreateProjectFieldDto
-from ProjectManagerSdk.models.createprojectfieldresponsedto import CreateProjectFieldResponseDto
-from ProjectManagerSdk.models.getprojectfieldsresponsedto import GetProjectFieldsResponseDto
+from ProjectManagerSdk.models.projectfieldcreatedto import ProjectFieldCreateDto
+from ProjectManagerSdk.models.projectfielddto import ProjectFieldDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
 from typing import List
@@ -32,7 +31,7 @@ class ProjectFieldClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_project_fields(self) -> AstroResult[List[GetProjectFieldsResponseDto]]:
+    def retrieve_project_fields(self) -> AstroResult[List[ProjectFieldDto]]:
         """
         Retrieves all ProjectFields defined within your Workspace. A
         ProjectField is a custom field defined within your Workspace.
@@ -50,14 +49,14 @@ class ProjectFieldClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(GetProjectFieldsResponseDto(**dict))
-            return AstroResult[List[GetProjectFieldsResponseDto]](None, True, False, result.status_code, data)
+                data.append(ProjectFieldDto(**dict))
+            return AstroResult[List[ProjectFieldDto]](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[List[GetProjectFieldsResponseDto]](None, False, True, result.status_code, None)
+            response = AstroResult[List[ProjectFieldDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
-    def create_project_field(self, body: CreateProjectFieldDto) -> AstroResult[CreateProjectFieldResponseDto]:
+    def create_project_field(self, body: ProjectFieldCreateDto) -> AstroResult[ProjectFieldDto]:
         """
         Creates a new ProjectField within your Workspace. A ProjectField
         is a custom field defined within your Workspace. You can define
@@ -68,17 +67,17 @@ class ProjectFieldClient:
 
         Parameters
         ----------
-        body : CreateProjectFieldDto
+        body : ProjectFieldCreateDto
             Information about the ProjectField to create
         """
         path = "/api/data/projects/fields"
         queryParams = {}
         result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=CreateProjectFieldResponseDto, data=json.loads(result.content)['data'])
-            return AstroResult[CreateProjectFieldResponseDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ProjectFieldDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectFieldDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[CreateProjectFieldResponseDto](None, False, True, result.status_code, None)
+            response = AstroResult[ProjectFieldDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -141,13 +140,12 @@ class ProjectFieldClient:
     def retrieve_projectfield_value(self, projectId: str, fieldId: str) -> AstroResult[ProjectFieldValueDto]:
         """
         Retrieves the current ProjectField value for a particular
-        Project and ProjectField.
-
-        A ProjectField is a custom field defined within your Workspace.
-        You can define ProjectFields for any integration purpose that is
-        important to your business. Each ProjectField has a data type as
-        well as options in how it is handled. ProjectFields can be
-        edited for each Project within your Workspace.
+        Project and ProjectField. A ProjectField is a custom field
+        defined within your Workspace. You can define ProjectFields for
+        any integration purpose that is important to your business. Each
+        ProjectField has a data type as well as options in how it is
+        handled. ProjectFields can be edited for each Project within
+        your Workspace.
 
         Parameters
         ----------
@@ -171,9 +169,8 @@ class ProjectFieldClient:
 
     def retrieve_all_projectfield_values(self, projectId: str) -> AstroResult[List[ProjectFieldValueDto]]:
         """
-        Retrieves all ProjectField values for a particular Project.
-
-        A ProjectField is a custom field defined within your Workspace.
+        Retrieves all ProjectField values for a particular Project. A
+        ProjectField is a custom field defined within your Workspace.
         You can define ProjectFields for any integration purpose that is
         important to your business. Each ProjectField has a data type as
         well as options in how it is handled. ProjectFields can be

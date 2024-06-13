@@ -34,6 +34,12 @@ class AstroError:
     they will be listed here as individual messages.
     """
 
+    validationErrors: object | None = None
+    """
+    This contains a dictionary of validation errors. The key is the name
+    of the field
+    """
+
     message: str | None = None
     """
     A description of the error that occurred. If your application has a
