@@ -16,11 +16,8 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ProjectVersionChangeDataDto:
+class UserError:
 
-    type: str | None = None
-    method: str | None = None
-    property: str | None = None
-    value: str | None = None
-    restoreVersion: int | None = None
+    email: str | None = None
+    reason: str | None = None
 

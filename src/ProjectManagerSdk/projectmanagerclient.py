@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2024 ProjectManager.com, Inc.
-# @version    112.0.3856
+# @version    114.0.4169
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -53,6 +53,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
         from ProjectManagerSdk.clients.licenseclient import LicenseClient
         from ProjectManagerSdk.clients.meclient import MeClient
+        from ProjectManagerSdk.clients.notificationclient import NotificationClient
         from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
         from ProjectManagerSdk.clients.projectclient import ProjectClient
         from ProjectManagerSdk.clients.projectchargecodeclient import ProjectChargeCodeClient
@@ -91,6 +92,7 @@ class ProjectManagerClient:
         self.integrationProvider = IntegrationProviderClient(self)
         self.license = LicenseClient(self)
         self.me = MeClient(self)
+        self.notification = NotificationClient(self)
         self.nptFiles = NptFilesClient(self)
         self.project = ProjectClient(self)
         self.projectChargeCode = ProjectChargeCodeClient(self)
@@ -121,7 +123,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "112.0.3856"
+        self.sdkVersion = "114.0.4169"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

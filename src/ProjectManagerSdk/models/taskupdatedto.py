@@ -107,6 +107,19 @@ class TaskUpdateDto:
     overdue on 12:01 AM July 6th 2023 in US Pacific time.
     """
 
+    actualFinishDate: str | None = None
+    """
+    If set, this is the actual date when work was completed on the Task.
+    This value contains only the date in year-month-day format. For
+    display, this date will always be shown as this same year-month-day
+    regardless of time zone. For reporting purposes, this date is
+    calculated against the official time zone of the Workspace. For
+    example: A Task has a planned completion date of July 5, 2023 in a
+    Workspace that has a time zone of US Pacific Time (GMT-7 or GMT-8,
+    depending on daylight savings time). This project is considered
+    overdue on 12:01 AM July 6th 2023 in US Pacific time.
+    """
+
     actualCost: float | None = None
     """
     If set, this represents the actual tracked cost for this Task.
