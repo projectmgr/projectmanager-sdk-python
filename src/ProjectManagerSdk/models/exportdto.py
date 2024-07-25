@@ -16,11 +16,15 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ProjectVersionChangeDataDto:
+class ExportDto:
+    """
+    Represents an export queue object. Use this ID to check the status
+    of the export.
+    """
 
-    type: str | None = None
-    method: str | None = None
-    property: str | None = None
-    value: str | None = None
-    restoreVersion: int | None = None
+    id: str | None = None
+    """
+    Id of the export
+    """
+
 

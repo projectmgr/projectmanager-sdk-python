@@ -127,4 +127,25 @@ class ResourceDto:
     value to False will make this user unable to access this Workspace.
     """
 
+    createdDate: str | None = None
+    """
+    The date this resource was created
+    """
+
+    createdBy: str | None = None
+    """
+    Set to a unique identifier of the user who created this Resource.
+    """
+
+    modifiedDate: str | None = None
+    """
+    The date this resource was last modified
+    """
+
+    modifiedBy: str | None = None
+    """
+    Set to a unique identifier of the user who last modified this
+    Resource.
+    """
+
 

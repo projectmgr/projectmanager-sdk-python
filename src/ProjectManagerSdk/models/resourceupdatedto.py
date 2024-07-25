@@ -93,4 +93,15 @@ class ResourceUpdateDto:
     The list of ResourceSkills possessed by this Resource.
     """
 
+    isActive: bool | None = None
+    """
+    Active/Inactive the Resource.
+    """
+
+    approverId: str | None = None
+    """
+    The Approver Id associated with this Resource. Applies to personnel
+    Resources only.
+    """
+
 
