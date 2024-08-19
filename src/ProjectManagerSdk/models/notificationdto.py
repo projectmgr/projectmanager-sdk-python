@@ -28,19 +28,9 @@ class NotificationDto:
     notifications will be deleted automatically.
     """
 
-    notificationId: str | None = None
+    id: str | None = None
     """
     The unique identifier of this notification
-    """
-
-    businessId: str | None = None
-    """
-    The unique identifier of the workspace for this notification
-    """
-
-    userId: str | None = None
-    """
-    The unique identifier of the recipient of this notification
     """
 
     senderId: str | None = None
