@@ -65,6 +65,8 @@ from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
 from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from ProjectManagerSdk.models.exportdto import ExportDto
+from ProjectManagerSdk.models.exportduedatefilterdto import ExportDueDateFilterDto
+from ProjectManagerSdk.models.exportpriorityfilterdto import ExportPriorityFilterDto
 from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
 from ProjectManagerSdk.models.iddto import IdDto
@@ -119,6 +121,7 @@ from ProjectManagerSdk.models.resourcesdto import ResourcesDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+from ProjectManagerSdk.models.riskexportprogressfilterdto import RiskExportProgressFilterDto
 from ProjectManagerSdk.models.riskexportsettingsdto import RiskExportSettingsDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto

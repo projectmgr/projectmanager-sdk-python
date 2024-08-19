@@ -27,5 +27,12 @@ class ResourcesCreateDto:
     new User to your Workspace, create a new Resource for that user.
     """
 
+    projectIds: List[str] | None = None
+    """
+    When creating a user they will also be added to the projectIds
+    specified. If null or empty the user will be invited but no access
+    will be given to any projects.
+    """
+
     users: List[ResourceCreateDto] | None = None
 
