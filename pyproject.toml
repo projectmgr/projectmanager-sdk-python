@@ -19,7 +19,3 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/projectmgr/projectmanager-sdk-python"
 "Bug Tracker" = "https://github.com/projectmgr/projectmanager-sdk-python/issues"
-
-[build-system]
-requires = ["hatchling", "find", "requests"]
-build-backend = "hatchling.build"
