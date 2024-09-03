@@ -28,7 +28,7 @@ class TaskFileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_task_file(self, taskId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_task_file(self, taskId: str, fileName: str) -> AstroResult[FileDto]:
         """
         Uploads a file to a task. ProjectManager allows you to store
         Files connected to other elements of your Workspace such as a
@@ -45,12 +45,12 @@ class TaskFileClient:
         ----------
         taskId : str
             The reference to the task
-        filename : str
+        fileName : str
             The full path of a file to upload to the API
         """
         path = f"/api/data/tasks/{taskId}/files"
         queryParams = {}
-        result = self.client.send_request("POST", path, None, queryParams, filename)
+        result = self.client.send_request("POST", path, None, queryParams, fileName)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=FileDto, data=json.loads(result.content)['data'])
             return AstroResult[FileDto](None, True, False, result.status_code, data)
