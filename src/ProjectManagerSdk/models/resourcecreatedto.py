@@ -92,6 +92,12 @@ class ResourceCreateDto:
     The list of ResourceSkills possessed by this Resource.
     """
 
+    colorName: str | None = None
+    """
+    Collaboration Color for this resource. eg. teal, cyan, lightblue,
+    blurple, purple, pink, orange, gray
+    """
+
     country: str | None = None
     """
     Deprecated - this property is no longer being used. Please pass in

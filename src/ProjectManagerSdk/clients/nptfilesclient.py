@@ -28,7 +28,7 @@ class NptFilesClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_file_to_non_project_tasks(self, taskId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_file_to_non_project_tasks(self, taskId: str, fileName: str) -> AstroResult[FileDto]:
         """
         Uploads a file to a non-project task. ProjectManager allows you
         to store Files connected to other elements of your Workspace
@@ -45,12 +45,12 @@ class NptFilesClient:
         ----------
         taskId : str
             The reference to the task
-        filename : str
+        fileName : str
             The full path of a file to upload to the API
         """
         path = f"/api/data/non-project-tasks/{taskId}/files"
         queryParams = {}
-        result = self.client.send_request("POST", path, None, queryParams, filename)
+        result = self.client.send_request("POST", path, None, queryParams, fileName)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=FileDto, data=json.loads(result.content)['data'])
             return AstroResult[FileDto](None, True, False, result.status_code, data)

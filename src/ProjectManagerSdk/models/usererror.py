@@ -20,4 +20,5 @@ class UserError:
 
     email: str | None = None
     reason: str | None = None
+    statusCode: int | None = None
 

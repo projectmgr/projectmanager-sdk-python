@@ -187,3 +187,28 @@ class ResourceClient:
             response = AstroResult[ResourcesDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def resend_invite_email(self, resourceId: str) -> AstroResult[object]:
+        """
+        Resend Invite Email to a Resource within your Workspace. When
+        you create a Resource that is a person, ProjectManager sends
+        that person an email inviting them to join your Workspace. If
+        that email is accidentally deleted or sent to a spam folder, you
+        can request this email be sent again using this API.
+
+        Parameters
+        ----------
+        resourceId : str
+            The unique identifier of the Resource to send an invitation
+            email
+        """
+        path = f"/api/data/resources/{resourceId}/resendinvite"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

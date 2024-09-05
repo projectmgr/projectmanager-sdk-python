@@ -28,7 +28,7 @@ class ProjectFileClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_project_file(self, projectId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_project_file(self, projectId: str, fileName: str) -> AstroResult[FileDto]:
         """
         Uploads a file to the All Files folder on the Files page within
         the project that you specify. ProjectManager allows you to store
@@ -46,12 +46,12 @@ class ProjectFileClient:
         ----------
         projectId : str
             The reference to the project
-        filename : str
+        fileName : str
             The full path of a file to upload to the API
         """
         path = f"/api/data/projects/{projectId}/files"
         queryParams = {}
-        result = self.client.send_request("POST", path, None, queryParams, filename)
+        result = self.client.send_request("POST", path, None, queryParams, fileName)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=FileDto, data=json.loads(result.content)['data'])
             return AstroResult[FileDto](None, True, False, result.status_code, data)
@@ -60,7 +60,7 @@ class ProjectFileClient:
             response.load_error(result)
             return response
 
-    def upload_project_file_to_folder(self, projectId: str, folderId: str, filename: str) -> AstroResult[FileDto]:
+    def upload_project_file_to_folder(self, projectId: str, folderId: str, fileName: str) -> AstroResult[FileDto]:
         """
         Uploads a file to a specific folder on the Files page within the
         project that you specify. ProjectManager allows you to store
@@ -81,12 +81,12 @@ class ProjectFileClient:
             The reference to the project
         folderId : str
             The reference to the sub folder to put the file into
-        filename : str
+        fileName : str
             The full path of a file to upload to the API
         """
         path = f"/api/data/projects/{projectId}/folders/{folderId}/files"
         queryParams = {}
-        result = self.client.send_request("POST", path, None, queryParams, filename)
+        result = self.client.send_request("POST", path, None, queryParams, fileName)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=FileDto, data=json.loads(result.content)['data'])
             return AstroResult[FileDto](None, True, False, result.status_code, data)
