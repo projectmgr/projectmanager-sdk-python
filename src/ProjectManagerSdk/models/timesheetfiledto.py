@@ -17,6 +17,9 @@ import dataclasses
 
 @dataclasses.dataclass
 class TimesheetFileDto:
+    """
+    Represents information about a file attached to a Timesheet.
+    """
 
     id: str | None = None
     """

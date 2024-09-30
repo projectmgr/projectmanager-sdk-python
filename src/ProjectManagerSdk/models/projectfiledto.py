@@ -19,6 +19,10 @@ import dataclasses
 
 @dataclasses.dataclass
 class ProjectFileDto:
+    """
+    The ProjectFile represents an attached file that is connected to a
+    Project and can be retrieved for download.
+    """
 
     id: str | None = None
     """

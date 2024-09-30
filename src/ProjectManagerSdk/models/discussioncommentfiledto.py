@@ -17,6 +17,10 @@ import dataclasses
 
 @dataclasses.dataclass
 class DiscussionCommentFileDto:
+    """
+    The DiscussionCommentFile represents a file that has been attached
+    to a discussion and is available for download.
+    """
 
     id: str | None = None
     """
@@ -30,7 +34,7 @@ class DiscussionCommentFileDto:
 
     url: str | None = None
     """
-    The url of the file which can be used for downloading
+    The url of the DownloadFile API to retrieve this file
     """
 
 
