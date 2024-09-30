@@ -17,6 +17,10 @@ import dataclasses
 
 @dataclasses.dataclass
 class ProjectFileTaskDto:
+    """
+    Represents information about a Task that is relevant to a
+    ProjectFile
+    """
 
     id: str | None = None
     """

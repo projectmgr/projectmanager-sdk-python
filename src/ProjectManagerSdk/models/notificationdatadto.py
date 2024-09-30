@@ -47,6 +47,10 @@ class NotificationDataDto:
     """
 
     taskName: str | None = None
+    """
+    Name of the task this notification is related to
+    """
+
     senderFirstName: str | None = None
     """
     Firstname of the person initiating the notification

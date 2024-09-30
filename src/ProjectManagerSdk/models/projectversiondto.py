@@ -18,6 +18,12 @@ import dataclasses
 
 @dataclasses.dataclass
 class ProjectVersionDto:
+    """
+    A ProjectVersion is a snapshot of a Project at a specific moment in
+    time. Information on the ProjectVersion record keeps track of the
+    unique identity of this version, plus the name and details of the
+    user who created this version, and the changes that were made.
+    """
 
     id: str | None = None
     """

@@ -149,7 +149,7 @@ class NotificationClient:
         Parameters
         ----------
         id : str
-
+            The unique identifier of the notification to mark read
         """
         path = f"/api/data/notifications/{id}/markread"
         queryParams = {}
@@ -199,7 +199,7 @@ class NotificationClient:
         Parameters
         ----------
         id : str
-
+            The unique identifier of the notification to mark read
         """
         path = f"/api/data/notifications/delete/{id}"
         queryParams = {}
@@ -224,7 +224,7 @@ class NotificationClient:
         Parameters
         ----------
         id : str
-
+            The unique identifier of the notification to mark read
         """
         path = f"/api/data/notifications/{id}/markunread"
         queryParams = {}
