@@ -46,7 +46,7 @@ class LicenseClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(LicenseDto(**dict))
+                data.append(dacite.from_dict(data_class=LicenseDto, data=dict))
             return AstroResult[List[LicenseDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[LicenseDto]](None, False, True, result.status_code, None)
@@ -73,7 +73,7 @@ class LicenseClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(LicenseDto(**dict))
+                data.append(dacite.from_dict(data_class=LicenseDto, data=dict))
             return AstroResult[List[LicenseDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[LicenseDto]](None, False, True, result.status_code, None)
