@@ -46,7 +46,7 @@ class IntegrationCategoryClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(IntegrationCategoryDto(**dict))
+                data.append(dacite.from_dict(data_class=IntegrationCategoryDto, data=dict))
             return AstroResult[List[IntegrationCategoryDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[IntegrationCategoryDto]](None, False, True, result.status_code, None)

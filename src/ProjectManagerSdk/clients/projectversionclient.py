@@ -44,7 +44,7 @@ class ProjectVersionClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ProjectVersionDto(**dict))
+                data.append(dacite.from_dict(data_class=ProjectVersionDto, data=dict))
             return AstroResult[List[ProjectVersionDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectVersionDto]](None, False, True, result.status_code, None)

@@ -14,7 +14,6 @@
 
 from __future__ import annotations
 from ProjectManagerSdk.models.notificationdatadto import NotificationDataDto
-from ProjectManagerSdk.models.notificationdto import NotificationDto
 from typing import List
 import dataclasses
 

@@ -49,7 +49,7 @@ class ProjectFieldClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ProjectFieldDto(**dict))
+                data.append(dacite.from_dict(data_class=ProjectFieldDto, data=dict))
             return AstroResult[List[ProjectFieldDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectFieldDto]](None, False, True, result.status_code, None)
@@ -188,7 +188,7 @@ class ProjectFieldClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ProjectFieldValueDto(**dict))
+                data.append(dacite.from_dict(data_class=ProjectFieldValueDto, data=dict))
             return AstroResult[List[ProjectFieldValueDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectFieldValueDto]](None, False, True, result.status_code, None)

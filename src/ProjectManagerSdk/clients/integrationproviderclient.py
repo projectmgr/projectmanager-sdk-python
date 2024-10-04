@@ -50,7 +50,7 @@ class IntegrationProviderClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(IntegrationProviderDto(**dict))
+                data.append(dacite.from_dict(data_class=IntegrationProviderDto, data=dict))
             return AstroResult[List[IntegrationProviderDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[IntegrationProviderDto]](None, False, True, result.status_code, None)

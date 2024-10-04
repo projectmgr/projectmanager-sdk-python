@@ -71,7 +71,7 @@ class TaskClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(TaskDto(**dict))
+                data.append(dacite.from_dict(data_class=TaskDto, data=dict))
             return AstroResult[List[TaskDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[TaskDto]](None, False, True, result.status_code, None)
@@ -214,7 +214,7 @@ class TaskClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(TaskPriorityDto(**dict))
+                data.append(dacite.from_dict(data_class=TaskPriorityDto, data=dict))
             return AstroResult[List[TaskPriorityDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[TaskPriorityDto]](None, False, True, result.status_code, None)
@@ -247,7 +247,7 @@ class TaskClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ChangeSetStatusDto(**dict))
+                data.append(dacite.from_dict(data_class=ChangeSetStatusDto, data=dict))
             return AstroResult[List[ChangeSetStatusDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ChangeSetStatusDto]](None, False, True, result.status_code, None)
