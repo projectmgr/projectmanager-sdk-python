@@ -60,7 +60,20 @@ class TaskMetadataClient:
             response.load_error(result)
             return response
 
-    def get_tasks_by_project_id_and_foreign_key_id(self, foreignKey: str, projectId: str, isSystem: bool) -> AstroResult[List[TaskMetadataSearchDto]]:
+    def task_metadata_search(self, foreignKey: str, projectId: str, isSystem: bool) -> AstroResult[List[TaskMetadataSearchDto]]:
+        """
+        Get tasks by project ID and foreign key ID
+
+        Parameters
+        ----------
+        foreignKey : str
+            Foreign Key ID
+        projectId : str
+            Project ID
+        isSystem : bool
+            If metadata is for system or customer, isSystem = true is
+            only of ProjectManager
+        """
         path = f"/api/data/projects/{projectId}/tasks/metadata"
         queryParams = {}
         if foreignKey:
@@ -71,7 +84,7 @@ class TaskMetadataClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(TaskMetadataSearchDto(**dict))
+                data.append(dacite.from_dict(data_class=TaskMetadataSearchDto, data=dict))
             return AstroResult[List[TaskMetadataSearchDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[TaskMetadataSearchDto]](None, False, True, result.status_code, None)

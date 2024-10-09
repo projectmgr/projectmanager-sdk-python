@@ -65,7 +65,7 @@ class HolidayClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ResourceHolidayDto(**dict))
+                data.append(dacite.from_dict(data_class=ResourceHolidayDto, data=dict))
             return AstroResult[List[ResourceHolidayDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ResourceHolidayDto]](None, False, True, result.status_code, None)
@@ -107,7 +107,7 @@ class HolidayClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(CountryHolidayDto(**dict))
+                data.append(dacite.from_dict(data_class=CountryHolidayDto, data=dict))
             return AstroResult[List[CountryHolidayDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[CountryHolidayDto]](None, False, True, result.status_code, None)
@@ -149,7 +149,7 @@ class HolidayClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(GlobalHolidayDto(**dict))
+                data.append(dacite.from_dict(data_class=GlobalHolidayDto, data=dict))
             return AstroResult[List[GlobalHolidayDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[GlobalHolidayDto]](None, False, True, result.status_code, None)

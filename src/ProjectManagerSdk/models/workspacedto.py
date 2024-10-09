@@ -42,7 +42,7 @@ class WorkSpaceDto:
 
     customerId: str | None = None
     """
-    TODO - What is this value?
+    This value is marked obsolete as it is no longer used.
     """
 
     isOwner: bool | None = None

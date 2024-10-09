@@ -19,12 +19,14 @@ import dataclasses
 @dataclasses.dataclass
 class ResourcesCreateDto:
     """
-    A Resource represents a person, material, or tool that is used
-    within your Projects. When you attach a Resources to more than one
-    Task, the software will schedule the usage of your Resource so that
-    it is not allocated to more than one Task at the same time. The
-    users in your Workspace are also considered Resources. To invite a
-    new User to your Workspace, create a new Resource for that user.
+    The ResourcesCreate object allows you to create multiple Users with
+    a single API call. In ProjectManager.com, a User is a special class
+    of Resource. A Resource represents a person, material, or tool that
+    is used within your Projects. When you attach a Resources to more
+    than one Task, the software will schedule the usage of your Resource
+    so that it is not allocated to more than one Task at the same time.
+    The users in your Workspace are also considered Resources. To invite
+    a new User to your Workspace, create a new Resource for that user.
     """
 
     projectIds: List[str] | None = None
@@ -35,4 +37,8 @@ class ResourcesCreateDto:
     """
 
     users: List[ResourceCreateDto] | None = None
+    """
+    A list of Users to create
+    """
+
 

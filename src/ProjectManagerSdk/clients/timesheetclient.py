@@ -88,7 +88,7 @@ class TimesheetClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(TimesheetDto(**dict))
+                data.append(dacite.from_dict(data_class=TimesheetDto, data=dict))
             return AstroResult[List[TimesheetDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[TimesheetDto]](None, False, True, result.status_code, None)
@@ -151,7 +151,7 @@ class TimesheetClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(TimesheetAdminTypeDto(**dict))
+                data.append(dacite.from_dict(data_class=TimesheetAdminTypeDto, data=dict))
             return AstroResult[List[TimesheetAdminTypeDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[TimesheetAdminTypeDto]](None, False, True, result.status_code, None)

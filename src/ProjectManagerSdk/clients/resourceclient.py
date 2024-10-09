@@ -99,7 +99,7 @@ class ResourceClient:
         if result.status_code >= 200 and result.status_code < 300:
             data = []
             for dict in json.loads(result.content)['data']:
-                data.append(ResourceDto(**dict))
+                data.append(dacite.from_dict(data_class=ResourceDto, data=dict))
             return AstroResult[List[ResourceDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ResourceDto]](None, False, True, result.status_code, None)
