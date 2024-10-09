@@ -159,4 +159,9 @@ class ResourceDto:
     Read only Hex code of the ColorName
     """
 
+    initials: str | None = None
+    """
+    The initials of the Resource
+    """
+
 
