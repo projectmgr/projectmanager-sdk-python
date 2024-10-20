@@ -18,7 +18,6 @@ from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from typing import List
 import dataclasses
 
-
 @dataclasses.dataclass
 class ResourceDto:
     """
@@ -33,6 +32,11 @@ class ResourceDto:
     id: str | None = None
     """
     The unique identifier of this Resource.
+    """
+
+    initials: str | None = None
+    """
+    The resource initials.
     """
 
     firstName: str | None = None
@@ -160,12 +164,9 @@ class ResourceDto:
     Read only Hex code of the ColorName
     """
 
-    initials: str | None = None
-    """
-    The initials of the Resource
-    """
-
     avatarUrl: str | None = None
     """
-    Url to the avatar image of the Resource
+    The resources avatar url, if any.
     """
+
+
