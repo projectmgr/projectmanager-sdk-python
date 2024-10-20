@@ -36,7 +36,6 @@
     "VersionNumberRegex": "version\": \"(.*)\"",
     "Python": {
         "ModuleName": "ProjectManagerSdk",
-        "Folder": "C:\\github\\projectmanager-sdk-python",
         "ClassName": "ProjectManagerClient",
         "ResponseClass": "AstroResult",
         "Namespace": "ProjectManagerSdk",
