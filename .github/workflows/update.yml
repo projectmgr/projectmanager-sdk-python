@@ -1,0 +1,48 @@
+name: Check for OpenAPI updates
+
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Run once per week
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Core @ Latest
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Add the SDK Generator
+        run: dotnet tool install SdkGenerator --global
+
+      - name: Pull the latest OpenAPI file and generate the SDK
+        run: SdkGenerator build -p ./sdk-config.json
+
+      - name: Gather information
+        id: patch-notes
+        run: |
+          releasename=$(SdkGenerator get-release-name -p ./sdk-config.json)
+          echo "releasename=$releasename" >> $GITHUB_OUTPUT
+          echo "branchname=sdkgenerator-${releasename// /-}" >> $GITHUB_OUTPUT
+          {
+            echo 'patchnotes<<EOF'
+            SdkGenerator get-patch-notes -p ./sdk-config.json
+            echo EOF
+          } >> $GITHUB_OUTPUT
+          
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: ${{ steps.patch-notes.outputs.patchnotes }}
+          body: ${{ steps.patch-notes.outputs.patchnotes }}
+          title: ${{ steps.patch-notes.outputs.releasename }}
+          branch: ${{ steps.patch-notes.outputs.branchname }}
