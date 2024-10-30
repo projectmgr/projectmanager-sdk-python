@@ -39,6 +39,7 @@ from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
 from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
 from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
 from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
+from ProjectManagerSdk.clients.tasktodoclient import TaskTodoClient
 from ProjectManagerSdk.clients.teamsclient import TeamsClient
 from ProjectManagerSdk.clients.timesheetclient import TimesheetClient
 from ProjectManagerSdk.clients.userroleclient import UserRoleClient
@@ -144,7 +145,9 @@ from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
+from ProjectManagerSdk.models.tasktodocreatedto import TaskTodoCreateDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
+from ProjectManagerSdk.models.tasktodoupdatedto import TaskTodoUpdateDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto

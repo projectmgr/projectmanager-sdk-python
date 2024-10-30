@@ -31,7 +31,7 @@ class NotificationClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_notifications(self, lastId: str) -> AstroResult[NotificationResponseDto]:
+    def retrieve_notifications(self, lastId: str, senderId: str, notificationTypes: List[str], asFlatList: bool) -> AstroResult[NotificationResponseDto]:
         """
         Retrieve the most recent notifications for the current user,
         along with the amount of notifications. A notification
@@ -51,11 +51,27 @@ class NotificationClient:
             To continue loading more notifications in a series of
             requests, provide the ID of the oldest notification from the
             currently loaded batch as the `lastId` parameter
+        senderId : str
+            Filter the notifications to only those sent by the user with
+            the specified ID
+        notificationTypes : List[str]
+            Specifies the types of notifications to return. If not
+            provided, all notifications will be returned.
+        asFlatList : bool
+            If set to true all notifications will be returned as a flat
+            list, otherwise they will be grouped by parent in the same
+            manner as displayed in the UI.
         """
         path = "/api/data/notifications"
         queryParams = {}
         if lastId:
             queryParams['lastId'] = lastId
+        if senderId:
+            queryParams['senderId'] = senderId
+        if notificationTypes:
+            queryParams['notificationTypes'] = notificationTypes
+        if asFlatList:
+            queryParams['asFlatList'] = asFlatList
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=NotificationResponseDto, data=json.loads(result.content)['data'])

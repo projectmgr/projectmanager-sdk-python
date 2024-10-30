@@ -28,7 +28,12 @@ class TimesheetCreateRequestDto:
 
     hours: float | None = None
     """
-    Reported hours
+    Reported hours. If minutes is specified this property is ignored
+    """
+
+    minutes: int | None = None
+    """
+    Specify the time in minutes. This overrides the Hours property.
     """
 
     taskId: str | None = None

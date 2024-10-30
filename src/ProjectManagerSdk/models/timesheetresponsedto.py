@@ -66,4 +66,9 @@ class TimesheetResponseDto:
     Total Hours
     """
 
+    minutes: int | None = None
+    """
+    Total Minutes
+    """
+
 
