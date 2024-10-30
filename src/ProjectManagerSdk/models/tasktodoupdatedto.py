@@ -16,24 +16,19 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class TimesheetUpdateRequestDto:
+class TaskTodoUpdateDto:
     """
-    Payload to update time entry
-    """
-
-    hours: float | None = None
-    """
-    Reported hours. If minutes is specified this property is ignored
+    The properties for updating a task dto
     """
 
-    minutes: int | None = None
+    text: str | None = None
     """
-    Specify the time in minutes. This overrides the Hours property.
+    The full description of this TaskTodo.
     """
 
-    notes: str | None = None
+    complete: bool | None = None
     """
-    Notes
+    True if this TaskTodo is complete.
     """
 
 

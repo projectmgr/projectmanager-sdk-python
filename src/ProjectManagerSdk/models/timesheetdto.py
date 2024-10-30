@@ -79,6 +79,12 @@ class TimesheetDto:
     Date
     """
 
+    minutes: int | None = None
+    """
+    Total minutes spent on this Task by this Resource on this specific
+    Date
+    """
+
     modifiedDate: str | None = None
     """
     Date and time (in UTC) that this timesheet entry was last modified.

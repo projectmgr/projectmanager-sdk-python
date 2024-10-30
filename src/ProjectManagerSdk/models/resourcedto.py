@@ -89,6 +89,11 @@ class ResourceDto:
     country names or codes.
     """
 
+    countryName: str | None = None
+    """
+    Returns the name of the country
+    """
+
     notes: str | None = None
     """
     Free-form text notes about this Resource. You may use this field to

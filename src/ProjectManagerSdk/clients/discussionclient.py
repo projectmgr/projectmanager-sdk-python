@@ -78,3 +78,63 @@ class DiscussionClient:
             response = AstroResult[DiscussionCommentCreateResponseDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def like_a_comment(self, commentId: str) -> AstroResult[object]:
+        """
+        Puts a thumbsup on a comment
+
+        Parameters
+        ----------
+        commentId : str
+            the id of the comment
+        """
+        path = f"/api/data/comments/{commentId}/like"
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def removes_a_thumbsup_from_a_comment(self, commentId: str) -> AstroResult[object]:
+        """
+        Unlike a comment that was previously liked
+
+        Parameters
+        ----------
+        commentId : str
+            the id of the comment
+        """
+        path = f"/api/data/comments/{commentId}/like"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def remove_a_comment(self, commentId: str) -> AstroResult[object]:
+        """
+        Removes a comment by it's id
+
+        Parameters
+        ----------
+        commentId : str
+            Remove a comment
+        """
+        path = f"/api/data/comments/{commentId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
