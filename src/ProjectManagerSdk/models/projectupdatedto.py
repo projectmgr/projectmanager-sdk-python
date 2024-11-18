@@ -52,7 +52,8 @@ class ProjectUpdateDto:
     customerId: str | None = None
     """
     To assign this Project to a ProjectCustomer, set this to the unique
-    identifier of the ProjectCustomer.
+    identifier of the ProjectCustomer. If set to an empty guid the
+    Project will be unassigned from the current ProjectCustomer.
     """
 
     managerId: str | None = None

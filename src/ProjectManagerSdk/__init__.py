@@ -94,6 +94,7 @@ from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
 from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateAccessMemberDto
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
+from ProjectManagerSdk.models.projectcustomercreatedto import ProjectCustomerCreateDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
 from ProjectManagerSdk.models.projectfieldcreatedto import ProjectFieldCreateDto
