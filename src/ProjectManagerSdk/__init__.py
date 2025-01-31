@@ -169,4 +169,5 @@ from ProjectManagerSdk.models.userroledto import UserRoleDto
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
 from ProjectManagerSdk.models.workspacejoindto import WorkSpaceJoinDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
+from ProjectManagerSdk.models.workspacepermissionsdto import WorkSpacePermissionsDto
 from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
