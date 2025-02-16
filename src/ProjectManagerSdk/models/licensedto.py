@@ -40,7 +40,8 @@ class LicenseDto:
 
     optional: bool | None = None
     """
-    True if this license is optional.
+    True if this license is optional. This field will be removed in a
+    future version.
     """
 
 
