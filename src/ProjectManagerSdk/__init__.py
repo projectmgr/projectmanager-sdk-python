@@ -55,6 +55,7 @@ from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatu
 from ProjectManagerSdk.models.changesetdto import ChangeSetDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
+from ProjectManagerSdk.models.countrydto import CountryDto
 from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
 from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
 from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
@@ -127,6 +128,7 @@ from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
 from ProjectManagerSdk.models.riskexportprogressfilterdto import RiskExportProgressFilterDto
 from ProjectManagerSdk.models.riskexportsettingsdto import RiskExportSettingsDto
+from ProjectManagerSdk.models.statedto import StateDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
@@ -167,7 +169,6 @@ from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValu
 from ProjectManagerSdk.models.usererror import UserError
 from ProjectManagerSdk.models.userroledto import UserRoleDto
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
-from ProjectManagerSdk.models.workspacejoindto import WorkSpaceJoinDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
 from ProjectManagerSdk.models.workspacepermissionsdto import WorkSpacePermissionsDto
 from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
