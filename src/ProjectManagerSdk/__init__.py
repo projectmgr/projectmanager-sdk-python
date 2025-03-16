@@ -109,6 +109,7 @@ from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
