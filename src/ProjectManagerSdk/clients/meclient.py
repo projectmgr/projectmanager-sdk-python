@@ -51,3 +51,23 @@ class MeClient:
             response = AstroResult[WorkSpaceUserInfoDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def update_my_avatar(self, fileName: str) -> AstroResult[object]:
+        """
+        Updates the logged in user avatar
+
+        Parameters
+        ----------
+        fileName : str
+            The full path of a file to upload to the API
+        """
+        path = "/api/data/me/avatar"
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, fileName)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

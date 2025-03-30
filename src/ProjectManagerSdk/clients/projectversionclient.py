@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
 from ProjectManagerSdk.models.projectversiondto import ProjectVersionDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -96,7 +97,7 @@ class ProjectVersionClient:
             response.load_error(result)
             return response
 
-    def copy_project_version(self, projectId: str, version: int, timezoneOffset: int) -> AstroResult[object]:
+    def copy_project_version(self, projectId: str, version: int, timezoneOffset: int) -> AstroResult[ProjectRestoreProjectDto]:
         """
         Create a Copy of a Project as of a specific Version, optionally
         moving it to a new Timezone.
@@ -117,9 +118,9 @@ class ProjectVersionClient:
             queryParams['timezoneOffset'] = timezoneOffset
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
-            return AstroResult[object](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ProjectRestoreProjectDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectRestoreProjectDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[object](None, False, True, result.status_code, None)
+            response = AstroResult[ProjectRestoreProjectDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

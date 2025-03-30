@@ -15,7 +15,9 @@ from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProvi
 from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
 from ProjectManagerSdk.clients.notificationclient import NotificationClient
+from ProjectManagerSdk.clients.nptclient import NptClient
 from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
+from ProjectManagerSdk.clients.nptstatusclient import NptStatusClient
 from ProjectManagerSdk.clients.projectchargecodeclient import ProjectChargeCodeClient
 from ProjectManagerSdk.clients.projectclient import ProjectClient
 from ProjectManagerSdk.clients.projectcustomerclient import ProjectCustomerClient
@@ -52,7 +54,6 @@ from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
 from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
-from ProjectManagerSdk.models.changesetdto import ChangeSetDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.countrydto import CountryDto
@@ -89,6 +90,11 @@ from ProjectManagerSdk.models.notificationresponsedto import NotificationRespons
 from ProjectManagerSdk.models.notificationtimestampdto import NotificationTimestampDto
 from ProjectManagerSdk.models.notificationtotalcountdto import NotificationTotalCountDto
 from ProjectManagerSdk.models.notificationunreadcountdto import NotificationUnreadCountDto
+from ProjectManagerSdk.models.nptassigneedto import NptAssigneeDto
+from ProjectManagerSdk.models.nptcreatedto import NptCreateDto
+from ProjectManagerSdk.models.nptdto import NptDto
+from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
+from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
@@ -109,6 +115,7 @@ from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
