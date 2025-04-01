@@ -30,7 +30,7 @@ class TaskTodoClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def get_todos_for_a_task(self, taskId: str) -> AstroResult[List[TaskTodoDto]]:
+    def get_todos(self, taskId: str) -> AstroResult[List[TaskTodoDto]]:
         """
         Retrieve a list of todos for a task
 
@@ -52,7 +52,7 @@ class TaskTodoClient:
             response.load_error(result)
             return response
 
-    def create_a_todo_for_a_task(self, taskId: str, body: TaskTodoCreateDto) -> AstroResult[TaskTodoDto]:
+    def create_todo(self, taskId: str, body: TaskTodoCreateDto) -> AstroResult[TaskTodoDto]:
         """
         Create a todo for a task
 
@@ -74,7 +74,7 @@ class TaskTodoClient:
             response.load_error(result)
             return response
 
-    def update_a_todo(self, todoId: str, body: TaskTodoUpdateDto) -> AstroResult[TaskTodoDto]:
+    def update_todo(self, todoId: str, body: TaskTodoUpdateDto) -> AstroResult[TaskTodoDto]:
         """
         Update a todo for a task
 
@@ -96,7 +96,7 @@ class TaskTodoClient:
             response.load_error(result)
             return response
 
-    def delete_a_todo(self, todoId: str) -> AstroResult[object]:
+    def delete_todo(self, todoId: str) -> AstroResult[object]:
         """
         Remove a todo
 
