@@ -72,7 +72,7 @@ class ProjectVersionClient:
             response.load_error(result)
             return response
 
-    def restore_project_version(self, projectId: str, version: int) -> AstroResult[object]:
+    def restore_project_version(self, projectId: str, version: int) -> AstroResult[ProjectRestoreProjectDto]:
         """
         Restores a Project to the state it was in at a specific Version
         in time. If successful, all changes made to the Project since
@@ -90,10 +90,10 @@ class ProjectVersionClient:
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
-            return AstroResult[object](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ProjectRestoreProjectDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectRestoreProjectDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[object](None, False, True, result.status_code, None)
+            response = AstroResult[ProjectRestoreProjectDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
