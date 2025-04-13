@@ -33,6 +33,7 @@ from ProjectManagerSdk.clients.resourceclient import ResourceClient
 from ProjectManagerSdk.clients.resourceskillclient import ResourceSkillClient
 from ProjectManagerSdk.clients.resourceteamclient import ResourceTeamClient
 from ProjectManagerSdk.clients.riskclient import RiskClient
+from ProjectManagerSdk.clients.riskfileclient import RiskFileClient
 from ProjectManagerSdk.clients.tagclient import TagClient
 from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
 from ProjectManagerSdk.clients.taskclient import TaskClient

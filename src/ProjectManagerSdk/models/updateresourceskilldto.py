@@ -23,7 +23,7 @@ class UpdateResourceSkillDto:
 
     name: str | None = None
     """
-    The name of this Skill.
+    The name of this Skill, if specified it will be updated
     """
 
 

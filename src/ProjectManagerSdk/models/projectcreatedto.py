@@ -99,16 +99,6 @@ class ProjectCreateDto:
     the StatusUpdate field on the Portfolio page of the application.
     """
 
-    template: bool | None = None
-    """
-    True if this Project is a template that will be reused as a
-    framework for future Projects. You can save a Project as a template
-    and reuse it in the future for creating additional Projects. If this
-    Project is a template, set this to `true` and this template will be
-    available to choose from when creating a new Project within the
-    application.
-    """
-
     templateId: str | None = None
     """
     When creating a Project, you can optionally specify a Template to
