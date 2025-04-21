@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2025 ProjectManager.com, Inc.
-# @version    129.0.113
+# @version    130.1.162
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -72,6 +72,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.resourceskillclient import ResourceSkillClient
         from ProjectManagerSdk.clients.resourceteamclient import ResourceTeamClient
         from ProjectManagerSdk.clients.riskclient import RiskClient
+        from ProjectManagerSdk.clients.riskfileclient import RiskFileClient
         from ProjectManagerSdk.clients.tagclient import TagClient
         from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
         from ProjectManagerSdk.clients.taskclient import TaskClient
@@ -116,6 +117,7 @@ class ProjectManagerClient:
         self.resourceSkill = ResourceSkillClient(self)
         self.resourceTeam = ResourceTeamClient(self)
         self.risk = RiskClient(self)
+        self.riskFile = RiskFileClient(self)
         self.tag = TagClient(self)
         self.taskAssignee = TaskAssigneeClient(self)
         self.task = TaskClient(self)
@@ -133,7 +135,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "129.0.113"
+        self.sdkVersion = "130.1.162"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None
