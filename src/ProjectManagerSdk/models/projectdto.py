@@ -234,4 +234,9 @@ class ProjectDto:
     The percentage of the project tasks completed
     """
 
+    updatePlannedWithActual: bool | None = None
+    """
+    True if allow actual dates to update planned dates
+    """
+
 

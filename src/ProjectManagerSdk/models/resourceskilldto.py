@@ -34,4 +34,9 @@ class ResourceSkillDto:
     The name of this ResourceSkill
     """
 
+    inUse: bool | None = None
+    """
+    Set to true if this ResourceSkill is in use
+    """
+
 
