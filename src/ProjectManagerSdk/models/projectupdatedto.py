@@ -31,6 +31,11 @@ class ProjectUpdateDto:
     The name of the Project.
     """
 
+    shortName: str | None = None
+    """
+    The short name of the Project.
+    """
+
     description: str | None = None
     """
     An optional description of the Project
@@ -110,6 +115,11 @@ class ProjectUpdateDto:
     Project is a template, set this to `true` and this template will be
     available to choose from when creating a new Project within the
     application.
+    """
+
+    updatePlannedWithActual: bool | None = None
+    """
+    True if allow actual dates to update planned dates
     """
 
 

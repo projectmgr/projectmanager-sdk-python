@@ -123,6 +123,7 @@ from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 from ProjectManagerSdk.models.projectversionchangedatadto import ProjectVersionChangeDataDto
 from ProjectManagerSdk.models.projectversiondto import ProjectVersionDto
+from ProjectManagerSdk.models.projectworkingdaysdto import ProjectWorkingDaysDto
 from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto

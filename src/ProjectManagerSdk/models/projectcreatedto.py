@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
+from ProjectManagerSdk.models.projectworkingdaysdto import ProjectWorkingDaysDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from typing import List
 import dataclasses
@@ -36,6 +37,11 @@ class ProjectCreateDto:
     description: str | None = None
     """
     An optional description of the Project
+    """
+
+    shortName: str | None = None
+    """
+    An optional project short name. Up to 7 symbols
     """
 
     folderId: str | None = None
@@ -121,9 +127,21 @@ class ProjectCreateDto:
     True if this Project is marked as favorite for current user
     """
 
+    updatePlannedWithActual: bool | None = None
+    """
+    True if allow actual dates to update planned dates
+    """
+
     taskStatusCreate: List[TaskStatusCreateDto] | None = None
     """
     Create default task status upfront
+    """
+
+    workingDays: ProjectWorkingDaysDto | None = None
+    """
+    Working days for the project. If not specified, the workspace
+    working days will be used. This value can be set when the project is
+    created but may not be updated afterwards.
     """
 
 
