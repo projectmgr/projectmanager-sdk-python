@@ -97,6 +97,7 @@ from ProjectManagerSdk.models.nptdto import NptDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
+from ProjectManagerSdk.models.projectaccessentrydto import ProjectAccessEntryDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
@@ -115,6 +116,7 @@ from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
 from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
+from ProjectManagerSdk.models.projectmembersaccessdto import ProjectMembersAccessDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
