@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
+from ProjectManagerSdk.models.projectmembersaccessdto import ProjectMembersAccessDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -60,9 +61,9 @@ class ProjectMembersClient:
         Returns a list of users that are currently members of a
         specified project, as well as their current project security
         roles and available project security roles. Optionally include
-        users who are not currently members of the project, but who are
-        available to be added. A project member is a user who has access
-        to a specific project. Project members are assigned a project
+        users who are not currently members of the project, but who can
+        be added. A project member is a user who has access to a
+        specific project. Project members are assigned a project
         security role, which controls the level of access they have to
         the project. Possible project security roles include manage,
         edit, collaborate, creator, and guest.
@@ -86,6 +87,34 @@ class ProjectMembersClient:
             return AstroResult[List[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectMemberDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_a_list_of_user_project_membership(self, projectId: str, body: ProjectMembersAccessDto) -> AstroResult[ProjectMemberDto]:
+        """
+        Updates the project access for a current member of a specified
+        project by giving the users a new project security role. A
+        project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
+
+        Parameters
+        ----------
+        projectId : str
+            Reference to Project
+        body : ProjectMembersAccessDto
+            The permission to update
+        """
+        path = f"/api/data/projects/{projectId}/members"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectMemberDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectMemberDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -118,7 +147,7 @@ class ProjectMembersClient:
 
     def create_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
-        Creates a membership for a user in a specified project, and
+        Creates a membership for a user in a specified project and
         assigns the user the appropriate project access based on the
         specified project security role. A project member is a user who
         has access to a specific project. Project members are assigned a

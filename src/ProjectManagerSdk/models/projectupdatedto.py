@@ -122,4 +122,9 @@ class ProjectUpdateDto:
     True if allow actual dates to update planned dates
     """
 
+    notes: str | None = None
+    """
+    To update the project notes
+    """
+
 

@@ -70,7 +70,7 @@ class ApiKeyClient:
         that API key is only visible in the response JSON for the
         `CreateApiKey` method. If you do not preserve this information,
         it cannot be recreated. Some best practices for working with API
-        keys: * An API key is valid for a two year period after it is
+        keys: * An API key is valid for a two-year period after it is
         created. We encourage you to rotate your API keys regularly
         according to your company's security policies. * You should
         create separate API keys for each system that works with your
