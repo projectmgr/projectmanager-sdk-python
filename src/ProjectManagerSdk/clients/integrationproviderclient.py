@@ -87,13 +87,11 @@ class IntegrationProviderClient:
     def update_integration_provider(self, providerId: str, body: AuthenticationDto) -> AstroResult[object]:
         """
         Allows you to update the auth status of the provider specific
-        connection.
-
-        An IntegrationProvider is the name of an external application or
-        service that can be connected to ProjectManager.com. The
-        Integrations API is intended for use by ProjectManager and its
-        business development partners. Please contact ProjectManager's
-        sales team to request use of this API.
+        connection. An IntegrationProvider is the name of an external
+        application or service that can be connected to
+        ProjectManager.com. The Integrations API is intended for use by
+        ProjectManager and its business development partners. Please
+        contact ProjectManager's sales team to request use of this API.
 
         Parameters
         ----------
@@ -115,9 +113,8 @@ class IntegrationProviderClient:
 
     def deactivate_integration_provider(self, providerId: str) -> AstroResult[object]:
         """
-        Allows you to deactivate an integration provider.
-
-        An IntegrationProvider is the name of an external application or
+        Allows you to deactivate an integration provider. An
+        IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its
         business development partners. Please contact ProjectManager's
@@ -143,9 +140,8 @@ class IntegrationProviderClient:
         """
         Retrieves user authentication information about a specific
         IntegrationProvider. This connection can be used for requests to
-        Providers that require specific user data.
-
-        An IntegrationProvider is the name of an external application or
+        Providers that require specific user data. An
+        IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its
         business development partners. Please contact ProjectManager's
@@ -171,13 +167,11 @@ class IntegrationProviderClient:
     def update_user_integration_provider_connection(self, providerId: str, body: AuthenticationStatusDto) -> AstroResult[object]:
         """
         Allows you to update the auth status of the provider specific
-        user connection.
-
-        An IntegrationProvider is the name of an external application or
-        service that can be connected to ProjectManager.com. The
-        Integrations API is intended for use by ProjectManager and its
-        business development partners. Please contact ProjectManager's
-        sales team to request use of this API.
+        user connection. An IntegrationProvider is the name of an
+        external application or service that can be connected to
+        ProjectManager.com. The Integrations API is intended for use by
+        ProjectManager and its business development partners. Please
+        contact ProjectManager's sales team to request use of this API.
 
         Parameters
         ----------
@@ -200,7 +194,6 @@ class IntegrationProviderClient:
     def disconnect_user_integration_provider_connection(self, providerId: str) -> AstroResult[object]:
         """
         Allows you to disconnect the provider specific user connection.
-
         An IntegrationProvider is the name of an external application or
         service that can be connected to ProjectManager.com. The
         Integrations API is intended for use by ProjectManager and its
