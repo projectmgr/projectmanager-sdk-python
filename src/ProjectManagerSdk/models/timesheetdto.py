@@ -119,4 +119,9 @@ class TimesheetDto:
     `$expand` parameter.
     """
 
+    isCopied: bool | None = None
+    """
+    Indicates if the timesheet entry is copied from another week.
+    """
+
 

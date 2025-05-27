@@ -71,4 +71,9 @@ class TimesheetResponseDto:
     Total Minutes
     """
 
+    isCopied: bool | None = None
+    """
+    Is the timesheet entry copied from another week?
+    """
+
 
