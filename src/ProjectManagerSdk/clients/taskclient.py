@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
+from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
@@ -78,7 +79,7 @@ class TaskClient:
             response.load_error(result)
             return response
 
-    def retrieve_task(self, taskId: str) -> AstroResult[TaskDto]:
+    def retrieve_task(self, taskId: str) -> AstroResult[TaskDetailsDto]:
         """
         Retrieve a Task by its unique identifier or by its short ID. A
         Task has both a unique identifier, which is a GUID, and a short
@@ -97,10 +98,10 @@ class TaskClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=TaskDto, data=json.loads(result.content)['data'])
-            return AstroResult[TaskDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=TaskDetailsDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskDetailsDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[TaskDto](None, False, True, result.status_code, None)
+            response = AstroResult[TaskDetailsDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

@@ -65,8 +65,8 @@ class ProjectDto:
     observe the short ID within the application by observing the URL of
     the page you visit when you click on this project. The page's URL
     will appear in the form `https://pm.app.projectmanager.com/project/board/D16`
-    - in this example, the `ShortId` is `D16`. This code is
-    automatically assigned for you and cannot be changed.
+    - in this example, the `ShortId` is `D16`. This code is assigned on
+    creation and cannot be changed.
     """
 
     folder: ProjectFolderDto | None = None
