@@ -13,6 +13,9 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
+from ProjectManagerSdk.models.timesheetapprovaldto import TimeSheetApprovalDto
+from ProjectManagerSdk.models.timesheetapprovalrejectdto import TimeSheetApprovalRejectDto
+from ProjectManagerSdk.models.timesheetapprovalresponsedto import TimeSheetApprovalResponseDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
@@ -155,5 +158,66 @@ class TimesheetClient:
             return AstroResult[List[TimesheetAdminTypeDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[TimesheetAdminTypeDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def submit_resource_timesheet_for_approval(self, body: TimeSheetApprovalDto) -> AstroResult[TimeSheetApprovalResponseDto]:
+        """
+        Submit a timesheet for approval for a specific resource.
+
+        Parameters
+        ----------
+        body : TimeSheetApprovalDto
+            The timesheet to be submitted for approval
+        """
+        path = "/api/data/timesheets/approvals"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=TimeSheetApprovalResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[TimeSheetApprovalResponseDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[TimeSheetApprovalResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def approve_resource_timesheet_approval_request(self, body: TimeSheetApprovalDto) -> AstroResult[TimeSheetApprovalResponseDto]:
+        """
+        Approve a timesheet approval request
+
+        Parameters
+        ----------
+        body : TimeSheetApprovalDto
+            The timesheet to approve
+        """
+        path = "/api/data/timesheets/approvals/approve"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=TimeSheetApprovalResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[TimeSheetApprovalResponseDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[TimeSheetApprovalResponseDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def reject_resource_timesheet_approval_request(self, body: TimeSheetApprovalRejectDto) -> AstroResult[TimeSheetApprovalResponseDto]:
+        """
+        Rejects a specific resource's timesheet approval request for a
+        specific week.
+
+        Parameters
+        ----------
+        body : TimeSheetApprovalRejectDto
+            The data for rejecting the approval request
+        """
+        path = "/api/data/timesheets/approvals/reject"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=TimeSheetApprovalResponseDto, data=json.loads(result.content)['data'])
+            return AstroResult[TimeSheetApprovalResponseDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[TimeSheetApprovalResponseDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

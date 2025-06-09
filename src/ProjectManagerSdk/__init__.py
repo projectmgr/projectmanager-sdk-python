@@ -96,6 +96,7 @@ from ProjectManagerSdk.models.nptcreatedto import NptCreateDto
 from ProjectManagerSdk.models.nptdto import NptDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
+from ProjectManagerSdk.models.pendingtimesheetapprovaldto import PendingTimeSheetApprovalDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from ProjectManagerSdk.models.projectaccessentrydto import ProjectAccessEntryDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
@@ -145,6 +146,7 @@ from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
+from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskfielddto import TaskFieldDto
 from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
@@ -164,6 +166,9 @@ from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from ProjectManagerSdk.models.tasktodoupdatedto import TaskTodoUpdateDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 from ProjectManagerSdk.models.timesheetadmintypedto import TimesheetAdminTypeDto
+from ProjectManagerSdk.models.timesheetapprovaldto import TimeSheetApprovalDto
+from ProjectManagerSdk.models.timesheetapprovalrejectdto import TimeSheetApprovalRejectDto
+from ProjectManagerSdk.models.timesheetapprovalresponsedto import TimeSheetApprovalResponseDto
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto

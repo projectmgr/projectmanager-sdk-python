@@ -23,7 +23,7 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class TaskDto:
+class TaskDetailsDto:
     """
     A Task is an individual element of work that must be performed to
     complete a Project. A Task can have one or more Resources assigned
@@ -290,6 +290,11 @@ class TaskDto:
     multiple objects, this field is not included in results by default.
     To expand this field, specify the name of this field in the
     `$expand` parameter.
+    """
+
+    parentTaskId: str | None = None
+    """
+    The parent task of this Task.
     """
 
 
