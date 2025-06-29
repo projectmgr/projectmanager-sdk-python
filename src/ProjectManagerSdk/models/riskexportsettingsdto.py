@@ -37,7 +37,8 @@ class RiskExportSettingsDto:
 
     columns: List[str] | None = None
     """
-    The list of column names to export
+    The list of column names to export, if blank all columns will be
+    exported
     """
 
     orderBy: str | None = None
