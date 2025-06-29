@@ -76,4 +76,9 @@ class TimesheetResponseDto:
     Is the timesheet entry copied from another week?
     """
 
+    lastUpdatedDate: str | None = None
+    """
+    Is the last timesheet modified by the user
+    """
+
 

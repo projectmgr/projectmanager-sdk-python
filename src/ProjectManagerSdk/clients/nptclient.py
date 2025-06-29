@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.nptcreatedto import NptCreateDto
+from ProjectManagerSdk.models.nptdetailsdto import NptDetailsDto
 from ProjectManagerSdk.models.nptdto import NptDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
 from typing import List
@@ -30,7 +31,7 @@ class NptClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def get_npt(self, nptId: str) -> AstroResult[NptDto]:
+    def get_npt(self, nptId: str) -> AstroResult[NptDetailsDto]:
         """
         Gets a Npt
 
@@ -43,10 +44,10 @@ class NptClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=NptDto, data=json.loads(result.content)['data'])
-            return AstroResult[NptDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=NptDetailsDto, data=json.loads(result.content)['data'])
+            return AstroResult[NptDetailsDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[NptDto](None, False, True, result.status_code, None)
+            response = AstroResult[NptDetailsDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

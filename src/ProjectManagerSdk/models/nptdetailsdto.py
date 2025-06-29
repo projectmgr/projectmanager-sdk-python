@@ -18,7 +18,7 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class NptDto:
+class NptDetailsDto:
     """
     A Npt is a task that does not belong to the project. It is only
     visible to the person who created it, and the users assigned to it.

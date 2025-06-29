@@ -51,6 +51,7 @@ from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
 from ProjectManagerSdk.models.apikeycreatedto import ApiKeyCreateDto
 from ProjectManagerSdk.models.apikeydto import ApiKeyDto
 from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
+from ProjectManagerSdk.models.assignmentdto import AssignmentDto
 from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
@@ -93,6 +94,7 @@ from ProjectManagerSdk.models.notificationtotalcountdto import NotificationTotal
 from ProjectManagerSdk.models.notificationunreadcountdto import NotificationUnreadCountDto
 from ProjectManagerSdk.models.nptassigneedto import NptAssigneeDto
 from ProjectManagerSdk.models.nptcreatedto import NptCreateDto
+from ProjectManagerSdk.models.nptdetailsdto import NptDetailsDto
 from ProjectManagerSdk.models.nptdto import NptDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
@@ -138,6 +140,7 @@ from ProjectManagerSdk.models.resourcesdto import ResourcesDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+from ProjectManagerSdk.models.riskdto import RiskDto
 from ProjectManagerSdk.models.riskexportprogressfilterdto import RiskExportProgressFilterDto
 from ProjectManagerSdk.models.riskexportsettingsdto import RiskExportSettingsDto
 from ProjectManagerSdk.models.statedto import StateDto
@@ -155,6 +158,7 @@ from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
 from ProjectManagerSdk.models.taskfiledto import TaskFileDto
 from ProjectManagerSdk.models.taskmetadatasearchdto import TaskMetadataSearchDto
 from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
+from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
