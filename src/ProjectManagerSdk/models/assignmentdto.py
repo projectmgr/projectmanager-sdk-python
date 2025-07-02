@@ -16,20 +16,24 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class TimeSheetApprovalDto:
+class AssignmentDto:
     """
-    Represents a timesheet approval request
+    User assigned to task or risk
+    """
+
+    taskId: str | None = None
+    """
+    Task or risk the user is assigned to
+    """
+
+    projectId: str | None = None
+    """
+    The task or risk project Id
     """
 
     resourceId: str | None = None
     """
-    The id for the resource, if null it indicates the request is for the
-    current logged-in user
-    """
-
-    date: str | None = None
-    """
-    The date of the week to which the timesheet applies
+    Resource identifier
     """
 
 
