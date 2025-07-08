@@ -46,7 +46,7 @@ class RiskExportSettingsDto:
     Which column should be used to order the data Valid options are: *
     name * createDate * assignees * dueDate * impact * level *
     likelihood * openClosed * priority * response * tags * description *
-    resolution
+    resolution * type
     """
 
     orderDirection: str | None = None
