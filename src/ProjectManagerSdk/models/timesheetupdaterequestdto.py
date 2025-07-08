@@ -36,4 +36,9 @@ class TimesheetUpdateRequestDto:
     Notes
     """
 
+    documentIds: List[str] | None = None
+    """
+    Document Ids
+    """
+
 

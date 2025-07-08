@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.timesheetfileresponsedto import TimesheetFileResponseDto
 from typing import List
 import dataclasses
 
@@ -79,6 +80,11 @@ class TimesheetResponseDto:
     lastUpdatedDate: str | None = None
     """
     Is the last timesheet modified by the user
+    """
+
+    documents: List[TimesheetFileResponseDto] | None = None
+    """
+    Document Details
     """
 
 

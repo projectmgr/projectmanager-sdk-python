@@ -142,4 +142,10 @@ class RiskDto:
     The number of comments added to the risk.
     """
 
+    riskTypeId: int | None = None
+    """
+    The id of the Risk Type Risk = 1 Assumption = 2 Issue = 3 Dependency
+    = 4 Change = 5
+    """
+
 

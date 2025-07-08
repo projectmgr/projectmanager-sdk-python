@@ -176,6 +176,7 @@ from ProjectManagerSdk.models.timesheetapprovalresponsedto import TimeSheetAppro
 from ProjectManagerSdk.models.timesheetcreaterequestdto import TimesheetCreateRequestDto
 from ProjectManagerSdk.models.timesheetdto import TimesheetDto
 from ProjectManagerSdk.models.timesheetfiledto import TimesheetFileDto
+from ProjectManagerSdk.models.timesheetfileresponsedto import TimesheetFileResponseDto
 from ProjectManagerSdk.models.timesheetprojectdto import TimeSheetProjectDto
 from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto

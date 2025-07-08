@@ -22,6 +22,11 @@ class TimeSheetApprovalResponseDto:
     Holds the list of pending timesheet approvals
     """
 
+    modifiedDate: str | None = None
+    """
+    Date and time (in UTC) that this timesheet entry was last modified.
+    """
+
     pendingApprovals: List[PendingTimeSheetApprovalDto] | None = None
     """
     A list of pending timesheet approvals
