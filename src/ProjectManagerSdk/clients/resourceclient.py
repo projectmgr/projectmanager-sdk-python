@@ -162,6 +162,32 @@ class ResourceClient:
             response.load_error(result)
             return response
 
+    def delete_resource(self, resourceId: str) -> AstroResult[ResourceDto]:
+        """
+        Deletes an existing Resource based on information you provide. A
+        Resource represents a person, material, or tool used within your
+        Projects. When you attach a Resources to more than one Task, the
+        software will schedule the usage of your Resource so that it is
+        not allocated to more than one Task at the same time. The users
+        in your Workspace are also considered Resources. To invite a new
+        User to your Workspace, create a new Resource for that user.
+
+        Parameters
+        ----------
+        resourceId : str
+            The id of the resource
+        """
+        path = f"/api/data/resources/{resourceId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ResourceDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ResourceDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
     def create_many_resources(self, body: ResourcesCreateDto) -> AstroResult[ResourcesDto]:
         """
         Create new Resources within your Workspace. A Resource
