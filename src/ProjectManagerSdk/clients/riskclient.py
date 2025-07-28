@@ -54,10 +54,12 @@ class RiskClient:
             response.load_error(result)
             return response
 
-    def get_risk_list(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[RiskDto]]:
+    def query_risks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[RiskDto]]:
         """
         Retrieve a list of risks that match an [OData formatted
-        query](https://www.odata.org/).
+        query](https://www.odata.org/). A Risk represents a tracked item
+        of concern for a project. Risks may be categorized as Changes,
+        Risks, Assumptions, Issues, or Dependencies.
 
         Parameters
         ----------
