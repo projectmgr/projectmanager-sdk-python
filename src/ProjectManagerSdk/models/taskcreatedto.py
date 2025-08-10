@@ -118,4 +118,9 @@ class TaskCreateDto:
     relate to other tasks.
     """
 
+    parentId: str | None = None
+    """
+    ParentId
+    """
+
 

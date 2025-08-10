@@ -16,8 +16,11 @@ from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
 from ProjectManagerSdk.clients.notificationclient import NotificationClient
 from ProjectManagerSdk.clients.nptclient import NptClient
+from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
 from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
 from ProjectManagerSdk.clients.nptstatusclient import NptStatusClient
+from ProjectManagerSdk.clients.npttagclient import NptTagClient
+from ProjectManagerSdk.clients.npttodosclient import NptTodosClient
 from ProjectManagerSdk.clients.projectchargecodeclient import ProjectChargeCodeClient
 from ProjectManagerSdk.clients.projectclient import ProjectClient
 from ProjectManagerSdk.clients.projectcustomerclient import ProjectCustomerClient

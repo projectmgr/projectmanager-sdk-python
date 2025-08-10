@@ -21,25 +21,25 @@ import dataclasses
 import json
 import dacite
 
-class DiscussionClient:
+class NptDiscussionClient:
     """
-    API methods related to Discussion
+    API methods related to NptDiscussion
     """
     from ProjectManagerSdk.projectmanagerclient import ProjectManagerClient
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_task_comments(self, taskId: str) -> AstroResult[List[DiscussionCommentDto]]:
+    def retrieve_npt_comments(self, nptId: str) -> AstroResult[List[DiscussionCommentDto]]:
         """
-        Retrieve all comments written about a task
+        Retrieve all comments written about a Npt
 
         Parameters
         ----------
-        taskId : str
-            The unique ID number of the task to retrieve comments
+        nptId : str
+            The unique ID number of the Npt to retrieve comments
         """
-        path = f"/api/data/tasks/{taskId}/comments"
+        path = f"/api/data/non-project-tasks/{nptId}/comments"
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
@@ -52,9 +52,9 @@ class DiscussionClient:
             response.load_error(result)
             return response
 
-    def create_task_comment(self, taskId: str, body: DiscussionCommentCreateDto) -> AstroResult[DiscussionCommentCreateResponseDto]:
+    def create_npt_comments(self, nptId: str, body: DiscussionCommentCreateDto) -> AstroResult[DiscussionCommentCreateResponseDto]:
         """
-        Adds a Markdown-formatted comment to a task. Tasks can have
+        Adds a Markdown-formatted comment to a Npt. Npts can have
         discussions attached to them. These discussions can include text
         with simple formatting. Discussion comments are formatted using
         [Markdown](https://www.markdownguide.org/) and users should be
@@ -63,12 +63,12 @@ class DiscussionClient:
 
         Parameters
         ----------
-        taskId : str
-            The unique ID number of the task being commented upon
+        nptId : str
+            The unique ID number of the Npt being commented upon
         body : DiscussionCommentCreateDto
             The Markdown-formatted text of the comment
         """
-        path = f"/api/data/tasks/{taskId}/comments"
+        path = f"/api/data/non-project-tasks/{nptId}/comments"
         queryParams = {}
         result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
@@ -79,7 +79,7 @@ class DiscussionClient:
             response.load_error(result)
             return response
 
-    def like_comment(self, commentId: str) -> AstroResult[object]:
+    def like_a_comment(self, commentId: str) -> AstroResult[object]:
         """
         Puts a thumbsup on a comment
 
@@ -88,7 +88,7 @@ class DiscussionClient:
         commentId : str
             the id of the comment
         """
-        path = f"/api/data/comments/{commentId}/like"
+        path = f"/api/data/non-project-tasks/comments/{commentId}/like"
         queryParams = {}
         result = self.client.send_request("POST", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
@@ -99,7 +99,7 @@ class DiscussionClient:
             response.load_error(result)
             return response
 
-    def unlike_comment(self, commentId: str) -> AstroResult[object]:
+    def removes_a_thumbsup_from_a_comment(self, commentId: str) -> AstroResult[object]:
         """
         Unlike a comment that was previously liked
 
@@ -108,7 +108,7 @@ class DiscussionClient:
         commentId : str
             the id of the comment
         """
-        path = f"/api/data/comments/{commentId}/like"
+        path = f"/api/data/non-project-tasks/comments/{commentId}/like"
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
@@ -119,7 +119,7 @@ class DiscussionClient:
             response.load_error(result)
             return response
 
-    def remove_comment(self, commentId: str) -> AstroResult[object]:
+    def remove_a_comment(self, commentId: str) -> AstroResult[object]:
         """
         Removes a comment by it's id
 
@@ -128,7 +128,7 @@ class DiscussionClient:
         commentId : str
             Remove a comment
         """
-        path = f"/api/data/comments/{commentId}"
+        path = f"/api/data/non-project-tasks/comments/{commentId}"
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:

@@ -98,6 +98,11 @@ class ResourceCreateDto:
     blurple, purple, pink, orange, gray
     """
 
+    language: str | None = None
+    """
+    Language code for this Resource.
+    """
+
     country: str | None = None
     """
     Deprecated - this property is no longer being used. Please pass in
