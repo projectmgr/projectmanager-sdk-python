@@ -41,4 +41,10 @@ class ProjectManagerDto:
     Avatar's url
     """
 
+    color: str | None = None
+    """
+    Collaboration Color for this resource. eg. teal, cyan, lightblue,
+    blurple, purple, pink, orange, gray
+    """
+
 

@@ -110,4 +110,10 @@ class ResourceUpdateDto:
     blurple, purple, pink, orange, gray
     """
 
+    language: str | None = None
+    """
+    Translation Language for this resource. e.g. en-US, en-GB, fr-FR,
+    es-ES
+    """
+
 

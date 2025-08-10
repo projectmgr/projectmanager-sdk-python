@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.filedto import FileDto
+from ProjectManagerSdk.models.taskfiledto import TaskFileDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -56,5 +57,27 @@ class NptFilesClient:
             return AstroResult[FileDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[FileDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def get_npt_files(self, taskId: str) -> AstroResult[List[TaskFileDto]]:
+        """
+        retrieves Npt files
+
+        Parameters
+        ----------
+        taskId : str
+            The reference to the Npt
+        """
+        path = f"/api/data/non-project-tasks/{taskId}/files"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=TaskFileDto, data=dict))
+            return AstroResult[List[TaskFileDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[TaskFileDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

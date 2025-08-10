@@ -39,6 +39,12 @@ class ResourceDto:
     The resource initials.
     """
 
+    name: str | None = None
+    """
+    The name of the Resource. Usually this is the same as the FirstName
+    and LastName
+    """
+
     firstName: str | None = None
     """
     The first name of the person Resource. Applies to personnel
@@ -172,6 +178,12 @@ class ResourceDto:
     avatarUrl: str | None = None
     """
     The resources avatar url, if any.
+    """
+
+    language: str | None = None
+    """
+    The language preference for this Resource, used for localization and
+    communication.
     """
 
 
