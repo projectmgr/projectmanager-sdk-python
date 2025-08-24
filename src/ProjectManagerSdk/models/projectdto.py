@@ -239,4 +239,11 @@ class ProjectDto:
     True if allow actual dates to update planned dates
     """
 
+    externalReferenceId: str | None = None
+    """
+    An optional external reference identifier for this Project. This
+    value can be used to link the Project to records in external
+    systems, such as ERP, CRM, or other integrations.
+    """
+
 

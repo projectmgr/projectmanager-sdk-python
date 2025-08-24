@@ -81,7 +81,7 @@ class TaskTodoClient:
         Parameters
         ----------
         todoId : str
-            the id of the task
+            the id of the todo
         body : TaskTodoUpdateDto
             the data for updating a todo
         """

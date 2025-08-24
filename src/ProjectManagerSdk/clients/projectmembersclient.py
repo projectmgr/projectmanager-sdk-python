@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectaccessdto import ProjectAccessDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 from ProjectManagerSdk.models.projectmembersaccessdto import ProjectMembersAccessDto
@@ -53,6 +54,26 @@ class ProjectMembersClient:
             return AstroResult[List[ProjectMemberDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectMemberDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def retrieve_projects_the_user_is_a_member_of(self) -> AstroResult[List[ProjectAccessDto]]:
+        """
+        Returns a list of project permissions the user is a member of
+
+        Parameters
+        ----------
+        """
+        path = "/api/data/projects/membership"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=ProjectAccessDto, data=dict))
+            return AstroResult[List[ProjectAccessDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[ProjectAccessDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
