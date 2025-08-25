@@ -297,4 +297,14 @@ class TaskDetailsDto:
     The parent task of this Task.
     """
 
+    childTaskCount: int | None = None
+    """
+    The number of child tasks
+    """
+
+    parentTaskName: str | None = None
+    """
+    The name for the parent task of this Task.
+    """
+
 

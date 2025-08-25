@@ -14,6 +14,8 @@
 
 from ProjectManagerSdk.models.nptassigneedto import NptAssigneeDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
+from ProjectManagerSdk.models.tasktagdto import TaskTagDto
+from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from typing import List
 import dataclasses
 
@@ -60,9 +62,60 @@ class NptDetailsDto:
     time zone.
     """
 
+    actualStartDate: str | None = None
+    """
+    If set, this is the actual date when work began on the Task. This
+    value contains only the date in year-month-day format. For display,
+    this date will always be shown as this same year-month-day
+    regardless of time zone. For reporting purposes, this date is
+    calculated against the official time zone of the Workspace. For
+    example: A Task has a planned completion date of July 5, 2023 in a
+    Workspace that has a time zone of US Pacific Time (GMT-7 or GMT-8,
+    depending on daylight savings time). This project is considered
+    overdue on 12:01 AM July 6th 2023 in US Pacific time.
+    """
+
+    actualFinishDate: str | None = None
+    """
+    If set, this is the actual date when work was completed on this
+    Task. This value contains only the date in year-month-day format.
+    For display, this date will always be shown as this same
+    year-month-day regardless of time zone. For reporting purposes, this
+    date is calculated against the official time zone of the Workspace.
+    For example: A Task has a planned completion date of July 5, 2023 in
+    a Workspace that has a time zone of US Pacific Time (GMT-7 or GMT-8,
+    depending on daylight savings time). This project is considered
+    overdue on 12:01 AM July 6th 2023 in US Pacific time.
+    """
+
     actualEffort: int | None = None
     """
     The actual effort (in minutes) for this Task.
+    """
+
+    actualDuration: int | None = None
+    """
+    The actual duration (in minutes) for this Task.
+    """
+
+    actualCost: float | None = None
+    """
+    The actual cost of this Task to date, if known.
+    """
+
+    plannedCost: float | None = None
+    """
+    The planned cost for this Task. Cannot be negative.
+    """
+
+    plannedDuration: int | None = None
+    """
+    The planned duration (in minutes) for this Task.
+    """
+
+    plannedEffort: int | None = None
+    """
+    The planned effort (in minutes) for this Task.
     """
 
     priorityId: int | None = None
@@ -93,6 +146,16 @@ class NptDetailsDto:
     """
     A short ID that can be used to refer to this Task. This short ID is
     guaranteed to be unique within your Workspace.
+    """
+
+    tags: List[TaskTagDto] | None = None
+    """
+    The TaskTags that apply to this Task.
+    """
+
+    todos: List[TaskTodoDto] | None = None
+    """
+    A list of TaskTodo items, which are sub-tasks within this Task.
     """
 
 

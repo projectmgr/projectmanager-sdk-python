@@ -238,3 +238,23 @@ class ResourceClient:
             response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def get_resource_avatar(self, resourceId: str) -> AstroResult[object]:
+        """
+        Get Resource Avatar
+
+        Parameters
+        ----------
+        resourceId : str
+            The id of the resource
+        """
+        path = f"/api/data/resources/{resourceId}/avatar"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

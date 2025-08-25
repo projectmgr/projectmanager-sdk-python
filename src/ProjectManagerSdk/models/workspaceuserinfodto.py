@@ -45,6 +45,11 @@ class WorkSpaceUserInfoDto:
     The full name of the currently logged in user.
     """
 
+    workSpaceId: str | None = None
+    """
+    The id of the workspace the user is currently logged into.
+    """
+
     workSpaceName: str | None = None
     """
     The name of the Workspace that the current user has logged onto. For
@@ -72,6 +77,33 @@ class WorkSpaceUserInfoDto:
     """
     Workspace Permissions that the user has within the current
     Workspace.
+    """
+
+    workSpaceStatus: str | None = None
+    """
+    The current account status of this WorkSpace. This can be one of
+    four statuses: - Trial - Active - Cancelled - Expired
+    """
+
+    workSpaceIsActive: bool | None = None
+    """
+    This is true if the WorkSpace is in the Active or Trial state.
+    """
+
+    workSpaceCountry: str | None = None
+    """
+    The name of the country that the current Workspace is located in.
+    """
+
+    workSpaceCountryCode: str | None = None
+    """
+    Returns the iso country code for the current workspace.
+    """
+
+    location: str | None = None
+    """
+    The location of the user, which is a combination of city, state (US
+    Only), and country.
     """
 
 

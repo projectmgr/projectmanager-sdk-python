@@ -103,6 +103,7 @@ from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
 from ProjectManagerSdk.models.pendingtimesheetapprovaldto import PendingTimeSheetApprovalDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
+from ProjectManagerSdk.models.projectaccessdto import ProjectAccessDto
 from ProjectManagerSdk.models.projectaccessentrydto import ProjectAccessEntryDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto

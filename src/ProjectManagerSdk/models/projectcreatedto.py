@@ -158,4 +158,11 @@ class ProjectCreateDto:
     created but may not be updated afterwards.
     """
 
+    externalReferenceId: str | None = None
+    """
+    An optional external reference identifier for this Project. This
+    value can be used to link the Project to records in external
+    systems, such as ERP, CRM, or other integrations.
+    """
+
 
