@@ -129,6 +129,12 @@ class ProjectCreateDto:
     choose from a list of ProjectManager-supplied templates.
     """
 
+    template: bool | None = None
+    """
+    True if this Project is a Template project. Template projects can be
+    used as
+    """
+
     targetDate: str | None = None
     """
     The target planned completion date for this Project, or null if one
