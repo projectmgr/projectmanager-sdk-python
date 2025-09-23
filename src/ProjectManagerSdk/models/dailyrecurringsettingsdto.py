@@ -16,15 +16,24 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class DirectLinkDto:
+class DailyRecurringSettingsDto:
     """
-    This class contains the URL to use to authenticate with the
-    Integration Provider.
+    Settings for Daily Recurring Tasks
     """
 
-    url: str | None = None
+    recurringEndDate: str | None = None
     """
-    The URL to use to authenticate with the Integration Provider.
+    RecurringEndDate
+    """
+
+    endAfterNumberOfOccurences: int | None = None
+    """
+    EndAfterNumberOfOccurences
+    """
+
+    repeatOnEveryNumberOfWeekDays: int | None = None
+    """
+    RepeatOnEveryNumberOfWeekDays
     """
 
 

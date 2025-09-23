@@ -43,6 +43,7 @@ from ProjectManagerSdk.clients.taskclient import TaskClient
 from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
 from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
 from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
+from ProjectManagerSdk.clients.taskrecurrencyclient import TaskRecurrencyClient
 from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
 from ProjectManagerSdk.clients.tasktagclient import TaskTagClient
 from ProjectManagerSdk.clients.tasktodoclient import TaskTodoClient
@@ -58,7 +59,6 @@ from ProjectManagerSdk.models.assignmentdto import AssignmentDto
 from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
-from ProjectManagerSdk.models.authenticationstatusdto import AuthenticationStatusDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.countrydto import CountryDto
@@ -66,9 +66,9 @@ from ProjectManagerSdk.models.countryholidaydto import CountryHolidayDto
 from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillDto
 from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
 from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
+from ProjectManagerSdk.models.dailyrecurringsettingsdto import DailyRecurringSettingsDto
 from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
 from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
-from ProjectManagerSdk.models.directlinkdto import DirectLinkDto
 from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
 from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
 from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
@@ -88,6 +88,7 @@ from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceD
 from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderDto
 from ProjectManagerSdk.models.licensedto import LicenseDto
 from ProjectManagerSdk.models.masterconnectionschemedto import MasterConnectionSchemeDto
+from ProjectManagerSdk.models.monthlyrecurringsettingsdto import MonthlyRecurringSettingsDto
 from ProjectManagerSdk.models.namedto import NameDto
 from ProjectManagerSdk.models.notificationdatadto import NotificationDataDto
 from ProjectManagerSdk.models.notificationdto import NotificationDto
@@ -135,6 +136,8 @@ from ProjectManagerSdk.models.projectversiondto import ProjectVersionDto
 from ProjectManagerSdk.models.projectworkingdaysdto import ProjectWorkingDaysDto
 from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
+from ProjectManagerSdk.models.recurringtaskchangesetdetails import RecurringTaskChangeSetDetails
+from ProjectManagerSdk.models.recurringtaskchangesetdetailschangesetstatusdto import RecurringTaskChangeSetDetailsChangeSetStatusDto
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
@@ -193,7 +196,9 @@ from ProjectManagerSdk.models.updateresourceteamdto import UpdateResourceTeamDto
 from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
 from ProjectManagerSdk.models.usererror import UserError
 from ProjectManagerSdk.models.userroledto import UserRoleDto
+from ProjectManagerSdk.models.weeklyrecurringsettingsdto import WeeklyRecurringSettingsDto
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
 from ProjectManagerSdk.models.workspacepermissionsdto import WorkSpacePermissionsDto
 from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
+from ProjectManagerSdk.models.yearlyrecurringsettingsdto import YearlyRecurringSettingsDto

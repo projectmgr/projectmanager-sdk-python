@@ -16,15 +16,29 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class AuthenticationStatusDto:
+class WeeklyRecurringSettingsDto:
     """
-    Set the connection status of an integration
+    Settings for Weeky Recurring Tasks
     """
 
-    connected: bool | None = None
+    recurringEndDate: str | None = None
     """
-    Set to true if the connection was successful. False is not supported
-    right now.
+    RecurringEndDate
+    """
+
+    endAfterNumberOfOccurences: int | None = None
+    """
+    EndAfterNumberOfOccurences
+    """
+
+    repeatOnEveryNumberOfWeeks: int | None = None
+    """
+    RepeatOnEveryNumberOfWeeks
+    """
+
+    repeatWeekDays: List[int] | None = None
+    """
+    RepeatWeekDays
     """
 
 

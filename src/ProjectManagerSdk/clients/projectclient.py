@@ -183,3 +183,27 @@ class ProjectClient:
             response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def restore_project(self, projectId: str) -> AstroResult[object]:
+        """
+        Restore a soft deleted project based on its unique identifier. A
+        Project is a collection of Tasks that contributes towards a
+        goal. Within a Project, Tasks represent individual items of work
+        that team members must complete. The sum total of Tasks within a
+        Project represents the work to be completed for that Project.
+
+        Parameters
+        ----------
+        projectId : str
+            The unique identifier of the Project to delete
+        """
+        path = f"/api/data/projects/{projectId}/restore"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
