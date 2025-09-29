@@ -16,19 +16,14 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class RecurringTaskValidationResultDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    RecurringTaskValidationResult
     """
 
-    changeSetId: str | None = None
+    deletedTaskIds: List[str] | None = None
     """
-    The ChangeSet Id
+    The Deleted Task Ids
     """
 
 

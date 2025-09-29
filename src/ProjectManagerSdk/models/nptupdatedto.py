@@ -37,22 +37,6 @@ class NptUpdateDto:
     panel, then edit the "Description" field.
     """
 
-    plannedStartDate: str | None = None
-    """
-    The date when work on this Task is planned to begin. This value
-    contains only the date in year-month-day format. For display, this
-    date will always be shown as this same year-month-day regardless of
-    time zone.
-    """
-
-    plannedFinishDate: str | None = None
-    """
-    The date when work on this Task is expected to complete. This value
-    contains only the date in year-month-day format. For display, this
-    date will always be shown as this same year-month-day regardless of
-    time zone.
-    """
-
     priorityId: int | None = None
     """
     Return the priority of a task
@@ -72,9 +56,35 @@ class NptUpdateDto:
     The status assigned to this Npt
     """
 
-    assignees: List[str] | None = None
+    plannedStartDate: str | None = None
     """
-    If specified, replaces the list of resources assigned to this npt.
+    The date when work on this Task is planned to begin. This value
+    contains only the date in year-month-day format. For display, this
+    date will always be shown as this same year-month-day regardless of
+    time zone.
+    """
+
+    plannedFinishDate: str | None = None
+    """
+    The date when work on this Task is expected to complete. This value
+    contains only the date in year-month-day format. For display, this
+    date will always be shown as this same year-month-day regardless of
+    time zone.
+    """
+
+    plannedDuration: int | None = None
+    """
+    The planned duration (in minutes) for this Task. Cannot be negative.
+    """
+
+    plannedEffort: int | None = None
+    """
+    The planned effort (in minutes) for this Task. Cannot be negative.
+    """
+
+    plannedCost: float | None = None
+    """
+    The planned cost for this Task. Cannot be negative.
     """
 
     actualStartDate: str | None = None
@@ -103,14 +113,29 @@ class NptUpdateDto:
     overdue on 12:01 AM July 6th 2023 in US Pacific time.
     """
 
-    plannedCost: float | None = None
+    actualDuration: int | None = None
     """
-    The planned cost for this Task. Cannot be negative.
+    The actual duration (in minutes) for this Task. Cannot be negative.
     """
 
     actualCost: float | None = None
     """
     If set, this represents the actual tracked cost for this Task.
+    """
+
+    assignees: List[str] | None = None
+    """
+    If specified, replaces the list of resources assigned to this npt.
+    """
+
+    recurring: bool | None = None
+    """
+    Indicates whether this task participates in a recurring series. true
+    if the task is part of a recurrence (series parent when is, or a
+    child otherwise); false if it is a standalone task. When saved as
+    false during an update, the service layer detaches the task from its
+    series, which clears parent/child relationships including and
+    recurringSettings.
     """
 
 

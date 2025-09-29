@@ -168,6 +168,28 @@ class TaskClient:
             response.load_error(result)
             return response
 
+    def fetch_the_first_level_child_tasks_from_the_task(self, taskId: str) -> AstroResult[List[TaskDto]]:
+        """
+        Fetch the first level child tasks from the task
+
+        Parameters
+        ----------
+        taskId : str
+            Parent task id
+        """
+        path = f"/api/data/tasks/{taskId}/subtasks"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=TaskDto, data=dict))
+            return AstroResult[List[TaskDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[TaskDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
     def create_task(self, projectId: str, body: TaskCreateDto) -> AstroResult[ChangeSetStatusDto]:
         """
         Create a new Task within a specified project. A Task is an

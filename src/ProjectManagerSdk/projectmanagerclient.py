@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2025 ProjectManager.com, Inc.
-# @version    141.1.156
+# @version    142.0.226
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -57,6 +57,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.nptclient import NptClient
         from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
         from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
+        from ProjectManagerSdk.clients.nptrecurrencyclient import NptRecurrencyClient
         from ProjectManagerSdk.clients.nptstatusclient import NptStatusClient
         from ProjectManagerSdk.clients.npttagclient import NptTagClient
         from ProjectManagerSdk.clients.npttodosclient import NptTodosClient
@@ -106,6 +107,7 @@ class ProjectManagerClient:
         self.npt = NptClient(self)
         self.nptDiscussion = NptDiscussionClient(self)
         self.nptFiles = NptFilesClient(self)
+        self.nptRecurrency = NptRecurrencyClient(self)
         self.nptStatus = NptStatusClient(self)
         self.nptTag = NptTagClient(self)
         self.nptTodos = NptTodosClient(self)
@@ -143,7 +145,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "141.1.156"
+        self.sdkVersion = "142.0.226"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

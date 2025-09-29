@@ -12,10 +12,15 @@
 #
 
 
+from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
+from ProjectManagerSdk.models.filedatadto import FileDataDto
+from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
 from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.taskfiledto import TaskFileDto
+from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
+from ProjectManagerSdk.models.taskreferencedto import TaskReferenceDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
@@ -305,6 +310,73 @@ class TaskDetailsDto:
     parentTaskName: str | None = None
     """
     The name for the parent task of this Task.
+    """
+
+    ownerId: str | None = None
+    """
+    The ownerId of this Task.
+    """
+
+    owner: TaskOwnerDto | None = None
+    """
+    The owner of this Task.
+    """
+
+    recurring: bool | None = None
+    """
+    If this is a recurring task
+    """
+
+    recurringParentTaskId: str | None = None
+    """
+    The parent task in the recurring task sequence
+    """
+
+    recurringSettings: RecurringTaskSettingsDto | None = None
+    """
+    The Task Recurrency settings
+    """
+
+    approvalStatus: str | None = None
+    """
+    The Task Approval Status
+    """
+
+    approvalStatusModifiedBy: str | None = None
+    """
+    The UserId who last changed the approval status
+    """
+
+    approvalStatusModifiedDate: str | None = None
+    """
+    When the approval status was last changed
+    """
+
+    approvalLastReminderDate: str | None = None
+    """
+    the last Reminder date for the approval
+    """
+
+    discussionData: DiscussionDataDto | None = None
+    """
+    Task discussion data - number of comments, last read time
+    """
+
+    fileData: FileDataDto | None = None
+    """
+    Task file data - number of files, last read time
+    """
+
+    successors: List[TaskReferenceDto] | None = None
+    """
+    Represents a collection of tasks that should execute after the
+    current task
+    """
+
+    predecessors: List[TaskReferenceDto] | None = None
+    """
+    Represents a collection of tasks that should execute before the
+    current task
     """
 
 
