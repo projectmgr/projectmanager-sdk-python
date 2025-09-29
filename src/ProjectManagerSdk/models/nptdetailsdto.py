@@ -12,8 +12,12 @@
 #
 
 
+from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
+from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.nptassigneedto import NptAssigneeDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
+from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
+from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from typing import List
@@ -156,6 +160,46 @@ class NptDetailsDto:
     todos: List[TaskTodoDto] | None = None
     """
     A list of TaskTodo items, which are sub-tasks within this Task.
+    """
+
+    createDate: str | None = None
+    """
+    Timestamp when the NPT was created
+    """
+
+    owner: TaskOwnerDto | None = None
+    """
+    The owner of this Task.
+    """
+
+    ownerId: str | None = None
+    """
+    The ownerId of this Task.
+    """
+
+    discussionData: DiscussionDataDto | None = None
+    """
+    Task file data - number of comments, last read time
+    """
+
+    fileData: FileDataDto | None = None
+    """
+    Task file data - number of files, last read time
+    """
+
+    recurring: bool | None = None
+    """
+    If this is a recurring Npt task
+    """
+
+    recurringParentTaskId: str | None = None
+    """
+    The parent task in the recurring Npt task sequence
+    """
+
+    recurringSettings: RecurringTaskSettingsDto | None = None
+    """
+    The Npt Task Recurrency settings
     """
 
 

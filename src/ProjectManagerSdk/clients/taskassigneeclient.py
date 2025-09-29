@@ -11,6 +11,7 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
+from ProjectManagerSdk.models.assigneedto import AssigneeDto
 from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
@@ -122,5 +123,30 @@ class TaskAssigneeClient:
             return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def returns_task_assignees(self, taskId: str) -> AstroResult[List[AssigneeDto]]:
+        """
+        Returns list of assignees. A TaskAssignee is an assignment of a
+        Resource to a Task. You can assign multiple Resources to a Task
+        and designate what proportion of their time will be allocated to
+        this Task.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task
+        """
+        path = f"/api/data/tasks/{taskId}/assignees"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=AssigneeDto, data=dict))
+            return AstroResult[List[AssigneeDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[AssigneeDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

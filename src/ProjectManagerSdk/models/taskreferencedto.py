@@ -16,19 +16,19 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class TaskReferenceDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Represents a task that links or depends on another task
     """
 
-    changeSetId: str | None = None
+    predecessorId: str | None = None
     """
-    The ChangeSet Id
+    The unique identifier for the predecessor task.
+    """
+
+    successorId: str | None = None
+    """
+    The unique identifier for the successor task.
     """
 
 

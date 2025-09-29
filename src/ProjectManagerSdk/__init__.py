@@ -18,6 +18,7 @@ from ProjectManagerSdk.clients.notificationclient import NotificationClient
 from ProjectManagerSdk.clients.nptclient import NptClient
 from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
 from ProjectManagerSdk.clients.nptfilesclient import NptFilesClient
+from ProjectManagerSdk.clients.nptrecurrencyclient import NptRecurrencyClient
 from ProjectManagerSdk.clients.nptstatusclient import NptStatusClient
 from ProjectManagerSdk.clients.npttagclient import NptTagClient
 from ProjectManagerSdk.clients.npttodosclient import NptTodosClient
@@ -54,6 +55,7 @@ from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
 # Data models
 from ProjectManagerSdk.models.apikeycreatedto import ApiKeyCreateDto
 from ProjectManagerSdk.models.apikeydto import ApiKeyDto
+from ProjectManagerSdk.models.assigneedto import AssigneeDto
 from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
 from ProjectManagerSdk.models.assignmentdto import AssignmentDto
 from ProjectManagerSdk.models.astroerror import AstroError
@@ -69,14 +71,17 @@ from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
 from ProjectManagerSdk.models.dailyrecurringsettingsdto import DailyRecurringSettingsDto
 from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
 from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
+from ProjectManagerSdk.models.deletedtasksdto import DeletedTasksDto
 from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
 from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
 from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
 from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
+from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
 from ProjectManagerSdk.models.exportdto import ExportDto
 from ProjectManagerSdk.models.exportduedatefilterdto import ExportDueDateFilterDto
 from ProjectManagerSdk.models.exportpriorityfilterdto import ExportPriorityFilterDto
+from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
 from ProjectManagerSdk.models.iddto import IdDto
@@ -138,6 +143,8 @@ from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
 from ProjectManagerSdk.models.recurringtaskchangesetdetails import RecurringTaskChangeSetDetails
 from ProjectManagerSdk.models.recurringtaskchangesetdetailschangesetstatusdto import RecurringTaskChangeSetDetailsChangeSetStatusDto
+from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
+from ProjectManagerSdk.models.recurringtaskvalidationresultdto import RecurringTaskValidationResultDto
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
@@ -168,6 +175,7 @@ from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
+from ProjectManagerSdk.models.taskreferencedto import TaskReferenceDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto

@@ -16,19 +16,24 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class DiscussionDataDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Task discussion data
     """
 
-    changeSetId: str | None = None
+    count: int | None = None
     """
-    The ChangeSet Id
+    Count of task comments
+    """
+
+    lastUpdatedDate: str | None = None
+    """
+    Last update date
+    """
+
+    lastReadDate: str | None = None
+    """
+    Last read date
     """
 
 

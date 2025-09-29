@@ -120,6 +120,11 @@ class TaskUpdateDto:
     overdue on 12:01 AM July 6th 2023 in US Pacific time.
     """
 
+    actualDuration: int | None = None
+    """
+    The actual duration (in minutes) for this Task. Cannot be negative.
+    """
+
     actualCost: float | None = None
     """
     If set, this represents the actual tracked cost for this Task.

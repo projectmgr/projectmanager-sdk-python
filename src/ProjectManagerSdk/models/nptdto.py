@@ -14,6 +14,7 @@
 
 from ProjectManagerSdk.models.nptassigneedto import NptAssigneeDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
+from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from typing import List
@@ -156,6 +157,21 @@ class NptDto:
     todos: List[TaskTodoDto] | None = None
     """
     A list of TaskTodo items, which are sub-tasks within this Task.
+    """
+
+    createDate: str | None = None
+    """
+    Timestamp when the NPT was created
+    """
+
+    owner: TaskOwnerDto | None = None
+    """
+    The owner of this Task.
+    """
+
+    ownerId: str | None = None
+    """
+    The ownerId of this Task.
     """
 
 

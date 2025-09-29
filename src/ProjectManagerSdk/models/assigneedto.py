@@ -16,19 +16,19 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class AssigneeDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Task assignee dto
     """
 
-    changeSetId: str | None = None
+    resourceId: str | None = None
     """
-    The ChangeSet Id
+    Assignee resource id
+    """
+
+    percentAssignment: float | None = None
+    """
+    Percent of work assigned to task
     """
 
 

@@ -58,4 +58,9 @@ class NptCreateDto:
     Specify a list of resources to assign to this NPT
     """
 
+    statusId: str | None = None
+    """
+    The unique identifier of the NptStatus for this Npt
+    """
+
 

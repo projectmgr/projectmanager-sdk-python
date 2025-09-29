@@ -16,19 +16,39 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class RecurringTaskSettingsDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Recurring settings for a task
     """
 
-    changeSetId: str | None = None
+    type: int | None = None
     """
-    The ChangeSet Id
+    Type
+    """
+
+    repeatEvery: int | None = None
+    """
+    RepeatEvery
+    """
+
+    repeatOn: List[int] | None = None
+    """
+    RepeatOn
+    """
+
+    repeatOn2Level: int | None = None
+    """
+    RepeatOn2Level
+    """
+
+    endsOn: str | None = None
+    """
+    EndsOn
+    """
+
+    endsAfter: int | None = None
+    """
+    EndsAfter
     """
 
 

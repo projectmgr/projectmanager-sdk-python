@@ -16,19 +16,19 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class DeletedTasksDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Contains details of recurring NPT task deletions.
     """
 
-    changeSetId: str | None = None
+    deletedCount: int | None = None
     """
-    The ChangeSet Id
+    The total number of tasks that were deleted.
+    """
+
+    deletedTaskIds: List[str] | None = None
+    """
+    The unique identifiers of the tasks that were deleted.
     """
 
 
