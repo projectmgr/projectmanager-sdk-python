@@ -31,4 +31,9 @@ class AssigneeDto:
     Percent of work assigned to task
     """
 
+    assignedEffort: int | None = None
+    """
+    Effort assigned to the resource for the task.
+    """
+
 
