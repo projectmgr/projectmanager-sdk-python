@@ -32,7 +32,7 @@ class UserError:
     A description of the reason this Resource could not be created
     """
 
-    statusCode: int | None = None
+    statusCode: str | None = None
     """
     A status code explaining the category of reason this Resource could
     not be created
