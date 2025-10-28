@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectstatuscreatedto import ProjectStatusCreateDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -50,5 +51,25 @@ class ProjectStatusClient:
             return AstroResult[List[ProjectStatusDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectStatusDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_project_status(self, body: ProjectStatusCreateDto) -> AstroResult[ProjectStatusDto]:
+        """
+        Create a project Status
+
+        Parameters
+        ----------
+        body : ProjectStatusCreateDto
+            The data to create the Status
+        """
+        path = "/api/data/projects/statuses"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectStatusDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectStatusDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

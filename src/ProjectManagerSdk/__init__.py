@@ -112,6 +112,7 @@ from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from ProjectManagerSdk.models.projectaccessdto import ProjectAccessDto
 from ProjectManagerSdk.models.projectaccessentrydto import ProjectAccessEntryDto
 from ProjectManagerSdk.models.projectchangestatusdto import ProjectChangeStatusDto
+from ProjectManagerSdk.models.projectchargecodecreatedto import ProjectChargeCodeCreateDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from ProjectManagerSdk.models.projectcreateaccessdto import ProjectCreateAccessDto
 from ProjectManagerSdk.models.projectcreateaccessmemberdto import ProjectCreateAccessMemberDto
@@ -132,6 +133,7 @@ from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 from ProjectManagerSdk.models.projectmembersaccessdto import ProjectMembersAccessDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
+from ProjectManagerSdk.models.projectstatuscreatedto import ProjectStatusCreateDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
 from ProjectManagerSdk.models.projecttemplatecategorydto import ProjectTemplateCategoryDto
 from ProjectManagerSdk.models.projecttemplatedto import ProjectTemplateDto
@@ -204,6 +206,8 @@ from ProjectManagerSdk.models.updateresourceteamdto import UpdateResourceTeamDto
 from ProjectManagerSdk.models.updatetaskfieldvaluedto import UpdateTaskFieldValueDto
 from ProjectManagerSdk.models.usererror import UserError
 from ProjectManagerSdk.models.userroledto import UserRoleDto
+from ProjectManagerSdk.models.userrolepermissiondto import UserRolePermissionDto
+from ProjectManagerSdk.models.userrolepermissionsdto import UserRolePermissionsDto
 from ProjectManagerSdk.models.weeklyrecurringsettingsdto import WeeklyRecurringSettingsDto
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto

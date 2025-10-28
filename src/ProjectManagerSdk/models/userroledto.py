@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.userrolepermissionsdto import UserRolePermissionsDto
 from typing import List
 import dataclasses
 
@@ -32,6 +33,42 @@ class UserRoleDto:
     name: str | None = None
     """
     The friendly name of this UserRole.
+    """
+
+    description: str | None = None
+    """
+    The description of this UserRole.
+    """
+
+    isAdmin: bool | None = None
+    """
+    Set to true if this is the default Admin role
+    """
+
+    isCustom: bool | None = None
+    """
+    Set to true if this is a custom role (Only supported on Enterprise
+    Plan)
+    """
+
+    isGlobalAdmin: bool | None = None
+    """
+    Set to true if this is the default Global Admin role
+    """
+
+    isGuest: bool | None = None
+    """
+    Set to true if this is the Guest role
+    """
+
+    isDefault: bool | None = None
+    """
+    This is the role that will be assigned to new users by default.
+    """
+
+    permissions: UserRolePermissionsDto | None = None
+    """
+    Returns the permission setup associated with this UserRole
     """
 
 

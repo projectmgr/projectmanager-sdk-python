@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectchargecodecreatedto import ProjectChargeCodeCreateDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -49,5 +50,25 @@ class ProjectChargeCodeClient:
             return AstroResult[List[ProjectChargeCodeDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectChargeCodeDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_project_charge_code(self, body: ProjectChargeCodeCreateDto) -> AstroResult[ProjectChargeCodeDto]:
+        """
+        Create a project charge code
+
+        Parameters
+        ----------
+        body : ProjectChargeCodeCreateDto
+            The data to create the charge code
+        """
+        path = "/api/data/projects/chargecodes"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectChargeCodeDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectChargeCodeDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectChargeCodeDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
