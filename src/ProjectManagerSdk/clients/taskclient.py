@@ -87,7 +87,9 @@ class TaskClient:
         Workspace. A Task is an individual element of work that must be
         performed to complete a Project. A Task can have one or more
         Resources assigned to it. Tasks can be linked to other Tasks to
-        indicate whether they have a dependency or a connection.
+        indicate whether they have a dependency or a connection. This
+        GET operation will also update the internal "last viewed" date
+        for this Task for the current user.
 
         Parameters
         ----------

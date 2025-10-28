@@ -16,26 +16,16 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ProjectChargeCodeDto:
+class ProjectStatusCreateDto:
     """
-    A ChargeCode is a code used to identify costs within your Projects.
-    Each ChargeCode has a name and a unique identifier. ChargeCodes are
-    defined per Workspace and are shared among Projects.
-    """
-
-    id: str | None = None
-    """
-    The unique identifier of this ChargeCode
+    A ProjectStatus is a code used to identify costs within your
+    Projects. Each ProjectStatus has a name and a unique identifier.
+    Status are defined per Workspace and are shared among Projects.
     """
 
     name: str | None = None
     """
-    The name of this ChargeCode
-    """
-
-    isActive: bool | None = None
-    """
-    Status of Charge Code
+    The name of this ProjectStatus
     """
 
 

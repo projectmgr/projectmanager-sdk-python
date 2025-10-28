@@ -16,26 +16,26 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class UserError:
+class UserRolePermissionDto:
     """
-    Represents an individual error for a specific Resource that could
-    not be created in the context of a bulk Resource creation API call.
-    """
-
-    email: str | None = None
-    """
-    The email of the Resource that could not be created
+    The basic permission object
     """
 
-    reason: str | None = None
+    description: str | None = None
     """
-    A description of the reason this Resource could not be created
+    The description of the permission
     """
 
-    statusCode: str | None = None
+    value: bool | None = None
     """
-    A status code explaining the category of reason this Resource could
-    not be created
+    True if the permission is on
+    """
+
+    canBeModified: bool | None = None
+    """
+    If true this permission can be turned on or off for this role. Most
+    roles can have all permissions modified, but some roles have all or
+    some permissions fixed.
     """
 
 

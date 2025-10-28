@@ -72,4 +72,14 @@ class ProjectTemplateDto:
     The web default view of the template.
     """
 
+    ownerId: str | None = None
+    """
+    Used for custom templates - the template owner
+    """
+
+    createDate: str | None = None
+    """
+    User for custom templates - when was it created?
+    """
+
 
