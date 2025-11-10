@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectstatuscreatedto import ProjectStatusCreateDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
+from ProjectManagerSdk.models.projectstatusupdatedto import ProjectStatusUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -71,5 +72,47 @@ class ProjectStatusClient:
             return AstroResult[ProjectStatusDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ProjectStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_project_status(self, projectStatusId: str, body: ProjectStatusUpdateDto) -> AstroResult[ProjectStatusDto]:
+        """
+        Update a project Status
+
+        Parameters
+        ----------
+        projectStatusId : str
+            The status Id
+        body : ProjectStatusUpdateDto
+            The data to create the Status
+        """
+        path = f"/api/data/projects/statuses/{projectStatusId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectStatusDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def delete_project_status(self, projectStatusId: str) -> AstroResult[object]:
+        """
+        Delete a project Status
+
+        Parameters
+        ----------
+        projectStatusId : str
+            The status Id
+        """
+        path = f"/api/data/projects/statuses/{projectStatusId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

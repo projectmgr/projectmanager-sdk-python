@@ -16,16 +16,15 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ProjectChargeCodeCreateDto:
+class ProjectFolderUpdateDto:
     """
-    A Charge Code is a code used to identify costs within your Projects.
-    Each Charge Code has a name and a unique identifier. ChargeCodes are
-    defined per Workspace and are shared among Projects.
+    A ProjectFolder is a named storage location that can contain
+    Projects.
     """
 
     name: str | None = None
     """
-    The name of this Charge Code
+    The name of this ProjectFolder.
     """
 
 

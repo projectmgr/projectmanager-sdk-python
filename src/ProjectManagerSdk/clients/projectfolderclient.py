@@ -12,7 +12,9 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectfoldercreatedto import ProjectFolderCreateDto
 from ProjectManagerSdk.models.projectfolderdto import ProjectFolderDto
+from ProjectManagerSdk.models.projectfolderupdatedto import ProjectFolderUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -47,5 +49,67 @@ class ProjectFolderClient:
             return AstroResult[List[ProjectFolderDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectFolderDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_project_folder(self, body: ProjectFolderCreateDto) -> AstroResult[ProjectFolderDto]:
+        """
+        Create a project folder
+
+        Parameters
+        ----------
+        body : ProjectFolderCreateDto
+            The data to create the folder
+        """
+        path = "/api/data/project-folders"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectFolderDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectFolderDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectFolderDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_project_folder(self, projectFolderId: str, body: ProjectFolderUpdateDto) -> AstroResult[ProjectFolderDto]:
+        """
+        Update a project folder
+
+        Parameters
+        ----------
+        projectFolderId : str
+            The id of the folder
+        body : ProjectFolderUpdateDto
+            The data to update the folder
+        """
+        path = f"/api/data/project-folders/{projectFolderId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectFolderDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectFolderDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectFolderDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def delete_project_folder(self, projectFolderId: str) -> AstroResult[object]:
+        """
+        Delete a project folder
+
+        Parameters
+        ----------
+        projectFolderId : str
+            The id of the folder
+        """
+        path = f"/api/data/project-folders/{projectFolderId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
