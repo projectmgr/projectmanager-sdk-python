@@ -37,12 +37,31 @@ class TimesheetClient:
 
     def create_time_entry(self, body: TimesheetCreateRequestDto) -> AstroResult[TimesheetResponseDto]:
         """
-        Creates new time entry for given resource on given day.
+        Creates new time entry for Resource on a given day. A Timesheet
+        is a collection of time entries for a particular Resource for a
+        specific week. Each time entry records the number of whole
+        minutes spent by this Resource on an activity. An activity can
+        be a Task in any project that Resource can access, or the
+        activity can be an administrative task such as "Sick Leave" or
+        "Meetings". When a time entry is linked to a Task, the number of
+        minutes spent on the time entry are recorded as time spent on
+        the Task. Time entries linked to an administrative tasks are
+        grouped for reporting but are not added to any Task within your
+        Workspace. Time entries are recorded in whole minutes. If you
+        specify a time entry in fractional hours, either using the API
+        or via the web application, the amount you specify will be
+        converted to minutes and rounded to the nearest neighbor using
+        the rounding algorithm Midpoint-Away-From-Zero. When a Timesheet
+        is submitted for approval or approved, users are no longer
+        permitted to create, update, or delete time entries for that
+        week. Users with Global Admin level access can override this
+        restriction and continue to make changes to a Timesheet after
+        approval.
 
         Parameters
         ----------
         body : TimesheetCreateRequestDto
-            Payload
+            The time entry you wish to create
         """
         path = "/api/data/timesheets"
         queryParams = {}
@@ -55,11 +74,28 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def query_timesheets(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TimesheetDto]]:
+    def query_time_entries(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[TimesheetDto]]:
         """
-        Retrieve a list of TimeSheets that match an [OData formatted
-        query](https://www.odata.org/). Time Sheets is a list of times
-        per task
+        Retrieve a list of time entries that match an [OData formatted
+        query](https://www.odata.org/). A Timesheet is a collection of
+        time entries for a particular Resource for a specific week. Each
+        time entry records the number of whole minutes spent by this
+        Resource on an activity. An activity can be a Task in any
+        project that Resource can access, or the activity can be an
+        administrative task such as "Sick Leave" or "Meetings". When a
+        time entry is linked to a Task, the number of minutes spent on
+        the time entry are recorded as time spent on the Task. Time
+        entries linked to an administrative tasks are grouped for
+        reporting but are not added to any Task within your Workspace.
+        Time entries are recorded in whole minutes. If you specify a
+        time entry in fractional hours, either using the API or via the
+        web application, the amount you specify will be converted to
+        minutes and rounded to the nearest neighbor using the rounding
+        algorithm Midpoint-Away-From-Zero. When a Timesheet is submitted
+        for approval or approved, users are no longer permitted to
+        create, update, or delete time entries for that week. Users with
+        Global Admin level access can override this restriction and
+        continue to make changes to a Timesheet after approval.
 
         Parameters
         ----------
@@ -100,12 +136,31 @@ class TimesheetClient:
 
     def delete_time_entry(self, timesheetId: str) -> AstroResult[object]:
         """
-        Delete time entry by id.
+        Delete time entry by its unique identifier. A Timesheet is a
+        collection of time entries for a particular Resource for a
+        specific week. Each time entry records the number of whole
+        minutes spent by this Resource on an activity. An activity can
+        be a Task in any project that Resource can access, or the
+        activity can be an administrative task such as "Sick Leave" or
+        "Meetings". When a time entry is linked to a Task, the number of
+        minutes spent on the time entry are recorded as time spent on
+        the Task. Time entries linked to an administrative tasks are
+        grouped for reporting but are not added to any Task within your
+        Workspace. Time entries are recorded in whole minutes. If you
+        specify a time entry in fractional hours, either using the API
+        or via the web application, the amount you specify will be
+        converted to minutes and rounded to the nearest neighbor using
+        the rounding algorithm Midpoint-Away-From-Zero. When a Timesheet
+        is submitted for approval or approved, users are no longer
+        permitted to create, update, or delete time entries for that
+        week. Users with Global Admin level access can override this
+        restriction and continue to make changes to a Timesheet after
+        approval.
 
         Parameters
         ----------
         timesheetId : str
-            time entry id
+            The unique identifier of the time entry to delete
         """
         path = f"/api/data/timesheets/{timesheetId}"
         queryParams = {}
@@ -120,14 +175,34 @@ class TimesheetClient:
 
     def update_time_entry(self, timesheetId: str, body: TimesheetUpdateRequestDto) -> AstroResult[TimesheetResponseDto]:
         """
-        Updates a time entry by its unique identifier.
+        Updates a time entry by its unique identifier. A Timesheet is a
+        collection of time entries for a particular Resource for a
+        specific week. Each time entry records the number of whole
+        minutes spent by this Resource on an activity. An activity can
+        be a Task in any project that Resource can access, or the
+        activity can be an administrative task such as "Sick Leave" or
+        "Meetings". When a time entry is linked to a Task, the number of
+        minutes spent on the time entry are recorded as time spent on
+        the Task. Time entries linked to an administrative tasks are
+        grouped for reporting but are not added to any Task within your
+        Workspace. Time entries are recorded in whole minutes. If you
+        specify a time entry in fractional hours, either using the API
+        or via the web application, the amount you specify will be
+        converted to minutes and rounded to the nearest neighbor using
+        the rounding algorithm Midpoint-Away-From-Zero. When a Timesheet
+        is submitted for approval or approved, users are no longer
+        permitted to create, update, or delete time entries for that
+        week. Users with Global Admin level access can override this
+        restriction and continue to make changes to a Timesheet after
+        approval.
 
         Parameters
         ----------
         timesheetId : str
-            time entry id
+            The unique identifier of the time entry to update
         body : TimesheetUpdateRequestDto
-            payload
+            The new information that should replace the previous time
+            entry
         """
         path = f"/api/data/timesheets/{timesheetId}"
         queryParams = {}
@@ -140,10 +215,31 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def returns_active_admin_tasks_that_are_used_to_report_time(self) -> AstroResult[List[TimesheetAdminTypeDto]]:
+    def retrieve_administrative_tasks(self) -> AstroResult[List[TimesheetAdminTypeDto]]:
         """
-        Returns active admin tasks that are used to report time not
-        related to work on projects. I.e. annual/sick leave etc
+        Retrieves a list of Administrative Tasks that are defined for
+        use within your Workspace. Administrative tasks are a list of
+        regular, recurring non-Task actions that are typically
+        associated with overhead, such as sick leave, travel, or
+        attending meetings. A Timesheet is a collection of time entries
+        for a particular Resource for a specific week. Each time entry
+        records the number of whole minutes spent by this Resource on an
+        activity. An activity can be a Task in any project that Resource
+        can access, or the activity can be an administrative task such
+        as "Sick Leave" or "Meetings". When a time entry is linked to a
+        Task, the number of minutes spent on the time entry are recorded
+        as time spent on the Task. Time entries linked to an
+        administrative tasks are grouped for reporting but are not added
+        to any Task within your Workspace. Time entries are recorded in
+        whole minutes. If you specify a time entry in fractional hours,
+        either using the API or via the web application, the amount you
+        specify will be converted to minutes and rounded to the nearest
+        neighbor using the rounding algorithm Midpoint-Away-From-Zero.
+        When a Timesheet is submitted for approval or approved, users
+        are no longer permitted to create, update, or delete time
+        entries for that week. Users with Global Admin level access can
+        override this restriction and continue to make changes to a
+        Timesheet after approval.
 
         Parameters
         ----------
@@ -161,14 +257,33 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def submit_resource_timesheet_for_approval(self, body: TimeSheetApprovalDto) -> AstroResult[TimeSheetApprovalResponseDto]:
+    def submit_timesheet(self, body: TimeSheetApprovalDto) -> AstroResult[TimeSheetApprovalResponseDto]:
         """
-        Submit a timesheet for approval for a specific resource.
+        Submit a Timesheet for approval for a specific Resource and
+        week. A Timesheet is a collection of time entries for a
+        particular Resource for a specific week. Each time entry records
+        the number of whole minutes spent by this Resource on an
+        activity. An activity can be a Task in any project that Resource
+        can access, or the activity can be an administrative task such
+        as "Sick Leave" or "Meetings". When a time entry is linked to a
+        Task, the number of minutes spent on the time entry are recorded
+        as time spent on the Task. Time entries linked to an
+        administrative tasks are grouped for reporting but are not added
+        to any Task within your Workspace. Time entries are recorded in
+        whole minutes. If you specify a time entry in fractional hours,
+        either using the API or via the web application, the amount you
+        specify will be converted to minutes and rounded to the nearest
+        neighbor using the rounding algorithm Midpoint-Away-From-Zero.
+        When a Timesheet is submitted for approval or approved, users
+        are no longer permitted to create, update, or delete time
+        entries for that week. Users with Global Admin level access can
+        override this restriction and continue to make changes to a
+        Timesheet after approval.
 
         Parameters
         ----------
         body : TimeSheetApprovalDto
-            The timesheet to be submitted for approval
+            The Timesheet to be submitted for approval
         """
         path = "/api/data/timesheets/approvals"
         queryParams = {}
@@ -181,14 +296,33 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def approve_resource_timesheet_approval_request(self, body: TimeSheetApprovalDto) -> AstroResult[TimeSheetApprovalResponseDto]:
+    def approve_timesheet(self, body: TimeSheetApprovalDto) -> AstroResult[TimeSheetApprovalResponseDto]:
         """
-        Approve a timesheet approval request
+        Approve an existing Timesheet approval request. A Timesheet is a
+        collection of time entries for a particular Resource for a
+        specific week. Each time entry records the number of whole
+        minutes spent by this Resource on an activity. An activity can
+        be a Task in any project that Resource can access, or the
+        activity can be an administrative task such as "Sick Leave" or
+        "Meetings". When a time entry is linked to a Task, the number of
+        minutes spent on the time entry are recorded as time spent on
+        the Task. Time entries linked to an administrative tasks are
+        grouped for reporting but are not added to any Task within your
+        Workspace. Time entries are recorded in whole minutes. If you
+        specify a time entry in fractional hours, either using the API
+        or via the web application, the amount you specify will be
+        converted to minutes and rounded to the nearest neighbor using
+        the rounding algorithm Midpoint-Away-From-Zero. When a Timesheet
+        is submitted for approval or approved, users are no longer
+        permitted to create, update, or delete time entries for that
+        week. Users with Global Admin level access can override this
+        restriction and continue to make changes to a Timesheet after
+        approval.
 
         Parameters
         ----------
         body : TimeSheetApprovalDto
-            The timesheet to approve
+            The Timesheet to approve
         """
         path = "/api/data/timesheets/approvals/approve"
         queryParams = {}
@@ -201,15 +335,34 @@ class TimesheetClient:
             response.load_error(result)
             return response
 
-    def reject_resource_timesheet_approval_request(self, body: TimeSheetApprovalRejectDto) -> AstroResult[TimeSheetApprovalResponseDto]:
+    def reject_timesheet(self, body: TimeSheetApprovalRejectDto) -> AstroResult[TimeSheetApprovalResponseDto]:
         """
-        Rejects a specific resource's timesheet approval request for a
-        specific week.
+        Rejects a specific resource's Timesheet approval request for a
+        specific week. A Timesheet is a collection of time entries for a
+        particular Resource for a specific week. Each time entry records
+        the number of whole minutes spent by this Resource on an
+        activity. An activity can be a Task in any project that Resource
+        can access, or the activity can be an administrative task such
+        as "Sick Leave" or "Meetings". When a time entry is linked to a
+        Task, the number of minutes spent on the time entry are recorded
+        as time spent on the Task. Time entries linked to an
+        administrative tasks are grouped for reporting but are not added
+        to any Task within your Workspace. Time entries are recorded in
+        whole minutes. If you specify a time entry in fractional hours,
+        either using the API or via the web application, the amount you
+        specify will be converted to minutes and rounded to the nearest
+        neighbor using the rounding algorithm Midpoint-Away-From-Zero.
+        When a Timesheet is submitted for approval or approved, users
+        are no longer permitted to create, update, or delete time
+        entries for that week. Users with Global Admin level access can
+        override this restriction and continue to make changes to a
+        Timesheet after approval.
 
         Parameters
         ----------
         body : TimeSheetApprovalRejectDto
-            The data for rejecting the approval request
+            Information about the Timesheet approval request to be
+            rejected
         """
         path = "/api/data/timesheets/approvals/reject"
         queryParams = {}

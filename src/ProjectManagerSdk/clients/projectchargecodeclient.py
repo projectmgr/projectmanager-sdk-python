@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectchargecodecreatedto import ProjectChargeCodeCreateDto
 from ProjectManagerSdk.models.projectchargecodedto import ProjectChargeCodeDto
+from ProjectManagerSdk.models.projectchargecodeupdatedto import ProjectChargeCodeUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -70,5 +71,47 @@ class ProjectChargeCodeClient:
             return AstroResult[ProjectChargeCodeDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ProjectChargeCodeDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_project_charge_code(self, chargeCodeId: str, body: ProjectChargeCodeUpdateDto) -> AstroResult[ProjectChargeCodeDto]:
+        """
+        Update a project charge code
+
+        Parameters
+        ----------
+        chargeCodeId : str
+            The id of the charge code
+        body : ProjectChargeCodeUpdateDto
+            The data to update the charge code
+        """
+        path = f"/api/data/projects/chargecodes/{chargeCodeId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectChargeCodeDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectChargeCodeDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectChargeCodeDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def delete_project_charge_code(self, chargeCodeId: str) -> AstroResult[object]:
+        """
+        Delete a project charge code
+
+        Parameters
+        ----------
+        chargeCodeId : str
+            The id of the charge code
+        """
+        path = f"/api/data/projects/chargecodes/{chargeCodeId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
