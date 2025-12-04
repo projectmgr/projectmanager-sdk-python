@@ -51,11 +51,6 @@ class IntegrationDto:
     different folders or channels within a remote application.
     """
 
-    config: object | None = None
-    """
-    Extra configuration metadata for this Instance.
-    """
-
     licenseSkus: List[str] | None = None
     """
     The list of SKUS for this Integration.

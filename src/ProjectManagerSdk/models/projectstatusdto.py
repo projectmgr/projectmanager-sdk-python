@@ -40,4 +40,10 @@ class ProjectStatusDto:
     Is this a deleted status
     """
 
+    isSystem: bool | None = None
+    """
+    Indicates whether this ProjectStatus is a system and cannot be
+    deleted or modified.
+    """
+
 
