@@ -21,6 +21,7 @@ from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
+from ProjectManagerSdk.models.projectworkingdaysdto import ProjectWorkingDaysDto
 from typing import List
 import dataclasses
 
@@ -251,6 +252,14 @@ class ProjectDto:
     Represents the unique identifier of the owner associated with the
     Project. This may be used to identify the user or entity responsible
     for the Project.
+    """
+
+    workingDays: ProjectWorkingDaysDto | None = None
+    """
+    Represents the configuration of working days for the project,
+    indicating which days of the week are considered as working days.
+    This allows for customization of scheduling and availability based
+    on the project's requirements.
     """
 
 

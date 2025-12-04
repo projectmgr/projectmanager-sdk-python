@@ -75,4 +75,19 @@ class ProjectVersionDto:
     Subset of the changes related to this ProjectVersion
     """
 
+    applicationName: str | None = None
+    """
+    The name of the application that made this change
+    """
+
+    tokenId: str | None = None
+    """
+    The Id of the token that made this change
+    """
+
+    tokenName: str | None = None
+    """
+    The name of the token that made this change
+    """
+
 

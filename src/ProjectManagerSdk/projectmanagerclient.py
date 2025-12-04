@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2025 ProjectManager.com, Inc.
-# @version    145.0.219
+# @version    146.1.229
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -145,7 +145,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "145.0.219"
+        self.sdkVersion = "146.1.229"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None
