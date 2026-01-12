@@ -14,6 +14,7 @@ from ProjectManagerSdk.clients.integrationclient import IntegrationClient
 from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
 from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
+from ProjectManagerSdk.clients.meetingsclient import MeetingsClient
 from ProjectManagerSdk.clients.notificationclient import NotificationClient
 from ProjectManagerSdk.clients.nptclient import NptClient
 from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
@@ -93,6 +94,11 @@ from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceD
 from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderDto
 from ProjectManagerSdk.models.licensedto import LicenseDto
 from ProjectManagerSdk.models.masterconnectionschemedto import MasterConnectionSchemeDto
+from ProjectManagerSdk.models.meetingassigneedto import MeetingAssigneeDto
+from ProjectManagerSdk.models.meetingcreatedto import MeetingCreateDto
+from ProjectManagerSdk.models.meetingdetailsdto import MeetingDetailsDto
+from ProjectManagerSdk.models.meetingdto import MeetingDto
+from ProjectManagerSdk.models.meetingupdatedto import MeetingUpdateDto
 from ProjectManagerSdk.models.monthlyrecurringsettingsdto import MonthlyRecurringSettingsDto
 from ProjectManagerSdk.models.namedto import NameDto
 from ProjectManagerSdk.models.notificationdatadto import NotificationDataDto

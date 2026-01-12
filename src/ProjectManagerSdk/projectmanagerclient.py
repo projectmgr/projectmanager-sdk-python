@@ -1,15 +1,15 @@
 #
 # ProjectManager API for Python
 #
-# (c) 2023-2025 ProjectManager.com, Inc.
+# (c) 2023-2026 ProjectManager.com, Inc.
 #
 # For the full copyright and license information, please view the LICENSE
 # file that was distributed with this source code.
 #
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
-# @copyright  2023-2025 ProjectManager.com, Inc.
-# @version    146.1.229
+# @copyright  2023-2026 ProjectManager.com, Inc.
+# @version    148.0.136
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -53,6 +53,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
         from ProjectManagerSdk.clients.licenseclient import LicenseClient
         from ProjectManagerSdk.clients.meclient import MeClient
+        from ProjectManagerSdk.clients.meetingsclient import MeetingsClient
         from ProjectManagerSdk.clients.notificationclient import NotificationClient
         from ProjectManagerSdk.clients.nptclient import NptClient
         from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
@@ -103,6 +104,7 @@ class ProjectManagerClient:
         self.integrationProvider = IntegrationProviderClient(self)
         self.license = LicenseClient(self)
         self.me = MeClient(self)
+        self.meetings = MeetingsClient(self)
         self.notification = NotificationClient(self)
         self.npt = NptClient(self)
         self.nptDiscussion = NptDiscussionClient(self)
@@ -145,7 +147,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "146.1.229"
+        self.sdkVersion = "148.0.136"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None
