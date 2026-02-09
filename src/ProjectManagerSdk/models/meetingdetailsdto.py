@@ -15,6 +15,7 @@
 from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
 from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.meetingassigneedto import MeetingAssigneeDto
+from ProjectManagerSdk.models.meetingprojectdto import MeetingProjectDto
 from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
@@ -25,9 +26,10 @@ import dataclasses
 @dataclasses.dataclass
 class MeetingDetailsDto:
     """
-    A Npt is a task that does not belong to the project. It is only
-    visible to the person who created it, and the users assigned to it.
-    NPT's are a lightweight version of a project task.
+    A Meeting is a task that either does not belong to a project or is
+    part of a project. It is only visible to the person who created it,
+    and the users assigned to it. Meetings are a lightweight version of
+    a project task.
     """
 
     id: str | None = None
@@ -116,6 +118,11 @@ class MeetingDetailsDto:
     The ownerId of this Task.
     """
 
+    project: MeetingProjectDto | None = None
+    """
+    The project this meeting belongs to
+    """
+
     discussionData: DiscussionDataDto | None = None
     """
     Task file data - number of comments, last read time
@@ -128,17 +135,17 @@ class MeetingDetailsDto:
 
     recurring: bool | None = None
     """
-    If this is a recurring Npt task
+    Indicates whether this meeting is part of a recurring meeting series
     """
 
     recurringParentTaskId: str | None = None
     """
-    The parent task in the recurring Npt task sequence
+    The parent task in the recurring meeting series
     """
 
     recurringSettings: RecurringTaskSettingsDto | None = None
     """
-    The Npt Task Recurrency settings
+    The meeting's recurrency settings
     """
 
 

@@ -18,9 +18,10 @@ import dataclasses
 @dataclasses.dataclass
 class MeetingUpdateDto:
     """
-    A Npt is a task that does not belong to the project. It is only
-    visible to the person who created it, and the users assigned to it.
-    NPT's are a lightweight version of a project task.
+    A Meeting is a task that does not belong to the project or is part
+    of a project. It is only visible to the person who created it, and
+    the users assigned to it. Meeting's are a lightweight version of a
+    project task.
     """
 
     name: str | None = None
@@ -57,7 +58,8 @@ class MeetingUpdateDto:
 
     assignees: List[str] | None = None
     """
-    If specified, replaces the list of resources assigned to this npt.
+    If specified, replaces the list of resources assigned to this
+    meeting.
     """
 
     recurring: bool | None = None

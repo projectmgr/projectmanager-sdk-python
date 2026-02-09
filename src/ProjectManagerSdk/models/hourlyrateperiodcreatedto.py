@@ -16,24 +16,14 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class AssignmentDto:
+class HourlyRatePeriodCreateDto:
     """
-    User assigned to task or risk
-    """
-
-    taskId: str | None = None
-    """
-    Task or risk the user is assigned to
+    The payload to create a hourly rate period
     """
 
-    projectId: str | None = None
+    startDate: str | None = None
     """
-    The task or risk project Id
-    """
-
-    resourceId: str | None = None
-    """
-    Resource identifier
+    The rate period state date
     """
 
 

@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.meetingassigneedto import MeetingAssigneeDto
+from ProjectManagerSdk.models.meetingprojectdto import MeetingProjectDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
@@ -22,9 +23,10 @@ import dataclasses
 @dataclasses.dataclass
 class MeetingDto:
     """
-    A Meeting is a task that does not belong to the project. It is only
-    visible to the person who created it, and the users assigned to it.
-    Meeting's are a lightweight version of a project task.
+    A Meeting is a task that does not belong to the project or is part
+    of a project. It is only visible to the person who created it, and
+    the users assigned to it. Meeting's are a lightweight version of a
+    project task.
     """
 
     id: str | None = None
@@ -111,6 +113,11 @@ class MeetingDto:
     ownerId: str | None = None
     """
     The ownerId of this Task.
+    """
+
+    project: MeetingProjectDto | None = None
+    """
+    The project this meeting belongs to
     """
 
 

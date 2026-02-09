@@ -12,6 +12,9 @@
 #
 
 
+from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
+from ProjectManagerSdk.models.filedatadto import FileDataDto
+from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
 from ProjectManagerSdk.models.riskassignmentdto import RiskAssignmentDto
 from ProjectManagerSdk.models.riskprojectdto import RiskProjectDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
@@ -20,11 +23,12 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RiskDto:
+class RiskDetailsDto:
     """
-    Represents a potential threat or uncertainty that could impact a
-    project, system, or process. Contains information such as its
-    likelihood, impact, response, and resolution details.
+    A Risk represents an item of potential impact or uncertainty. It is
+    visible to the creator and users assigned to manage or review it.
+    Risks share many characteristics with tasks but are tracked
+    independently from project execution work.
     """
 
     id: str | None = None
@@ -152,6 +156,31 @@ class RiskDto:
     project: RiskProjectDto | None = None
     """
     The Project to which this Risk belongs.
+    """
+
+    discussionData: DiscussionDataDto | None = None
+    """
+    Discussion data – number of comments, last read time
+    """
+
+    fileData: FileDataDto | None = None
+    """
+    File data – number of files, last read time
+    """
+
+    recurring: bool | None = None
+    """
+    Indicates whether this risk is recurring
+    """
+
+    recurringParentTaskId: str | None = None
+    """
+    The parent risk in a recurring risk sequence
+    """
+
+    recurringSettings: RecurringTaskSettingsDto | None = None
+    """
+    Recurring risk configuration
     """
 
 
