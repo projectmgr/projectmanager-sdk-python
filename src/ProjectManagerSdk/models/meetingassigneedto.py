@@ -18,8 +18,8 @@ import dataclasses
 @dataclasses.dataclass
 class MeetingAssigneeDto:
     """
-    A NptAssignee is a Resource to whom a Npt is assigned. A single Npt
-    can be assigned to multiple NptAssignee.
+    A MeetingAssignee is a Resource to whom a Meeting is assigned. A
+    single Meeting can be assigned to multiple MeetingAssignee.
     """
 
     id: str | None = None
@@ -30,23 +30,23 @@ class MeetingAssigneeDto:
     initials: str | None = None
     """
     A shortened set of initials to use when representing this
-    NptAssignee visually in small areas. The initials may be used in
+    MeetingAssignee visually in small areas. The initials may be used in
     small icons or other overlays.
     """
 
     name: str | None = None
     """
-    The name of this NptAssignee
+    The name of this MeetingAssignee
     """
 
     description: str | None = None
     """
-    A more complete description of the NptAssignee.
+    A more complete description of the MeetingAssignee.
     """
 
     isActive: bool | None = None
     """
-    True if this NptAssignee is currently active with the Project.
+    True if this MeetingAssignee is currently active with the Project.
     """
 
     colorName: str | None = None
@@ -57,28 +57,28 @@ class MeetingAssigneeDto:
 
     firstName: str | None = None
     """
-    The first or given name of this NptAssignee. For personnel
-    NptAssignees only.
+    The first or given name of this MeetingAssignee. For personnel
+    MeetingAssignees only.
     """
 
     lastName: str | None = None
     """
-    The last or family name of this NptAssignee. For personnel
-    NptAssignees only.
+    The last or family name of this MeetingAssignee. For personnel
+    MeetingAssignees only.
     """
 
     shortName: str | None = None
     """
-    A shortened version of the name of this NptAssignee. This is used in
-    areas where the Initials are too short but the full name is too
-    long.
+    A shortened version of the name of this MeetingAssignee. This is
+    used in areas where the Initials are too short but the full name is
+    too long.
     """
 
     avatarUrl: str | None = None
     """
-    A link to an Avatar for this NptAssignee. Avatars are small images
-    or representations that can be used to visually identify this
-    NptAssignee at a glance.
+    A link to an Avatar for this MeetingAssignee. Avatars are small
+    images or representations that can be used to visually identify this
+    MeetingAssignee at a glance.
     """
 
     email: str | None = None

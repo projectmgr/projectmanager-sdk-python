@@ -9,6 +9,8 @@ from ProjectManagerSdk.clients.discussionclient import DiscussionClient
 from ProjectManagerSdk.clients.fileclient import FileClient
 from ProjectManagerSdk.clients.holidayclient import HolidayClient
 from ProjectManagerSdk.clients.homefileclient import HomeFileClient
+from ProjectManagerSdk.clients.hourlyrateclient import HourlyRateClient
+from ProjectManagerSdk.clients.hourlyrateperiodclient import HourlyRatePeriodClient
 from ProjectManagerSdk.clients.integrationcategoryclient import IntegrationCategoryClient
 from ProjectManagerSdk.clients.integrationclient import IntegrationClient
 from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
@@ -58,7 +60,6 @@ from ProjectManagerSdk.models.apikeycreatedto import ApiKeyCreateDto
 from ProjectManagerSdk.models.apikeydto import ApiKeyDto
 from ProjectManagerSdk.models.assigneedto import AssigneeDto
 from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
-from ProjectManagerSdk.models.assignmentdto import AssignmentDto
 from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
@@ -85,6 +86,14 @@ from ProjectManagerSdk.models.exportpriorityfilterdto import ExportPriorityFilte
 from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
+from ProjectManagerSdk.models.hourlyratecreatedto import HourlyRateCreateDto
+from ProjectManagerSdk.models.hourlyratedetailsdto import HourlyRateDetailsDto
+from ProjectManagerSdk.models.hourlyratedto import HourlyRateDto
+from ProjectManagerSdk.models.hourlyrateperiodcreatedto import HourlyRatePeriodCreateDto
+from ProjectManagerSdk.models.hourlyrateperioddto import HourlyRatePeriodDto
+from ProjectManagerSdk.models.hourlyrateupdatedto import HourlyRateUpdateDto
+from ProjectManagerSdk.models.hourlyratevaluedto import HourlyRateValueDto
+from ProjectManagerSdk.models.hourlyratevalueupdatedto import HourlyRateValueUpdateDto
 from ProjectManagerSdk.models.iddto import IdDto
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
@@ -98,6 +107,7 @@ from ProjectManagerSdk.models.meetingassigneedto import MeetingAssigneeDto
 from ProjectManagerSdk.models.meetingcreatedto import MeetingCreateDto
 from ProjectManagerSdk.models.meetingdetailsdto import MeetingDetailsDto
 from ProjectManagerSdk.models.meetingdto import MeetingDto
+from ProjectManagerSdk.models.meetingprojectdto import MeetingProjectDto
 from ProjectManagerSdk.models.meetingupdatedto import MeetingUpdateDto
 from ProjectManagerSdk.models.monthlyrecurringsettingsdto import MonthlyRecurringSettingsDto
 from ProjectManagerSdk.models.namedto import NameDto
@@ -113,6 +123,7 @@ from ProjectManagerSdk.models.nptdetailsdto import NptDetailsDto
 from ProjectManagerSdk.models.nptdto import NptDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
+from ProjectManagerSdk.models.partialresourcedto import PartialResourceDto
 from ProjectManagerSdk.models.pendingtimesheetapprovaldto import PendingTimeSheetApprovalDto
 from ProjectManagerSdk.models.permissionoptionsdto import PermissionOptionsDto
 from ProjectManagerSdk.models.projectaccessdto import ProjectAccessDto
@@ -166,9 +177,14 @@ from ProjectManagerSdk.models.resourcesdto import ResourcesDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+from ProjectManagerSdk.models.riskassignmentdto import RiskAssignmentDto
+from ProjectManagerSdk.models.riskcreatedto import RiskCreateDto
+from ProjectManagerSdk.models.riskdetailsdto import RiskDetailsDto
 from ProjectManagerSdk.models.riskdto import RiskDto
 from ProjectManagerSdk.models.riskexportprogressfilterdto import RiskExportProgressFilterDto
 from ProjectManagerSdk.models.riskexportsettingsdto import RiskExportSettingsDto
+from ProjectManagerSdk.models.riskprojectdto import RiskProjectDto
+from ProjectManagerSdk.models.riskupdatedto import RiskUpdateDto
 from ProjectManagerSdk.models.statedto import StateDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto

@@ -13,8 +13,11 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.exportdto import ExportDto
+from ProjectManagerSdk.models.riskcreatedto import RiskCreateDto
+from ProjectManagerSdk.models.riskdetailsdto import RiskDetailsDto
 from ProjectManagerSdk.models.riskdto import RiskDto
 from ProjectManagerSdk.models.riskexportsettingsdto import RiskExportSettingsDto
+from ProjectManagerSdk.models.riskupdatedto import RiskUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -29,6 +32,127 @@ class RiskClient:
 
     def __init__(self, client: ProjectManagerClient):
         self.client = client
+
+    def get_risk(self, riskId: str) -> AstroResult[RiskDetailsDto]:
+        """
+        Retrieve a Risk by its unique identifier or by its short ID. A
+        Risk has both a unique identifier (GUID) and a short ID that is
+        unique within a Workspace.
+
+        Parameters
+        ----------
+        riskId : str
+            The id of the risk
+        """
+        path = f"/api/data/risks/{riskId}"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=RiskDetailsDto, data=json.loads(result.content)['data'])
+            return AstroResult[RiskDetailsDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[RiskDetailsDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_risk(self, riskId: str, body: RiskUpdateDto) -> AstroResult[RiskDto]:
+        """
+        Updates an existing Risk. Only the fields provided in the
+        request body will be updated. Fields omitted from the request
+        will remain unchanged. Authorization is enforced to ensure the
+        caller has access to modify the specified Risk.
+
+        Parameters
+        ----------
+        riskId : str
+            The id of the risk
+        body : RiskUpdateDto
+            The fields to update
+        """
+        path = f"/api/data/risks/{riskId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=RiskDto, data=json.loads(result.content)['data'])
+            return AstroResult[RiskDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[RiskDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def remove_risk(self, riskId: str) -> AstroResult[object]:
+        """
+        Permanently removes the specified Risk. This operation cannot be
+        undone. Any related references (such as links, history, or
+        notifications) will be handled according to system rules.
+        Authorization is enforced to ensure the caller has permission to
+        delete the Risk.
+
+        Parameters
+        ----------
+        riskId : str
+            The id of the risk to remove
+        """
+        path = f"/api/data/risks/{riskId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def get_risks_for_project(self, projectId: str) -> AstroResult[List[RiskDetailsDto]]:
+        """
+        Retrieves all Risks associated with the specified Project. This
+        endpoint returns a flat list of Risk summaries (not details) and
+        does not use OData. Results are scoped to the Project and
+        respect feature flags such as Hourly Rates.
+
+        Parameters
+        ----------
+        projectId : str
+            The id of the project
+        """
+        path = f"/api/data/risks/projects/{projectId}"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=RiskDetailsDto, data=dict))
+            return AstroResult[List[RiskDetailsDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[RiskDetailsDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_risk(self, projectId: str, body: RiskCreateDto) -> AstroResult[RiskDto]:
+        """
+        Creates a new Risk within the specified Project. The Risk will
+        inherit Project context such as access permissions and workspace
+        ownership. Validation is applied to ensure the Project exists
+        and the caller has permission to create Risks.
+
+        Parameters
+        ----------
+        projectId : str
+            The id of the project
+        body : RiskCreateDto
+            The data used to create the Risk
+        """
+        path = f"/api/data/risks/{projectId}"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=RiskDto, data=json.loads(result.content)['data'])
+            return AstroResult[RiskDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[RiskDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
 
     def create_risk_export(self, projectId: str, body: RiskExportSettingsDto) -> AstroResult[ExportDto]:
         """
