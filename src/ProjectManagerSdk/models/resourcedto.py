@@ -186,4 +186,10 @@ class ResourceDto:
     communication.
     """
 
+    resourceTypeId: int | None = None
+    """
+    The type identifier for this Resource. 1 = Resource (standard
+    resource), 2 = Sample (sample resource).
+    """
+
 

@@ -189,6 +189,7 @@ from ProjectManagerSdk.models.statedto import StateDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
+from ProjectManagerSdk.models.taskapprovalstatusupdatedto import TaskApprovalStatusUpdateDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
@@ -225,6 +226,7 @@ from ProjectManagerSdk.models.timesheetresourcedto import TimesheetResourceDto
 from ProjectManagerSdk.models.timesheetresponsedto import TimesheetResponseDto
 from ProjectManagerSdk.models.timesheettaskdto import TimesheetTaskDto
 from ProjectManagerSdk.models.timesheetupdaterequestdto import TimesheetUpdateRequestDto
+from ProjectManagerSdk.models.updateprojectfielddto import UpdateProjectFieldDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
 from ProjectManagerSdk.models.updaterequestdto import UpdateRequestDto
 from ProjectManagerSdk.models.updateresourceskilldto import UpdateResourceSkillDto
