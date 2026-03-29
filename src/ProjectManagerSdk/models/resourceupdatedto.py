@@ -116,4 +116,17 @@ class ResourceUpdateDto:
     es-ES
     """
 
+    publicAvatarId: int | None = None
+    """
+    Public avatar image index (1-42). The avatar URL is generated as
+    /assets/images/avatars/{index:000}.png. Only numeric public avatars
+    are accepted; custom URLs are not supported.
+    """
+
+    clearAvatar: bool | None = None
+    """
+    When true, removes the resource's custom avatar so the default
+    initials are shown.
+    """
+
 

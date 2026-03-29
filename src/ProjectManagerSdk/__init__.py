@@ -17,6 +17,8 @@ from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProvi
 from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
 from ProjectManagerSdk.clients.meetingsclient import MeetingsClient
+from ProjectManagerSdk.clients.meetingtagclient import MeetingTagClient
+from ProjectManagerSdk.clients.meetingtodosclient import MeetingTodosClient
 from ProjectManagerSdk.clients.notificationclient import NotificationClient
 from ProjectManagerSdk.clients.nptclient import NptClient
 from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
@@ -41,6 +43,7 @@ from ProjectManagerSdk.clients.resourceskillclient import ResourceSkillClient
 from ProjectManagerSdk.clients.resourceteamclient import ResourceTeamClient
 from ProjectManagerSdk.clients.riskclient import RiskClient
 from ProjectManagerSdk.clients.riskfileclient import RiskFileClient
+from ProjectManagerSdk.clients.risktagclient import RiskTagClient
 from ProjectManagerSdk.clients.tagclient import TagClient
 from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
 from ProjectManagerSdk.clients.taskclient import TaskClient
@@ -91,7 +94,6 @@ from ProjectManagerSdk.models.hourlyratedetailsdto import HourlyRateDetailsDto
 from ProjectManagerSdk.models.hourlyratedto import HourlyRateDto
 from ProjectManagerSdk.models.hourlyrateperiodcreatedto import HourlyRatePeriodCreateDto
 from ProjectManagerSdk.models.hourlyrateperioddto import HourlyRatePeriodDto
-from ProjectManagerSdk.models.hourlyrateupdatedto import HourlyRateUpdateDto
 from ProjectManagerSdk.models.hourlyratevaluedto import HourlyRateValueDto
 from ProjectManagerSdk.models.hourlyratevalueupdatedto import HourlyRateValueUpdateDto
 from ProjectManagerSdk.models.iddto import IdDto
@@ -108,6 +110,9 @@ from ProjectManagerSdk.models.meetingcreatedto import MeetingCreateDto
 from ProjectManagerSdk.models.meetingdetailsdto import MeetingDetailsDto
 from ProjectManagerSdk.models.meetingdto import MeetingDto
 from ProjectManagerSdk.models.meetingprojectdto import MeetingProjectDto
+from ProjectManagerSdk.models.meetingtodocreatedto import MeetingTodoCreateDto
+from ProjectManagerSdk.models.meetingtododto import MeetingTodoDto
+from ProjectManagerSdk.models.meetingtodoupdatedto import MeetingTodoUpdateDto
 from ProjectManagerSdk.models.meetingupdatedto import MeetingUpdateDto
 from ProjectManagerSdk.models.monthlyrecurringsettingsdto import MonthlyRecurringSettingsDto
 from ProjectManagerSdk.models.namedto import NameDto
@@ -151,6 +156,7 @@ from ProjectManagerSdk.models.projectmanagerdto import ProjectManagerDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
 from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 from ProjectManagerSdk.models.projectmembersaccessdto import ProjectMembersAccessDto
+from ProjectManagerSdk.models.projectprioritycreatedto import ProjectPriorityCreateDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
 from ProjectManagerSdk.models.projectstatuscreatedto import ProjectStatusCreateDto

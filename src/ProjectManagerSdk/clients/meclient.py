@@ -52,6 +52,25 @@ class MeClient:
             response.load_error(result)
             return response
 
+    def remove_my_avatar(self) -> AstroResult[object]:
+        """
+        Removes the logged in user's custom avatar so the default
+        initials are shown.
+
+        Parameters
+        ----------
+        """
+        path = "/api/data/me/avatar"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
     def update_my_avatar(self, fileName: str) -> AstroResult[object]:
         """
         Updates the logged in user avatar

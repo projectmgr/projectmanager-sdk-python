@@ -16,16 +16,17 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class HourlyRateUpdateDto:
+class ProjectPriorityCreateDto:
     """
-    The payload to update a hourly rate
+    A ProjectPriority is a named priority level used by your business to
+    determine how to decide which Tasks are the most important. You can
+    name your ProjectPriority levels anything you like and you can
+    reorganize the order of the ProjectPriority levels at any time.
     """
 
-    isActive: bool | None = None
+    name: str | None = None
     """
-    Update the status of the rate from Active to InActive. An InActive
-    rate will still be used in calculating the cost of a project but
-    will not be displayed in the ui.
+    The name of this ProjectPriority
     """
 
 

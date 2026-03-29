@@ -15,7 +15,6 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.hourlyratecreatedto import HourlyRateCreateDto
 from ProjectManagerSdk.models.hourlyratedetailsdto import HourlyRateDetailsDto
 from ProjectManagerSdk.models.hourlyratedto import HourlyRateDto
-from ProjectManagerSdk.models.hourlyrateupdatedto import HourlyRateUpdateDto
 from ProjectManagerSdk.models.hourlyratevaluedto import HourlyRateValueDto
 from ProjectManagerSdk.models.hourlyratevalueupdatedto import HourlyRateValueUpdateDto
 from typing import List
@@ -73,25 +72,25 @@ class HourlyRateClient:
             response.load_error(result)
             return response
 
-    def update_hourly_rate(self, rateId: str, body: HourlyRateUpdateDto) -> AstroResult[HourlyRateDto]:
+    def update_hourly_rate_value(self, rateValueId: str, body: HourlyRateValueUpdateDto) -> AstroResult[HourlyRateValueDto]:
         """
-        Update a hourly rate
+        Update Hourly Rate Value
 
         Parameters
         ----------
-        rateId : str
-            the id of the rate
-        body : HourlyRateUpdateDto
-            the data to update the rate with
+        rateValueId : str
+            The rate valueId
+        body : HourlyRateValueUpdateDto
+            The rate value data
         """
-        path = f"/api/data/hourly-rates/{rateId}"
+        path = f"/api/data/hourly-rates/values/{rateValueId}"
         queryParams = {}
         result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=HourlyRateDto, data=json.loads(result.content)['data'])
-            return AstroResult[HourlyRateDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=HourlyRateValueDto, data=json.loads(result.content)['data'])
+            return AstroResult[HourlyRateValueDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[HourlyRateDto](None, False, True, result.status_code, None)
+            response = AstroResult[HourlyRateValueDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -132,27 +131,5 @@ class HourlyRateClient:
             return AstroResult[object](None, True, False, result.status_code, data)
         else:
             response = AstroResult[object](None, False, True, result.status_code, None)
-            response.load_error(result)
-            return response
-
-    def update_hourly_rate_value(self, rateValueId: str, body: HourlyRateValueUpdateDto) -> AstroResult[HourlyRateValueDto]:
-        """
-        Update Hourly Rate Value
-
-        Parameters
-        ----------
-        rateValueId : str
-            The rate valueId
-        body : HourlyRateValueUpdateDto
-            The rate value data
-        """
-        path = f"/api/data/hourly-rates/values/{rateValueId}"
-        queryParams = {}
-        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=HourlyRateValueDto, data=json.loads(result.content)['data'])
-            return AstroResult[HourlyRateValueDto](None, True, False, result.status_code, data)
-        else:
-            response = AstroResult[HourlyRateValueDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

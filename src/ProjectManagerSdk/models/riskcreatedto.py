@@ -76,4 +76,10 @@ class RiskCreateDto:
     Risk
     """
 
+    riskTypeId: int | None = None
+    """
+    The type of risk. Risk = 1 Assumption = 2 Issue = 3 Dependency = 4
+    Change = 5
+    """
+
 

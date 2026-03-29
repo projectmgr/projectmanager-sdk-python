@@ -16,39 +16,36 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class TaskFileDto:
+class MeetingTodoDto:
     """
-    Represents a file associated with a Task in project manager
+    A MeetingTodo is a sub-item that represents a unit of work on the
+    Meeting. You can use MeetingTodo to represent individual items for a
+    larger piece of work (e.g. agenda items, action items).
     """
 
     id: str | None = None
     """
-    The identifier for this file
+    The unique identifier of this MeetingTodo.
     """
 
-    name: str | None = None
+    text: str | None = None
     """
-    The name of the file
+    The full description of this MeetingTodo.
     """
 
-    url: str | None = None
+    complete: bool | None = None
     """
-    The url of the file which can be used for downloading
+    True if this MeetingTodo is complete.
     """
 
     createDate: str | None = None
     """
-    The date the file was created/uploaded
+    The timestamp in UTC when this object was created.
     """
 
-    fileType: str | None = None
+    modifyDate: str | None = None
     """
-    The file type (e.g. extension or MIME type)
-    """
-
-    fileTypeLabel: str | None = None
-    """
-    The display label for the file type
+    The timestamp in UTC when this object was last modified.
     """
 
 
