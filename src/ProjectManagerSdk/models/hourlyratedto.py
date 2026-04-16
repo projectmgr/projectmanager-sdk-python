@@ -97,9 +97,4 @@ class HourlyRateDto:
     A list of all rates for each rate period
     """
 
-    isActive: bool | None = None
-    """
-    If this is an archived rate
-    """
-
 

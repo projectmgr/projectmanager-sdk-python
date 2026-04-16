@@ -103,6 +103,13 @@ class ResourceCreateDto:
     Language code for this Resource.
     """
 
+    publicAvatarId: int | None = None
+    """
+    Public avatar image index (1-42). The avatar URL is generated as
+    /assets/images/avatars/{index:000}.png. Only numeric public avatars
+    are accepted; custom URLs are not supported.
+    """
+
     country: str | None = None
     """
     Deprecated - this property is no longer being used. Please pass in

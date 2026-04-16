@@ -98,11 +98,6 @@ class HourlyRateDetailsDto:
     A list of all rates for each rate period
     """
 
-    isActive: bool | None = None
-    """
-    If this is an archived rate
-    """
-
     taskCount: int | None = None
     """
     Total number of tasks with at least 1 association to this rate

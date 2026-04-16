@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2026 ProjectManager.com, Inc.
-# @version    151.0.100
+# @version    152.0.138
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -56,6 +56,8 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.licenseclient import LicenseClient
         from ProjectManagerSdk.clients.meclient import MeClient
         from ProjectManagerSdk.clients.meetingsclient import MeetingsClient
+        from ProjectManagerSdk.clients.meetingtagclient import MeetingTagClient
+        from ProjectManagerSdk.clients.meetingtodosclient import MeetingTodosClient
         from ProjectManagerSdk.clients.notificationclient import NotificationClient
         from ProjectManagerSdk.clients.nptclient import NptClient
         from ProjectManagerSdk.clients.nptdiscussionclient import NptDiscussionClient
@@ -80,6 +82,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.resourceteamclient import ResourceTeamClient
         from ProjectManagerSdk.clients.riskclient import RiskClient
         from ProjectManagerSdk.clients.riskfileclient import RiskFileClient
+        from ProjectManagerSdk.clients.risktagclient import RiskTagClient
         from ProjectManagerSdk.clients.tagclient import TagClient
         from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
         from ProjectManagerSdk.clients.taskclient import TaskClient
@@ -109,6 +112,8 @@ class ProjectManagerClient:
         self.license = LicenseClient(self)
         self.me = MeClient(self)
         self.meetings = MeetingsClient(self)
+        self.meetingTag = MeetingTagClient(self)
+        self.meetingTodos = MeetingTodosClient(self)
         self.notification = NotificationClient(self)
         self.npt = NptClient(self)
         self.nptDiscussion = NptDiscussionClient(self)
@@ -133,6 +138,7 @@ class ProjectManagerClient:
         self.resourceTeam = ResourceTeamClient(self)
         self.risk = RiskClient(self)
         self.riskFile = RiskFileClient(self)
+        self.riskTag = RiskTagClient(self)
         self.tag = TagClient(self)
         self.taskAssignee = TaskAssigneeClient(self)
         self.task = TaskClient(self)
@@ -151,7 +157,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "151.0.100"
+        self.sdkVersion = "152.0.138"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

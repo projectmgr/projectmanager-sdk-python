@@ -12,6 +12,7 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.projectprioritycreatedto import ProjectPriorityCreateDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -53,5 +54,68 @@ class ProjectPriorityClient:
             return AstroResult[List[ProjectPriorityDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[ProjectPriorityDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_project_priority(self, body: ProjectPriorityCreateDto) -> AstroResult[ProjectPriorityDto]:
+        """
+        Create a project priority
+
+        Parameters
+        ----------
+        body : ProjectPriorityCreateDto
+            The data to create the priority
+        """
+        path = "/api/data/projects/priorities"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectPriorityDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectPriorityDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectPriorityDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_project_priority(self, priorityId: str, body: ProjectPriorityCreateDto) -> AstroResult[ProjectPriorityDto]:
+        """
+        Updates a project priority
+
+        Parameters
+        ----------
+        priorityId : str
+            The id of the priority to update
+        body : ProjectPriorityCreateDto
+            The data to update
+        """
+        path = f"/api/data/projects/priorities/{priorityId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectPriorityDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectPriorityDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectPriorityDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def delete_project_priority(self, priorityId: str) -> AstroResult[object]:
+        """
+        Delete a project priority. They will also be removed from any
+        projects they were assigned too.
+
+        Parameters
+        ----------
+        priorityId : str
+            The id of the priority to remove
+        """
+        path = f"/api/data/projects/priorities/{priorityId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

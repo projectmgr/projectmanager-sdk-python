@@ -16,30 +16,19 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class CountryDto:
+class MeetingTodoCreateDto:
     """
-    Represents a country with its details.
-    """
-
-    id: str | None = None
-    """
-    Gets or sets the unique identifier for the country. This should
-    translate to the ISO2 code for that country.
+    The properties for creating a MeetingTodo.
     """
 
-    name: str | None = None
+    text: str | None = None
     """
-    Gets or sets the name of the country.
-    """
-
-    countryId: int | None = None
-    """
-    The PM Internal Id Reference for a country
+    The full description of this MeetingTodo.
     """
 
-    cultureName: str | None = None
+    complete: bool | None = None
     """
-    The Culture name for a country
+    True if this MeetingTodo is complete.
     """
 
 
