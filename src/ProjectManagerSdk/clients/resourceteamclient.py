@@ -117,18 +117,18 @@ class ResourceTeamClient:
             response.load_error(result)
             return response
 
-    def update_resource_team(self, teamresourceId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
+    def update_resource_team(self, resourceTeamId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
         Update a Resource Team.
 
         Parameters
         ----------
-        teamresourceId : str
+        resourceTeamId : str
             The id of the resource team
         body : UpdateResourceTeamDto
             The name of the team to Update.
         """
-        path = f"/api/data/resources/teams/{teamresourceId}"
+        path = f"/api/data/resources/teams/{resourceTeamId}"
         queryParams = {}
         result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:

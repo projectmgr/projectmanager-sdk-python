@@ -100,13 +100,13 @@ class WorkSpaceUserInfoDto:
     Returns the iso country code for the current workspace.
     """
 
-    workSpaceCulture: str | None = None
+    workspaceCulture: str | None = None
     """
     The culture code (e.g., "en-US") used for formatting and
     localization in the workspace.
     """
 
-    workSpaceCurrencyCulture: str | None = None
+    workspaceCurrencyCulture: str | None = None
     """
     The culture code used for currency formatting in the workspace.
     """

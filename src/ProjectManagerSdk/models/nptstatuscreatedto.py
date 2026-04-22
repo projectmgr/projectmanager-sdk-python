@@ -16,7 +16,7 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class TaskStatusUpdateDto:
+class NptStatusCreateDto:
     """
     A TaskStatus is a named status level used by your business to
     determine how to measure the progress of Tasks. You can define your
@@ -33,6 +33,11 @@ class TaskStatusUpdateDto:
     """
     A numerical value that can be used to sort TaskStatus values
     according to the needs of your business.
+    """
+
+    isDone: bool | None = None
+    """
+    True if a Task in this TaskStatus is considered done.
     """
 
 

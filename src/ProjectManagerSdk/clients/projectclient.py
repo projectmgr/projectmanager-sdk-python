@@ -14,6 +14,7 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
+from ProjectManagerSdk.models.projectreopenstatusdto import ProjectReopenStatusDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -131,11 +132,7 @@ class ProjectClient:
         towards a goal. Within a Project, Tasks represent individual
         items of work that team members must complete. The sum total of
         Tasks within a Project represents the work to be completed for
-        that Project. Multiple users can be working on data at the same
-        time. When you call an API to update an object, this call is
-        converted into a Changeset that is then applied sequentially.
-        You can use RetrieveChangeset to see the status of an individual
-        Changeset.
+        that Project.
 
         Parameters
         ----------
@@ -184,26 +181,26 @@ class ProjectClient:
             response.load_error(result)
             return response
 
-    def restore_project(self, projectId: str) -> AstroResult[object]:
+    def reopen_project_status(self, projectId: str) -> AstroResult[ProjectReopenStatusDto]:
         """
-        Restore a soft deleted project based on its unique identifier. A
-        Project is a collection of Tasks that contributes towards a
-        goal. Within a Project, Tasks represent individual items of work
-        that team members must complete. The sum total of Tasks within a
-        Project represents the work to be completed for that Project.
+        Check if a project is in a valid state so that it can be
+        reopened without any side effects. For example, if Rates have
+        changed for this project, reopening it will result is project
+        costs being recalculated which will adjust costs. This endpoint
+        will return what side effects may occur if it is reopened.
 
         Parameters
         ----------
         projectId : str
-            The unique identifier of the Project to delete
+            The unique identifier of the project to check.
         """
-        path = f"/api/data/projects/{projectId}/restore"
+        path = f"/api/data/projects/{projectId}/reopen/status"
         queryParams = {}
-        result = self.client.send_request("PUT", path, None, queryParams, None)
+        result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
-            return AstroResult[object](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ProjectReopenStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectReopenStatusDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[object](None, False, True, result.status_code, None)
+            response = AstroResult[ProjectReopenStatusDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

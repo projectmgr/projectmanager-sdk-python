@@ -85,7 +85,7 @@ class TaskStatusClient:
             response.load_error(result)
             return response
 
-    def update_taskstatus(self, projectId: str, body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
+    def update_taskstatus(self, taskStatusId: str, body: TaskStatusUpdateDto) -> AstroResult[TaskStatusDto]:
         """
         Updates an existing TaskStatus level for a specific Project
         within your Workspace. A TaskStatus is a named status level used
@@ -95,13 +95,13 @@ class TaskStatusClient:
 
         Parameters
         ----------
-        projectId : str
-            The unique identifier of the Project for the new TaskStatus
+        taskStatusId : str
+            The id of the task status
         body : TaskStatusUpdateDto
-            Information about the existing TaskStatus level to update
-            within this Project
+            Information about the existing TaskStatus to update within
+            this Project
         """
-        path = f"/api/data/projects/{projectId}/tasks/statuses"
+        path = f"/api/data/tasks/statuses/{taskStatusId}"
         queryParams = {}
         result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
@@ -112,7 +112,7 @@ class TaskStatusClient:
             response.load_error(result)
             return response
 
-    def delete_taskstatus(self, projectId: str, taskStatusId: str) -> AstroResult[object]:
+    def delete_taskstatus(self, taskStatusId: str) -> AstroResult[object]:
         """
         The endpoint is used to delete a TaskStatus. You will not be
         able to delete a TaskStatus if there are tasks that have been
@@ -121,13 +121,10 @@ class TaskStatusClient:
 
         Parameters
         ----------
-        projectId : str
-            The unique identifier of the Project for the TaskStatus
-            level to delete
         taskStatusId : str
-            The Id of the TaskStatus level to be removed.
+            The id of the TaskStatus to be removed.
         """
-        path = f"/api/data/projects/{projectId}/tasks/statuses/{taskStatusId}"
+        path = f"/api/data/tasks/statuses/{taskStatusId}"
         queryParams = {}
         result = self.client.send_request("DELETE", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:

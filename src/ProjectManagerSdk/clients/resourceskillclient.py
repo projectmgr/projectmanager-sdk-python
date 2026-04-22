@@ -97,18 +97,18 @@ class ResourceSkillClient:
             response.load_error(result)
             return response
 
-    def update_resource_skill(self, skillId: str, body: UpdateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
+    def update_resource_skill(self, resourceSkillId: str, body: UpdateResourceSkillDto) -> AstroResult[ResourceSkillDto]:
         """
         Update a Resource Skill.
 
         Parameters
         ----------
-        skillId : str
+        resourceSkillId : str
             The id of the skill to update.
         body : UpdateResourceSkillDto
             The data of the skill to update.
         """
-        path = f"/api/data/resources/skills/{skillId}"
+        path = f"/api/data/resources/skills/{resourceSkillId}"
         queryParams = {}
         result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:

@@ -44,6 +44,7 @@ from ProjectManagerSdk.clients.resourceteamclient import ResourceTeamClient
 from ProjectManagerSdk.clients.riskclient import RiskClient
 from ProjectManagerSdk.clients.riskfileclient import RiskFileClient
 from ProjectManagerSdk.clients.risktagclient import RiskTagClient
+from ProjectManagerSdk.clients.securityclient import SecurityClient
 from ProjectManagerSdk.clients.tagclient import TagClient
 from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
 from ProjectManagerSdk.clients.taskclient import TaskClient
@@ -66,6 +67,7 @@ from ProjectManagerSdk.models.assigneeupsertdto import AssigneeUpsertDto
 from ProjectManagerSdk.models.astroerror import AstroError
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.authenticationdto import AuthenticationDto
+from ProjectManagerSdk.models.businessroleslistdto import BusinessRolesListDto
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
 from ProjectManagerSdk.models.connectionschemadto import ConnectionSchemaDto
 from ProjectManagerSdk.models.countrydto import CountryDto
@@ -126,7 +128,9 @@ from ProjectManagerSdk.models.nptassigneedto import NptAssigneeDto
 from ProjectManagerSdk.models.nptcreatedto import NptCreateDto
 from ProjectManagerSdk.models.nptdetailsdto import NptDetailsDto
 from ProjectManagerSdk.models.nptdto import NptDto
+from ProjectManagerSdk.models.nptstatuscreatedto import NptStatusCreateDto
 from ProjectManagerSdk.models.nptstatusdto import NptStatusDto
+from ProjectManagerSdk.models.nptstatusupdatedto import NptStatusUpdateDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
 from ProjectManagerSdk.models.partialresourcedto import PartialResourceDto
 from ProjectManagerSdk.models.pendingtimesheetapprovaldto import PendingTimeSheetApprovalDto
@@ -158,6 +162,7 @@ from ProjectManagerSdk.models.projectmemberroledto import ProjectMemberRoleDto
 from ProjectManagerSdk.models.projectmembersaccessdto import ProjectMembersAccessDto
 from ProjectManagerSdk.models.projectprioritycreatedto import ProjectPriorityCreateDto
 from ProjectManagerSdk.models.projectprioritydto import ProjectPriorityDto
+from ProjectManagerSdk.models.projectreopenstatusdto import ProjectReopenStatusDto
 from ProjectManagerSdk.models.projectrestoreprojectdto import ProjectRestoreProjectDto
 from ProjectManagerSdk.models.projectstatuscreatedto import ProjectStatusCreateDto
 from ProjectManagerSdk.models.projectstatusdto import ProjectStatusDto
@@ -191,6 +196,11 @@ from ProjectManagerSdk.models.riskexportprogressfilterdto import RiskExportProgr
 from ProjectManagerSdk.models.riskexportsettingsdto import RiskExportSettingsDto
 from ProjectManagerSdk.models.riskprojectdto import RiskProjectDto
 from ProjectManagerSdk.models.riskupdatedto import RiskUpdateDto
+from ProjectManagerSdk.models.rolecreatedto import RoleCreateDto
+from ProjectManagerSdk.models.roledto import RoleDto
+from ProjectManagerSdk.models.rolepermissionfeaturedto import RolePermissionFeatureDto
+from ProjectManagerSdk.models.roleupdatechangeitemdto import RoleUpdateChangeItemDto
+from ProjectManagerSdk.models.simpletaskfieldvaluedto import SimpleTaskFieldValueDto
 from ProjectManagerSdk.models.statedto import StateDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto

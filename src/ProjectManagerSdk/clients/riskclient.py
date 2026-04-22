@@ -129,7 +129,7 @@ class RiskClient:
             response.load_error(result)
             return response
 
-    def create_risk(self, projectId: str, body: RiskCreateDto) -> AstroResult[RiskDto]:
+    def create_project_risk(self, projectId: str, body: RiskCreateDto) -> AstroResult[RiskDto]:
         """
         Creates a new Risk within the specified Project. The Risk will
         inherit Project context such as access permissions and workspace
@@ -143,7 +143,7 @@ class RiskClient:
         body : RiskCreateDto
             The data used to create the Risk
         """
-        path = f"/api/data/risks/{projectId}"
+        path = f"/api/data/risks/projects/{projectId}"
         queryParams = {}
         result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
