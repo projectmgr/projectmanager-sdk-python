@@ -15,8 +15,8 @@
 from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
 from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
+from ProjectManagerSdk.models.simpletaskfieldvaluedto import SimpleTaskFieldValueDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
-from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.taskfiledto import TaskFileDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
@@ -80,12 +80,11 @@ class TaskDetailsDto:
     description: str | None = None
     """
     This field contains the task's "Note" or "Description", which is a
-    description of the work to be done to complete the task.
-
-    Within the ProjectManager application, you can use this field as
-    follows: * When in the Gantt view, select a task and click the "Add
-    Note" button. * When in the Board view, click on a task to open the
-    task panel, then edit the "Description" field.
+    description of the work to be done to complete the task. Within the
+    ProjectManager application, you can use this field as follows: *
+    When in the Gantt view, select a task and click the "Add Note"
+    button. * When in the Board view, click on a task to open the task
+    panel, then edit the "Description" field.
     """
 
     status: TaskStatusDto | None = None
@@ -262,20 +261,18 @@ class TaskDetailsDto:
 
     index: int | None = None
     """
-    The one-based index of this Task within its parent project.
-
-    This value is used to determine the order of tasks and sub-tasks in
-    a project. For example, a Task with an Index of 1 is the first Task
-    in the project.
+    The one-based index of this Task within its parent project. This
+    value is used to determine the order of tasks and sub-tasks in a
+    project. For example, a Task with an Index of 1 is the first Task in
+    the project.
     """
 
     level: int | None = None
     """
-    The hierarchical level of this Task within the Task structure.
-
-    A Level of 1 indicates that the Task is at the top level (e.g. a
-    root Task), while higher values indicate deeper levels in the
-    hierarchy (e.g. subtasks).
+    The hierarchical level of this Task within the Task structure. A
+    Level of 1 indicates that the Task is at the top level (e.g. a root
+    Task), while higher values indicate deeper levels in the hierarchy
+    (e.g. subtasks).
     """
 
     fields: List[TaskFieldValueDto] | None = None
@@ -283,7 +280,7 @@ class TaskDetailsDto:
     Obsolete - use FieldValues instead
     """
 
-    fieldValues: List[TaskFieldValueDto] | None = None
+    fieldValues: List[SimpleTaskFieldValueDto] | None = None
     """
     Task fields array with values
     """

@@ -29,6 +29,12 @@ class ProjectMemberDto:
     The unique identifier of the user of this ProjectMember.
     """
 
+    projectId: str | None = None
+    """
+    The unique identifier of the project that this ProjectMember belongs
+    to.
+    """
+
     initials: str | None = None
     """
     the initials of the user

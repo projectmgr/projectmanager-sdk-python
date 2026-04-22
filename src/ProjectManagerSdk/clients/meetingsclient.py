@@ -39,6 +39,54 @@ class MeetingsClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
+    def get_meetings(self, projectId: str) -> AstroResult[List[MeetingDto]]:
+        """
+        Retrieve a list of Meetings. This endpoint does not use OData.
+        If `projectId` is provided, results are limited to that Project.
+
+        Parameters
+        ----------
+        projectId : str
+            Optional project id to scope results
+        """
+        path = "/api/data/meetings"
+        queryParams = {}
+        if projectId:
+            queryParams['projectId'] = projectId
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=MeetingDto, data=dict))
+            return AstroResult[List[MeetingDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[MeetingDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_meeting(self, body: MeetingCreateDto) -> AstroResult[MeetingDto]:
+        """
+        Creates a new Meeting for the current user. If you specify an
+        assignee for this Meeting, that user will be assigned to it. If
+        you do not specify an assignee, the Meeting will be
+        automatically assigned to you.
+
+        Parameters
+        ----------
+        body : MeetingCreateDto
+            The data used to create the Meeting
+        """
+        path = "/api/data/meetings"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=MeetingDto, data=json.loads(result.content)['data'])
+            return AstroResult[MeetingDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[MeetingDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
     def get_meeting(self, meetingId: str) -> AstroResult[MeetingDetailsDto]:
         """
         Retrieve a Meeting by its unique identifier or by its short ID.
@@ -101,29 +149,6 @@ class MeetingsClient:
             return AstroResult[object](None, True, False, result.status_code, data)
         else:
             response = AstroResult[object](None, False, True, result.status_code, None)
-            response.load_error(result)
-            return response
-
-    def create_meeting(self, body: MeetingCreateDto) -> AstroResult[MeetingDto]:
-        """
-        Creates a new Meeting for the current user. If you specify an
-        assignee for this Meeting, that user will be assigned to it. If
-        you do not specify an assignee, the Meeting will be
-        automatically assigned to you.
-
-        Parameters
-        ----------
-        body : MeetingCreateDto
-            The data used to create the Meeting
-        """
-        path = "/api/data/meetings"
-        queryParams = {}
-        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=MeetingDto, data=json.loads(result.content)['data'])
-            return AstroResult[MeetingDto](None, True, False, result.status_code, data)
-        else:
-            response = AstroResult[MeetingDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

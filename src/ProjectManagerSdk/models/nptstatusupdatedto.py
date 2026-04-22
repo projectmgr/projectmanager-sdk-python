@@ -16,7 +16,7 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class TaskStatusUpdateDto:
+class NptStatusUpdateDto:
     """
     A TaskStatus is a named status level used by your business to
     determine how to measure the progress of Tasks. You can define your

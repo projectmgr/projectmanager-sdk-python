@@ -121,3 +121,23 @@ class TagClient:
             response = AstroResult[TagDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def delete_tag(self, tagId: str) -> AstroResult[object]:
+        """
+        Permanently removes the specified Tag.
+
+        Parameters
+        ----------
+        tagId : str
+            The id of the tag to delete
+        """
+        path = f"/api/data/tags/{tagId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
