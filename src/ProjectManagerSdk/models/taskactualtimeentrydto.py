@@ -16,44 +16,24 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ReactGridLayoutItemDto:
+class TaskActualTimeEntryDto:
     """
-    React grid layout item object
-    """
-
-    w: int | None = None
-    """
-    Width
+    A single timesheet line for the task and resource.
     """
 
-    h: int | None = None
+    id: str | None = None
     """
-    Height
-    """
-
-    x: int | None = None
-    """
-    X position
+    Timesheet row identifier.
     """
 
-    y: int | None = None
+    date: str | None = None
     """
-    Y position
-    """
-
-    i: str | None = None
-    """
-    ID
+    Calendar date of the time entry (date-only).
     """
 
-    moved: bool | None = None
+    minutes: int | None = None
     """
-    Moved indicator
-    """
-
-    static: bool | None = None
-    """
-    If true, equal to `isDraggable: false, isResizable: false`
+    Minutes reported on this timesheet row for the task.
     """
 
 

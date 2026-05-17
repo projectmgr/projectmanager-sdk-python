@@ -12,34 +12,30 @@
 #
 
 
-from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
+from ProjectManagerSdk.models.taskactualtimeentrydto import TaskActualTimeEntryDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class DashboardSettingCreateDto:
+class TaskActualResourceTimeDto:
     """
-    User dashboard create or update dto
+    Reported (timesheet) time for one resource on the task.
     """
 
     id: str | None = None
     """
-    Unique ID
+    Resource identifier for this actual row.
     """
 
-    userId: str | None = None
+    totalMinutes: int | None = None
     """
-    User ID
-    """
-
-    type: str | None = None
-    """
-    Either custom or one of DashboardType enum
+    Total reported minutes for this resource (sum of
+    Astro.Api.Dto.Tasks.TaskActualResourceTimeDto.TimeEntries).
     """
 
-    reactGridLayout: ReactGridLayoutDto | None = None
+    timeEntries: List[TaskActualTimeEntryDto] | None = None
     """
-    React grid layout configuration
+    Individual timesheet entries contributing to totalMinutes.
     """
 
 
