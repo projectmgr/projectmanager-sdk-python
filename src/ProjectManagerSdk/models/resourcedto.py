@@ -15,6 +15,7 @@
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
+from ProjectManagerSdk.models.resourceworkingdayshours import ResourceWorkingDaysHours
 from typing import List
 import dataclasses
 
@@ -190,6 +191,18 @@ class ResourceDto:
     """
     The type identifier for this Resource. 1 = Resource (standard
     resource), 2 = Sample (sample resource).
+    """
+
+    defaultPlannedHours: float | None = None
+    """
+    Default planned effort for this resource, in hours (stored as whole
+    minutes server-side).
+    """
+
+    workingDays: ResourceWorkingDaysHours | None = None
+    """
+    Hours available per weekday for scheduling (whole hours per day;
+    matches workspace/resource calendar rows).
     """
 
 

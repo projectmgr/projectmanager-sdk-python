@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.resourceworkingdayshours import ResourceWorkingDaysHours
 from typing import List
 import dataclasses
 
@@ -108,6 +109,20 @@ class ResourceCreateDto:
     Public avatar image index (1-42). The avatar URL is generated as
     /assets/images/avatars/{index:000}.png. Only numeric public avatars
     are accepted; custom URLs are not supported.
+    """
+
+    defaultPlannedHours: float | None = None
+    """
+    Default planned effort in hours for this resource. If omitted, the
+    workspace default (or 8 hours) is applied.
+    """
+
+    workingDays: ResourceWorkingDaysHours | None = None
+    """
+    Per-day working hours (Monday … Sunday). When omitted, no
+    resource-specific calendar is created and the workspace calendar
+    applies. Set only the days you need; they merge over the workspace
+    defaults.
     """
 
     country: str | None = None

@@ -12,34 +12,26 @@
 #
 
 
-from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class DashboardSettingDto:
+class TaskStatusUpdateObsoleteDto:
+
+    name: str | None = None
     """
-    The Dashboards API is intended for use by ProjectManager
+    The name of this TaskStatus.
+    """
+
+    order: int | None = None
+    """
+    A numerical value that can be used to sort TaskStatus values
+    according to the needs of your business.
     """
 
     id: str | None = None
     """
-    Unique ID
-    """
-
-    userId: str | None = None
-    """
-    User ID
-    """
-
-    type: str | None = None
-    """
-    Either custom or one of DashboardType enum
-    """
-
-    reactGridLayout: ReactGridLayoutDto | None = None
-    """
-    React grid layout configuration
+    The unique identifier of this TaskStatus.
     """
 
 

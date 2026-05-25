@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.movetasktoprojectdto import MoveTaskToProjectDto
 from typing import List
 import dataclasses
 
@@ -70,6 +71,11 @@ class MeetingUpdateDto:
     false during an update, the service layer detaches the task from its
     series, which clears parent/child relationships including and
     recurringSettings.
+    """
+
+    moveToProject: MoveTaskToProjectDto | None = None
+    """
+    Object contains data to move meeting to another project
     """
 
 

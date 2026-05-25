@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.movetasktoprojectdto import MoveTaskToProjectDto
 from typing import List
 import dataclasses
 
@@ -84,6 +85,11 @@ class RiskUpdateDto:
     """
     The type of risk. Risk = 1 Assumption = 2 Issue = 3 Dependency = 4
     Change = 5
+    """
+
+    moveToProject: MoveTaskToProjectDto | None = None
+    """
+    Object contains data to move risk to another project
     """
 
 

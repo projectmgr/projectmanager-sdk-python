@@ -4,7 +4,6 @@ from ProjectManagerSdk.tools import remove_empty_elements
 # API categories
 from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
 from ProjectManagerSdk.clients.changesetclient import ChangesetClient
-from ProjectManagerSdk.clients.dashboardclient import DashboardClient
 from ProjectManagerSdk.clients.discussionclient import DiscussionClient
 from ProjectManagerSdk.clients.fileclient import FileClient
 from ProjectManagerSdk.clients.holidayclient import HolidayClient
@@ -60,6 +59,7 @@ from ProjectManagerSdk.clients.timesheetclient import TimesheetClient
 from ProjectManagerSdk.clients.userroleclient import UserRoleClient
 from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
 # Data models
+from ProjectManagerSdk.models.addprojectteammembersrequestdto import AddProjectTeamMembersRequestDto
 from ProjectManagerSdk.models.apikeycreatedto import ApiKeyCreateDto
 from ProjectManagerSdk.models.apikeydto import ApiKeyDto
 from ProjectManagerSdk.models.assigneedto import AssigneeDto
@@ -76,8 +76,6 @@ from ProjectManagerSdk.models.createresourceskilldto import CreateResourceSkillD
 from ProjectManagerSdk.models.createresourceteamdto import CreateResourceTeamDto
 from ProjectManagerSdk.models.createtaskfielddto import CreateTaskFieldDto
 from ProjectManagerSdk.models.dailyrecurringsettingsdto import DailyRecurringSettingsDto
-from ProjectManagerSdk.models.dashboardsettingcreatedto import DashboardSettingCreateDto
-from ProjectManagerSdk.models.dashboardsettingdto import DashboardSettingDto
 from ProjectManagerSdk.models.deletedtasksdto import DeletedTasksDto
 from ProjectManagerSdk.models.discussioncommentcreatedto import DiscussionCommentCreateDto
 from ProjectManagerSdk.models.discussioncommentcreateresponsedto import DiscussionCommentCreateResponseDto
@@ -85,6 +83,7 @@ from ProjectManagerSdk.models.discussioncommentdto import DiscussionCommentDto
 from ProjectManagerSdk.models.discussioncommentfiledto import DiscussionCommentFileDto
 from ProjectManagerSdk.models.discussiondatadto import DiscussionDataDto
 from ProjectManagerSdk.models.discussionemoji import DiscussionEmoji
+from ProjectManagerSdk.models.entitlementdto import EntitlementDto
 from ProjectManagerSdk.models.exportdto import ExportDto
 from ProjectManagerSdk.models.exportduedatefilterdto import ExportDueDateFilterDto
 from ProjectManagerSdk.models.exportpriorityfilterdto import ExportPriorityFilterDto
@@ -117,6 +116,7 @@ from ProjectManagerSdk.models.meetingtododto import MeetingTodoDto
 from ProjectManagerSdk.models.meetingtodoupdatedto import MeetingTodoUpdateDto
 from ProjectManagerSdk.models.meetingupdatedto import MeetingUpdateDto
 from ProjectManagerSdk.models.monthlyrecurringsettingsdto import MonthlyRecurringSettingsDto
+from ProjectManagerSdk.models.movetasktoprojectdto import MoveTaskToProjectDto
 from ProjectManagerSdk.models.namedto import NameDto
 from ProjectManagerSdk.models.notificationdatadto import NotificationDataDto
 from ProjectManagerSdk.models.notificationdto import NotificationDto
@@ -173,8 +173,6 @@ from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 from ProjectManagerSdk.models.projectversionchangedatadto import ProjectVersionChangeDataDto
 from ProjectManagerSdk.models.projectversiondto import ProjectVersionDto
 from ProjectManagerSdk.models.projectworkingdaysdto import ProjectWorkingDaysDto
-from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
-from ProjectManagerSdk.models.reactgridlayoutitemdto import ReactGridLayoutItemDto
 from ProjectManagerSdk.models.recurringtaskchangesetdetails import RecurringTaskChangeSetDetails
 from ProjectManagerSdk.models.recurringtaskchangesetdetailschangesetstatusdto import RecurringTaskChangeSetDetailsChangeSetStatusDto
 from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
@@ -188,6 +186,7 @@ from ProjectManagerSdk.models.resourcesdto import ResourcesDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
+from ProjectManagerSdk.models.resourceworkingdayshours import ResourceWorkingDaysHours
 from ProjectManagerSdk.models.riskassignmentdto import RiskAssignmentDto
 from ProjectManagerSdk.models.riskcreatedto import RiskCreateDto
 from ProjectManagerSdk.models.riskdetailsdto import RiskDetailsDto
@@ -205,6 +204,8 @@ from ProjectManagerSdk.models.statedto import StateDto
 from ProjectManagerSdk.models.tagcreatedto import TagCreateDto
 from ProjectManagerSdk.models.tagdto import TagDto
 from ProjectManagerSdk.models.tagupdatedto import TagUpdateDto
+from ProjectManagerSdk.models.taskactualresourcetimedto import TaskActualResourceTimeDto
+from ProjectManagerSdk.models.taskactualtimeentrydto import TaskActualTimeEntryDto
 from ProjectManagerSdk.models.taskapprovalstatusupdatedto import TaskApprovalStatusUpdateDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
@@ -218,13 +219,17 @@ from ProjectManagerSdk.models.taskfiledto import TaskFileDto
 from ProjectManagerSdk.models.taskmetadatasearchdto import TaskMetadataSearchDto
 from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
+from ProjectManagerSdk.models.taskplannedallocationdto import TaskPlannedAllocationDto
+from ProjectManagerSdk.models.taskplannedresourcetimedto import TaskPlannedResourceTimeDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskreferencedto import TaskReferenceDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
+from ProjectManagerSdk.models.taskstatusupdateobsoletedto import TaskStatusUpdateObsoleteDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
+from ProjectManagerSdk.models.tasktimesummarydto import TaskTimeSummaryDto
 from ProjectManagerSdk.models.tasktodocreatedto import TaskTodoCreateDto
 from ProjectManagerSdk.models.tasktododto import TaskTodoDto
 from ProjectManagerSdk.models.tasktodoupdatedto import TaskTodoUpdateDto
