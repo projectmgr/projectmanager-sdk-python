@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.resourceworkingdayshours import ResourceWorkingDaysHours
 from typing import List
 import dataclasses
 
@@ -127,6 +128,19 @@ class ResourceUpdateDto:
     """
     When true, removes the resource's custom avatar so the default
     initials are shown.
+    """
+
+    defaultPlannedHours: float | None = None
+    """
+    Default planned effort in hours. When set, updates the resource;
+    when omitted, existing value is unchanged.
+    """
+
+    workingDays: ResourceWorkingDaysHours | None = None
+    """
+    Per-day working hours. When non-null, updates or creates the
+    resource calendar; set only days to change—they merge over workspace
+    defaults.
     """
 
 

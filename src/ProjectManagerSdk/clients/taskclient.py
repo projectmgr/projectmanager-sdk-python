@@ -342,3 +342,25 @@ class TaskClient:
             response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
+
+    def mark_task_as_read_for_the_current_user(self, taskId: str) -> AstroResult[object]:
+        """
+        Updates the task user read record (last viewed) for the
+        authenticated user. Use this when the UI only needs to mark
+        file/discussion read state without loading full task details.
+
+        Parameters
+        ----------
+        taskId : str
+            Task unique identifier
+        """
+        path = f"/api/data/tasks/{taskId}/mark-read"
+        queryParams = {}
+        result = self.client.send_request("POST", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response

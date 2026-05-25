@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2026 ProjectManager.com, Inc.
-# @version    154.0.181
+# @version    2026.156.162
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -43,7 +43,6 @@ class ProjectManagerClient:
         """
         from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
         from ProjectManagerSdk.clients.changesetclient import ChangesetClient
-        from ProjectManagerSdk.clients.dashboardclient import DashboardClient
         from ProjectManagerSdk.clients.discussionclient import DiscussionClient
         from ProjectManagerSdk.clients.fileclient import FileClient
         from ProjectManagerSdk.clients.holidayclient import HolidayClient
@@ -100,7 +99,6 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
         self.apiKey = ApiKeyClient(self)
         self.changeset = ChangesetClient(self)
-        self.dashboard = DashboardClient(self)
         self.discussion = DiscussionClient(self)
         self.file = FileClient(self)
         self.holiday = HolidayClient(self)
@@ -159,7 +157,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "154.0.181"
+        self.sdkVersion = "2026.156.162"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

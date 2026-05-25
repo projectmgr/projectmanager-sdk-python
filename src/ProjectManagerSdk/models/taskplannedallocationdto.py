@@ -12,34 +12,24 @@
 #
 
 
-from ProjectManagerSdk.models.reactgridlayoutdto import ReactGridLayoutDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class DashboardSettingCreateDto:
+class TaskPlannedAllocationDto:
     """
-    User dashboard create or update dto
-    """
-
-    id: str | None = None
-    """
-    Unique ID
+    Planned minutes attributed to a single calendar day for a resource.
     """
 
-    userId: str | None = None
+    date: str | None = None
     """
-    User ID
-    """
-
-    type: str | None = None
-    """
-    Either custom or one of DashboardType enum
+    Calendar date for this planned segment (date-only; workspace
+    calendar applies).
     """
 
-    reactGridLayout: ReactGridLayoutDto | None = None
+    minutes: int | None = None
     """
-    React grid layout configuration
+    Planned minutes on date for this resource.
     """
 
 

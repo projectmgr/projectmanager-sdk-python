@@ -12,48 +12,30 @@
 #
 
 
+from ProjectManagerSdk.models.taskplannedallocationdto import TaskPlannedAllocationDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ReactGridLayoutItemDto:
+class TaskPlannedResourceTimeDto:
     """
-    React grid layout item object
-    """
-
-    w: int | None = None
-    """
-    Width
+    Planned time for one resource assigned to the task.
     """
 
-    h: int | None = None
+    id: str | None = None
     """
-    Height
-    """
-
-    x: int | None = None
-    """
-    X position
+    Resource identifier for this planned row.
     """
 
-    y: int | None = None
+    totalMinutes: int | None = None
     """
-    Y position
-    """
-
-    i: str | None = None
-    """
-    ID
+    Total planned minutes for this resource (sum of allocations when
+    broken down by day).
     """
 
-    moved: bool | None = None
+    allocations: List[TaskPlannedAllocationDto] | None = None
     """
-    Moved indicator
-    """
-
-    static: bool | None = None
-    """
-    If true, equal to `isDraggable: false, isResizable: false`
+    Planned minutes grouped by calendar date for this resource.
     """
 
 

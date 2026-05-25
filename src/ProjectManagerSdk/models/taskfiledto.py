@@ -51,4 +51,9 @@ class TaskFileDto:
     The display label for the file type
     """
 
+    size: int | None = None
+    """
+    File size in bytes (for task attachment lists / Gantt grid)
+    """
+
 

@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.entitlementdto import EntitlementDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
 from ProjectManagerSdk.models.workspacepermissionsdto import WorkSpacePermissionsDto
 from typing import List
@@ -126,6 +127,12 @@ class WorkSpaceUserInfoDto:
     """
     The location of the user, which is a combination of city, state (US
     Only), and country.
+    """
+
+    entitlements: List[EntitlementDto] | None = None
+    """
+    The entitlements active for this Workspace. Each entry is either a
+    boolean switch or a numeric limit.
     """
 
 
