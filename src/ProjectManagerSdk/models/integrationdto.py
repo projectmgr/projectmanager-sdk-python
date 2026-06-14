@@ -13,6 +13,7 @@
 
 
 from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceDto
+from ProjectManagerSdk.models.integrationmetadatadto import IntegrationMetadataDto
 from typing import List
 import dataclasses
 
@@ -80,6 +81,14 @@ class IntegrationDto:
     noAdminPermission: bool | None = None
     """
     No Admin Permission
+    """
+
+    metadata: List[IntegrationMetadataDto] | None = None
+    """
+    Metadata key-value pairs stored against this Integration for the
+    current Workspace. Only populated when the Integration is enabled.
+    Values are comma-separated strings to support multi-value entries
+    (e.g. a list of IDs, names, or reference values).
     """
 
 

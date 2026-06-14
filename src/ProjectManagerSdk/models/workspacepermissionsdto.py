@@ -39,7 +39,7 @@ class WorkSpacePermissionsDto:
 
     editAllProjects: bool | None = None
     """
-    True if this user can Access all account data
+    True if this user can edit all projects and timesheets
     """
 
     editCost: bool | None = None

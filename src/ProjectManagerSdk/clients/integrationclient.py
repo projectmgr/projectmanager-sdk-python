@@ -13,6 +13,7 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
+from ProjectManagerSdk.models.integrationmetadatadto import IntegrationMetadataDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -117,5 +118,37 @@ class IntegrationClient:
             return AstroResult[List[IntegrationDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[IntegrationDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_integration_metadata(self, integrationId: str, body: List[IntegrationMetadataDto]) -> AstroResult[IntegrationDto]:
+        """
+        Replaces the metadata stored against a specific Integration for
+        the current Workspace. Metadata is a list of key-value pairs
+        where values are comma-separated strings to support multiple
+        values per key (e.g. a list of IDs, names, or reference values).
+        The Integrations API is intended for use by ProjectManager and
+        its business development partners. Please contact
+        ProjectManager's sales team to request use of this API.
+
+        Parameters
+        ----------
+        integrationId : str
+            The unique identifier of the Integration to update
+        body : List[IntegrationMetadataDto]
+            The full set of metadata key-value pairs to store against
+            this Integration
+        """
+        path = f"/api/data/integrations/{integrationId}/metadata"
+        queryParams = {}
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("PUT", path, bodyArray, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=IntegrationDto, data=json.loads(result.content)['data'])
+            return AstroResult[IntegrationDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[IntegrationDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
