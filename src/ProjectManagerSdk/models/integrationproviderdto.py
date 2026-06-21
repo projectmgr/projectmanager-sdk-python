@@ -67,7 +67,18 @@ class IntegrationProviderDto:
 
     authenticated: bool | None = None
     """
-    True if this Provider requires authentication.
+    True if the current user has an active personal connection to this
+    Provider. This is a user-level flag - each user connects their own
+    account independently.
+    """
+
+    unauthorized: bool | None = None
+    """
+    True if this Provider is activated but the workspace-level
+    connection has lost authorization (e.g. the OAuth refresh token has
+    expired or been revoked). This is a workspace-level flag - it
+    affects all users. Re-authentication by a workspace administrator is
+    required before jobs can run again.
     """
 
     integrations: List[IntegrationDto] | None = None

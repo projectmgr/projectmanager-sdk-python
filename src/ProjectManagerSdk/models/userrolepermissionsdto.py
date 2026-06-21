@@ -99,7 +99,7 @@ class UserRolePermissionsDto:
 
     editAllProjects: UserRolePermissionDto | None = None
     """
-    Access all projects and timesheets
+    Edit all projects and timesheets
     """
 
     changeOwnEmail: UserRolePermissionDto | None = None

@@ -6,7 +6,6 @@ from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
 from ProjectManagerSdk.clients.changesetclient import ChangesetClient
 from ProjectManagerSdk.clients.discussionclient import DiscussionClient
 from ProjectManagerSdk.clients.fileclient import FileClient
-from ProjectManagerSdk.clients.holidayclient import HolidayClient
 from ProjectManagerSdk.clients.homefileclient import HomeFileClient
 from ProjectManagerSdk.clients.hourlyrateclient import HourlyRateClient
 from ProjectManagerSdk.clients.hourlyrateperiodclient import HourlyRatePeriodClient
@@ -103,6 +102,7 @@ from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryD
 from ProjectManagerSdk.models.integrationconnectionschemeobjectdto import IntegrationConnectionSchemeObjectDto
 from ProjectManagerSdk.models.integrationdto import IntegrationDto
 from ProjectManagerSdk.models.integrationinstancedto import IntegrationInstanceDto
+from ProjectManagerSdk.models.integrationmetadatadto import IntegrationMetadataDto
 from ProjectManagerSdk.models.integrationproviderdto import IntegrationProviderDto
 from ProjectManagerSdk.models.licensedto import LicenseDto
 from ProjectManagerSdk.models.masterconnectionschemedto import MasterConnectionSchemeDto
@@ -208,6 +208,7 @@ from ProjectManagerSdk.models.taskactualresourcetimedto import TaskActualResourc
 from ProjectManagerSdk.models.taskactualtimeentrydto import TaskActualTimeEntryDto
 from ProjectManagerSdk.models.taskapprovalstatusupdatedto import TaskApprovalStatusUpdateDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
+from ProjectManagerSdk.models.taskbaselinedto import TaskBaselineDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
 from ProjectManagerSdk.models.taskdto import TaskDto
@@ -261,5 +262,8 @@ from ProjectManagerSdk.models.weeklyrecurringsettingsdto import WeeklyRecurringS
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
 from ProjectManagerSdk.models.workspacepermissionsdto import WorkSpacePermissionsDto
+from ProjectManagerSdk.models.workspacesettingsdto import WorkspaceSettingsDto
+from ProjectManagerSdk.models.workspacesettingsupdatedto import WorkspaceSettingsUpdateDto
 from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
+from ProjectManagerSdk.models.workspaceworkingdaysdto import WorkspaceWorkingDaysDto
 from ProjectManagerSdk.models.yearlyrecurringsettingsdto import YearlyRecurringSettingsDto
