@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.workspacesettingsdto import WorkspaceSettingsDto
 from typing import List
 import dataclasses
 
@@ -87,6 +88,11 @@ class WorkSpaceDto:
     """
     True if this Workspace has an active subscription; false if this is
     a free trial.
+    """
+
+    settings: WorkspaceSettingsDto | None = None
+    """
+    Workspace-level scheduling defaults.
     """
 
 

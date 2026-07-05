@@ -12,6 +12,7 @@
 #
 
 
+from ProjectManagerSdk.models.idnamedto import IdNameDto
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
 from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
@@ -20,14 +21,13 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ResourceDto:
+class ResourceDetailsDto:
     """
-    A Resource represents a person, material, or tool that is used
-    within your Projects. When you attach a Resources to more than one
-    Task, the software will schedule the usage of your Resource so that
-    it is not allocated to more than one Task at the same time. The
-    users in your Workspace are also considered Resources. To invite a
-    new User to your Workspace, create a new Resource for that user.
+    An extended view of a Resource returned when retrieving a single
+    Resource. Includes everything on Astro.Api.Dto.Resources.ResourceDto
+    plus additional profile details that are only surfaced for an
+    individual Resource, such as the Projects the Resource has access
+    to.
     """
 
     id: str | None = None
@@ -209,6 +209,13 @@ class ResourceDto:
     """
     Hours available per weekday for scheduling (whole hours per day;
     matches workspace/resource calendar rows).
+    """
+
+    projectMembership: List[IdNameDto] | None = None
+    """
+    The list of Projects this Resource has access to, each as an id and
+    name. Returns an empty array when the Resource does not have access
+    to any Projects.
     """
 
 
