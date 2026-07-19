@@ -135,4 +135,10 @@ class WorkSpaceUserInfoDto:
     boolean switch or a numeric limit.
     """
 
+    isSocial: bool | None = None
+    """
+    True if the user signed in via a social provider (Google, Apple, or
+    Microsoft).
+    """
+
 

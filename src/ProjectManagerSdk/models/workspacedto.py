@@ -12,6 +12,8 @@
 #
 
 
+from ProjectManagerSdk.models.workspacelicensesdto import WorkspaceLicensesDto
+from ProjectManagerSdk.models.workspacesettingsdto import WorkspaceSettingsDto
 from typing import List
 import dataclasses
 
@@ -42,7 +44,14 @@ class WorkSpaceDto:
 
     customerId: str | None = None
     """
-    This value is marked obsolete as it is no longer used.
+    This value is marked obsolete as it is no longer used. Use
+    `AccountOwnerId` instead.
+    """
+
+    accountOwnerId: str | None = None
+    """
+    The unique identifier of the user that is the account owner of this
+    Workspace.
     """
 
     isOwner: bool | None = None
@@ -87,6 +96,34 @@ class WorkSpaceDto:
     """
     True if this Workspace has an active subscription; false if this is
     a free trial.
+    """
+
+    status: str | None = None
+    """
+    The account status of this Workspace (for example `Active`, `Trial`,
+    `Cancelled`).
+    """
+
+    isActive: bool | None = None
+    """
+    True if this Workspace is currently active or in trial and can be
+    used.
+    """
+
+    isReseller: bool | None = None
+    """
+    True if this Workspace is provisioned through a reseller (for
+    example, Acumatica).
+    """
+
+    licenses: WorkspaceLicensesDto | None = None
+    """
+    A summary of the paid user licenses for this Workspace.
+    """
+
+    settings: WorkspaceSettingsDto | None = None
+    """
+    Workspace-level scheduling defaults.
     """
 
 

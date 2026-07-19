@@ -17,6 +17,7 @@ from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
 from ProjectManagerSdk.models.simpletaskfieldvaluedto import SimpleTaskFieldValueDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
+from ProjectManagerSdk.models.taskbaselinedto import TaskBaselineDto
 from ProjectManagerSdk.models.taskfiledto import TaskFileDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
@@ -374,6 +375,12 @@ class TaskDetailsDto:
     """
     Represents a collection of tasks that should execute before the
     current task
+    """
+
+    baseline: TaskBaselineDto | None = None
+    """
+    The baseline values for this Task, if a project baseline has been
+    set.
     """
 
 

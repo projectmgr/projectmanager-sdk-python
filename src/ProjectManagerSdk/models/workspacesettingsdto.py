@@ -12,22 +12,24 @@
 #
 
 
+from ProjectManagerSdk.models.workspaceworkingdaysdto import WorkspaceWorkingDaysDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ProjectMemberRoleDto:
+class WorkspaceSettingsDto:
     """
-    Dto To Describe a ProjectMember Role
+    Workspace-level scheduling defaults returned with a workspace.
     """
 
-    role: str | None = None
+    defaultPlannedHours: float | None = None
     """
-    Role to apply. Optional — when omitted, a default role is applied
-    based on the target user's workspace access: users who can edit all
-    projects become a Manager, guest users become a Guest, and everyone
-    else becomes an Editor. When updating an existing member, omitting
-    the role leaves their current role unchanged.
+    Default planned hours per day for new resources (0–24).
+    """
+
+    workingDays: WorkspaceWorkingDaysDto | None = None
+    """
+    Default working hours per weekday for the workspace calendar.
     """
 
 
