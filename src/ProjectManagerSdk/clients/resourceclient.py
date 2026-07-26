@@ -12,7 +12,9 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.resourcebulkupdatedto import ResourceBulkUpdateDto
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
+from ProjectManagerSdk.models.resourcedetailsdto import ResourceDetailsDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
 from ProjectManagerSdk.models.resourcescreatedto import ResourcesCreateDto
 from ProjectManagerSdk.models.resourcesdto import ResourcesDto
@@ -135,7 +137,7 @@ class ResourceClient:
             response.load_error(result)
             return response
 
-    def retrieve_resource(self, resourceId: str) -> AstroResult[ResourceDto]:
+    def retrieve_resource(self, resourceId: str) -> AstroResult[ResourceDetailsDto]:
         """
         Retrieve the Resource matching the specified unique ID. A
         Resource represents a person, material, or tool that is used
@@ -155,10 +157,10 @@ class ResourceClient:
         queryParams = {}
         result = self.client.send_request("GET", path, None, queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=ResourceDto, data=json.loads(result.content)['data'])
-            return AstroResult[ResourceDto](None, True, False, result.status_code, data)
+            data = dacite.from_dict(data_class=ResourceDetailsDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceDetailsDto](None, True, False, result.status_code, data)
         else:
-            response = AstroResult[ResourceDto](None, False, True, result.status_code, None)
+            response = AstroResult[ResourceDetailsDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
@@ -185,6 +187,39 @@ class ResourceClient:
             return AstroResult[ResourceDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ResourceDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def bulk_update_resources(self, body: List[ResourceBulkUpdateDto]) -> AstroResult[List[ResourceDto]]:
+        """
+        Updates a list of existing Resources in a single API call. Each
+        entry identifies the Resource to update via its ResourceId and
+        supplies the fields to change. Only fields that are sensible to
+        update across many Resources at once are accepted; see
+        ResourceBulkUpdateDto for the supported fields. The whole
+        request is validated before any changes are applied - if any
+        entry fails validation, no Resources are updated and the
+        individual failures are returned in the AdditionalErrors of the
+        result.
+
+        Parameters
+        ----------
+        body : List[ResourceBulkUpdateDto]
+            The list of Resources to update
+        """
+        path = "/api/data/resources/bulk"
+        queryParams = {}
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("PUT", path, bodyArray, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=ResourceDto, data=dict))
+            return AstroResult[List[ResourceDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[ResourceDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 

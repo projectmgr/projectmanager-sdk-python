@@ -16,18 +16,15 @@ from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class ProjectMemberRoleDto:
+class HolidayResourceDto:
     """
-    Dto To Describe a ProjectMember Role
+    A resource affected by a holiday. Additional fields may be added
+    later.
     """
 
-    role: str | None = None
+    id: str | None = None
     """
-    Role to apply. Optional — when omitted, a default role is applied
-    based on the target user's workspace access: users who can edit all
-    projects become a Manager, guest users become a Guest, and everyone
-    else becomes an Editor. When updating an existing member, omitting
-    the role leaves their current role unchanged.
+    The resource identifier.
     """
 
 
