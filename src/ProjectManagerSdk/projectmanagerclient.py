@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2026 ProjectManager.com, Inc.
-# @version    2026.156.162
+# @version    2026.160.203
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -45,7 +45,6 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.changesetclient import ChangesetClient
         from ProjectManagerSdk.clients.discussionclient import DiscussionClient
         from ProjectManagerSdk.clients.fileclient import FileClient
-        from ProjectManagerSdk.clients.holidayclient import HolidayClient
         from ProjectManagerSdk.clients.homefileclient import HomeFileClient
         from ProjectManagerSdk.clients.hourlyrateclient import HourlyRateClient
         from ProjectManagerSdk.clients.hourlyrateperiodclient import HourlyRatePeriodClient
@@ -54,6 +53,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
         from ProjectManagerSdk.clients.licenseclient import LicenseClient
         from ProjectManagerSdk.clients.meclient import MeClient
+        from ProjectManagerSdk.clients.meetingrecurrencyclient import MeetingRecurrencyClient
         from ProjectManagerSdk.clients.meetingsclient import MeetingsClient
         from ProjectManagerSdk.clients.meetingtagclient import MeetingTagClient
         from ProjectManagerSdk.clients.meetingtodosclient import MeetingTodosClient
@@ -101,7 +101,6 @@ class ProjectManagerClient:
         self.changeset = ChangesetClient(self)
         self.discussion = DiscussionClient(self)
         self.file = FileClient(self)
-        self.holiday = HolidayClient(self)
         self.homeFile = HomeFileClient(self)
         self.hourlyRate = HourlyRateClient(self)
         self.hourlyRatePeriod = HourlyRatePeriodClient(self)
@@ -110,6 +109,7 @@ class ProjectManagerClient:
         self.integrationProvider = IntegrationProviderClient(self)
         self.license = LicenseClient(self)
         self.me = MeClient(self)
+        self.meetingRecurrency = MeetingRecurrencyClient(self)
         self.meetings = MeetingsClient(self)
         self.meetingTag = MeetingTagClient(self)
         self.meetingTodos = MeetingTodosClient(self)
@@ -157,7 +157,7 @@ class ProjectManagerClient:
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "2026.156.162"
+        self.sdkVersion = "2026.160.203"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None

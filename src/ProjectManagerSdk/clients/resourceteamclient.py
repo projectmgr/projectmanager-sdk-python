@@ -30,7 +30,80 @@ class ResourceTeamClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_resource_teams(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ResourceTeamDto]]:
+    def get_resource_team(self, resourceTeamId: str) -> AstroResult[ResourceTeamDto]:
+        """
+        Retrieves a single ResourceTeam object by its unique identifier
+        A ResourceTeam is a grouping of Resources that allows you to
+        keep track of assignments in a manner consistent with your
+        business needs. You can assign Resources to be members of zero,
+        one, or many ResourceTeams.
+
+        Parameters
+        ----------
+        resourceTeamId : str
+            The unique identifier of the ResourceTeam to retrieve
+        """
+        path = f"/api/data/resources/teams/{resourceTeamId}"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ResourceTeamDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def delete_resource_team(self, resourceTeamId: str) -> AstroResult[object]:
+        """
+        Deletes a resource team by its unique identifier. A ResourceTeam
+        is a grouping of Resources that allows you to keep track of
+        assignments in a manner consistent with your business needs. You
+        can assign Resources to be members of zero, one, or many
+        ResourceTeams.
+
+        Parameters
+        ----------
+        resourceTeamId : str
+            The unique ID of the team to be removed
+        """
+        path = f"/api/data/resources/teams/{resourceTeamId}"
+        queryParams = {}
+        result = self.client.send_request("DELETE", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_resource_team(self, resourceTeamId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
+        """
+        Update a Resource Team. A ResourceTeam is a grouping of
+        Resources that allows you to keep track of assignments in a
+        manner consistent with your business needs. You can assign
+        Resources to be members of zero, one, or many ResourceTeams.
+
+        Parameters
+        ----------
+        resourceTeamId : str
+            The id of the resource team
+        body : UpdateResourceTeamDto
+            The name of the team to Update.
+        """
+        path = f"/api/data/resources/teams/{resourceTeamId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
+            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ResourceTeamDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def query_resource_teams(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[ResourceTeamDto]]:
         """
         Retrieves all ResourceTeams defined within your Workspace that
         match an [OData formatted query](https://www.odata.org/). A
@@ -78,59 +151,20 @@ class ResourceTeamClient:
 
     def create_resource_team(self, body: CreateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
         """
-        Create a Resource Team.
+        Create a Resource Team within your workspace A ResourceTeam is a
+        grouping of Resources that allows you to keep track of
+        assignments in a manner consistent with your business needs. You
+        can assign Resources to be members of zero, one, or many
+        ResourceTeams.
 
         Parameters
         ----------
         body : CreateResourceTeamDto
-            The name of the team to create.
+            The name of the ResourceTeam to create
         """
         path = "/api/data/resources/teams"
         queryParams = {}
         result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
-            return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)
-        else:
-            response = AstroResult[ResourceTeamDto](None, False, True, result.status_code, None)
-            response.load_error(result)
-            return response
-
-    def delete_resource_team(self, resourceTeamId: str) -> AstroResult[object]:
-        """
-        The endpoint is used to delete a resource team. Users assigned
-        to this team will no longer be assigned thereafter.
-
-        Parameters
-        ----------
-        resourceTeamId : str
-            The Id of the team to be removed.
-        """
-        path = f"/api/data/resources/teams/{resourceTeamId}"
-        queryParams = {}
-        result = self.client.send_request("DELETE", path, None, queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
-            return AstroResult[object](None, True, False, result.status_code, data)
-        else:
-            response = AstroResult[object](None, False, True, result.status_code, None)
-            response.load_error(result)
-            return response
-
-    def update_resource_team(self, resourceTeamId: str, body: UpdateResourceTeamDto) -> AstroResult[ResourceTeamDto]:
-        """
-        Update a Resource Team.
-
-        Parameters
-        ----------
-        resourceTeamId : str
-            The id of the resource team
-        body : UpdateResourceTeamDto
-            The name of the team to Update.
-        """
-        path = f"/api/data/resources/teams/{resourceTeamId}"
-        queryParams = {}
-        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
         if result.status_code >= 200 and result.status_code < 300:
             data = dacite.from_dict(data_class=ResourceTeamDto, data=json.loads(result.content)['data'])
             return AstroResult[ResourceTeamDto](None, True, False, result.status_code, data)

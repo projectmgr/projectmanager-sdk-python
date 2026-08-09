@@ -12,29 +12,18 @@
 #
 
 
-from ProjectManagerSdk.models.recurrencedto import RecurrenceDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class HolidayUpdateDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Request body for updating a holiday. Only the reason can be changed.
     """
 
-    changeSetId: str | None = None
+    reason: str | None = None
     """
-    The ChangeSet Id
-    """
-
-    recurrences: List[RecurrenceDto] | None = None
-    """
-    The recurrence instances created by this action
+    Updated reason or label for the holiday.
     """
 
 

@@ -12,29 +12,30 @@
 #
 
 
-from ProjectManagerSdk.models.recurrencedto import RecurrenceDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class RecurrenceDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    A single recurrence instance created by a recurring Task, NPT, or
+    Meeting action
     """
 
-    changeSetId: str | None = None
+    id: str | None = None
     """
-    The ChangeSet Id
+    The unique identifier of the created recurrence instance
     """
 
-    recurrences: List[RecurrenceDto] | None = None
+    startDate: str | None = None
     """
-    The recurrence instances created by this action
+    The occurrence start (UTC). For Meetings this carries the meeting
+    time.
+    """
+
+    endDate: str | None = None
+    """
+    The occurrence finish (UTC)
     """
 
 
