@@ -12,29 +12,25 @@
 #
 
 
-from ProjectManagerSdk.models.recurrencedto import RecurrenceDto
+from ProjectManagerSdk.models.workspaceworkingdaysdto import WorkspaceWorkingDaysDto
 from typing import List
 import dataclasses
 
 @dataclasses.dataclass
-class RecurringTaskChangeSetDetails:
+class WorkspaceSettingsUpdateDto:
     """
-    RecurringTaskChangeSetDetails
-    """
-
-    taskIds: List[str] | None = None
-    """
-    The created Task Ids
+    Request body for updating workspace-level scheduling defaults. Omit
+    properties to leave existing values unchanged.
     """
 
-    changeSetId: str | None = None
+    defaultPlannedHours: float | None = None
     """
-    The ChangeSet Id
+    Default planned hours per day for new resources (0–24).
     """
 
-    recurrences: List[RecurrenceDto] | None = None
+    workingDays: WorkspaceWorkingDaysDto | None = None
     """
-    The recurrence instances created by this action
+    Default working hours per weekday for the workspace calendar.
     """
 
 

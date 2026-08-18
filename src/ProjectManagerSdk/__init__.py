@@ -6,7 +6,6 @@ from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
 from ProjectManagerSdk.clients.changesetclient import ChangesetClient
 from ProjectManagerSdk.clients.discussionclient import DiscussionClient
 from ProjectManagerSdk.clients.fileclient import FileClient
-from ProjectManagerSdk.clients.holidayclient import HolidayClient
 from ProjectManagerSdk.clients.homefileclient import HomeFileClient
 from ProjectManagerSdk.clients.hourlyrateclient import HourlyRateClient
 from ProjectManagerSdk.clients.hourlyrateperiodclient import HourlyRatePeriodClient
@@ -15,6 +14,7 @@ from ProjectManagerSdk.clients.integrationclient import IntegrationClient
 from ProjectManagerSdk.clients.integrationproviderclient import IntegrationProviderClient
 from ProjectManagerSdk.clients.licenseclient import LicenseClient
 from ProjectManagerSdk.clients.meclient import MeClient
+from ProjectManagerSdk.clients.meetingrecurrencyclient import MeetingRecurrencyClient
 from ProjectManagerSdk.clients.meetingsclient import MeetingsClient
 from ProjectManagerSdk.clients.meetingtagclient import MeetingTagClient
 from ProjectManagerSdk.clients.meetingtodosclient import MeetingTodosClient
@@ -90,6 +90,11 @@ from ProjectManagerSdk.models.exportpriorityfilterdto import ExportPriorityFilte
 from ProjectManagerSdk.models.filedatadto import FileDataDto
 from ProjectManagerSdk.models.filedto import FileDto
 from ProjectManagerSdk.models.globalholidaydto import GlobalHolidayDto
+from ProjectManagerSdk.models.holidaycreatedto import HolidayCreateDto
+from ProjectManagerSdk.models.holidaydetaildto import HolidayDetailDto
+from ProjectManagerSdk.models.holidaylistitemdto import HolidayListItemDto
+from ProjectManagerSdk.models.holidayresourcedto import HolidayResourceDto
+from ProjectManagerSdk.models.holidayupdatedto import HolidayUpdateDto
 from ProjectManagerSdk.models.hourlyratecreatedto import HourlyRateCreateDto
 from ProjectManagerSdk.models.hourlyratedetailsdto import HourlyRateDetailsDto
 from ProjectManagerSdk.models.hourlyratedto import HourlyRateDto
@@ -98,6 +103,7 @@ from ProjectManagerSdk.models.hourlyrateperioddto import HourlyRatePeriodDto
 from ProjectManagerSdk.models.hourlyratevaluedto import HourlyRateValueDto
 from ProjectManagerSdk.models.hourlyratevalueupdatedto import HourlyRateValueUpdateDto
 from ProjectManagerSdk.models.iddto import IdDto
+from ProjectManagerSdk.models.idnamedto import IdNameDto
 from ProjectManagerSdk.models.integrationauthsetupdto import IntegrationAuthSetupDto
 from ProjectManagerSdk.models.integrationcategorydto import IntegrationCategoryDto
 from ProjectManagerSdk.models.integrationconnectionschemeobjectdto import IntegrationConnectionSchemeObjectDto
@@ -147,6 +153,8 @@ from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectcustomercreatedto import ProjectCustomerCreateDto
 from ProjectManagerSdk.models.projectcustomerdto import ProjectCustomerDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
+from ProjectManagerSdk.models.projectexportfilterdto import ProjectExportFilterDto
+from ProjectManagerSdk.models.projectexportsettingsdto import ProjectExportSettingsDto
 from ProjectManagerSdk.models.projectfieldcreatedto import ProjectFieldCreateDto
 from ProjectManagerSdk.models.projectfielddto import ProjectFieldDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
@@ -173,12 +181,15 @@ from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 from ProjectManagerSdk.models.projectversionchangedatadto import ProjectVersionChangeDataDto
 from ProjectManagerSdk.models.projectversiondto import ProjectVersionDto
 from ProjectManagerSdk.models.projectworkingdaysdto import ProjectWorkingDaysDto
+from ProjectManagerSdk.models.recurrencedto import RecurrenceDto
 from ProjectManagerSdk.models.recurringtaskchangesetdetails import RecurringTaskChangeSetDetails
 from ProjectManagerSdk.models.recurringtaskchangesetdetailschangesetstatusdto import RecurringTaskChangeSetDetailsChangeSetStatusDto
 from ProjectManagerSdk.models.recurringtasksettingsdto import RecurringTaskSettingsDto
 from ProjectManagerSdk.models.recurringtaskvalidationresultdto import RecurringTaskValidationResultDto
 from ProjectManagerSdk.models.resourceapproverdto import ResourceApproverDto
+from ProjectManagerSdk.models.resourcebulkupdatedto import ResourceBulkUpdateDto
 from ProjectManagerSdk.models.resourcecreatedto import ResourceCreateDto
+from ProjectManagerSdk.models.resourcedetailsdto import ResourceDetailsDto
 from ProjectManagerSdk.models.resourcedto import ResourceDto
 from ProjectManagerSdk.models.resourceholidaydto import ResourceHolidayDto
 from ProjectManagerSdk.models.resourcescreatedto import ResourcesCreateDto
@@ -208,6 +219,7 @@ from ProjectManagerSdk.models.taskactualresourcetimedto import TaskActualResourc
 from ProjectManagerSdk.models.taskactualtimeentrydto import TaskActualTimeEntryDto
 from ProjectManagerSdk.models.taskapprovalstatusupdatedto import TaskApprovalStatusUpdateDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
+from ProjectManagerSdk.models.taskbaselinedto import TaskBaselineDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
 from ProjectManagerSdk.models.taskdto import TaskDto
@@ -226,6 +238,8 @@ from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskreferencedto import TaskReferenceDto
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
+from ProjectManagerSdk.models.taskstatusmovedto import TaskStatusMoveDto
+from ProjectManagerSdk.models.taskstatusmoveresultdto import TaskStatusMoveResultDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
 from ProjectManagerSdk.models.taskstatusupdateobsoletedto import TaskStatusUpdateObsoleteDto
 from ProjectManagerSdk.models.tasktagdto import TaskTagDto
@@ -259,7 +273,11 @@ from ProjectManagerSdk.models.userrolepermissiondto import UserRolePermissionDto
 from ProjectManagerSdk.models.userrolepermissionsdto import UserRolePermissionsDto
 from ProjectManagerSdk.models.weeklyrecurringsettingsdto import WeeklyRecurringSettingsDto
 from ProjectManagerSdk.models.workspacedto import WorkSpaceDto
+from ProjectManagerSdk.models.workspacelicensesdto import WorkspaceLicensesDto
 from ProjectManagerSdk.models.workspacelinksdto import WorkSpaceLinksDto
 from ProjectManagerSdk.models.workspacepermissionsdto import WorkSpacePermissionsDto
+from ProjectManagerSdk.models.workspacesettingsdto import WorkspaceSettingsDto
+from ProjectManagerSdk.models.workspacesettingsupdatedto import WorkspaceSettingsUpdateDto
 from ProjectManagerSdk.models.workspaceuserinfodto import WorkSpaceUserInfoDto
+from ProjectManagerSdk.models.workspaceworkingdaysdto import WorkspaceWorkingDaysDto
 from ProjectManagerSdk.models.yearlyrecurringsettingsdto import YearlyRecurringSettingsDto

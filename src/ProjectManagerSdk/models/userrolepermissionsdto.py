@@ -99,12 +99,17 @@ class UserRolePermissionsDto:
 
     editAllProjects: UserRolePermissionDto | None = None
     """
-    Access all projects and timesheets
+    Edit all projects and timesheets
     """
 
     changeOwnEmail: UserRolePermissionDto | None = None
     """
     Edit own email address
+    """
+
+    useMcp: UserRolePermissionDto | None = None
+    """
+    Use MCP server and AI integrations via OAuth
     """
 
 

@@ -23,8 +23,8 @@ class TaskApprovalStatusUpdateDto:
 
     status: str | None = None
     """
-    The approval status to apply to the Task. Must be one of: Approved,
-    Denied, or Pending.
+    The approval status to apply to the Task. Must be one of: approved,
+    denied, or pending.
     """
 
 

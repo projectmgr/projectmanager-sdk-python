@@ -39,7 +39,7 @@ class WorkSpacePermissionsDto:
 
     editAllProjects: bool | None = None
     """
-    True if this user can Access all account data
+    True if this user can edit all projects and timesheets
     """
 
     editCost: bool | None = None
@@ -105,6 +105,17 @@ class WorkSpacePermissionsDto:
     viewMyBoard: bool | None = None
     """
     True if this user can View personal board
+    """
+
+    changeOwnEmail: bool | None = None
+    """
+    True if this user can Edit their own email address
+    """
+
+    useMcp: bool | None = None
+    """
+    True if this user can use the MCP server and AI integrations via
+    OAuth
     """
 
 

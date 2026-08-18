@@ -14,6 +14,8 @@
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.taskstatuscreatedto import TaskStatusCreateDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
+from ProjectManagerSdk.models.taskstatusmovedto import TaskStatusMoveDto
+from ProjectManagerSdk.models.taskstatusmoveresultdto import TaskStatusMoveResultDto
 from ProjectManagerSdk.models.taskstatusupdatedto import TaskStatusUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -132,5 +134,38 @@ class TaskStatusClient:
             return AstroResult[object](None, True, False, result.status_code, data)
         else:
             response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def move_tasks_to_a_taskstatus(self, taskStatusId: str, body: List[TaskStatusMoveDto]) -> AstroResult[List[TaskStatusMoveResultDto]]:
+        """
+        Moves one or more Tasks into the specified TaskStatus. If a
+        Position is specified for a Task, it will be placed at that
+        position within the target TaskStatus. If no Position is
+        specified, the Task will be placed at the end of the list within
+        the target TaskStatus.
+
+        Parameters
+        ----------
+        taskStatusId : str
+            The unique identifier of the TaskStatus to move the Tasks
+            into
+        body : List[TaskStatusMoveDto]
+            The Tasks to move and the position each should occupy within
+            the target TaskStatus
+        """
+        path = f"/api/data/tasks/statuses/{taskStatusId}/tasks"
+        queryParams = {}
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("POST", path, bodyArray, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = []
+            for dict in json.loads(result.content)['data']:
+                data.append(dacite.from_dict(data_class=TaskStatusMoveResultDto, data=dict))
+            return AstroResult[List[TaskStatusMoveResultDto]](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[List[TaskStatusMoveResultDto]](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

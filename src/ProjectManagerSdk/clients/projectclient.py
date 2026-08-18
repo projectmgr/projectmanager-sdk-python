@@ -12,8 +12,10 @@
 #
 
 from ProjectManagerSdk.models.astroresult import AstroResult
+from ProjectManagerSdk.models.exportdto import ExportDto
 from ProjectManagerSdk.models.projectcreatedto import ProjectCreateDto
 from ProjectManagerSdk.models.projectdto import ProjectDto
+from ProjectManagerSdk.models.projectexportsettingsdto import ProjectExportSettingsDto
 from ProjectManagerSdk.models.projectreopenstatusdto import ProjectReopenStatusDto
 from ProjectManagerSdk.models.projectupdatedto import ProjectUpdateDto
 from typing import List
@@ -202,5 +204,26 @@ class ProjectClient:
             return AstroResult[ProjectReopenStatusDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ProjectReopenStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_project_export(self, body: ProjectExportSettingsDto) -> AstroResult[ExportDto]:
+        """
+        Initiates a new Export action for Projects. Returns the
+        identifier of this Projects Export.
+
+        Parameters
+        ----------
+        body : ProjectExportSettingsDto
+            The settings to use for this export action
+        """
+        path = "/api/data/projects/export"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ExportDto, data=json.loads(result.content)['data'])
+            return AstroResult[ExportDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ExportDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
