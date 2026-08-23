@@ -33,31 +33,6 @@ class RiskClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def create_project_risk(self, projectId: str, body: RiskCreateDto) -> AstroResult[RiskDto]:
-        """
-        Creates a new Risk within the specified Project. The Risk will
-        inherit Project context such as access permissions and workspace
-        ownership. Validation is applied to ensure the Project exists
-        and the caller has permission to create Risks.
-
-        Parameters
-        ----------
-        projectId : str
-            The id of the project
-        body : RiskCreateDto
-            The data used to create the Risk
-        """
-        path = f"/api/data/projects/{projectId}"
-        queryParams = {}
-        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
-        if result.status_code >= 200 and result.status_code < 300:
-            data = dacite.from_dict(data_class=RiskDto, data=json.loads(result.content)['data'])
-            return AstroResult[RiskDto](None, True, False, result.status_code, data)
-        else:
-            response = AstroResult[RiskDto](None, False, True, result.status_code, None)
-            response.load_error(result)
-            return response
-
     def query_risks(self, top: int, skip: int, filter: str, orderby: str, expand: str) -> AstroResult[List[RiskDto]]:
         """
         Retrieve a list of risks that match an [OData formatted
@@ -195,6 +170,31 @@ class RiskClient:
             return AstroResult[List[RiskDetailsDto]](None, True, False, result.status_code, data)
         else:
             response = AstroResult[List[RiskDetailsDto]](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def create_risk(self, projectId: str, body: RiskCreateDto) -> AstroResult[RiskDto]:
+        """
+        Creates a new Risk within the specified Project. The Risk will
+        inherit Project context such as access permissions and workspace
+        ownership. Validation is applied to ensure the Project exists
+        and the caller has permission to create Risks.
+
+        Parameters
+        ----------
+        projectId : str
+            The id of the project
+        body : RiskCreateDto
+            The data used to create the Risk
+        """
+        path = f"/api/data/projects/{projectId}/risks"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=RiskDto, data=json.loads(result.content)['data'])
+            return AstroResult[RiskDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[RiskDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
