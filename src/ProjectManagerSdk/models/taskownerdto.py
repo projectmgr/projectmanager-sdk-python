@@ -36,6 +36,16 @@ class TaskOwnerDto:
     The resource initials.
     """
 
+    name: str | None = None
+    """
+    Display name for this Resource.
+    """
+
+    shortName: str | None = None
+    """
+    Short display name for this Resource.
+    """
+
     firstName: str | None = None
     """
     The first name of the person Resource. Applies to personnel

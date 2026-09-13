@@ -86,6 +86,16 @@ class WorkSpaceUserInfoDto:
     four statuses: - Trial - Active - Cancelled - Expired
     """
 
+    workSpacePricingType: int | None = None
+    """
+    This is pricing type of workspace
+    """
+
+    workSpaceHasScheduledChanges: bool | None = None
+    """
+    This is true if workspace has scheduled changes
+    """
+
     workSpaceIsActive: bool | None = None
     """
     This is true if the WorkSpace is in the Active or Trial state.
@@ -110,6 +120,18 @@ class WorkSpaceUserInfoDto:
     workspaceCurrencyCulture: str | None = None
     """
     The culture code used for currency formatting in the workspace.
+    """
+
+    workspaceCurrencySymbol: str | None = None
+    """
+    The currency symbol used for currency formatting in the workspace
+    (e.g., "$" for USD, "€" for EUR).
+    """
+
+    workspaceCurrency: str | None = None
+    """
+    The name of the currency used for currency formatting in the
+    workspace (e.g., "USD" for US Dollar, "EUR" for Euro).
     """
 
     userCulture: str | None = None

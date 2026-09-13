@@ -109,7 +109,7 @@ class UserRolePermissionsDto:
 
     useMcp: UserRolePermissionDto | None = None
     """
-    Use MCP server and AI integrations via OAuth
+    Access work from ChatGPT and Claude via OAuth
     """
 
 
