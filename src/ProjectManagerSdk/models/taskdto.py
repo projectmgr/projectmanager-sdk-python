@@ -14,6 +14,7 @@
 
 from ProjectManagerSdk.models.simpletaskfieldvaluedto import SimpleTaskFieldValueDto
 from ProjectManagerSdk.models.taskassigneedto import TaskAssigneeDto
+from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.taskfiledto import TaskFileDto
 from ProjectManagerSdk.models.taskprojectdto import TaskProjectDto
 from ProjectManagerSdk.models.taskstatusdto import TaskStatusDto
