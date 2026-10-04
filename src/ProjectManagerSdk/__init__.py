@@ -49,6 +49,7 @@ from ProjectManagerSdk.clients.taskassigneeclient import TaskAssigneeClient
 from ProjectManagerSdk.clients.taskclient import TaskClient
 from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
 from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+from ProjectManagerSdk.clients.tasklinkclient import TaskLinkClient
 from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
 from ProjectManagerSdk.clients.taskrecurrencyclient import TaskRecurrencyClient
 from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
@@ -57,6 +58,7 @@ from ProjectManagerSdk.clients.tasktodoclient import TaskTodoClient
 from ProjectManagerSdk.clients.teamsclient import TeamsClient
 from ProjectManagerSdk.clients.timesheetclient import TimesheetClient
 from ProjectManagerSdk.clients.userroleclient import UserRoleClient
+from ProjectManagerSdk.clients.workloadclient import WorkloadClient
 from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
 # Data models
 from ProjectManagerSdk.models.addprojectteammembersrequestdto import AddProjectTeamMembersRequestDto
@@ -198,6 +200,9 @@ from ProjectManagerSdk.models.resourceskilldto import ResourceSkillDto
 from ProjectManagerSdk.models.resourceteamdto import ResourceTeamDto
 from ProjectManagerSdk.models.resourceupdatedto import ResourceUpdateDto
 from ProjectManagerSdk.models.resourceworkingdayshours import ResourceWorkingDaysHours
+from ProjectManagerSdk.models.resourceworkloadallocationdto import ResourceWorkloadAllocationDto
+from ProjectManagerSdk.models.resourceworkloadtaskassignmentdto import ResourceWorkloadTaskAssignmentDto
+from ProjectManagerSdk.models.resourceworkloadtaskdetailsdto import ResourceWorkloadTaskDetailsDto
 from ProjectManagerSdk.models.riskassignmentdto import RiskAssignmentDto
 from ProjectManagerSdk.models.riskcreatedto import RiskCreateDto
 from ProjectManagerSdk.models.riskdetailsdto import RiskDetailsDto
@@ -228,6 +233,9 @@ from ProjectManagerSdk.models.taskfieldprojectdto import TaskFieldProjectDto
 from ProjectManagerSdk.models.taskfieldvaluedto import TaskFieldValueDto
 from ProjectManagerSdk.models.taskfieldvaluetaskdto import TaskFieldValueTaskDto
 from ProjectManagerSdk.models.taskfiledto import TaskFileDto
+from ProjectManagerSdk.models.tasklinkcreatedto import TaskLinkCreateDto
+from ProjectManagerSdk.models.tasklinkdto import TaskLinkDto
+from ProjectManagerSdk.models.tasklinkupdatedto import TaskLinkUpdateDto
 from ProjectManagerSdk.models.taskmetadatasearchdto import TaskMetadataSearchDto
 from ProjectManagerSdk.models.taskmetadataupdatedto import TaskMetadataUpdateDto
 from ProjectManagerSdk.models.taskownerdto import TaskOwnerDto
