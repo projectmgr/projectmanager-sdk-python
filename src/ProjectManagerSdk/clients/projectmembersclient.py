@@ -11,6 +11,7 @@
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
+from ProjectManagerSdk.models.addprojectteammembersrequestdto import AddProjectTeamMembersRequestDto
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectaccessdto import ProjectAccessDto
 from ProjectManagerSdk.models.projectmemberdto import ProjectMemberDto
@@ -56,9 +57,11 @@ class ProjectMembersClient:
             response.load_error(result)
             return response
 
-    def retrieve_projects_the_user_is_a_member_of(self) -> AstroResult[List[ProjectAccessDto]]:
+    def retrieve_projects_by_user(self) -> AstroResult[List[ProjectAccessDto]]:
         """
-        Returns a list of project permissions the user is a member of
+        Returns a list of projects where the currently authenticated
+        user is a member. The information returned by this API indicates
+        the project's ID and the current user's role.
 
         Parameters
         ----------
@@ -137,7 +140,7 @@ class ProjectMembersClient:
             response.load_error(result)
             return response
 
-    def create_or_update_user_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
+    def create_or_update_project_membership(self, projectId: str, userId: str, body: ProjectMemberRoleDto) -> AstroResult[ProjectMemberDto]:
         """
         Creates or updates (upserts) a user's membership in a specified
         project. If the user is not yet a member they are added; if they
@@ -197,5 +200,41 @@ class ProjectMembersClient:
             return AstroResult[object](None, True, False, result.status_code, data)
         else:
             response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def add_team_to_project(self, projectId: str, teamId: str, body: AddProjectTeamMembersRequestDto) -> AstroResult[ProjectMemberDto]:
+        """
+        Adds all active people on a business team to a project. Resolves
+        the team to its member resources, grants project access to each
+        user who is not already a member, and leaves existing members
+        unchanged. Access levels follow the same rules as creating or
+        updating individual project membership (workspace role
+        constraints, guest vs licensed user, global admin, etc.). A
+        project member is a user who has access to a specific project.
+        Project members are assigned a project security role, which
+        controls the level of access they have to the project. Possible
+        project security roles include manage, edit, collaborate,
+        creator, and guest.
+
+        Parameters
+        ----------
+        projectId : str
+            Reference to the project receiving access.
+        teamId : str
+            Business team identifier (`BusinessTeamId`); all active team
+            members with a user account are considered.
+        body : AddProjectTeamMembersRequestDto
+            Optional flags for default access (e.g. editor vs
+            collaborator) for newly added members.
+        """
+        path = f"/api/data/projects/{projectId}/teams/{teamId}/members"
+        queryParams = {}
+        result = self.client.send_request("POST", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ProjectMemberDto, data=json.loads(result.content)['data'])
+            return AstroResult[ProjectMemberDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ProjectMemberDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
