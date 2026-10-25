@@ -9,7 +9,7 @@
 # @author     ProjectManager.com <support@projectmanager.com>
 #             
 # @copyright  2023-2026 ProjectManager.com, Inc.
-# @version    2026.162.255
+# @version    2026.164.237
 # @link       https://github.com/projectmgr/projectmanager-sdk-python
 #
 
@@ -43,8 +43,10 @@ class ProjectManagerClient:
         """
         from ProjectManagerSdk.clients.apikeyclient import ApiKeyClient
         from ProjectManagerSdk.clients.changesetclient import ChangesetClient
+        from ProjectManagerSdk.clients.countryclient import CountryClient
         from ProjectManagerSdk.clients.discussionclient import DiscussionClient
         from ProjectManagerSdk.clients.fileclient import FileClient
+        from ProjectManagerSdk.clients.holidaysclient import HolidaysClient
         from ProjectManagerSdk.clients.homefileclient import HomeFileClient
         from ProjectManagerSdk.clients.hourlyrateclient import HourlyRateClient
         from ProjectManagerSdk.clients.hourlyrateperiodclient import HourlyRatePeriodClient
@@ -88,6 +90,7 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.taskclient import TaskClient
         from ProjectManagerSdk.clients.taskfieldclient import TaskFieldClient
         from ProjectManagerSdk.clients.taskfileclient import TaskFileClient
+        from ProjectManagerSdk.clients.tasklinkclient import TaskLinkClient
         from ProjectManagerSdk.clients.taskmetadataclient import TaskMetadataClient
         from ProjectManagerSdk.clients.taskrecurrencyclient import TaskRecurrencyClient
         from ProjectManagerSdk.clients.taskstatusclient import TaskStatusClient
@@ -96,11 +99,14 @@ class ProjectManagerClient:
         from ProjectManagerSdk.clients.teamsclient import TeamsClient
         from ProjectManagerSdk.clients.timesheetclient import TimesheetClient
         from ProjectManagerSdk.clients.userroleclient import UserRoleClient
+        from ProjectManagerSdk.clients.workloadclient import WorkloadClient
         from ProjectManagerSdk.clients.workspaceclient import WorkSpaceClient
         self.apiKey = ApiKeyClient(self)
         self.changeset = ChangesetClient(self)
+        self.country = CountryClient(self)
         self.discussion = DiscussionClient(self)
         self.file = FileClient(self)
+        self.holidays = HolidaysClient(self)
         self.homeFile = HomeFileClient(self)
         self.hourlyRate = HourlyRateClient(self)
         self.hourlyRatePeriod = HourlyRatePeriodClient(self)
@@ -144,6 +150,7 @@ class ProjectManagerClient:
         self.task = TaskClient(self)
         self.taskField = TaskFieldClient(self)
         self.taskFile = TaskFileClient(self)
+        self.taskLink = TaskLinkClient(self)
         self.taskMetadata = TaskMetadataClient(self)
         self.taskRecurrency = TaskRecurrencyClient(self)
         self.taskStatus = TaskStatusClient(self)
@@ -152,12 +159,13 @@ class ProjectManagerClient:
         self.teams = TeamsClient(self)
         self.timesheet = TimesheetClient(self)
         self.userRole = UserRoleClient(self)
+        self.workload = WorkloadClient(self)
         self.workSpace = WorkSpaceClient(self)
         self.serverUrl = env
         if env == "production":
             self.serverUrl = "https://api.projectmanager.com"
         self.sdkName = "Python"
-        self.sdkVersion = "2026.162.255"
+        self.sdkVersion = "2026.164.237"
         self.machineName = platform.uname().node
         self.applicationName = appname
         self.bearerToken = None
