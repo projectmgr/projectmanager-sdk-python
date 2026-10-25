@@ -40,12 +40,12 @@ class HolidayListItemDto:
 
     dateFrom: str | None = None
     """
-    Start of the holiday date span (metadata).
+    Start of the holiday date span (year-month-day only; no time zone).
     """
 
     dateTo: str | None = None
     """
-    End of the holiday date span (metadata).
+    End of the holiday date span (year-month-day only; no time zone).
     """
 
     countryId: List[str] | None = None
