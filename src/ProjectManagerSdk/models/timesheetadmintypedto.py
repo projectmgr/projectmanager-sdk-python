@@ -31,4 +31,10 @@ class TimesheetAdminTypeDto:
     admin task name
     """
 
+    providerShortId: str | None = None
+    """
+    The integration that created this admin task for its non-project
+    time, such as acumatica
+    """
+
 

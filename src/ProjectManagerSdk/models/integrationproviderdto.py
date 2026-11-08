@@ -96,4 +96,18 @@ class IntegrationProviderDto:
     Flag whether user/workspace needs to be setup in Workato
     """
 
+    includeCosts: List[str] | None = None
+    """
+    For Acumatica/MYOB: which cost types Receive Costs includes
+    (Planned, Committed, Actual). Null for other providers. Used so the
+    UI can unlock Planned Cost when it is not synced.
+    """
+
+    timeSyncDirection: str | None = None
+    """
+    For Acumatica/MYOB: whether Sync Time Entries sends time (Send) or
+    receives it (Receive). Null for other providers. Used so the UI can
+    make time read-only when it is received.
+    """
+
 

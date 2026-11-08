@@ -15,6 +15,7 @@ from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.projectfieldcreatedto import ProjectFieldCreateDto
 from ProjectManagerSdk.models.projectfielddto import ProjectFieldDto
 from ProjectManagerSdk.models.projectfieldvaluedto import ProjectFieldValueDto
+from ProjectManagerSdk.models.updateprojectfielddto import UpdateProjectFieldDto
 from ProjectManagerSdk.models.updateprojectfieldvaluedto import UpdateProjectFieldValueDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -106,6 +107,38 @@ class ProjectFieldClient:
             response.load_error(result)
             return response
 
+    def update_projectfield_definition(self, fieldId: str, body: UpdateProjectFieldDto) -> AstroResult[object]:
+        """
+        Updates the definition of a ProjectField within your Workspace,
+        such as renaming the field. This changes the field metadata for
+        the entire Workspace, not the value stored for any project. To
+        change a field's value for a specific project, use
+        UpdateProjectFieldValue instead. A ProjectField is a custom
+        field defined within your Workspace. You can define
+        ProjectFields for any integration purpose that is important to
+        your business. Each ProjectField has a data type as well as
+        options in how it is handled. ProjectFields can be edited for
+        each Project within your Workspace.
+
+        Parameters
+        ----------
+        fieldId : str
+            The unique identifier or short ID of the ProjectField to
+            update
+        body : UpdateProjectFieldDto
+            The new definition (e.g. name) for this ProjectField
+        """
+        path = f"/api/data/projects/fields/{fieldId}"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
     def update_projectfield_value(self, projectId: str, fieldId: str, body: UpdateProjectFieldValueDto) -> AstroResult[object]:
         """
         Sets or replaces the value of a ProjectField for a specific
@@ -168,6 +201,42 @@ class ProjectFieldClient:
             return AstroResult[ProjectFieldValueDto](None, True, False, result.status_code, data)
         else:
             response = AstroResult[ProjectFieldValueDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def update_projectfield_options(self, fieldId: str, body: List[str]) -> AstroResult[object]:
+        """
+        Updates the list of options for a ProjectField of type Dropdown.
+        This changes the field definition for the entire Workspace (the
+        choices available when editing any project), not the value
+        stored for any specific project. To change a field's value for a
+        project, use UpdateProjectFieldValue instead. A ProjectField is
+        a custom field defined within your Workspace. You can define
+        ProjectFields for any integration purpose that is important to
+        your business. Each ProjectField has a data type as well as
+        options in how it is handled. ProjectFields can be edited for
+        each Project within your Workspace.
+
+        Parameters
+        ----------
+        fieldId : str
+            The unique identifier or short ID of the ProjectField to
+            update
+        body : List[str]
+            The new list of option strings (e.g. ["Option A", "Option
+            B", "Option C"])
+        """
+        path = f"/api/data/projects/fields/{fieldId}/options"
+        queryParams = {}
+        bodyArray = []
+        for item in body:
+            bodyArray.append(remove_empty_elements(dataclasses.asdict(item)))
+        result = self.client.send_request("PUT", path, bodyArray, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=object, data=json.loads(result.content)['data'])
+            return AstroResult[object](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[object](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
 
