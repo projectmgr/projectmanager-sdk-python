@@ -49,7 +49,8 @@ class FileClient:
             The unique identifier of the document to download
         type : str
             If you specify a type of `html`, processes the file using
-            text encoding, otherwise binary
+            text encoding. A type of `inline` displays PDF files in the
+            browser. Otherwise, returns a download.
         """
         path = f"/api/data/files/{documentId}/download"
         queryParams = {}
@@ -63,7 +64,7 @@ class FileClient:
             response.load_error(result)
             return response
 
-    def download_a_thumbnail_image(self, documentId: str) -> AstroResult[bytes]:
+    def download_thumbnail_image(self, documentId: str) -> AstroResult[bytes]:
         """
         Downloads a thumbnail image associated with a document that was
         previously uploaded to ProjectManager.com. ProjectManager allows

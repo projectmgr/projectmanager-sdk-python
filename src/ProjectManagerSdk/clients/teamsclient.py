@@ -27,12 +27,12 @@ class TeamsClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_zip_file_for_teams_integrations(self) -> AstroResult[bytes]:
+    def retrieve_integration_bundle(self) -> AstroResult[bytes]:
         """
-        Retrieves zip file for teams integrations. The Teams API is
-        intended for use by ProjectManager and its business development
-        partners. Please contact ProjectManager's sales team to request
-        use of this API.
+        Retrieves the integration's bundle (a zip file) for teams
+        integrations. The Teams API is intended for use by
+        ProjectManager and its business development partners. Please
+        contact ProjectManager's sales team to request use of this API.
 
         Parameters
         ----------

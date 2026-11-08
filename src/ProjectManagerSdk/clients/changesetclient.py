@@ -28,7 +28,7 @@ class ChangesetClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def retrieve_changeset_status(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
+    def retrieve_changeset(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
         """
         Retrieve a Changeset by its unique ID. A Changeset is an
         individual edit that has been made to a project. Since multiple
@@ -58,7 +58,7 @@ class ChangesetClient:
             response.load_error(result)
             return response
 
-    def retrieve_completed_changeset_status(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
+    def retrieve_completed_changeset(self, changeSetId: str) -> AstroResult[ProjectChangeStatusDto]:
         """
         Retrieve a Changeset by its unique ID. This endpoint waits for
         the Changeset to complete its processing prior to returning a
@@ -68,8 +68,8 @@ class ChangesetClient:
         If a Changeset causes a conflict or cannot be applied, it will
         be rejected. You can examine a Changeset to determine its
         conflict resolution status. When checking the status of a
-        Changeset, you can call either RetrieveChangeset or
-        RetrieveCompletedChangeset. Using RetrieveChangeset will give
+        Changeset, you can call either `RetrieveChangeset` or
+        `RetrieveCompletedChangeset`. Using RetrieveChangeset will give
         you the immediate status of the Changeset. Using
         RetrieveCompletedChangeset will delay the response until the
         Changeset has finished processing. Although most Changesets

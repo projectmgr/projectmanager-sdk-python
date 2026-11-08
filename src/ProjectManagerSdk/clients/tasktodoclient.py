@@ -76,7 +76,8 @@ class TaskTodoClient:
 
     def update_todo(self, todoId: str, body: TaskTodoUpdateDto) -> AstroResult[TaskTodoDto]:
         """
-        Update a todo for a task
+        Update a todo for a task. Collaborators can only mark a todo
+        complete or incomplete.
 
         Parameters
         ----------
