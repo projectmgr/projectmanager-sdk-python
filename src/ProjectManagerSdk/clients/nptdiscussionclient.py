@@ -79,9 +79,12 @@ class NptDiscussionClient:
             response.load_error(result)
             return response
 
-    def like_a_comment(self, commentId: str) -> AstroResult[object]:
+    def like_npt_comment(self, commentId: str) -> AstroResult[object]:
         """
-        Puts a thumbsup on a comment
+        Puts a thumbsup on a comment on a non-project task. Comments may
+        have reactions, specifically thumbsup reactions, associated with
+        them. You can add a thumbs-up to a comment by calling this API.
+        You can remove the thumbs-up by calling UnlikeNptComment
 
         Parameters
         ----------
@@ -99,7 +102,7 @@ class NptDiscussionClient:
             response.load_error(result)
             return response
 
-    def removes_a_thumbsup_from_a_comment(self, commentId: str) -> AstroResult[object]:
+    def unlike_npt_comment(self, commentId: str) -> AstroResult[object]:
         """
         Unlike a comment that was previously liked
 
@@ -119,7 +122,7 @@ class NptDiscussionClient:
             response.load_error(result)
             return response
 
-    def remove_a_comment(self, commentId: str) -> AstroResult[object]:
+    def remove_comment(self, commentId: str) -> AstroResult[object]:
         """
         Removes a comment by it's id
 
