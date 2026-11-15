@@ -29,7 +29,7 @@ class NptFilesClient:
     def __init__(self, client: ProjectManagerClient):
         self.client = client
 
-    def upload_file_to_non_project_tasks(self, taskId: str, fileName: str) -> AstroResult[FileDto]:
+    def upload_npt_file(self, taskId: str, fileName: str) -> AstroResult[FileDto]:
         """
         Uploads a file to a non-project task. ProjectManager allows you
         to store Files connected to other elements of your Workspace
@@ -62,7 +62,14 @@ class NptFilesClient:
 
     def get_npt_files(self, taskId: str) -> AstroResult[List[TaskFileDto]]:
         """
-        retrieves Npt files
+        ProjectManager allows you to store Files connected to other
+        elements of your Workspace such as a Project, a Task, or Home.
+        Files are maintained separately based on the location where the
+        file was stored. When you upload a File, please allow a few
+        moments for the File to be processed and verified.
+        ProjectManager may reject File uploads that contain problems
+        such as malware. Once a File has completed the upload the
+        process, you may retrieve it using the DownloadFile API. ///
 
         Parameters
         ----------

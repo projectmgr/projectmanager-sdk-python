@@ -81,7 +81,8 @@ class TaskCreateDto:
 
     plannedCost: float | None = None
     """
-    The planned cost for this Task. Cannot be negative.
+    The planned cost for this Task. Cannot be negative or more than
+    90,000,000,000,000.
     """
 
     actualStartDate: str | None = None
@@ -91,7 +92,8 @@ class TaskCreateDto:
 
     actualCost: float | None = None
     """
-    The actual cost of this Task to date, if known.
+    The actual cost of this Task to date, if known. Cannot be negative
+    or more than 90,000,000,000,000.
     """
 
     theme: str | None = None
