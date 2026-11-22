@@ -13,10 +13,12 @@
 
 from ProjectManagerSdk.models.astroresult import AstroResult
 from ProjectManagerSdk.models.changesetstatusdto import ChangeSetStatusDto
+from ProjectManagerSdk.models.taskapprovalstatusupdatedto import TaskApprovalStatusUpdateDto
 from ProjectManagerSdk.models.taskcreatedto import TaskCreateDto
 from ProjectManagerSdk.models.taskdetailsdto import TaskDetailsDto
 from ProjectManagerSdk.models.taskdto import TaskDto
 from ProjectManagerSdk.models.taskprioritydto import TaskPriorityDto
+from ProjectManagerSdk.models.tasktimesummarydto import TaskTimeSummaryDto
 from ProjectManagerSdk.models.taskupdatedto import TaskUpdateDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
@@ -170,9 +172,9 @@ class TaskClient:
             response.load_error(result)
             return response
 
-    def fetch_the_first_level_child_tasks_from_the_task(self, taskId: str) -> AstroResult[List[TaskDto]]:
+    def retrieve_first_level_child_tasks(self, taskId: str) -> AstroResult[List[TaskDto]]:
         """
-        Fetch the first level child tasks from the task
+        Fetch the first level child tasks from the task.
 
         Parameters
         ----------
@@ -343,9 +345,38 @@ class TaskClient:
             response.load_error(result)
             return response
 
-    def mark_task_as_read_for_the_current_user(self, taskId: str) -> AstroResult[object]:
+    def update_approval_status(self, taskId: str, body: TaskApprovalStatusUpdateDto) -> AstroResult[ChangeSetStatusDto]:
         """
-        Updates the task user read record (last viewed) for the
+        Sets the approval status of an existing Task to either
+        `Approved` or `Denied`. Approval status is only supported for
+        project Tasks. Non-project tasks (NPTs) and non-task task types
+        do not support approval and will return a validation error. This
+        operation is processed as a Changeset to ensure sequential
+        application and concurrency safety.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the Task to update
+        body : TaskApprovalStatusUpdateDto
+            The approval status update payload indicating whether the
+            Task is approved or denied.
+        """
+        path = f"/api/data/tasks/{taskId}/approval-status"
+        queryParams = {}
+        result = self.client.send_request("PUT", path, remove_empty_elements(dataclasses.asdict(body)), queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=ChangeSetStatusDto, data=json.loads(result.content)['data'])
+            return AstroResult[ChangeSetStatusDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[ChangeSetStatusDto](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def mark_task_read(self, taskId: str) -> AstroResult[object]:
+        """
+        Marks the specified Task as having been 'read' by the current
+        user. Updates the task user read record (last viewed) for the
         authenticated user. Use this when the UI only needs to mark
         file/discussion read state without loading full task details.
 
@@ -362,5 +393,28 @@ class TaskClient:
             return AstroResult[object](None, True, False, result.status_code, data)
         else:
             response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def retrieve_task_time_allocations(self, taskId: str) -> AstroResult[TaskTimeSummaryDto]:
+        """
+        Returns a summary of planned allocations and logged timesheet
+        minutes for the specified task, grouped by resource. Use this
+        when the client needs time rollups without loading individual
+        timesheet entries.
+
+        Parameters
+        ----------
+        taskId : str
+            The unique identifier of the task
+        """
+        path = f"/api/data/task/{taskId}/time"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=TaskTimeSummaryDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskTimeSummaryDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[TaskTimeSummaryDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response

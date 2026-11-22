@@ -16,6 +16,7 @@ from ProjectManagerSdk.models.nptcreatedto import NptCreateDto
 from ProjectManagerSdk.models.nptdetailsdto import NptDetailsDto
 from ProjectManagerSdk.models.nptdto import NptDto
 from ProjectManagerSdk.models.nptupdatedto import NptUpdateDto
+from ProjectManagerSdk.models.tasktimesummarydto import TaskTimeSummaryDto
 from typing import List
 from ProjectManagerSdk.tools import remove_empty_elements
 import dataclasses
@@ -85,13 +86,12 @@ class NptClient:
         Retrieve a Non-Project Task (NPT) by its unique identifier or by
         its short ID. An NPT has both a unique identifier, which is a
         GUID, and a short ID, which is a small text label that is unique
-        only within your Workspace.
-
-        A Non-Project Task (NPT) is an individual element of work that
-        is outside of a project. Many people use NPTs to track personal
-        work or general administrative work. NPTs have nearly all the
-        same features as other tasks, but since they are not part of a
-        project, they can be tracked separately by individuals.
+        only within your Workspace. A Non-Project Task (NPT) is an
+        individual element of work that is outside of a project. Many
+        people use NPTs to track personal work or general administrative
+        work. NPTs have nearly all the same features as other tasks, but
+        since they are not part of a project, they can be tracked
+        separately by individuals.
 
         Parameters
         ----------
@@ -112,13 +112,12 @@ class NptClient:
     def update_npt(self, nptId: str, body: NptUpdateDto) -> AstroResult[NptDto]:
         """
         Updates a Non-Project Task (NPT) by its unique identifier, which
-        is a GUID.
-
-        A Non-Project Task (NPT) is an individual element of work that
-        is outside of a project. Many people use NPTs to track personal
-        work or general administrative work. NPTs have nearly all the
-        same features as other tasks, but since they are not part of a
-        project, they can be tracked separately by individuals.
+        is a GUID. A Non-Project Task (NPT) is an individual element of
+        work that is outside of a project. Many people use NPTs to track
+        personal work or general administrative work. NPTs have nearly
+        all the same features as other tasks, but since they are not
+        part of a project, they can be tracked separately by
+        individuals.
 
         Parameters
         ----------
@@ -161,5 +160,33 @@ class NptClient:
             return AstroResult[object](None, True, False, result.status_code, data)
         else:
             response = AstroResult[object](None, False, True, result.status_code, None)
+            response.load_error(result)
+            return response
+
+    def get_npt_time(self, nptId: str) -> AstroResult[TaskTimeSummaryDto]:
+        """
+        Retrieve allocations and actual timesheet minutes for a
+        non-project task, grouped by resource. Returns a summary of
+        planned allocations and logged timesheet minutes for the
+        specified NPT, grouped by resource. Use this when the client
+        needs time rollups without loading individual timesheet entries.
+        The root `totalActualMinutes` is at least the task's stored
+        actual work (minutes) and the merged timesheet total.
+        `hasTimeEntries` is true only when merged timesheet rows exist,
+        not when actual work was set without timesheets (e.g. import).
+
+        Parameters
+        ----------
+        nptId : str
+            The unique identifier of the non-project task
+        """
+        path = f"/api/data/non-project-tasks/{nptId}/time"
+        queryParams = {}
+        result = self.client.send_request("GET", path, None, queryParams, None)
+        if result.status_code >= 200 and result.status_code < 300:
+            data = dacite.from_dict(data_class=TaskTimeSummaryDto, data=json.loads(result.content)['data'])
+            return AstroResult[TaskTimeSummaryDto](None, True, False, result.status_code, data)
+        else:
+            response = AstroResult[TaskTimeSummaryDto](None, False, True, result.status_code, None)
             response.load_error(result)
             return response
